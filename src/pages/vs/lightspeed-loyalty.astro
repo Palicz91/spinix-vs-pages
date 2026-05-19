@@ -1,0 +1,109 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Lightspeed Loyalty vs SpiniX: Pricing, Features & Honest Comparison (2026)',
+      description: 'Lightspeed Restaurant starts at $189/mo for loyalty features. SpiniX is €29/mo, works with any POS, adds gamification + Google review collection. Side-by-side comparison.',
+    },
+    hero: {
+      eyebrow: 'Comparison',
+      headline: 'SpiniX<br/>vs Lightspeed Loyalty',
+      subline: 'Enterprise pricing for enterprise restaurants.<br/>But what if you\'re not an enterprise?',
+    },
+    tldr: {
+      title: 'SpiniX vs Lightspeed: TL;DR',
+      spinix: '<strong>SpiniX:</strong> €29/mo flat. Gamified prize wheel, automated Google review collection, Apple/Google Wallet passes, email follow-ups. Works with any POS or none. 15-minute setup.',
+      competitor: '<strong>Lightspeed Loyalty:</strong> Part of the Essential tier ($189/mo) or higher. Points and rewards tied to POS transactions. Requires Lightspeed POS. No gamification, no review collection. Marketing features require the higher tiers.',
+      verdict: 'Lightspeed is a premium all-in-one restaurant platform. If you need POS + inventory + labor + loyalty in one vendor, it\'s strong. But for guest retention and review collection specifically, you\'re paying $189+/mo for features SpiniX delivers at €29/mo — without POS lock-in.',
+    },
+    definition: {
+      title: 'What is Lightspeed Restaurant Loyalty?',
+      text: 'Lightspeed Restaurant Loyalty is a points-based rewards system built into Lightspeed\'s restaurant POS platform. It\'s available starting from the Essential tier ($189/mo). Customers earn rewards based on purchases tracked through the POS. It requires Lightspeed hardware and software — there is no standalone loyalty option.',
+    },
+    comparison: {
+      title: 'Feature comparison',
+      headers: ['Feature', 'SpiniX', 'Lightspeed'],
+      rows: [
+        ['Monthly price (loyalty included)', '€29/mo', '$189/mo (Essential tier)'],
+        ['Contract', 'None — cancel anytime', 'Annual typical'],
+        ['Works with any POS', true, false],
+        ['Gamified prize wheel', true, false],
+        ['Google review collection', true, false],
+        ['Apple/Google Wallet passes', true, false],
+        ['Automated email reminders', true, 'Via Advanced Marketing (higher tier)'],
+        ['Points-based rewards', false, true],
+        ['POS transaction tracking', 'Not needed', true],
+        ['Inventory management', false, true],
+        ['Kitchen display system', false, '$30/screen/mo add-on'],
+        ['Online ordering', false, 'Included'],
+        ['Multi-location', 'Up to 3 (Growth plan)', 'Essential tier+'],
+        ['Setup time', '15 minutes', '1-4 weeks (hardware + training)'],
+        ['AI analytics', false, 'Lightspeed AI included'],
+        ['Collects guest email', true, 'Via marketing add-on'],
+      ],
+    },
+    whenLightspeed: {
+      title: 'When Lightspeed makes more sense',
+      items: [
+        'You need a full POS replacement (not just loyalty) with inventory, labor, and kitchen management',
+        'You want AI-powered analytics across your entire operation',
+        'You run a multi-department restaurant (bar + kitchen + events) needing unified reporting',
+        'You want online ordering, reservations, and loyalty from one vendor',
+        'Budget is not a primary concern — you value the all-in-one approach',
+      ],
+    },
+    whenSpiniX: {
+      title: 'When SpiniX makes more sense',
+      items: [
+        'You already have a POS you like and don\'t want to switch',
+        'Your primary goal is more Google reviews and repeat visits — not a new POS',
+        'You want gamification that guests actually enjoy (not just points)',
+        'Your budget is under $50/mo for guest engagement',
+        'You need Apple/Google Wallet passes with automated expiry reminders',
+        'You want to be up and running today, not in 4 weeks',
+      ],
+    },
+    honestTakeaways: {
+      title: 'Honest takeaways',
+      items: [
+        '<strong>Lightspeed\'s advantage:</strong> All-in-one platform. POS + inventory + labor + loyalty + online ordering + AI analytics. One vendor, one bill, one dashboard. Deep transaction-level data.',
+        '<strong>Lightspeed\'s weakness:</strong> $189/mo minimum for loyalty. No gamification. No review collection. Requires their hardware. Setup takes weeks. Overkill if you just want guest retention.',
+        '<strong>SpiniX\'s advantage:</strong> Works with any POS. €29/mo. Gamified experience. Automated Google reviews (34% leave one). Wallet passes. Live in 15 minutes.',
+        '<strong>SpiniX\'s weakness:</strong> No POS features. No inventory or labor management. Not an all-in-one platform. If you need a complete restaurant operating system, SpiniX isn\'t it.',
+      ],
+    },
+    cta: {
+      title: 'Try SpiniX free for your restaurant',
+      text: '15-minute setup. No POS required. Cancel anytime.',
+      button: 'Start now',
+    },
+    faq: {
+      title: 'Frequently asked questions',
+      items: [
+        {
+          q: 'Can I use SpiniX with Lightspeed POS?',
+          a: 'Yes. SpiniX is completely POS-independent. Place the QR code on your tables — it works alongside Lightspeed, Square, Toast, or any other POS without integration or conflict.',
+        },
+        {
+          q: 'Does Lightspeed collect Google reviews?',
+          a: 'No. Lightspeed focuses on POS operations and transaction-based loyalty. It does not prompt guests to leave Google reviews. SpiniX automatically asks after each spin — 34% of guests leave a review.',
+        },
+        {
+          q: 'Why is Lightspeed so much more expensive?',
+          a: 'Because Lightspeed is a full restaurant operating system — POS, inventory, labor, analytics, online ordering, and loyalty bundled together. You\'re paying for the complete platform, not just loyalty. SpiniX does one thing: guest retention and review collection. It does it for €29/mo.',
+        },
+        {
+          q: 'Is Lightspeed worth $189/mo for a small restaurant?',
+          a: 'If you need POS + inventory + analytics, possibly. But if your current POS works fine and you just want more returning guests and Google reviews, $189/mo for Lightspeed is hard to justify when SpiniX costs €29/mo for exactly that.',
+        },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="lightspeed-loyalty" lang={lang} />

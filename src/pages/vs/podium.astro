@@ -1,0 +1,430 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Podium Alternative for Restaurants — Revix vs Podium (2026 Comparison)',
+      description: 'Podium starts at $399/month with a 12-month contract. Revix charges per reply ($0.29-$0.49) with no contract. Full feature and cost comparison for restaurant owners.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'Podium vs Revix',
+      subtitle: 'Podium is a messaging-first platform built for local businesses — auto dealers, dental offices, home services, and restaurants. It bundles SMS review requests, webchat, payments, and team chat into one dashboard starting at $399/month. Revix is an AI review reply engine that charges per response. If you\'re paying $399+/month for Podium but mainly need Google review management, this page breaks down why that could be 15-50x more than necessary.',
+    },
+    tldr: {
+      title: 'Podium vs Revix: the short version',
+      podium: 'Podium is a messaging and review platform: consolidated inbox (SMS, webchat, social DMs), review request campaigns via text, AI auto-replies, payment processing, marketing campaigns, and team chat. Pricing starts at $399/month (Core) up to $599/month (Pro), with Signature tier at custom pricing. 12-month contract typical. Per-location pricing. Designed for auto dealerships, dental practices, home services, and local businesses with high SMS volume.',
+      revix: 'Revix is an AI-powered Google review reply engine. Claude Sonnet writes each response using your restaurant\'s context (menu, tone, past reviews). Pay per reply: 99 Ft (~$0.29) for positive, 199 Ft (~$0.49) for negative reviews. A typical restaurant pays 3,000-10,000 Ft/month ($8-28). No contract, no setup fee. Connect your Google Business Profile in 10 minutes. Built for independent restaurants, cafes, and hotels.',
+      verdict: 'If you need a consolidated messaging inbox, SMS-based review requests, payment processing, and team chat in one tool, Podium covers more ground. If your main need is high-quality AI replies to Google reviews without the enterprise price tag, Revix.',
+    },
+    context: {
+      title: 'Why restaurant owners search for a Podium alternative',
+      reasons: [
+        { title: 'Paying $399+/month for an SMS platform when you need review replies', detail: 'Podium\'s core strength is text messaging — SMS review requests, webchat-to-text, payment links via SMS. Most restaurant owners searching for review management need quality AI replies to existing reviews, not another texting tool. You\'re paying $4,788+/year for a messaging suite when your actual need costs $100-300/year.' },
+        { title: 'Cancellation nightmare is well-documented', detail: 'Podium requires a 12-month contract with 30-day cancellation notice. Dozens of BBB complaints and Reddit threads describe continued billing for months after cancellation requests. Users report $500/month charges continuing 3-6 months post-cancellation, unreachable customer service, and being told their cancellation "wasn\'t processed."' },
+        { title: 'Per-location pricing adds up fast', detail: 'Podium charges per location. A 3-restaurant group on the Core plan pays $1,197/month ($14,364/year). The same group on Revix pays $24-84/month based on actual review volume. That\'s a $13,000+/year difference for review management alone.' },
+        { title: 'AI replies are generic across industries', detail: 'Podium\'s AI review responses are built for auto shops, dentists, plumbers, and restaurants alike. The replies sound templated because they are. Revix uses Claude Sonnet with your restaurant\'s specific menu, tone, and review history — replies reference actual dishes and guest experiences by name.' },
+      ],
+    },
+    comparison: {
+      title: 'Podium vs Revix: feature comparison',
+      headers: ['', 'Podium', 'Revix'],
+      rows: [
+        { feature: 'Price', podium: '$399-599/mo (per location)', revix: '$8-28/mo typical (per reply)', winner: 'revix' },
+        { feature: 'Pricing model', podium: 'Flat monthly + annual contract', revix: 'Per reply (pay only when used)', winner: 'revix' },
+        { feature: 'Contract', podium: '12 months (30-day cancellation notice)', revix: 'None (disconnect anytime)', winner: 'revix' },
+        { feature: 'Cancellation experience', podium: 'Widely reported billing after cancel', revix: 'Disconnect Google, billing stops', winner: 'revix' },
+        { feature: 'Consolidated messaging inbox', podium: 'Yes (SMS, webchat, social DMs)', revix: 'No', winner: 'podium' },
+        { feature: 'Review requests via SMS', podium: 'Yes (built-in text campaigns)', revix: 'Via SpiniX spin wheel (33% rate)', winner: 'podium' },
+        { feature: 'AI review replies', podium: 'Yes (generic multi-industry)', revix: 'Yes (Claude Sonnet, restaurant-tuned)', winner: 'revix' },
+        { feature: 'Reply quality (AI model)', podium: 'Undisclosed model', revix: 'Claude Sonnet 4.6 with RAG context', winner: 'revix' },
+        { feature: 'Payment processing', podium: 'Yes (text-to-pay, card readers)', revix: 'No', winner: 'podium' },
+        { feature: 'Sentiment analysis', podium: 'Basic', revix: 'Yes (per-review + trends)', winner: 'revix' },
+        { feature: 'Competitor analysis', podium: 'No', revix: 'Yes (local cluster benchmarking)', winner: 'revix' },
+        { feature: 'Team chat', podium: 'Yes (internal messaging)', revix: 'No', winner: 'podium' },
+        { feature: 'Marketing campaigns', podium: 'Yes (SMS/MMS bulk sends)', revix: 'No', winner: 'podium' },
+        { feature: 'Fake review appeal drafts', podium: 'No', revix: 'Yes (AI-generated with Google policy refs)', winner: 'revix' },
+        { feature: 'Guest profiling', podium: 'Basic contact records', revix: 'Yes (visit frequency, preferences, spend)', winner: 'revix' },
+        { feature: 'Onboarding time', podium: 'Days to weeks (sales call required)', revix: '10 minutes', winner: 'revix' },
+        { feature: 'Target market', podium: 'Auto, dental, home services, local biz', revix: 'Restaurants, cafes, hotels', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Podium vs Revix: which fits your business',
+      subtitle: 'The right tool depends on what you actually need, not which has more features on a checklist.',
+      tiers: [
+        {
+          title: 'Single restaurant or cafe',
+          description: '1 Google Business Profile, mainly needs review replies',
+          recommendation: 'Revix',
+          reason: 'Podium at $399/month is built for businesses that live on SMS — auto dealers texting customers about service appointments, dental offices confirming bookings. A single restaurant getting 15-40 Google reviews/month doesn\'t need a $4,788/year messaging suite. Revix handles those reviews for $96-336/year with better AI reply quality tuned to food and hospitality.',
+          annual: '$96-336/year with Revix',
+        },
+        {
+          title: '2-10 restaurant locations',
+          description: 'Small group needing consistent review management',
+          recommendation: 'Revix',
+          reason: 'Podium\'s per-location pricing hits hard at this size: 5 locations on Core = $1,995/month ($23,940/year). Revix per-reply pricing scales with actual review volume, not location count. A 5-location group typically pays $480-1,680/year total. That\'s $22,000+/year in savings redirected to actual restaurant operations.',
+          annual: '$480-1,680/year with Revix',
+        },
+        {
+          title: 'High-SMS business (auto, dental, home services)',
+          description: 'Customer communication is primarily text-based',
+          recommendation: 'Podium',
+          reason: 'If your business sends hundreds of texts daily — appointment confirmations, service updates, payment requests — Podium\'s messaging infrastructure is purpose-built for that. Auto dealerships and dental practices get real value from the consolidated inbox. Revix doesn\'t do messaging at all.',
+          annual: '$4,788-7,188/year with Podium',
+        },
+        {
+          title: 'Business needing payment processing + reviews',
+          description: 'Want text-to-pay and review management in one tool',
+          recommendation: 'Podium or split approach',
+          reason: 'Podium\'s payment processing (text-to-pay links, card readers) is genuinely useful for service businesses that invoice after completion. If you need both payments and reviews from one vendor, Podium covers it. Alternatively, use Revix for reviews ($8-28/month) plus Stripe or Square for payments — often cheaper combined.',
+          annual: '$4,788+/year with Podium',
+        },
+      ],
+    },
+    details: {
+      title: 'Podium vs Revix: where each wins',
+      sections: [
+        {
+          title: 'Podium wins: consolidated messaging inbox',
+          icon: 'building',
+          content: 'Podium\'s messaging inbox pulls SMS, webchat, Facebook Messenger, Instagram DMs, and Google Messages into one view. For businesses drowning in customer texts across platforms, this saves real time. Dental offices, auto shops, and home service companies that handle 50+ daily customer messages see clear value. Revix has no messaging features — it focuses entirely on review intelligence and AI replies.',
+        },
+        {
+          title: 'Podium wins: SMS review request campaigns',
+          icon: 'store',
+          content: 'Podium sends review request texts to customers after a transaction, with direct links to leave a Google or Facebook review. Their review generation rates are solid for businesses with customer phone numbers on file. Revix generates reviews differently — through SpiniX\'s gamified spin wheel (33% conversion rate) rather than SMS blasts. Both work, but Podium\'s SMS approach is more direct for businesses already collecting phone numbers.',
+        },
+        {
+          title: 'Podium wins: payment processing',
+          icon: 'clock',
+          content: 'Podium offers text-to-pay links and card reader integrations. A plumber can text an invoice link right after finishing a job. This is genuinely useful for service businesses where collecting payment at point of service matters. Revix doesn\'t process payments — it\'s a review management tool, not a payment platform.',
+        },
+        {
+          title: 'Revix wins: AI reply quality for restaurants',
+          icon: 'star',
+          content: 'Podium\'s AI replies are designed for auto shops, dental offices, HVAC companies, and restaurants with the same engine. The result is generic. Revix uses Claude Sonnet 4.6 with your restaurant\'s specific context: menu items, cuisine type, staff names, seasonal specials, and past review patterns. When a guest mentions "the lamb shank was overcooked," Revix knows that dish, the typical preparation, and crafts a reply that addresses it specifically. Podium\'s AI would produce a template apology.',
+        },
+        {
+          title: 'Revix wins: per-reply pricing (15-50x cheaper)',
+          icon: 'zap',
+          content: 'A restaurant getting 25 Google reviews/month pays Podium $399/month ($15.96 per review monitored). With Revix, responding to those 25 reviews costs roughly 4,000 Ft ($11) total. That\'s 36x less. Even a busy restaurant with 80 reviews/month would pay about $23 on Revix vs $399 on Podium. You only pay when Revix actually writes a reply — no flat fee for months when business is slow.',
+        },
+        {
+          title: 'Revix wins: no cancellation trap',
+          icon: 'shield',
+          content: 'Podium\'s cancellation process is one of the most-complained-about aspects of the platform. BBB complaints, Reddit posts, and G2 reviews describe months of continued billing after requesting cancellation, unresponsive support, and charges appearing even after written confirmation of cancellation. Revix has no contract — disconnect your Google Business Profile and billing stops the same day. No phone calls, no "retention specialists," no surprise invoices.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Podium vs Revix cost for a single restaurant',
+      subtitle: 'Annual comparison for a restaurant receiving 30 Google reviews per month.',
+      rows: [
+        { item: 'Monthly cost', podium: '$399 (Core plan)', revix: '~$9-15 (per reply)' },
+        { item: 'Setup fee', podium: 'Varies (sales call required)', revix: '$0' },
+        { item: 'Contract length', podium: '12 months typical', revix: 'None' },
+        { item: 'First year total', podium: '$4,788+', revix: '$108-180' },
+        { item: 'Cost per review responded', podium: '$13.30 (if responding to all 30)', revix: '$0.29-0.49' },
+        { item: 'Cancellation', podium: '30-day notice (billing may continue)', revix: 'Disconnect Google instantly' },
+        { item: 'Time to first AI reply', podium: 'Days-weeks (onboarding + sales)', revix: '10 minutes' },
+      ],
+      note: 'For a single restaurant, Podium costs 27-44x more than Revix annually. Podium includes messaging, payments, and SMS campaigns beyond review replies, but if review management is your primary need, you\'re paying $4,600+/year for tools built for auto dealerships and dental offices.',
+    },
+    scenarios: {
+      title: 'Revix or Podium: which should you choose?',
+      items: [
+        { situation: 'Single restaurant, Google is your main review platform', recommendation: 'Revix', reason: 'Per-reply pricing means you pay $8-28/month instead of $399. Better AI quality for restaurant-specific replies.' },
+        { situation: 'Restaurant group (2-10 locations)', recommendation: 'Revix', reason: 'Per-reply pricing scales with review volume, not location count. A 5-location group saves $22,000+/year vs Podium.' },
+        { situation: 'Auto dealership or dental practice with heavy SMS use', recommendation: 'Podium', reason: 'Podium\'s messaging inbox and SMS campaigns are built for high-text-volume businesses. Revix doesn\'t do messaging.' },
+        { situation: 'Need text-to-pay and invoicing', recommendation: 'Podium', reason: 'Revix has no payment features. Podium\'s text-to-pay is useful for service businesses collecting payment post-service.' },
+        { situation: 'Priority is AI reply quality for food/hospitality', recommendation: 'Revix', reason: 'Claude Sonnet with restaurant context beats generic multi-industry AI. Replies reference actual dishes, experiences, and your tone.' },
+        { situation: 'Need webchat widget for your website', recommendation: 'Podium', reason: 'Podium includes a webchat-to-text widget. Revix focuses on review replies, not live chat.' },
+        { situation: 'Budget under $50/month', recommendation: 'Revix', reason: 'Podium starts at $399. Revix per-reply pricing fits any budget — you control spend by volume.' },
+        { situation: 'Worried about getting locked into a contract', recommendation: 'Revix', reason: 'No contract, no cancellation notice period, no "retention call." Disconnect your Google Business Profile and you\'re done.' },
+      ],
+    },
+    pricing: {
+      title: 'Podium pricing breakdown (2026)',
+      subtitle: 'Podium requires a sales call for exact pricing. These figures come from G2 reviews, BBB complaints, Reddit posts, and business owner reports as of early 2026.',
+      tiers: [
+        { name: 'Core ($399/mo per location)', range: '$399/mo', note: 'Messaging inbox, review requests, basic AI replies, webchat. 12-month contract. Standard reporting.' },
+        { name: 'Pro ($599/mo per location)', range: '$599/mo', note: 'Adds marketing campaigns, advanced automations, payment processing, and analytics. Popular for multi-location.' },
+        { name: 'Signature (custom pricing)', range: 'Custom', note: 'Enterprise features: API access, custom integrations, dedicated account manager. Quote-based, typically $800+/mo.' },
+      ],
+      hidden: [
+        'Per-location pricing — 3 locations on Core = $1,197/month',
+        '12-month contract typical, some users report 24-month terms',
+        '30-day cancellation notice required — but billing may continue regardless',
+        'Additional fees reported for webchat widget on some plans',
+        'SMS message costs may apply beyond included volume on lower tiers',
+      ],
+      disclaimer: 'These prices are estimates from publicly available reviews and user reports as of early 2026. Podium requires a sales call and pricing varies by location count, industry, and negotiation. Contact Podium directly for a current quote.',
+    },
+    faq: {
+      title: 'Podium vs Revix: FAQ',
+      items: [
+        {
+          q: 'Is Podium worth $399/month for a single restaurant?',
+          a: 'For most single restaurants, no. Podium\'s $399/month Core plan includes messaging inbox, webchat, SMS review requests, and basic AI replies — features designed for auto dealerships and dental offices that handle 50+ daily customer texts. A restaurant that gets 20-40 Google reviews/month and needs quality AI replies is paying $4,788/year for tools it won\'t fully use. Revix covers the review management need for $108-336/year with better restaurant-specific AI quality.',
+        },
+        {
+          q: 'Can I switch from Podium to Revix mid-contract?',
+          a: 'You can connect Revix at any time — it takes 10 minutes and works independently of other platforms. The challenge is stopping Podium billing. If you\'re mid-contract, Podium will typically continue billing until the contract term ends. Start by submitting written cancellation per their terms (30-day notice), save all confirmation emails, and dispute any charges that continue past the contractual end date. Some users report needing credit card chargebacks as a last resort.',
+        },
+        {
+          q: 'How does Podium\'s AI compare to Revix for review replies?',
+          a: 'Podium\'s AI review replies are built for all industries — the same engine writes responses for auto shops, dentists, and restaurants. Revix uses Claude Sonnet 4.6 with RAG that pulls your restaurant\'s specific context: menu items, cuisine style, past reviews, and your preferred tone. For a restaurant review mentioning "the patio ambiance and the grilled octopus," Revix references both specifically; Podium\'s AI produces a generic thank-you.',
+        },
+        {
+          q: 'Is it really hard to cancel Podium?',
+          a: 'This is Podium\'s most common complaint across BBB, G2, Reddit, and Trustpilot. Users report: continued billing 3-6 months after cancellation, being told cancellation "wasn\'t received," $500/month charges continuing despite written confirmation, and difficulty reaching anyone in customer service. Some resolved it only through credit card disputes. Revix has no contract — disconnect your Google Business Profile and billing stops the same day.',
+        },
+        {
+          q: 'Does Revix send review request texts like Podium?',
+          a: 'Revix doesn\'t send SMS review requests. It focuses on replying to reviews that already exist on Google. For review generation, SpiniX (the parent platform) uses a gamified prize wheel that guests spin after dining — this achieves a 33% review conversion rate. It\'s a different approach than Podium\'s text blasts, but both generate new reviews.',
+        },
+        {
+          q: 'What does Podium do that Revix doesn\'t?',
+          a: 'Podium offers: consolidated messaging inbox (SMS, webchat, social DMs in one view), text-to-pay payment processing, SMS/MMS marketing campaigns, team internal chat, webchat widget for websites, and review request text campaigns. These are real features for businesses with high SMS volume. Revix focuses on AI review replies, sentiment analysis, competitor benchmarking, and fake review appeal drafts — a narrower but deeper toolset for review management specifically.',
+        },
+        {
+          q: 'Can Revix handle 50+ locations?',
+          a: 'Revix works per Google Business Profile connection. Technically, you can connect 50+ locations. But Revix is optimized for 1-20 restaurant locations. At 50+ locations needing messaging, payments, and centralized SMS campaigns, a broader platform like Podium (if the cancellation risk is acceptable) or separate best-of-breed tools makes more sense.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review replies without the $399/month price tag',
+      subtitle: 'Claude Sonnet quality replies tuned to your restaurant. Per-response pricing. No contract. No cancellation drama. Live in 10 minutes.',
+      button: 'Connect Your Google Reviews',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related comparisons',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Google Review Rewards Policy Guide', slug: '/blog/rewards-for-google-reviews-policy' },
+        { title: 'Unanswered Google Reviews Cost You Revenue', slug: '/blog/unanswered-google-reviews-cost' },
+        { title: 'Google Reviews Drive Restaurant Revenue', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Podium Alternatíva Éttermeknek — Revix vs Podium (2026 Összehasonlítás)',
+      description: 'Podium $399/hó-tól indul 12 hónapos szerződéssel. Revix válaszonként számol ($0.29-$0.49) szerződés nélkül. Teljes funkció- és költség-összehasonlítás étterem tulajdonosoknak.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'Podium vs Revix',
+      subtitle: 'Podium üzenetkezelés-központú platform helyi vállalkozásoknak — autókereskedők, fogorvosok, otthoni szolgáltatások és éttermek. SMS review kéréseket, webchat-et, fizetésfeldolgozást és csapat chat-et kínál egy dashboardról $399/hó-tól. Revix AI review válasz motor ami válaszonként számol. Ha $399+/hó-t fizetsz a Podiumnak de főleg Google review kezelés kell, ez az oldal elmagyarázza miért lehet 15-50x több mint amennyire szükséged van.',
+    },
+    tldr: {
+      title: 'Podium vs Revix: röviden',
+      podium: 'Podium üzenetkezelő és review platform: összevont postaláda (SMS, webchat, social DM-ek), review kérés kampányok SMS-ben, AI automatikus válaszok, fizetésfeldolgozás, marketing kampányok és csapat chat. Árazás $399/hó-tól (Core) $599/hó-ig (Pro), Signature csomag egyedi árazással. 12 hónapos szerződés jellemző. Lokációnkénti árazás. Autókereskedőknek, fogorvosi rendelőknek, otthoni szolgáltatóknak és magas SMS-forgalmú helyi vállalkozásoknak tervezve.',
+      revix: 'Revix AI-vezérelt Google review válasz motor. Claude Sonnet írja a válaszokat az éttermed kontextusával (étlap, hangnem, korábbi vélemények). Válaszonkénti ár: 99 Ft pozitív, 199 Ft negatív review-kra. Tipikus étterem 3,000-10,000 Ft/hó-t fizet ($8-28). Nincs szerződés, nincs setup díj. Google Business Profile csatlakoztatás 10 perc. Független éttermeknek, kávézóknak és szállodáknak készült.',
+      verdict: 'Ha összevont üzenetkezelő, SMS-alapú review kérések, fizetésfeldolgozás és csapat chat kell egy eszközben, Podium szélesebb lefedettséget ad. Ha fő igényed minőségi AI válaszok Google review-kra enterprise árcédula nélkül, Revix.',
+    },
+    context: {
+      title: 'Miért keresnek étterem tulajdonosok Podium alternatívát',
+      reasons: [
+        { title: '$399+/hó-t fizetsz SMS platformra amikor review válaszok kellenek', detail: 'Podium erőssége az SMS üzenetkezelés — SMS review kérések, webchat-ből SMS, fizetési linkek SMS-ben. A legtöbb étterem tulajdonos aki review kezelést keres, minőségi AI válaszokat akar meglévő review-kra, nem újabb SMS eszközt. $4,788+/évet fizetsz üzenetkezelő csomagért amikor a tényleges igényed $100-300/évbe kerül.' },
+        { title: 'Lemondási rémálom jól dokumentált', detail: 'Podium 12 hónapos szerződést és 30 napos felmondási határidőt kér. Tucatnyi BBB panasz és Reddit szál írja le a hónapokig folytatódó számlázást lemondási kérés után. Felhasználók $500/hó-s díjakról számolnak be 3-6 hónappal a lemondás után, elérhetetlen ügyfélszolgálatról és arról hogy a lemondásuk "nem lett feldolgozva."' },
+        { title: 'Lokációnkénti árazás gyorsan összeadódik', detail: 'Podium lokációnként számol. 3 éttermes csoport a Core csomagon $1,197/hó-t fizet ($14,364/év). Ugyanaz a csoport Revix-en $24-84/hó-t fizet a tényleges review volumen alapján. Ez $13,000+/év különbség csak a review kezelésre.' },
+        { title: 'AI válaszok generikusak az iparágak között', detail: 'Podium AI review válaszai autószerelőknek, fogorvosoknak, vízszerelőknek és éttermeknek egyaránt készülnek. A válaszok sablonosan hangzanak mert azok is. Revix Claude Sonnet-et használ az éttermed specifikus étlapjával, hangnemével és review történetével — a válaszok konkrét ételeket és vendégélményeket hivatkoznak név szerint.' },
+      ],
+    },
+    comparison: {
+      title: 'Podium vs Revix: funkció összehasonlítás',
+      headers: ['', 'Podium', 'Revix'],
+      rows: [
+        { feature: 'Ár', podium: '$399-599/hó (lokációnként)', revix: '$8-28/hó tipikus (válaszonként)', winner: 'revix' },
+        { feature: 'Árazási modell', podium: 'Fix havi + éves szerződés', revix: 'Válaszonkénti (csak ha használod)', winner: 'revix' },
+        { feature: 'Szerződés', podium: '12 hónap (30 napos felmondás)', revix: 'Nincs (bármikor leválasztható)', winner: 'revix' },
+        { feature: 'Lemondási élmény', podium: 'Számlázás folytatódik lemondás után', revix: 'Google leválasztás, számlázás leáll', winner: 'revix' },
+        { feature: 'Összevont üzenetkezelő', podium: 'Igen (SMS, webchat, social DM)', revix: 'Nem', winner: 'podium' },
+        { feature: 'Review kérés SMS-ben', podium: 'Igen (beépített SMS kampányok)', revix: 'SpiniX spin wheel-en keresztül (33%)', winner: 'podium' },
+        { feature: 'AI review válaszok', podium: 'Igen (generikus, multi-iparág)', revix: 'Igen (Claude Sonnet, étterem-specifikus)', winner: 'revix' },
+        { feature: 'Válasz minőség (AI modell)', podium: 'Nem nyilvános modell', revix: 'Claude Sonnet 4.6 RAG kontextussal', winner: 'revix' },
+        { feature: 'Fizetésfeldolgozás', podium: 'Igen (text-to-pay, kártyaolvasók)', revix: 'Nem', winner: 'podium' },
+        { feature: 'Sentiment analízis', podium: 'Alapszintű', revix: 'Igen (review-nkénti + trendek)', winner: 'revix' },
+        { feature: 'Versenytárs elemzés', podium: 'Nem', revix: 'Igen (helyi klaszter benchmarking)', winner: 'revix' },
+        { feature: 'Csapat chat', podium: 'Igen (belső üzenetkezelés)', revix: 'Nem', winner: 'podium' },
+        { feature: 'Marketing kampányok', podium: 'Igen (SMS/MMS tömeges küldés)', revix: 'Nem', winner: 'podium' },
+        { feature: 'Hamis review fellebbezés', podium: 'Nem', revix: 'Igen (AI draft Google policy hivatkozásokkal)', winner: 'revix' },
+        { feature: 'Vendég profilozás', podium: 'Alapszintű kontakt nyilvántartás', revix: 'Igen (látogatási gyakoriság, preferenciák)', winner: 'revix' },
+        { feature: 'Onboarding idő', podium: 'Napok-hetek (sales hívás szükséges)', revix: '10 perc', winner: 'revix' },
+        { feature: 'Célpiac', podium: 'Autó, fogorvos, otthoni szolgáltatás', revix: 'Éttermek, kávézók, szállodák', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Podium vs Revix: melyik illik a vállalkozásodhoz',
+      subtitle: 'A jó eszköz attól függ amire tényleg szükséged van, nem attól melyiknek van több funkciója egy listán.',
+      tiers: [
+        {
+          title: 'Egyetlen étterem vagy kávézó',
+          description: '1 Google Business Profile, főleg review válaszok kellenek',
+          recommendation: 'Revix',
+          reason: 'Podium $399/hó SMS-intenzív vállalkozásokra van építve — autókereskedők akik szerviz időpontokat SMS-eznek, fogorvosi rendelők foglalás-megerősítéssel. Havi 15-40 Google review-t kapó étteremnek nem kell $4,788/éves üzenetkezelő csomag. Revix azokat a review-kat $96-336/évért kezeli jobb AI válasz minőséggel vendéglátásra hangolva.',
+          annual: '$96-336/év Revix-szel',
+        },
+        {
+          title: '2-10 étterem lokáció',
+          description: 'Kis csoport konzisztens review kezeléssel',
+          recommendation: 'Revix',
+          reason: 'Podium lokációnkénti árazása ezen a méreten erősen érzékelhető: 5 lokáció Core-on = $1,995/hó ($23,940/év). Revix válaszonkénti árazása a tényleges review volumennel skálázódik, nem a lokáció számmal. 5 lokációs csoport tipikusan $480-1,680/évet fizet összesen. Ez $22,000+/éves megtakarítás az éttermi működésre fordítva.',
+          annual: '$480-1,680/év Revix-szel',
+        },
+        {
+          title: 'Magas SMS-forgalmú vállalkozás (autó, fogorvos)',
+          description: 'Ügyfélkommunikáció főleg SMS-alapú',
+          recommendation: 'Podium',
+          reason: 'Ha a vállalkozásod naponta százas SMS-eket küld — időpont megerősítés, szerviz frissítés, fizetési kérés — Podium üzenetkezelő infrastruktúrája erre van építve. Autókereskedők és fogorvosi rendelők valós értéket kapnak az összevont postaládából. Revix nem foglalkozik üzenetkezeléssel.',
+          annual: '$4,788-7,188/év Podiummal',
+        },
+        {
+          title: 'Fizetésfeldolgozás + review kezelés kell',
+          description: 'Text-to-pay és review kezelés egy eszközben',
+          recommendation: 'Podium vagy megosztott megközelítés',
+          reason: 'Podium fizetésfeldolgozása (text-to-pay linkek, kártyaolvasók) hasznos szolgáltató vállalkozásoknak akik munka után számláznak. Ha mindkettő kell egy szállítótól, Podium lefedi. Alternatívaként használj Revix-et review-kra ($8-28/hó) plusz Stripe-ot vagy Square-t fizetésre — gyakran olcsóbb kombinálva.',
+          annual: '$4,788+/év Podiummal',
+        },
+      ],
+    },
+    details: {
+      title: 'Podium vs Revix: hol nyer melyik',
+      sections: [
+        {
+          title: 'Podium nyer: összevont üzenetkezelő',
+          icon: 'building',
+          content: 'Podium üzenetkezelő postaládája SMS-t, webchat-et, Facebook Messenger-t, Instagram DM-eket és Google Üzeneteket húz egy nézetbe. Ügyfél SMS-ekben fuldokló vállalkozásoknak ez valós időt spórol. Fogorvosi rendelők, autószervizek és otthoni szolgáltatók akik napi 50+ ügyfélüzenetet kezelnek, egyértelmű értéket kapnak. Revix-nek nincs üzenetkezelő funkciója — kizárólag review intelligenciára és AI válaszokra fókuszál.',
+        },
+        {
+          title: 'Podium nyer: SMS review kérés kampányok',
+          icon: 'store',
+          content: 'Podium tranzakció után review kérés SMS-t küld ügyfeleknek, direkt linkkel Google vagy Facebook review írásához. Review generálási arányaik jók telefonszámot gyűjtő vállalkozásoknak. Revix másképp generál review-kat — SpiniX gamifikált spin wheel-jén keresztül (33% konverziós ráta) SMS kampányok helyett. Mindkettő működik, de Podium SMS megközelítése direktebb telefonszámot már gyűjtő vállalkozásoknak.',
+        },
+        {
+          title: 'Podium nyer: fizetésfeldolgozás',
+          icon: 'clock',
+          content: 'Podium text-to-pay linkeket és kártyaolvasó integrációkat kínál. Egy vízszerelő a munka befejezése után azonnal küldhet SMS számlát. Ez valóban hasznos szolgáltató vállalkozásoknak ahol a helyszíni fizetés begyűjtése számít. Revix nem dolgoz fel fizetéseket — review kezelő eszköz, nem fizetési platform.',
+        },
+        {
+          title: 'Revix nyer: AI válasz minőség éttermeknek',
+          icon: 'star',
+          content: 'Podium AI válaszai autószerelőkre, fogorvosi rendelőkre, klímaszerelőkre és éttermekre egyaránt vannak tervezve, ugyanazzal a motorral. Az eredmény generikus. Revix Claude Sonnet 4.6-ot használ az éttermed specifikus kontextusával: étlap elemek, konyha típus, személyzet nevek, szezonális ajánlatok és korábbi review minták. Amikor egy vendég megemlíti "a báránycomb túl volt sütve", Revix ismeri az ételt, a tipikus elkészítést és specifikusan arra válaszol. Podium AI-ja sablon bocsánatkérést adna.',
+        },
+        {
+          title: 'Revix nyer: válaszonkénti árazás (15-50x olcsóbb)',
+          icon: 'zap',
+          content: 'Havi 25 Google review-t kapó étterem Podiumnak $399/hó-t fizet ($15.96 review-nként). Revix-szel azokra a 25 review-ra válaszolni összesen kb. 4,000 Ft ($11). Az 36x kevesebb. Még egy forgalmas étterem 80 review/hó-val is kb. $23-at fizetne Revix-en vs $399 Podiumon. Csak akkor fizetsz amikor Revix tényleg ír egy választ — nincs fix díj csendesebb hónapokban.',
+        },
+        {
+          title: 'Revix nyer: nincs lemondási csapda',
+          icon: 'shield',
+          content: 'Podium lemondási folyamata a platform egyik legtöbbet panaszolt aspektusa. BBB panaszok, Reddit posztok és G2 review-k írnak le hónapokig folytatódó számlázást lemondási kérés után, nem reagáló ügyfélszolgálatot és díjakat írásos lemondás-megerősítés után is. Revix-nek nincs szerződése — leválasztod a Google Business Profile-t és a számlázás aznap leáll. Nincs telefonhívás, nincs "megtartási specialista," nincs meglepetés számla.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Podium vs Revix költség egyetlen étteremre',
+      subtitle: 'Éves összehasonlítás havi 30 Google review-t kapó étteremre.',
+      rows: [
+        { item: 'Havi költség', podium: '$399 (Core csomag)', revix: '~$9-15 (válaszonként)' },
+        { item: 'Setup díj', podium: 'Változó (sales hívás szükséges)', revix: '$0' },
+        { item: 'Szerződés hossz', podium: '12 hónap jellemző', revix: 'Nincs' },
+        { item: 'Első éves összköltség', podium: '$4,788+', revix: '$108-180' },
+        { item: 'Költség review-nkénti válaszra', podium: '$13.30 (mind a 30-ra válaszolva)', revix: '$0.29-0.49' },
+        { item: 'Lemondás', podium: '30 napos értesítés (számlázás folytatódhat)', revix: 'Google leválasztás azonnal' },
+        { item: 'Idő az első AI válaszig', podium: 'Napok-hetek (onboarding + sales)', revix: '10 perc' },
+      ],
+      note: 'Egyetlen étteremre Podium évente 27-44x drágább mint Revix. Podium review válaszokon túl üzenetkezelést, fizetést és SMS kampányokat kínál, de ha a review kezelés a fő igényed, $4,600+/évet fizetsz autókereskedőknek és fogorvosi rendelőknek épült eszközökért.',
+    },
+    scenarios: {
+      title: 'Revix vagy Podium: melyiket válaszd?',
+      items: [
+        { situation: 'Egyetlen étterem, Google a fő review platform', recommendation: 'Revix', reason: 'Válaszonkénti árazás: $8-28/hó a $399 helyett. Jobb AI minőség étterem-specifikus válaszokhoz.' },
+        { situation: 'Étterem csoport (2-10 lokáció)', recommendation: 'Revix', reason: 'Válaszonkénti árazás review volumennel skálázódik, nem lokáció számmal. 5 lokációs csoport $22,000+/évet spórol vs Podium.' },
+        { situation: 'Autókereskedés vagy fogorvosi rendelő intenzív SMS használattal', recommendation: 'Podium', reason: 'Podium üzenetkezelője és SMS kampányai magas SMS-forgalmú vállalkozásokra épültek. Revix nem foglalkozik üzenetkezeléssel.' },
+        { situation: 'Text-to-pay és számlázás kell', recommendation: 'Podium', reason: 'Revix-nek nincs fizetési funkciója. Podium text-to-pay-je hasznos szolgáltató vállalkozásoknak.' },
+        { situation: 'AI válasz minőség a prioritás éttermeknek', recommendation: 'Revix', reason: 'Claude Sonnet étterem kontextussal felülmúlja a generikus multi-iparág AI-t. Válaszok konkrét ételeket és élményeket hivatkoznak.' },
+        { situation: 'Webchat widget kell a weboldalra', recommendation: 'Podium', reason: 'Podium webchat-to-text widgetet tartalmaz. Revix review válaszokra fókuszál, nem élő chat-re.' },
+        { situation: 'Budget $50/hó alatt', recommendation: 'Revix', reason: 'Podium $399-tól indul. Revix válaszonkénti árazás bármely budgetbe belefér — te irányítod a költséget a volumennel.' },
+        { situation: 'Aggódsz a szerződéses kötöttség miatt', recommendation: 'Revix', reason: 'Nincs szerződés, nincs felmondási idő, nincs "megtartási hívás." Leválasztod a Google Business Profile-t és a számlázás azonnal leáll.' },
+      ],
+    },
+    pricing: {
+      title: 'Podium árazás részletesen (2026)',
+      subtitle: 'Podium pontos árazáshoz sales hívást igényel. Ezek az adatok G2, BBB panaszok, Reddit posztok és üzlettulajdonosi beszámolókból származnak, 2026 eleje.',
+      tiers: [
+        { name: 'Core ($399/hó lokációnként)', range: '$399/hó', note: 'Üzenetkezelő, review kérések, alapszintű AI válaszok, webchat. 12 hónapos szerződés. Standard riporting.' },
+        { name: 'Pro ($599/hó lokációnként)', range: '$599/hó', note: 'Plusz marketing kampányok, haladó automatizálás, fizetésfeldolgozás és analitika. Népszerű multi-lokációs csomag.' },
+        { name: 'Signature (egyedi árazás)', range: 'Egyedi', note: 'Enterprise funkciók: API hozzáférés, egyedi integrációk, dedikált account manager. Árajánlat alapú, tipikusan $800+/hó.' },
+      ],
+      hidden: [
+        'Lokációnkénti árazás — 3 lokáció Core-on = $1,197/hó',
+        '12 hónapos szerződés jellemző, néhány felhasználó 24 hónapos feltételekről számol be',
+        '30 napos felmondási idő szükséges — de a számlázás ettől függetlenül folytatódhat',
+        'Webchat widgetért egyes csomagokon külön díjat jeleztek',
+        'SMS üzenet költségek az alacsonyabb csomagok benne foglalt keretén túl felmerülhetnek',
+      ],
+      disclaimer: 'Ezek becsült árak nyilvánosan elérhető review-kból és felhasználói beszámolókból, 2026 eleje. Podium sales hívást igényel és az árazás lokáció szám, iparág és alkupozíció szerint változik. Aktuális árajánlatért keresd közvetlenül a Podiumot.',
+    },
+    faq: {
+      title: 'Podium vs Revix: GYIK',
+      items: [
+        {
+          q: 'Megéri a Podium $399/hó egyetlen étteremnek?',
+          a: 'A legtöbb egyedülálló étteremnek nem. Podium $399/hó-s Core csomagja üzenetkezelő postaládát, webchat-et, SMS review kéréseket és alapszintű AI válaszokat tartalmaz — autókereskedőknek és fogorvosi rendelőknek tervezett funkciók amik napi 50+ ügyfél SMS-t kezelnek. Havi 20-40 Google review-t kapó étterem ami minőségi AI válaszokat akar $4,788/évet fizet nem teljes mértékben használt eszközökért. Revix a review kezelési igényt $108-336/évért fedi le jobb étterem-specifikus AI minőséggel.',
+        },
+        {
+          q: 'Válthatok Podiumról Revix-re szerződés közben?',
+          a: 'Revix-et bármikor csatlakoztathatod — 10 perc és más platformoktól függetlenül működik. A kihívás a Podium számlázásának leállítása. Szerződés közben Podium tipikusan tovább számlázza a szerződési időszak végéig. Kezdd a feltételeiknek megfelelő írásos lemondással (30 napos értesítés), mentsd az összes visszaigazoló emailt, és vitasd a szerződéses záródátum után érkező díjakat. Néhány felhasználó jelzi hogy végső esetben bankkártya visszaterhelésre volt szükség.',
+        },
+        {
+          q: 'Hogy viszonyul Podium AI-ja Revix-hez review válaszokban?',
+          a: 'Podium AI review válaszai minden iparágra vannak építve — ugyanaz a motor ír válaszokat autószervizeknek, fogorvosoknak és éttermeknek. Revix Claude Sonnet 4.6-ot használ RAG-gel ami az éttermed specifikus kontextusát húzza: étlap elemek, konyha stílus, korábbi review-k és preferált hangnem. Étterem review-nál ami "a terasz hangulatát és a grillezett polipot" említi, Revix mindkettőt specifikusan hivatkozza; Podium AI-ja generikus köszönetet ad.',
+        },
+        {
+          q: 'Tényleg nehéz lemondani a Podiumot?',
+          a: 'Ez Podium leggyakoribb panasza BBB-n, G2-n, Redditen és Trustpiloton. Felhasználók jelzik: számlázás folytatódik 3-6 hónappal a lemondás után, azt mondják a lemondás "nem érkezett meg," $500/hó-s díjak folytatódnak írásos megerősítés ellenére, és nehézség bárkit elérni az ügyfélszolgálaton. Néhányan csak bankkártya vitán keresztül oldották meg. Revix-nek nincs szerződése — Google Business Profile leválasztásával a számlázás aznap leáll.',
+        },
+        {
+          q: 'Revix küld review kérés SMS-eket mint a Podium?',
+          a: 'Revix nem küld SMS review kéréseket. A Google-ön már meglévő review-kra való válaszolásra fókuszál. Review generáláshoz SpiniX (az anyaplatform) gamifikált prize wheel-t használ amit vendégek pörgetnek étkezés után — ez 33%-os review konverziós rátát ér el. Más megközelítés mint Podium SMS kampányai, de mindkettő generál új review-kat.',
+        },
+        {
+          q: 'Mit csinál a Podium amit Revix nem?',
+          a: 'Podium kínál: összevont üzenetkezelő postaládát (SMS, webchat, social DM-ek egy nézetben), text-to-pay fizetésfeldolgozást, SMS/MMS marketing kampányokat, csapat belső chat-et, webchat widgetet weboldalakra és review kérés SMS kampányokat. Ezek valós funkciók magas SMS-forgalmú vállalkozásoknak. Revix AI review válaszokra, sentiment analízisre, versenytárs benchmarkingra és hamis review fellebbezés vázlatokra fókuszál — szűkebb de mélyebb eszközkészlet specifikusan review kezelésre.',
+        },
+        {
+          q: 'Revix kezel 50+ lokációt?',
+          a: 'Revix Google Business Profile kapcsolatonként működik. Technikailag 50+ lokáció csatlakoztatható. De Revix 1-20 étterem lokációra van optimalizálva. 50+ lokációnál üzenetkezelési, fizetési és központosított SMS kampány igénnyel egy szélesebb platform mint Podium (ha a lemondási kockázat elfogadható) vagy külön best-of-breed eszközök több értelmet adnak.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review válaszok a $399/hó-s árcédula nélkül',
+      subtitle: 'Claude Sonnet minőségű válaszok az étteremedre hangolva. Válaszonkénti árazás. Nincs szerződés. Nincs lemondási dráma. 10 perc alatt él.',
+      button: 'Csatlakoztasd a Google Review-jaid',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó összehasonlítások',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Google Review Jutalom Policy Útmutató', slug: '/blog/rewards-for-google-reviews-policy' },
+        { title: 'A Megválaszolatlan Google Értékelések Ára', slug: '/blog/unanswered-google-reviews-cost' },
+        { title: 'Google Értékelések és Éttermi Bevétel', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="podium" lang={lang} />

@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  lang?: string;
+}
+
+const { title, description, canonical, lang = 'en' } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="https://spinix.so/favicon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://spinix.so/og-image.png" />
+    <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  </head>
+  <body class="min-h-screen bg-white flex flex-col" style="font-family: 'Alexandria', sans-serif;">
+    <slot />
+
+    <!-- Deferred tracking (same as main site) -->
+    <script is:inline>
+      window.addEventListener('load', function() {
+        // RB2B
+        !function(key){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://ddwl4m2hdecbv.cloudfront.net/b/"+key+"/"+key+".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0]);}("E63P0HZP0MOW");
+        // Leadfeeder
+        (function(ss,ex){window.ldfdr=window.ldfdr||function(){(ldfdr._q=ldfdr._q||[]).push([].slice.call(arguments));};(function(d,s){fs=d.getElementsByTagName(s)[0];function ce(src){var cs=d.createElement(s);cs.src=src;cs.async=1;fs.parentNode.insertBefore(cs,fs);};ce('https://sc.lfeeder.com/lftracker_v1_'+ss+(ex?'_'+ex:'')+'.js');})(document,'script');})('3P1w24d5vykamY5n');
+      });
+    </script>
+  </body>
+</html>

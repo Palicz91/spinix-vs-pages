@@ -1,0 +1,302 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Glue Loyalty Pricing & a €29 Alternative for Restaurants (2026)',
+      description: 'Glue Loyalty costs $109/mo plus $199 setup. SpiniX is €29/mo with no setup fee and 10-minute onboarding. Full feature comparison for independent restaurants.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Glue Loyalty',
+      subtitle: 'Two different philosophies. Glue Loyalty runs your loyalty program on autopilot - their AI decides what each customer gets. SpiniX puts a spin wheel game in front of every guest. One costs 4x more than the other.',
+    },
+    tldr: {
+      title: 'SpiniX vs Glue Loyalty: the short version',
+      glue: 'Glue Loyalty is an AI-driven "done-for-you" loyalty platform. Their system automatically sends personalized offers, tracks customer behavior, and manages campaigns. $109/month + $199 one-time setup. Best for business owners who want zero involvement in loyalty management.',
+      spinix: 'SpiniX is a self-service gamified loyalty platform. Guests scan a QR code, spin a wheel, win a reward. Automated email follow-up and review generation. €29/month, no setup fee. Best for hospitality businesses that want high guest engagement at a fraction of the cost.',
+      verdict: 'If you want to pay someone else to run your loyalty and budget isn\'t a concern, Glue works. If you want 4x lower cost with gamification that drives higher engagement and built-in review generation, SpiniX.',
+    },
+    comparison: {
+      title: 'SpiniX vs Glue Loyalty: feature comparison',
+      headers: ['', 'Glue Loyalty', 'SpiniX'],
+      rows: [
+        { feature: 'Monthly price', glue: '$109/mo', spinix: '€29/mo', winner: 'spinix' },
+        { feature: 'Setup fee', glue: '$199 one-time', spinix: '€0', winner: 'spinix' },
+        { feature: 'First year total cost', glue: '$1,507 ($199 + $109 × 12)', spinix: '€348 (€29 × 12)', winner: 'spinix' },
+        { feature: 'Setup effort', glue: 'Done-for-you (Glue sets up)', spinix: 'Self-service (10 minutes)', winner: 'glue' },
+        { feature: 'Ongoing management', glue: 'AI autopilot (hands-off)', spinix: 'Partially automated (email auto, wheel manual)', winner: 'glue' },
+        { feature: 'Core mechanic', glue: 'AI-personalized offers + points', spinix: 'Spin wheel (variable rewards)', winner: 'spinix' },
+        { feature: 'Apple/Google Wallet', glue: 'No', spinix: 'Yes (native)', winner: 'spinix' },
+        { feature: 'POS required', glue: 'Optional (works without)', spinix: 'No', winner: 'tie' },
+        { feature: 'Guest enrollment', glue: 'SMS or email registration', spinix: 'QR scan - 15 seconds', winner: 'spinix' },
+        { feature: 'Google review generation', glue: 'Yes (automatic)', spinix: 'Yes (automatic, 33% conversion)', winner: 'spinix' },
+        { feature: 'Email/SMS marketing', glue: 'AI-triggered campaigns', spinix: 'Automated 6-email sequence', winner: 'tie' },
+        { feature: 'WhatsApp integration', glue: 'No', spinix: 'Yes (SEA/UK markets)', winner: 'spinix' },
+        { feature: 'Gamification', glue: 'No', spinix: 'Core mechanic on every scan', winner: 'spinix' },
+        { feature: 'AI personalization', glue: 'Yes (decides offers per customer)', spinix: 'No (same wheel for all guests)', winner: 'glue' },
+        { feature: 'Customer segmentation', glue: 'Automatic (AI-driven)', spinix: 'Basic (visit frequency)', winner: 'glue' },
+        { feature: 'Analytics', glue: 'Basic customer data', spinix: 'Dashboard + Telegram alerts', winner: 'tie' },
+        { feature: 'Contract', glue: 'Monthly (but $199 setup is sunk)', spinix: 'Monthly (no sunk costs)', winner: 'spinix' },
+        { feature: 'Target market', glue: 'SMB (restaurants, salons, retail)', spinix: 'Hospitality (restaurants, cafes, hotels)', winner: 'tie' },
+      ],
+    },
+    cost: {
+      title: 'SpiniX vs Glue Loyalty: cost comparison',
+      subtitle: 'Glue charges 4.3x more in the first year. Here\'s what you get for that premium.',
+      rows: [
+        { period: 'Month 1', glue: '$308 ($199 setup + $109)', spinix: '€29', diff: '10.6x more' },
+        { period: 'Month 6', glue: '$744 ($199 + $109 × 5)', spinix: '€174', diff: '4.3x more' },
+        { period: 'Year 1', glue: '$1,507', spinix: '€348', diff: '4.3x more' },
+        { period: 'Year 2', glue: '$2,815', spinix: '€696', diff: '4.0x more' },
+        { period: 'Year 3', glue: '$4,123', spinix: '€1,044', diff: '3.9x more' },
+      ],
+      note: 'Over 3 years, Glue costs $4,123 vs SpiniX €1,044. That\'s roughly $3,079 more. For a single-location restaurant, that\'s significant. The question: does Glue\'s AI autopilot generate $3,079 more in revenue than SpiniX\'s gamification?',
+    },
+    details: {
+      title: 'SpiniX vs Glue Loyalty: where each wins',
+      sections: [
+        {
+          title: 'Glue wins: true hands-off operation',
+          icon: 'settings',
+          content: 'Glue\'s biggest selling point is zero management. Their AI analyzes each customer\'s behavior and automatically decides what offer to send, when to send it, and through which channel. You don\'t create campaigns, don\'t set up promotions, don\'t think about timing. For business owners who genuinely have zero time for marketing, this has real value. SpiniX automates email sequences but you still configure the wheel prizes and monitor the dashboard.',
+        },
+        {
+          title: 'Glue wins: AI-driven personalization',
+          icon: 'brain',
+          content: 'Glue sends different offers to different customers based on their behavior. A daily visitor gets a different promotion than someone who hasn\'t been in 3 weeks. SpiniX shows the same spin wheel to everyone. Personalization increases redemption rates because offers feel relevant. The tradeoff: Glue needs 2-3 months of data before personalization becomes effective.',
+        },
+        {
+          title: 'SpiniX wins: 4x lower cost',
+          icon: 'dollar',
+          content: 'First year: Glue $1,507 vs SpiniX €348. For a single restaurant, $1,159 is a meaningful budget line. SpiniX includes review generation (which Glue also offers) plus gamification (which Glue doesn\'t) at a quarter of the price. The $199 setup fee also creates switching friction - once you\'ve paid it, you\'re more likely to stay even if results don\'t meet expectations.',
+        },
+        {
+          title: 'SpiniX wins: gamification drives instant engagement',
+          icon: 'zap',
+          content: 'Glue sends promotions after the visit. SpiniX engages during the visit. The spin wheel creates an immediate, memorable experience at the table. Variable rewards produce 3x more dopamine than standard offers. This in-the-moment engagement is something no amount of AI personalization can replicate because it happens while the guest is physically present and emotionally open.',
+        },
+        {
+          title: 'SpiniX wins: Apple/Google Wallet integration',
+          icon: 'wallet',
+          content: 'Glue doesn\'t offer Wallet passes. SpiniX delivers loyalty passes directly to Apple and Google Wallet. 83% of customers keep Wallet passes for 30+ days. Wallet passes provide a persistent presence on the guest\'s phone without requiring an app download - something Glue\'s SMS/email-only approach can\'t match.',
+        },
+        {
+          title: 'SpiniX wins: frictionless QR enrollment',
+          icon: 'qr',
+          content: 'Glue requires SMS or email registration - the guest provides their info to staff or fills out a form. SpiniX: scan QR, enter email, spin. 15 seconds, no staff involvement, no friction. This self-service approach achieves 46% enrollment rates. Registration-based enrollment typically reaches 15-25% because it requires more effort from both guests and staff.',
+        },
+      ],
+    },
+    autopilot: {
+      title: 'Glue Loyalty autopilot vs SpiniX gamification',
+      content: 'Glue\'s autopilot sounds ideal. But there are tradeoffs worth understanding before paying 4x more for it.',
+      points: [
+        { title: 'AI needs data to work', detail: 'Glue\'s personalization engine needs 2-3 months of customer behavior data before it can make meaningful decisions. During this ramp-up period, you\'re paying $109/month for basic automated campaigns - similar to what SpiniX provides from day one at €29.' },
+        { title: 'You lose control over offers', detail: 'The AI decides what each customer gets. If you want to promote a specific menu item or run a seasonal campaign, you\'re working around the AI rather than with it. SpiniX gives you direct control over wheel prizes while automating the follow-up.' },
+        { title: 'No gamification layer', detail: 'Glue\'s AI can optimize which coupon to send. But it can\'t create the dopamine rush of spinning a wheel and winning. These are fundamentally different types of engagement - transactional (Glue) vs experiential (SpiniX).' },
+        { title: '"Done for you" creates dependency', detail: 'If Glue changes pricing, reduces features, or shuts down, your entire loyalty program disappears because you never learned to manage it. With SpiniX, you understand your system and can pivot if needed.' },
+      ],
+    },
+    scenarios: {
+      title: 'SpiniX or Glue Loyalty: which should you choose?',
+      items: [
+        { situation: 'Zero time for any marketing', recommendation: 'Glue', reason: 'True autopilot. AI manages everything. Pay the premium for zero involvement.' },
+        { situation: 'Budget under $50/month', recommendation: 'SpiniX', reason: '€29/mo vs $109/mo + $199 setup. Not even close on price.' },
+        { situation: 'Restaurant wanting reviews + engagement', recommendation: 'SpiniX', reason: 'Both generate reviews. SpiniX adds gamification. 4x cheaper.' },
+        { situation: 'Salon or retail with repeat clients', recommendation: 'Glue', reason: 'AI personalization shines with predictable repeat patterns (haircuts every 6 weeks, etc.).' },
+        { situation: 'Cafe or hotel (high guest volume)', recommendation: 'SpiniX', reason: 'QR at every table/room. Self-service enrollment scales without staff effort.' },
+        { situation: 'Want Wallet passes on guest phones', recommendation: 'SpiniX', reason: 'Glue doesn\'t offer Apple/Google Wallet integration.' },
+        { situation: 'Multi-location chain with marketing team', recommendation: 'Either', reason: 'Glue\'s AI works across locations. SpiniX\'s price advantage multiplies with each location.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Glue Loyalty: FAQ',
+      items: [
+        {
+          q: 'Is the $199 setup fee refundable?',
+          a: 'No. Glue\'s setup fee covers their team configuring your loyalty program. If you cancel after month one, you\'ve spent $308 total ($199 + $109). SpiniX has no setup fee, so your first month costs €29 and you can cancel with nothing lost.',
+        },
+        {
+          q: 'Does Glue\'s AI actually work better than manual?',
+          a: 'After the 2-3 month learning period, AI personalization does improve offer relevance for individual customers. Whether that improvement justifies 4x the cost depends on your average ticket size and volume. For high-ticket restaurants ($50+ average), the personalization ROI is more likely to justify the cost. For casual dining or cafes, probably not.',
+        },
+        {
+          q: 'Can SpiniX match Glue\'s automation?',
+          a: 'Partially. SpiniX automates the 6-email sequence and review generation. What SpiniX doesn\'t do: per-customer offer personalization and fully hands-off campaign management. You configure wheel prizes manually (takes 10 minutes, then it runs).',
+        },
+        {
+          q: 'Which generates more Google reviews?',
+          a: 'Both offer automatic review generation. SpiniX publishes a 33% conversion rate from their gamified flow. Glue doesn\'t publish specific review conversion metrics. SpiniX\'s advantage is timing - review prompts come right after winning a reward, when the guest feels most positive.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Get 4x more value from your loyalty budget',
+      subtitle: 'Try SpiniX free for 14 days. No setup fee. Gamification, reviews, and email automation from day one.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Gamification: Why Spin Beats Points', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: '5 Loyalty Program Mistakes', slug: '/blog/restaurant-loyalty-program-mistakes' },
+        { title: 'Apple Wallet Loyalty for Restaurants', slug: '/blog/apple-wallet-loyalty-card-restaurant' },
+        { title: 'Restaurant Loyalty Without an App', slug: '/blog/restaurant-loyalty-program-without-app' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Glue Loyalty árazás és egy €29-os alternatíva éttermeknek (2026)',
+      description: 'Glue Loyalty $109/hó + $199 setup díj. SpiniX €29/hó setup nélkül, 10 perces beüzemelés. Teljes funkció- és árösszehasonlítás független éttermeknek.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs Glue Loyalty',
+      subtitle: 'Két különböző filozófia. A Glue Loyalty autopilot-on futtatja a loyalty programot - az AI dönt mit kap minden vendég. SpiniX spin wheel játékot rak minden vendég elé. Az egyik 4x-szer drágább.',
+    },
+    tldr: {
+      title: 'SpiniX vs Glue Loyalty: röviden',
+      glue: 'Glue Loyalty AI-vezérelt "done-for-you" loyalty platform. Automatikusan küld személyre szabott ajánlatokat, követi a vendég viselkedést, kezeli a kampányokat. $109/hó + $199 egyszeri setup. Legjobb: üzlettulajdonosoknak akik nulla részvételt akarnak a loyalty kezelésben.',
+      spinix: 'SpiniX önkiszolgáló gamifikált loyalty platform. Vendégek QR-t scannelnek, wheelt pörgetnek, jutalmat nyernek. Automatikus email followup és review generálás. €29/hó, nincs setup díj. Legjobb: hospitality üzleteknek akik magas elköteleződést akarnak a költség töredékéért.',
+      verdict: 'Ha fizetni akarsz hogy más futtassa a loyaltyt és a budget nem korlát, Glue működik. Ha 4x alacsonyabb költség kell gamifikációval és beépített review generálással, SpiniX.',
+    },
+    comparison: {
+      title: 'SpiniX vs Glue Loyalty: funkció összehasonlítás',
+      headers: ['', 'Glue Loyalty', 'SpiniX'],
+      rows: [
+        { feature: 'Havi ár', glue: '$109/hó', spinix: '€29/hó', winner: 'spinix' },
+        { feature: 'Setup díj', glue: '$199 egyszeri', spinix: '€0', winner: 'spinix' },
+        { feature: 'Első éves összköltség', glue: '$1,507 ($199 + $109 × 12)', spinix: '€348 (€29 × 12)', winner: 'spinix' },
+        { feature: 'Setup erőfeszítés', glue: 'Done-for-you (Glue beállítja)', spinix: 'Önkiszolgáló (10 perc)', winner: 'glue' },
+        { feature: 'Folyamatos kezelés', glue: 'AI autopilot (hands-off)', spinix: 'Részben automatizált', winner: 'glue' },
+        { feature: 'Alap mechanika', glue: 'AI személyre szabott ajánlatok + pontok', spinix: 'Spin wheel (változó jutalmak)', winner: 'spinix' },
+        { feature: 'Apple/Google Wallet', glue: 'Nem', spinix: 'Igen (natív)', winner: 'spinix' },
+        { feature: 'POS szükséges', glue: 'Opcionális', spinix: 'Nem', winner: 'tie' },
+        { feature: 'Vendég regisztráció', glue: 'SMS vagy email regisztráció', spinix: 'QR scan - 15 mp', winner: 'spinix' },
+        { feature: 'Google review generálás', glue: 'Igen (automatikus)', spinix: 'Igen (automatikus, 33% konverzió)', winner: 'spinix' },
+        { feature: 'Email/SMS marketing', glue: 'AI-vezérelt kampányok', spinix: 'Automatikus 6-email szekvencia', winner: 'tie' },
+        { feature: 'WhatsApp integráció', glue: 'Nem', spinix: 'Igen (SEA/UK)', winner: 'spinix' },
+        { feature: 'Gamifikáció', glue: 'Nem', spinix: 'Alap mechanika minden scannél', winner: 'spinix' },
+        { feature: 'AI személyre szabás', glue: 'Igen (vendégenkénti ajánlatok)', spinix: 'Nem (azonos wheel mindenkinek)', winner: 'glue' },
+        { feature: 'Vendég szegmentáció', glue: 'Automatikus (AI-vezérelt)', spinix: 'Alap (látogatás gyakoriság)', winner: 'glue' },
+        { feature: 'Analitika', glue: 'Alap vendégadatok', spinix: 'Dashboard + Telegram alertek', winner: 'tie' },
+        { feature: 'Szerződés', glue: 'Havi (de $199 setup elvész)', spinix: 'Havi (nincs elsüllyedt költség)', winner: 'spinix' },
+        { feature: 'Célpiac', glue: 'SMB (étterem, szalon, retail)', spinix: 'Hospitality (étterem, kávézó, szálloda)', winner: 'tie' },
+      ],
+    },
+    cost: {
+      title: 'SpiniX vs Glue Loyalty: költség összehasonlítás',
+      subtitle: 'Glue 4.3x többet számít az első évben. Íme mit kapsz a felárért.',
+      rows: [
+        { period: '1. hónap', glue: '$308 ($199 setup + $109)', spinix: '€29', diff: '10.6x több' },
+        { period: '6. hónap', glue: '$744 ($199 + $109 × 5)', spinix: '€174', diff: '4.3x több' },
+        { period: '1. év', glue: '$1,507', spinix: '€348', diff: '4.3x több' },
+        { period: '2. év', glue: '$2,815', spinix: '€696', diff: '4.0x több' },
+        { period: '3. év', glue: '$4,123', spinix: '€1,044', diff: '3.9x több' },
+      ],
+      note: '3 év alatt Glue $4,123 vs SpiniX €1,044. Nagyjából $3,079 különbség. Egy helyszínes étteremnél ez jelentős. A kérdés: Glue AI autopilotja generál-e $3,079-al több bevételt mint SpiniX gamifikációja?',
+    },
+    details: {
+      title: 'SpiniX vs Glue Loyalty: hol nyer melyik',
+      sections: [
+        {
+          title: 'Glue nyer: valódi hands-off működés',
+          icon: 'settings',
+          content: 'Glue legnagyobb előnye a nulla kezelés. AI-juk elemzi minden vendég viselkedését és automatikusan dönt milyen ajánlatot, mikor, melyik csatornán küld. Nem kell kampányt létrehozni, promóciót beállítani, időzítésen gondolkodni. SpiniX automatizálja az emaileket de a wheel prizeket manuálisan konfigurálod.',
+        },
+        {
+          title: 'Glue nyer: AI-vezérelt személyre szabás',
+          icon: 'brain',
+          content: 'Glue különböző ajánlatokat küld különböző vendégeknek viselkedésük alapján. Napi vendég mást kap mint aki 3 hete nem volt. SpiniX mindenkinek ugyanazt a wheelt mutatja. A személyre szabás növeli a beváltást. Tradeoff: Glue-nak 2-3 hónap adatgyűjtés kell mielőtt a személyre szabás hatékony lesz.',
+        },
+        {
+          title: 'SpiniX nyer: 4x alacsonyabb költség',
+          icon: 'dollar',
+          content: 'Első év: Glue $1,507 vs SpiniX €348. Egy étteremnél $1,159 jelentős büdzsé tétel. SpiniX review generálást (amit Glue is kínál) és gamifikációt (amit Glue nem) tartalmaz az ár negyedéért. A $199 setup díj váltási súrlódást is teremt.',
+        },
+        {
+          title: 'SpiniX nyer: gamifikáció azonnali elköteleződést hoz',
+          icon: 'zap',
+          content: 'Glue a látogatás után küld promóciót. SpiniX a látogatás közben von be. A spin wheel azonnali, emlékezetes élményt teremt az asztalnál. Változó jutalmak 3x több dopamint termelnek. Ez a pillanatbeli elköteleződés olyasmi amit AI személyre szabás nem tud replikálni.',
+        },
+        {
+          title: 'SpiniX nyer: Apple/Google Wallet integráció',
+          icon: 'wallet',
+          content: 'Glue nem kínál Wallet passokat. SpiniX közvetlenül Apple és Google Walletbe szállít loyalty passokat. 83% megtartja 30+ napig. Wallet passok állandó jelenlétet biztosítanak a vendég telefonján app letöltés nélkül.',
+        },
+        {
+          title: 'SpiniX nyer: súrlódásmentes QR regisztráció',
+          icon: 'qr',
+          content: 'Glue SMS vagy email regisztrációt igényel. SpiniX: QR scan, email, spin. 15 mp, nincs staff részvétel. Önkiszolgáló megközelítés 46% regisztrációs arányt ér el. Regisztráció alapú belépés tipikusan 15-25% mert több erőfeszítést igényel.',
+        },
+      ],
+    },
+    autopilot: {
+      title: 'Glue Loyalty autopilot vs SpiniX gamifikáció',
+      content: 'Glue autopilotja ideálisan hangzik. De vannak tradeoffok amiket érdemes érteni mielőtt 4x-et fizetsz.',
+      points: [
+        { title: 'AI-nak adat kell a működéshez', detail: 'Glue személyre szabása 2-3 hónap vendég viselkedési adatot igényel. Ez alatt $109/hó-t fizetsz alap automatizált kampányokért - hasonlót mint amit SpiniX €29-ért ad az első naptól.' },
+        { title: 'Elveszted a kontrollt az ajánlatok felett', detail: 'Az AI dönt mit kap minden vendég. Ha specifikus menü elemet akarsz promótálni vagy szezonális kampányt futtatni, az AI körül kell dolgoznod. SpiniX közvetlen kontrollt ad a wheel prizek felett.' },
+        { title: 'Nincs gamifikációs réteg', detail: 'Glue AI-ja optimalizálhatja melyik kupont küldi. De nem tudja létrehozni a dopamin rohamot amit a wheel pörgetés és nyerés ad. Fundamentálisan különböző elköteleződés típusok.' },
+        { title: '"Done for you" függőséget teremt', detail: 'Ha Glue árat emel, funkciókat csökkent vagy bezár, a teljes loyalty programod eltűnik mert sosem tanultad meg kezelni. SpiniX-nél érted a rendszered és tudsz váltani ha kell.' },
+      ],
+    },
+    scenarios: {
+      title: 'SpiniX vagy Glue Loyalty: melyiket válaszd?',
+      items: [
+        { situation: 'Nulla idő bármilyen marketingre', recommendation: 'Glue', reason: 'Valódi autopilot. AI kezel mindent. Fizesd a felárat a nulla részvételért.' },
+        { situation: 'Budget $50/hó alatt', recommendation: 'SpiniX', reason: '€29/hó vs $109/hó + $199 setup. Áron nincs kérdés.' },
+        { situation: 'Étterem review-kat + elköteleződést akar', recommendation: 'SpiniX', reason: 'Mindkettő generál review-kat. SpiniX hozzáad gamifikációt. 4x olcsóbb.' },
+        { situation: 'Szalon vagy retail ismétlődő ügyfelekkel', recommendation: 'Glue', reason: 'AI személyre szabás kiszámítható ismétlődő mintáknál ragyog (hajvágás 6 hetente, stb.).' },
+        { situation: 'Kávézó vagy szálloda (magas vendégszám)', recommendation: 'SpiniX', reason: 'QR minden asztalnál/szobában. Önkiszolgáló regisztráció skálázódik staff nélkül.' },
+        { situation: 'Wallet passokat akar vendég telefonján', recommendation: 'SpiniX', reason: 'Glue nem kínál Apple/Google Wallet integrációt.' },
+        { situation: 'Több helyszínes lánc marketing csapattal', recommendation: 'Bármelyik', reason: 'Glue AI helyszínek között működik. SpiniX ár előnye minden helyszínnel szorzódik.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Glue Loyalty: GYIK',
+      items: [
+        {
+          q: 'Visszatéríthető a $199 setup díj?',
+          a: 'Nem. Glue setup díja a csapatuk konfigurációs munkáját fedezi. Ha 1 hónap után mondod le, összesen $308-ot költöttél ($199 + $109). SpiniX-nek nincs setup díja, az első hónap €29 és bármikor lemondható veszteség nélkül.',
+        },
+        {
+          q: 'Glue AI-ja tényleg jobban működik mint a manuális?',
+          a: 'A 2-3 hónapos tanulási időszak után az AI személyre szabás javítja az ajánlat relevanciáját. Hogy ez indokolja-e a 4x-es árat, az átlagos tételétéktől és forgalomtól függ. Magas tételértékű éttermek ($50+ átlag): valószínűbb. Casual dining vagy kávézók: valószínűleg nem.',
+        },
+        {
+          q: 'SpiniX tudja-e utánozni Glue automatizációját?',
+          a: 'Részben. SpiniX automatizálja a 6-email szekvenciát és review generálást. Amit nem csinál: vendégenkénti ajánlat személyre szabás és teljesen hands-off kampány kezelés. A wheel prizeket manuálisan konfigurálod (10 perc, utána fut).',
+        },
+        {
+          q: 'Melyik generál több Google review-t?',
+          a: 'Mindkettő automatikus review generálást kínál. SpiniX 33% konverziós arányt publikál a gamifikált flowjából. Glue nem publikál specifikus review metrikai. SpiniX előnye az időzítés - review kérés közvetlenül jutalom nyerés után jön.',
+        },
+      ],
+    },
+    cta: {
+      title: '4x több értéket a loyalty büdzséből',
+      subtitle: 'Próbáld ki a SpiniX-et 14 napig ingyen. Nincs setup díj. Gamifikáció, review-k és email automatizáció az első naptól.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó olvasmányok',
+      posts: [
+        { title: 'Gamifikáció: Miért Veri a Spin a Pontokat', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: '5 Loyalty Program Hiba', slug: '/blog/restaurant-loyalty-program-mistakes' },
+        { title: 'Apple Wallet Loyalty Éttermeknek', slug: '/blog/apple-wallet-loyalty-card-restaurant' },
+        { title: 'Éttermi Loyalty App Nélkül', slug: '/blog/restaurant-loyalty-program-without-app' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="glue-loyalty" lang={lang} />

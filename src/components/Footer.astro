@@ -1,0 +1,43 @@
+---
+const { lang = 'en' } = Astro.props;
+const isHu = lang === 'hu';
+---
+<footer class="bg-gray-900 text-gray-400 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-white font-semibold text-sm mb-3">{isHu ? 'Termek' : 'Product'}</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://spinix.so/pricing" class="hover:text-white transition">{isHu ? 'Arak' : 'Pricing'}</a></li>
+          <li><a href="https://spinix.so/use-cases/restaurants" class="hover:text-white transition">{isHu ? 'Ettermek' : 'Restaurants'}</a></li>
+          <li><a href="https://spinix.so/revix" class="hover:text-white transition">Review Manager</a></li>
+          <li><a href="https://spinix.so/blog" class="hover:text-white transition">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-sm mb-3">{isHu ? 'Ceg' : 'Company'}</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://spinix.so/our-story" class="hover:text-white transition">{isHu ? 'Tortenetunk' : 'Our Story'}</a></li>
+          <li><a href="https://spinix.so/contact" class="hover:text-white transition">{isHu ? 'Kapcsolat' : 'Contact'}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-sm mb-3">{isHu ? 'Jogi' : 'Legal'}</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://spinix.so/privacy" class="hover:text-white transition">{isHu ? 'Adatvedelmi nyilatkozat' : 'Privacy Policy'}</a></li>
+          <li><a href="https://spinix.so/terms" class="hover:text-white transition">{isHu ? 'Felhasznalasi feltetelek' : 'Terms of Service'}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-sm mb-3">{isHu ? 'Kapcsolat' : 'Get in Touch'}</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="mailto:hello@spinix.so" class="hover:text-white transition">hello@spinix.so</a></li>
+          <li><a href="https://spinix.so/" class="hover:text-white transition">spinix.so</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-gray-800 text-center text-xs">
+      &copy; {new Date().getFullYear()} SpiniX. {isHu ? 'Minden jog fenntartva.' : 'All rights reserved.'}
+    </div>
+  </div>
+</footer>

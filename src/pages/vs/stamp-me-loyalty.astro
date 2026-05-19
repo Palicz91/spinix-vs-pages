@@ -1,0 +1,268 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Stamp Me Alternative: No App, €29/mo, Full Comparison (2026)',
+      description: 'Stamp Me requires app downloads with 12% adoption rate. SpiniX uses QR-to-browser at €29/mo — no app needed, plus Google review automation. Side-by-side feature comparison.',
+    },
+    hero: {
+      eyebrow: 'Comparison',
+      headline: 'SpiniX<br/>vs Stamp Me',
+      subline: 'Digital stamp cards vs gamified rewards.<br/>Which one actually brings guests back?',
+    },
+    tldr: {
+      title: 'SpiniX vs Stamp Me: TL;DR',
+      r2r: '<strong>SpiniX:</strong> No app needed. Prize wheel + automated email reminders. Built-in Google review collection.',
+      stampme: '<strong>Stamp Me:</strong> App required. Digital punch cards ("Buy 10, Get 1 Free"). Push notifications.',
+      verdict: 'If you want instant engagement without app friction, SpiniX wins.',
+    },
+    appProblem: {
+      headline: 'Stamp Me\'s app download problem',
+      p1: 'Stamp Me requires customers to download an app. Sounds simple, right?',
+      stats: [
+        'Only 12% of customers download loyalty apps when asked',
+        '75% who download never open it again after day 7',
+        'Average phone has 80 apps. Users actively use 9.',
+      ],
+      p2: '<strong>The friction kills conversion.</strong>',
+      highlight: 'SpiniX works via QR code → mobile browser. No app. No download. No friction. Scan, spin, done.',
+    },
+    comparison: {
+      title: 'SpiniX vs Stamp Me: feature comparison',
+      headers: ['Feature', 'SpiniX', 'Stamp Me'],
+      rows: [
+        ['Monthly Price', '$29.99', '$29+ (varies by plan)'],
+        ['App Download Required', false, true],
+        ['Prize Wheel / Gamification', true, 'Limited (Scratch & Win add-on)'],
+        ['Automated Email Reminders', true, false],
+        ['Google Review Collection', true, false],
+        ['Push Notifications', false, true],
+        ['Works Without Internet', true, false],
+        ['Setup Time', '15 minutes', '30+ minutes'],
+        ['Customer Data Export', true, 'Paid plans only'],
+      ],
+      footnote: 'Stamp Me pricing varies: Lite ($29), The Works ($59), Premium ($99+)',
+    },
+    approach: {
+      title: 'SpiniX vs Stamp Me: two different philosophies',
+      stampme: {
+        name: 'Stamp Me Approach',
+        icon: '📱',
+        steps: [
+          'Customer downloads app',
+          'Collects stamps over multiple visits',
+          'After 10 stamps → gets reward',
+          'Hope they remember to come back',
+        ],
+        problem: 'Problem: Long cycle. High friction. No reminders.',
+      },
+      r2r: {
+        name: 'SpiniX Approach',
+        icon: '🎯',
+        steps: [
+          'Customer scans QR (no app)',
+          'Spins wheel → wins prize immediately',
+          'Gets email reminders on Day 3, 7, 10',
+          'Returns to redeem before expiry',
+        ],
+        benefit: 'Result: Instant reward. Active follow-up. 21% return rate.',
+      },
+    },
+    psychology: {
+      headline: 'SpiniX vs Stamp Me: instant vs delayed rewards',
+      p1: 'Stamp Me: "Come back 10 times and you\'ll get something free."',
+      p2: 'SpiniX: "You just won a free dessert. It expires in 14 days."',
+      p3: 'Which one creates urgency?',
+      highlight: 'Loss aversion is 2x stronger than gain motivation. People will act faster to avoid losing something they already "won" than to earn something new.',
+      stats: [
+        { label: 'Stamp card completion rate', stampme: '~18%', r2r: 'N/A' },
+        { label: 'Prize redemption rate', stampme: 'N/A', r2r: '21%' },
+        { label: 'Google reviews generated', stampme: '0%', r2r: '33%' },
+      ],
+    },
+    reviews: {
+      headline: 'SpiniX vs Stamp Me: the review advantage',
+      p1: 'Stamp Me collects stamps. That\'s it.',
+      p2: 'SpiniX collects stamps AND Google reviews.',
+      p3: 'Every spin includes a review prompt. 33% of guests actually leave one.',
+      highlight: 'More reviews = better Google ranking = more new customers. It\'s a compounding effect Stamp Me simply doesn\'t offer.',
+    },
+    whoFor: {
+      title: 'SpiniX or Stamp Me: who should use which?',
+      stampme: {
+        title: 'Choose Stamp Me if:',
+        points: [
+          'Your customers are already app-savvy',
+          'You want a traditional "Buy X Get Y" program',
+          'You\'re okay with long reward cycles',
+          'Push notifications matter more than email',
+          'You don\'t need Google reviews',
+        ],
+      },
+      r2r: {
+        title: 'Choose SpiniX if:',
+        points: [
+          'You want zero friction (no app downloads)',
+          'You want guests to return within 14 days, not 14 visits',
+          'You want automated email reminders',
+          'You want more Google reviews',
+          'You want instant gamification (prize wheel)',
+        ],
+      },
+    },
+    stats: {
+      title: 'Our Results',
+      items: [
+        { value: '0', label: 'app downloads required' },
+        { value: '33%', label: 'leave a Google review' },
+        { value: '21%', label: 'return within 14 days' },
+      ],
+    },
+    cta: {
+      title: 'Skip the App. Start the Returns.',
+      subtitle: 'No app downloads. No stamp collecting. Just instant rewards and automated reminders.',
+      button: 'Try It — 90% Off First Month',
+      badges: [
+        '✓ No app required',
+        '✓ 15-min setup',
+        '✓ 30-day money-back guarantee',
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Stamp Me alternatíva: app nélkül, €29/hó (2026)',
+      description: 'Stamp Me app letöltést igényel, 12%-os elfogadási rátával. SpiniX QR-alapú, €29/hó, app nélkül, Google review automatizálással. Teljes funkció-összehasonlítás.',
+    },
+    hero: {
+      eyebrow: 'Összehasonlítás',
+      headline: 'SpiniX<br/>vs Stamp Me',
+      subline: 'Digitális bélyegkártya vs gamifikált jutalmak.<br/>Melyik hozza vissza tényleg a vendégeket?',
+    },
+    tldr: {
+      title: 'SpiniX vs Stamp Me: röviden',
+      r2r: '<strong>SpiniX:</strong> Nincs app. Szerencsekerék + automatikus email emlékeztetők. Beépített Google vélemény gyűjtés.',
+      stampme: '<strong>Stamp Me:</strong> App szükséges. Digitális pecsétkártya ("Vegyél 10-et, 1 ingyen"). Push értesítések.',
+      verdict: 'Ha azonnali elköteleződést akarsz app-súrlódás nélkül, SpiniX nyer.',
+    },
+    appProblem: {
+      headline: 'A Stamp Me app letöltési problémája',
+      p1: 'A Stamp Me megköveteli, hogy a vendég letöltsön egy appot. Egyszerűnek hangzik, igaz?',
+      stats: [
+        'A vendégek csak 12%-a tölt le loyalty appot, ha kérik',
+        '75% aki letölti, soha nem nyitja meg újra a 7. nap után',
+        'Egy átlagos telefonon 80 app van. A felhasználók aktívan 9-et használnak.',
+      ],
+      p2: '<strong>A súrlódás megöli a konverziót.</strong>',
+      highlight: 'A SpiniX QR-kóddal működik → mobil böngésző. Nincs app. Nincs letöltés. Nincs súrlódás. Beolvas, pörget, kész.',
+    },
+    comparison: {
+      title: 'SpiniX vs Stamp Me: funkció összehasonlítás',
+      headers: ['Funkció', 'SpiniX', 'Stamp Me'],
+      rows: [
+        ['Havi ár', '$29.99', '$29+ (csomag függő)'],
+        ['App letöltés szükséges', false, true],
+        ['Szerencsekerék / Gamifikáció', true, 'Korlátozott (Scratch & Win kiegészítő)'],
+        ['Automatikus email emlékeztetők', true, false],
+        ['Google vélemény gyűjtés', true, false],
+        ['Push értesítések', false, true],
+        ['Működik internet nélkül', true, false],
+        ['Beállítási idő', '15 perc', '30+ perc'],
+        ['Vendégadatok exportálása', true, 'Csak fizetős csomagban'],
+      ],
+      footnote: 'Stamp Me árak: Lite ($29), The Works ($59), Premium ($99+)',
+    },
+    approach: {
+      title: 'SpiniX vs Stamp Me: két különböző filozófia',
+      stampme: {
+        name: 'Stamp Me Megközelítés',
+        icon: '📱',
+        steps: [
+          'Vendég letölti az appot',
+          'Bélyegeket gyűjt több látogatás alatt',
+          '10 bélyeg után → kap jutalmat',
+          'Reménykedünk, hogy visszajön',
+        ],
+        problem: 'Probléma: Hosszú ciklus. Nagy súrlódás. Nincs emlékeztető.',
+      },
+      r2r: {
+        name: 'SpiniX Megközelítés',
+        icon: '🎯',
+        steps: [
+          'Vendég beolvassa a QR-t (nincs app)',
+          'Pörget → azonnal nyer',
+          'Email emlékeztetőt kap a 3., 7., 10. napon',
+          'Visszatér beváltani lejárat előtt',
+        ],
+        benefit: 'Eredmény: Azonnali jutalom. Aktív követés. 21% visszatérési arány.',
+      },
+    },
+    psychology: {
+      headline: 'SpiniX vs Stamp Me: azonnali vs késleltetett jutalmak',
+      p1: 'Stamp Me: "Gyere vissza 10-szer és kapsz valamit ingyen."',
+      p2: 'SpiniX: "Most nyertél egy ingyenes desszertet. 14 nap múlva lejár."',
+      p3: 'Melyik teremt sürgősséget?',
+      highlight: 'A veszteségkerülés 2x erősebb, mint a nyerési motiváció. Az emberek gyorsabban cselekednek, hogy elkerüljék valaminek az elvesztését, amit már "megnyertek".',
+      stats: [
+        { label: 'Bélyegkártya kitöltési arány', stampme: '~18%', r2r: 'N/A' },
+        { label: 'Jutalom beváltási arány', stampme: 'N/A', r2r: '21%' },
+        { label: 'Generált Google vélemények', stampme: '0%', r2r: '33%' },
+      ],
+    },
+    reviews: {
+      headline: 'SpiniX vs Stamp Me: a vélemény előny',
+      p1: 'A Stamp Me bélyegeket gyűjt. Ennyi.',
+      p2: 'A SpiniX bélyegeket ÉS Google véleményeket gyűjt.',
+      p3: 'Minden pörgetés tartalmaz egy véleménykérést. A vendégek 33%-a tényleg ír egyet.',
+      highlight: 'Több vélemény = jobb Google helyezés = több új vendég. Ez egy összetett hatás, amit a Stamp Me egyszerűen nem kínál.',
+    },
+    whoFor: {
+      title: 'SpiniX vagy Stamp Me: kinek melyik?',
+      stampme: {
+        title: 'Válaszd a Stamp Me-t ha:',
+        points: [
+          'A vendégeid már app-hozzáértők',
+          'Hagyományos "Vegyél X-et, kapj Y-t" programot akarsz',
+          'Rendben vagy a hosszú jutalom ciklusokkal',
+          'A push értesítések fontosabbak, mint az email',
+          'Nincs szükséged Google véleményekre',
+        ],
+      },
+      r2r: {
+        title: 'Válaszd a SpiniX-et ha:',
+        points: [
+          'Nulla súrlódást akarsz (nincs app letöltés)',
+          'Azt akarod, hogy 14 napon belül visszatérjenek, nem 14 látogatás után',
+          'Automatikus email emlékeztetőket akarsz',
+          'Több Google véleményt akarsz',
+          'Azonnali gamifikációt akarsz (szerencsekerék)',
+        ],
+      },
+    },
+    stats: {
+      title: 'Az Eredményeink',
+      items: [
+        { value: '0', label: 'app letöltés szükséges' },
+        { value: '33%', label: 'Google véleményt ír' },
+        { value: '21%', label: 'visszatér 14 napon belül' },
+      ],
+    },
+    cta: {
+      title: 'Hagyd ki az Appot. Indítsd a Visszatéréseket.',
+      subtitle: 'Nincs app letöltés. Nincs bélyeggyűjtés. Csak azonnali jutalmak és automatikus emlékeztetők.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      badges: [
+        '✓ Nincs app szükséges',
+        '✓ 15 perc beállítás',
+        '✓ 30 napos pénzvisszafizetési garancia',
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="stamp-me-loyalty" lang={lang} />

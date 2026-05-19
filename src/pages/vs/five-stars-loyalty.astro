@@ -1,0 +1,290 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'FiveStars Pricing, Reviews & a €29 Alternative (2026)',
+      description: 'FiveStars costs $299/mo plus $500-$5,000 setup. SpiniX is €29/mo with no setup fee. Full feature comparison and side-by-side pricing for independent restaurants.',
+    },
+    hero: {
+      eyebrow: 'Comparison',
+      headline: 'SpiniX<br/>vs FiveStars',
+      subline: 'Enterprise loyalty platform vs simple rewards system.<br/>Do you really need to spend $299/month?',
+    },
+    tldr: {
+      title: 'SpiniX vs FiveStars: TL;DR',
+      r2r: '<strong>SpiniX:</strong> $29.99/month flat. Prize wheel + email reminders + Google reviews. Setup in 15 minutes.',
+      fivestars: '<strong>FiveStars:</strong> $299+/month. Full marketing platform with POS integration, AutoPilot campaigns, customer touchscreen.',
+      verdict: 'FiveStars is powerful but overkill for most small businesses. SpiniX does 80% of the job at 10% of the price.',
+    },
+    pricing: {
+      headline: 'SpiniX vs FiveStars pricing',
+      p1: 'FiveStars starts at $299/month. That\'s $3,588/year.',
+      p2: 'SpiniX is $29.99/month. That\'s $360/year.',
+      p3: 'The difference? <strong>$3,228 per year.</strong>',
+      comparison: [
+        { label: 'Monthly cost', fivestars: '$299+', r2r: '$29.99' },
+        { label: 'Annual cost', fivestars: '$3,588+', r2r: '$360' },
+        { label: 'Implementation fee', fivestars: '$500-5,000', r2r: '$0' },
+        { label: 'Hardware required', fivestars: 'Customer touchscreen', r2r: 'None (QR code)' },
+      ],
+      highlight: 'With the money you save, you could run your loyalty program for 10 years.',
+    },
+    complexity: {
+      headline: 'Enterprise Features You Probably Don\'t Need',
+      p1: 'FiveStars is built for chains and franchises. It includes:',
+      features: [
+        'POS integration (requires compatible system)',
+        'Customer touchscreen hardware',
+        'Network-wide customer database',
+        'AutoPilot marketing campaigns',
+        'Payment processing',
+        'Multi-location management',
+      ],
+      p2: 'If you\'re a single-location restaurant, cafe, or salon—do you really need all this?',
+      highlight: 'Most small businesses use 20% of FiveStars\' features while paying for 100%.',
+    },
+    dataSharing: {
+      headline: 'SpiniX vs FiveStars: shared customer data',
+      p1: 'Here\'s something FiveStars doesn\'t advertise loudly:',
+      quote: '"Your customer base is shared with your competitors."',
+      p2: 'FiveStars operates a network of 13,000+ businesses. When a customer signs up at your store, they become part of the FiveStars network—and can be targeted by other businesses.',
+      highlight: 'With SpiniX, your customer data is 100% yours. We don\'t share it with anyone. Ever.',
+    },
+    comparison: {
+      title: 'SpiniX vs FiveStars: feature comparison',
+      headers: ['Feature', 'SpiniX', 'FiveStars'],
+      rows: [
+        ['Monthly Price', '$29.99', '$299+'],
+        ['90% off first month', true, false],
+        ['Setup Time', '15 minutes', 'Days/weeks'],
+        ['Implementation Fee', '$0', '$500-5,000'],
+        ['POS Required', false, true],
+        ['Hardware Required', false, true],
+        ['Prize Wheel', true, false],
+        ['Automated Email Reminders', true, true],
+        ['Google Review Collection', true, false],
+        ['Customer Data Ownership', '100% yours', 'Shared network'],
+        ['Multi-language', true, 'Limited'],
+      ],
+      footnote: 'FiveStars pricing is quote-based and varies by business size and features.',
+    },
+    setup: {
+      headline: 'SpiniX vs FiveStars setup: 15 minutes vs 15 days',
+      fivestars: {
+        name: 'FiveStars Setup',
+        steps: [
+          'Request a demo (required)',
+          'Wait for sales call',
+          'Get custom quote',
+          'Sign contract',
+          'Schedule implementation',
+          'Install touchscreen hardware',
+          'POS integration setup',
+          'Staff training',
+        ],
+        time: '2-4 weeks typical',
+      },
+      r2r: {
+        name: 'SpiniX Setup',
+        steps: [
+          'Sign up online',
+          'Create your prize wheel',
+          'Print QR code',
+          'Done!',
+        ],
+        time: '15 minutes',
+      },
+    },
+    whoFor: {
+      title: 'SpiniX or FiveStars: who should use which?',
+      fivestars: {
+        title: 'Choose FiveStars if:',
+        points: [
+          'You\'re a chain with 5+ locations',
+          'You have budget for $300+/month',
+          'You need POS integration',
+          'You want payment processing included',
+          'You have IT staff for implementation',
+        ],
+      },
+      r2r: {
+        title: 'Choose SpiniX if:',
+        points: [
+          'You\'re a single location or small chain',
+          'You want to start today, not next month',
+          'You want to keep costs under $30/month',
+          'You want Google reviews + return visits',
+          'You want to own your customer data',
+        ],
+      },
+    },
+    results: {
+      headline: 'SpiniX vs FiveStars: what you actually get',
+      p1: 'FiveStars promises to increase customer visits by 2x. That\'s great—if you can afford $299/month.',
+      p2: 'SpiniX delivers:',
+      stats: [
+        { value: '33%', label: 'Google review rate' },
+        { value: '46%', label: 'email capture rate' },
+        { value: '21%', label: 'return within 14 days' },
+      ],
+      p3: 'All for 1/10th the price. No hardware. No POS integration. No sales calls.',
+    },
+    cta: {
+      title: 'Enterprise Features. Small Business Price.',
+      subtitle: 'Get customers coming back without spending $299/month or waiting weeks for setup.',
+      button: 'Try It — 90% Off First Month',
+      badges: [
+        '✓ No credit card required',
+        '✓ Setup in 15 minutes',
+        '✓ 30-day money-back guarantee',
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'FiveStars árazás és egy €29-os alternatíva éttermeknek (2026)',
+      description: 'FiveStars $299/hó + $500-$5,000 setup díj. SpiniX €29/hó setup díj nélkül. Teljes funkció- és árösszehasonlítás független éttermeknek.',
+    },
+    hero: {
+      eyebrow: 'Összehasonlítás',
+      headline: 'SpiniX<br/>vs FiveStars',
+      subline: 'Enterprise loyalty platform vs egyszerű jutalom rendszer.<br/>Tényleg el kell költened $299-t havonta?',
+    },
+    tldr: {
+      title: 'SpiniX vs FiveStars: röviden',
+      r2r: '<strong>SpiniX:</strong> $29.99/hó fix. Szerencsekerék + email emlékeztetők + Google vélemények. 15 perces beállítás.',
+      fivestars: '<strong>FiveStars:</strong> $299+/hó. Teljes marketing platform POS integrációval, AutoPilot kampányokkal, érintőképernyővel.',
+      verdict: 'A FiveStars erős, de túlzás a legtöbb kisvállalkozásnak. Az SpiniX a munka 80%-át elvégzi az ár 10%-áért.',
+    },
+    pricing: {
+      headline: 'SpiniX vs FiveStars árazás',
+      p1: 'A FiveStars $299/hó-tól indul. Ez évi $3,588.',
+      p2: 'A SpiniX $29.99/hó. Ez évi $360.',
+      p3: 'A különbség? <strong>Évi $3,228.</strong>',
+      comparison: [
+        { label: 'Havi költség', fivestars: '$299+', r2r: '$29.99' },
+        { label: 'Éves költség', fivestars: '$3,588+', r2r: '$360' },
+        { label: 'Bevezetési díj', fivestars: '$500-5,000', r2r: '$0' },
+        { label: 'Hardver szükséges', fivestars: 'Érintőképernyő', r2r: 'Nincs (QR-kód)' },
+      ],
+      highlight: 'A megtakarított pénzből 10 évig futtathatnád a loyalty programodat.',
+    },
+    complexity: {
+      headline: 'Enterprise Funkciók, Amikre Valószínűleg Nincs Szükséged',
+      p1: 'A FiveStars láncoknak és franchise-oknak készült. Tartalmazza:',
+      features: [
+        'POS integráció (kompatibilis rendszer szükséges)',
+        'Érintőképernyős hardver',
+        'Hálózatszintű vendég adatbázis',
+        'AutoPilot marketing kampányok',
+        'Fizetésfeldolgozás',
+        'Több telephelyes menedzsment',
+      ],
+      p2: 'Ha egyetlen éttermed, kávézód vagy szalonod van—tényleg szükséged van minderre?',
+      highlight: 'A legtöbb kisvállalkozás a FiveStars funkcióinak 20%-át használja, miközben 100%-ért fizet.',
+    },
+    dataSharing: {
+      headline: 'SpiniX vs FiveStars: megosztott vendégadatok',
+      p1: 'Íme valami, amit a FiveStars nem hirdet hangosan:',
+      quote: '"A vendégbázisod meg van osztva a konkurenciáddal."',
+      p2: 'A FiveStars 13,000+ vállalkozás hálózatát működteti. Amikor egy vendég regisztrál nálad, a FiveStars hálózat része lesz—és más vállalkozások is megcélozhatják.',
+      highlight: 'A SpiniX-nél a vendégadataid 100%-ban a tiéid. Nem osztjuk meg senkivel. Soha.',
+    },
+    comparison: {
+      title: 'SpiniX vs FiveStars: funkció összehasonlítás',
+      headers: ['Funkció', 'SpiniX', 'FiveStars'],
+      rows: [
+        ['Havi ár', '$29.99', '$299+'],
+        ['90% kedvezmény az első hónapra', true, false],
+        ['Beállítási idő', '15 perc', 'Napok/hetek'],
+        ['Bevezetési díj', '$0', '$500-5,000'],
+        ['POS szükséges', false, true],
+        ['Hardver szükséges', false, true],
+        ['Szerencsekerék', true, false],
+        ['Automatikus email emlékeztetők', true, true],
+        ['Google vélemény gyűjtés', true, false],
+        ['Vendégadat tulajdonjog', '100% a tiéd', 'Megosztott hálózat'],
+        ['Többnyelvű', true, 'Korlátozott'],
+      ],
+      footnote: 'A FiveStars árazás egyedi árajánlat alapú, a vállalkozás méretétől és funkcióktól függően változik.',
+    },
+    setup: {
+      headline: 'SpiniX vs FiveStars beállítás: 15 perc vs 15 nap',
+      fivestars: {
+        name: 'FiveStars Beállítás',
+        steps: [
+          'Demó kérése (kötelező)',
+          'Várakozás az értékesítési hívásra',
+          'Egyedi árajánlat',
+          'Szerződés aláírása',
+          'Bevezetés ütemezése',
+          'Érintőképernyő hardver telepítése',
+          'POS integráció beállítása',
+          'Személyzet betanítása',
+        ],
+        time: 'Tipikusan 2-4 hét',
+      },
+      r2r: {
+        name: 'SpiniX Beállítás',
+        steps: [
+          'Online regisztráció',
+          'Szerencsekerék létrehozása',
+          'QR-kód nyomtatása',
+          'Kész!',
+        ],
+        time: '15 perc',
+      },
+    },
+    whoFor: {
+      title: 'SpiniX vagy FiveStars: kinek melyik?',
+      fivestars: {
+        title: 'Válaszd a FiveStars-t ha:',
+        points: [
+          'Lánc vagy 5+ telephellyel',
+          'Van költségvetésed $300+/hó-ra',
+          'POS integrációra van szükséged',
+          'Fizetésfeldolgozást is akarsz',
+          'Van IT személyzeted a bevezetéshez',
+        ],
+      },
+      r2r: {
+        title: 'Válaszd a SpiniX-et ha:',
+        points: [
+          'Egyetlen helyszíned van vagy kis lánc',
+          'Ma akarod elkezdeni, nem jövő hónapban',
+          'A költségeket $30/hó alatt akarod tartani',
+          'Google véleményeket + visszatérő vendégeket akarsz',
+          'A vendégadataidat magadnak akarod tartani',
+        ],
+      },
+    },
+    results: {
+      headline: 'SpiniX vs FiveStars: mit kapsz valójában',
+      p1: 'A FiveStars 2x-es látogatásnövekedést ígér. Ez remek—ha megengedheted a $299/hó-t.',
+      p2: 'A SpiniX eredményei:',
+      stats: [
+        { value: '33%', label: 'Google vélemény arány' },
+        { value: '46%', label: 'email gyűjtési arány' },
+        { value: '21%', label: 'visszatér 14 napon belül' },
+      ],
+      p3: 'Mindezt az ár 1/10-éért. Hardver nélkül. POS integráció nélkül. Értékesítési hívások nélkül.',
+    },
+    cta: {
+      title: 'Enterprise Funkciók. Kisvállalkozói Ár.',
+      subtitle: 'Hozd vissza a vendégeket $299/hó nélkül és hetek várakozás nélkül.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      badges: [
+        '✓ Bankkártya nem szükséges',
+        '✓ 15 perces beállítás',
+        '✓ 30 napos pénzvisszafizetési garancia',
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="five-stars-loyalty" lang={lang} />

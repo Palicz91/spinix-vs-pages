@@ -1,0 +1,392 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'BonusQR vs SpiniX: Stamps or Spin Wheel? (2026 Comparison)',
+      description: 'BonusQR digitizes stamp cards from €19/mo. SpiniX gamifies loyalty with spin wheels at €29/mo. Side-by-side: features, pricing, wallet support, and real engagement data.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs BonusQR',
+      subtitle: 'The closest comparison in this category. Both are QR-based, both work without a POS, both support Apple and Google Wallet. The difference is the core mechanic: BonusQR digitizes the stamp card. SpiniX gamifies the entire experience.',
+    },
+    tldr: {
+      title: 'SpiniX vs BonusQR: the short version',
+      bonusqr: 'BonusQR is a solid digital loyalty platform with stamps, points, cashback, and visit rewards. Free plan available. Paid plans from €19/mo. Supports 8 languages. White-label app option (€690). Best for businesses that want a straightforward digital stamp card with Wallet integration.',
+      spinix: 'SpiniX replaces the stamp mechanic with a spin wheel game. Every scan is a new reward. Variable ratio reinforcement instead of deterministic progression. Built-in review generation (33% conversion) and automated email sequence. €29/mo. Best for hospitality businesses that want higher engagement and Google reviews.',
+      verdict: 'If you want the cheapest possible loyalty (BonusQR free plan) or a traditional stamp/points system, BonusQR is a good choice. If you want gamification that produces higher engagement plus built-in review generation, SpiniX is worth the price difference.',
+    },
+    honesty: {
+      title: 'Being honest upfront',
+      content: 'BonusQR has a free plan. SpiniX does not. If budget is your only constraint and you need basic loyalty, BonusQR\'s free tier gets you started. This comparison focuses on what happens when you need more than basic - which is where the platforms diverge significantly.',
+    },
+    comparison: {
+      title: 'SpiniX vs BonusQR: feature comparison',
+      headers: ['', 'BonusQR', 'SpiniX'],
+      rows: [
+        { feature: 'Free plan', bonusqr: 'Yes (limited features)', spinix: 'No (14-day free trial)', winner: 'bonusqr' },
+        { feature: 'Starting paid price', bonusqr: '€19/mo', spinix: '€29/mo', winner: 'bonusqr' },
+        { feature: 'Pro plan price', bonusqr: '€69/mo', spinix: '€59/mo', winner: 'spinix' },
+        { feature: 'Core loyalty mechanic', bonusqr: 'Stamps, points, cashback', spinix: 'Spin wheel (variable rewards)', winner: 'spinix' },
+        { feature: 'POS required', bonusqr: 'No', spinix: 'No', winner: 'tie' },
+        { feature: 'Apple/Google Wallet', bonusqr: 'Yes', spinix: 'Yes', winner: 'tie' },
+        { feature: 'QR-based enrollment', bonusqr: 'Yes', spinix: 'Yes', winner: 'tie' },
+        { feature: 'Google review generation', bonusqr: 'Basic (redirects to Google)', spinix: 'Automated flow (33% conversion)', winner: 'spinix' },
+        { feature: 'Email marketing', bonusqr: 'Push + email (Pro plan only)', spinix: 'Automated 6-email sequence', winner: 'spinix' },
+        { feature: 'WhatsApp integration', bonusqr: 'No', spinix: 'Yes (SEA/UK markets)', winner: 'spinix' },
+        { feature: 'Gamification', bonusqr: 'Competitions (Pro plan)', spinix: 'Core mechanic on every scan', winner: 'spinix' },
+        { feature: 'Reward psychology', bonusqr: 'Deterministic (10 stamps = 1 reward)', spinix: 'Variable ratio (every spin differs)', winner: 'spinix' },
+        { feature: 'Loyalty program types', bonusqr: '7-11 types (stamps, points, cashback, visit, discount, coupons, etc.)', spinix: '1 type (spin wheel with customizable prizes)', winner: 'bonusqr' },
+        { feature: 'White-label app', bonusqr: '€690 one-time + €69/mo', spinix: 'No', winner: 'bonusqr' },
+        { feature: 'Custom branded app', bonusqr: '€1,690 one-time + €69/mo', spinix: 'No', winner: 'bonusqr' },
+        { feature: 'Languages', bonusqr: '8 (EN, HU, DE, CZ, SK, PL, IT, ES)', spinix: '3 (EN, HU, DE)', winner: 'bonusqr' },
+        { feature: 'Staff access controls', bonusqr: 'Yes (5 staff on Pro)', spinix: 'Yes', winner: 'tie' },
+        { feature: 'Birthday coupons', bonusqr: 'Yes (automated)', spinix: 'Yes (email sequence)', winner: 'tie' },
+        { feature: 'Booking integration', bonusqr: 'Yes', spinix: 'No', winner: 'bonusqr' },
+        { feature: 'Menu/price list in app', bonusqr: 'Yes (built-in page)', spinix: 'No', winner: 'bonusqr' },
+      ],
+    },
+    psychology: {
+      title: 'SpiniX vs BonusQR: the psychology difference',
+      subtitle: 'This is where the platforms fundamentally diverge.',
+      deterministic: {
+        title: 'BonusQR: deterministic rewards',
+        points: [
+          'Guest knows exactly what they get and when: "10 stamps = 1 free coffee"',
+          'Predictable. Safe. Familiar. The digital version of a paper punch card.',
+          'Problem: 73% of loyalty members become inactive before reaching their first reward.',
+          'The "goal gradient effect" means motivation peaks near the finish line but drops in the middle. Most guests quit between stamp 3 and 7.',
+          'Average completion rate for stamp cards: 20-30%.',
+        ],
+      },
+      variable: {
+        title: 'SpiniX: variable ratio reinforcement',
+        points: [
+          'Guest doesn\'t know what they\'ll win until they spin. Could be 10% off, free coffee, or free dessert.',
+          'Variable rewards produce 3x more dopamine than predictable ones (same neuroscience behind slot machines).',
+          'Every visit is rewarding - no "dead stamps" where the guest gets nothing useful.',
+          'No dropout problem because there\'s no distant goal to abandon.',
+          'SpiniX enrollment rate: 46%. Return within 14 days: 21%.',
+        ],
+      },
+      bottomLine: 'Both work. But variable ratio reinforcement consistently outperforms deterministic systems in engagement research. The question is whether the engagement difference justifies the price difference (€29 vs €19 for paid plans).',
+    },
+    pricing: {
+      title: 'SpiniX vs BonusQR pricing',
+      bonusqr: {
+        name: 'BonusQR',
+        plans: [
+          { name: 'Free', price: '€0/mo', features: ['7 loyalty schemes', 'Basic features', 'No push/email', 'BonusQR branding'] },
+          { name: 'Standard', price: '€19/mo', features: ['7 loyalty schemes', 'Push notifications', 'Email campaigns', 'Staff access'] },
+          { name: 'Pro', price: '€69/mo', features: ['11 loyalty schemes', 'Competitions', 'Referrals', 'Special occasions', '5 staff accounts'] },
+        ],
+        extras: 'White-label app: €690 one-time + €69/mo. Custom app: €1,690 one-time + €69/mo.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['Spin wheel', 'QR + Wallet', 'Email automation', 'Review generation', 'Analytics dashboard'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 wheels', 'Priority support', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited wheels', 'Multi-location', 'WhatsApp integration'] },
+        ],
+        extras: 'Wallet passes: $0.15 per install. No setup fees.',
+      },
+      analysis: {
+        title: 'Cost analysis over 12 months',
+        rows: [
+          { scenario: 'Smallest budget possible', bonusqr: '€0 (free plan)', spinix: '€348 (€29 × 12)', verdict: 'BonusQR wins on price alone.' },
+          { scenario: 'Basic paid plan', bonusqr: '€228 (€19 × 12)', spinix: '€348 (€29 × 12)', verdict: 'BonusQR is €120/year cheaper.' },
+          { scenario: 'Pro features + review tool', bonusqr: '€828 (€69 × 12) + ~€600 review tool', spinix: '€348 (€29 × 12, reviews included)', verdict: 'SpiniX saves ~€1,080/year.' },
+          { scenario: 'White-label app', bonusqr: '€690 + €828 (€69 × 12) = €1,518', spinix: 'Not available', verdict: 'Only BonusQR offers this.' },
+        ],
+        note: 'The cost equation flips when you factor in review generation. A separate review tool costs €50-200/month. SpiniX includes it at €29/month total.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs BonusQR: where each wins',
+      sections: [
+        {
+          title: 'BonusQR wins: flexibility of loyalty types',
+          icon: 'gift',
+          content: 'BonusQR offers 7-11 different loyalty mechanics: stamps, points, cashback, visit rewards, discount tiers, onboarding coupons, special occasion coupons, competitions, and referrals. You can mix and match. SpiniX offers one mechanic: the spin wheel. If you specifically want a "buy 9, get 10th free" stamp card, BonusQR does that natively. SpiniX doesn\'t.',
+        },
+        {
+          title: 'BonusQR wins: free plan and lower entry price',
+          icon: 'dollar',
+          content: 'BonusQR\'s free plan is genuinely useful for testing. No credit card, no time limit. The €19/mo paid plan is €10/mo cheaper than SpiniX. For a single cafe with tight margins, that €120/year difference matters. Be aware: the free plan lacks push notifications, email marketing, and advanced features. Most businesses outgrow it within 2-3 months.',
+        },
+        {
+          title: 'BonusQR wins: language coverage and white-label',
+          icon: 'globe',
+          content: 'BonusQR supports 8 languages vs SpiniX\'s 3. If you operate in Czech Republic, Slovakia, Poland, Italy, or Spain, BonusQR has native language support. Plus the white-label app option (€690) lets you publish under your own brand in app stores. SpiniX doesn\'t offer white-label.',
+        },
+        {
+          title: 'SpiniX wins: engagement through gamification',
+          icon: 'zap',
+          content: 'This is the core difference. BonusQR\'s stamp card says "come back 10 times, get something." SpiniX\'s spin wheel says "come back now, win something." Variable ratio reinforcement (the spin) produces measurably higher engagement than deterministic progression (the stamp). 73% of stamp-based loyalty members go inactive. SpiniX\'s gamified approach maintains 46% enrollment and 21% return rate.',
+        },
+        {
+          title: 'SpiniX wins: review generation as core feature',
+          icon: 'star',
+          content: 'BonusQR can redirect guests to Google Reviews, but it\'s a basic link. SpiniX integrates review prompting into the post-reward flow: guest wins, feels good, gets asked for a review. 33% leave one. This timing is everything - asking during peak positive emotion dramatically increases conversion. To get equivalent review performance with BonusQR, you\'d need a separate review management tool.',
+        },
+        {
+          title: 'SpiniX wins: automated email sequence',
+          icon: 'email',
+          content: 'BonusQR offers email and push on paid plans, but you create and send campaigns manually. SpiniX runs a 6-email automated sequence: welcome + reward delivery (day 0), expiry reminder (day 11), review request (day 1-2 after visit), return nudge (day 21-30), birthday, and win-back (day 60-90). Set up once, runs forever. This automation is what drives the 80% coupon redemption rate vs 12% without reminders.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'SpiniX or BonusQR: which should you choose?',
+      items: [
+        { situation: 'Zero budget, just need basic loyalty', recommendation: 'BonusQR', reason: 'Free plan works. Start there, upgrade later if needed.' },
+        { situation: 'Cafe wanting "buy 9, get 10th free"', recommendation: 'BonusQR', reason: 'That\'s exactly what stamp cards do. BonusQR does it well.' },
+        { situation: 'Restaurant wanting higher engagement + reviews', recommendation: 'SpiniX', reason: 'Gamification drives more engagement. Review generation pays for the subscription.' },
+        { situation: 'Need white-label app under your brand', recommendation: 'BonusQR', reason: 'SpiniX doesn\'t offer white-label. BonusQR does (€690+).' },
+        { situation: 'Operating in Czech Republic, Poland, or Italy', recommendation: 'BonusQR', reason: 'Native language support. SpiniX only covers EN, HU, DE.' },
+        { situation: 'Want loyalty + review tool in one', recommendation: 'SpiniX', reason: '€29/mo includes both. BonusQR + separate review tool = €69-269/mo.' },
+        { situation: 'Hotel or spa (one-time guests)', recommendation: 'SpiniX', reason: 'Stamp cards don\'t work for guests who visit once. Instant spin rewards do.' },
+        { situation: 'SEA or UK market (WhatsApp-heavy)', recommendation: 'SpiniX', reason: 'WhatsApp integration with 98% open rates. BonusQR doesn\'t offer WhatsApp.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs BonusQR: FAQ',
+      items: [
+        {
+          q: 'Is BonusQR\'s free plan really free forever?',
+          a: 'Yes. BonusQR offers a genuine free-forever plan with basic loyalty features. You get stamps, cashback, visit rewards, and Wallet integration. What you don\'t get: push notifications, email marketing, competitions, special occasion coupons, and referral program. For a single small business testing loyalty, the free plan is a legitimate starting point.',
+        },
+        {
+          q: 'Can I replicate a stamp card in SpiniX?',
+          a: 'Not directly. SpiniX uses a spin wheel, not stamps. You can set prizes that include "free coffee" or "free dessert" at different probability levels, but there\'s no "collect 10, get 1 free" mechanic. If that specific structure matters to your business, BonusQR is the better fit.',
+        },
+        {
+          q: 'Which drives more return visits?',
+          a: 'Gamification research consistently shows variable rewards outperform deterministic ones. SpiniX data shows 21% return within 14 days. BonusQR doesn\'t publish equivalent metrics. Stamp card industry benchmarks show 12-18% completion rates, though completion and return rate aren\'t directly comparable.',
+        },
+        {
+          q: 'Can I run both platforms simultaneously?',
+          a: 'Yes. Some businesses use BonusQR for their stamp card (regulars who want predictable rewards) and SpiniX for gamified engagement and review generation (first-time guests). Two QR codes, two different experiences. It\'s more complex to manage but captures both psychology types.',
+        },
+        {
+          q: 'Which has better review generation?',
+          a: 'SpiniX. BonusQR can link to Google Reviews, but SpiniX integrates the review prompt into the reward moment. Timing matters enormously - asking when the guest just won something produces 33% conversion vs typical 5-10% from cold review requests.',
+        },
+      ],
+    },
+    cta: {
+      title: 'See which mechanic works better for your guests',
+      subtitle: 'Try SpiniX free for 14 days. Set up in 10 minutes. Compare engagement against your current system.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Why Spin Beats Points (Neuroscience)', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Digital Punch Card vs QR Loyalty Game', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: '5 Loyalty Program Mistakes', slug: '/blog/restaurant-loyalty-program-mistakes' },
+        { title: 'Loyalty for Independent Restaurants', slug: '/blog/loyalty-program-independent-restaurant' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'BonusQR vs SpiniX: pecsétgyűjtő vagy szerencsekerék? (2026)',
+      description: 'BonusQR digitális pecsétgyűjtő €19/hó-tól. SpiniX gamifikált loyalty szerencsekerékkel €29/hó. Funkciók, árak, wallet támogatás és valós engagement adatok.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs BonusQR',
+      subtitle: 'A legközelebbi összehasonlítás. Mindkettő QR alapú, POS nélkül működik, Apple és Google Wallet-et támogat. A különbség a mechanika: BonusQR digitalizálja a pecsétgyűjtőt. SpiniX gamifikálja az egész élményt.',
+    },
+    tldr: {
+      title: 'SpiniX vs BonusQR: röviden',
+      bonusqr: 'BonusQR stabil digitális loyalty platform pecsétekkel, pontokkal, cashback-kel. Van ingyenes plan. Fizetős €19/hó-tól. 8 nyelv. White-label app opció (€690). Legjobb: egyszerű digitális pecsétgyűjtő Wallet integrációval.',
+      spinix: 'SpiniX a pecsét mechanikát spin wheel játékra cseréli. Minden scan új jutalom. Beépített review generálás (33% konverzió) és automatikus email szekvencia. €29/hó. Legjobb: hospitality üzleteknek akik magasabb elköteleződést és Google reviewkat akarnak.',
+      verdict: 'Ha a legolcsóbb loyalty kell (BonusQR ingyenes plan) vagy hagyományos pecsét/pont rendszer, BonusQR jó választás. Ha gamifikáció ami magasabb elköteleződést hoz + beépített review generálás kell, SpiniX megéri az árkülönbséget.',
+    },
+    honesty: {
+      title: 'Legyünk őszinték',
+      content: 'BonusQR-nek van ingyenes planja. SpiniX-nek nincs. Ha a budget az egyetlen korlát és alap loyalty kell, BonusQR ingyenes szintje elindít. Ez az összehasonlítás arra fókuszál mi történik amikor többre van szükséged - itt tér el jelentősen a két platform.',
+    },
+    comparison: {
+      title: 'SpiniX vs BonusQR: funkció összehasonlítás',
+      headers: ['', 'BonusQR', 'SpiniX'],
+      rows: [
+        { feature: 'Ingyenes plan', bonusqr: 'Igen (korlátozott)', spinix: 'Nem (14 napos trial)', winner: 'bonusqr' },
+        { feature: 'Kezdő fizetős ár', bonusqr: '€19/hó', spinix: '€29/hó', winner: 'bonusqr' },
+        { feature: 'Pro plan ár', bonusqr: '€69/hó', spinix: '€59/hó', winner: 'spinix' },
+        { feature: 'Alap loyalty mechanika', bonusqr: 'Pecsétek, pontok, cashback', spinix: 'Spin wheel (változó jutalmak)', winner: 'spinix' },
+        { feature: 'POS szükséges', bonusqr: 'Nem', spinix: 'Nem', winner: 'tie' },
+        { feature: 'Apple/Google Wallet', bonusqr: 'Igen', spinix: 'Igen', winner: 'tie' },
+        { feature: 'QR alapú regisztráció', bonusqr: 'Igen', spinix: 'Igen', winner: 'tie' },
+        { feature: 'Google review generálás', bonusqr: 'Alap (átirányítás)', spinix: 'Automatikus flow (33% konverzió)', winner: 'spinix' },
+        { feature: 'Email marketing', bonusqr: 'Push + email (Pro plan)', spinix: 'Automatikus 6-email szekvencia', winner: 'spinix' },
+        { feature: 'WhatsApp integráció', bonusqr: 'Nincs', spinix: 'Igen (SEA/UK)', winner: 'spinix' },
+        { feature: 'Gamifikáció', bonusqr: 'Versenyek (Pro plan)', spinix: 'Alap mechanika minden scannél', winner: 'spinix' },
+        { feature: 'Jutalom pszichológia', bonusqr: 'Determinisztikus (10 pecsét = 1 jutalom)', spinix: 'Változó arány (minden spin más)', winner: 'spinix' },
+        { feature: 'Loyalty típusok száma', bonusqr: '7-11 típus', spinix: '1 típus (spin wheel)', winner: 'bonusqr' },
+        { feature: 'White-label app', bonusqr: '€690 + €69/hó', spinix: 'Nincs', winner: 'bonusqr' },
+        { feature: 'Egyedi brandelt app', bonusqr: '€1,690 + €69/hó', spinix: 'Nincs', winner: 'bonusqr' },
+        { feature: 'Nyelvek', bonusqr: '8 (EN, HU, DE, CZ, SK, PL, IT, ES)', spinix: '3 (EN, HU, DE)', winner: 'bonusqr' },
+        { feature: 'Staff hozzáférés', bonusqr: 'Igen (5 fő Pro-n)', spinix: 'Igen', winner: 'tie' },
+        { feature: 'Születésnapi kuponok', bonusqr: 'Igen (automatikus)', spinix: 'Igen (email szekvencia)', winner: 'tie' },
+        { feature: 'Foglalás integráció', bonusqr: 'Igen', spinix: 'Nem', winner: 'bonusqr' },
+        { feature: 'Menü/árlista az appban', bonusqr: 'Igen', spinix: 'Nem', winner: 'bonusqr' },
+      ],
+    },
+    psychology: {
+      title: 'SpiniX vs BonusQR: a pszichológiai különbség',
+      subtitle: 'Itt tér el alapvetően a két platform.',
+      deterministic: {
+        title: 'BonusQR: determinisztikus jutalmak',
+        points: [
+          'A vendég pontosan tudja mit kap és mikor: "10 pecsét = 1 ingyenes kávé"',
+          'Kiszámítható. Biztonságos. Ismerős. A papír pecsétgyűjtő digitális változata.',
+          'Probléma: a loyalty tagok 73%-a inaktívvá válik az első jutalom elérése előtt.',
+          'A "cél gradiens hatás" azt jelenti, hogy a motiváció a cél közelében csúcsosodik, de a közepén esik. A legtöbb vendég a 3. és 7. pecsét között hagyja abba.',
+          'Átlagos kitöltési arány pecsétgyűjtőknél: 20-30%.',
+        ],
+      },
+      variable: {
+        title: 'SpiniX: változó arányú megerősítés',
+        points: [
+          'A vendég nem tudja mit nyer amíg nem pörget. Lehet 10% kedvezmény, ingyenes kávé, vagy ingyenes desszert.',
+          'A változó jutalmak 3x több dopamint termelnek mint a kiszámíthatóak (ugyanaz az idegtudomány mint a nyerőgépeknél).',
+          'Minden látogatás jutalmazó - nincsenek "halott pecsétek" ahol a vendég semmi hasznosat nem kap.',
+          'Nincs lemorzsolódási probléma mert nincs távoli cél amit el lehet hagyni.',
+          'SpiniX regisztrációs arány: 46%. Visszatérés 14 napon belül: 21%.',
+        ],
+      },
+      bottomLine: 'Mindkettő működik. De a változó arányú megerősítés következetesen felülmúlja a determinisztikus rendszereket az elköteleződési kutatásokban. A kérdés: megéri-e az elköteleződési különbség az árkülönbséget (€29 vs €19).',
+    },
+    pricing: {
+      title: 'SpiniX vs BonusQR árazás',
+      bonusqr: {
+        name: 'BonusQR',
+        plans: [
+          { name: 'Ingyenes', price: '€0/hó', features: ['7 loyalty típus', 'Alap funkciók', 'Nincs push/email', 'BonusQR branding'] },
+          { name: 'Standard', price: '€19/hó', features: ['7 loyalty típus', 'Push értesítések', 'Email kampányok', 'Staff hozzáférés'] },
+          { name: 'Pro', price: '€69/hó', features: ['11 loyalty típus', 'Versenyek', 'Referral', 'Speciális alkalmak', '5 staff fiók'] },
+        ],
+        extras: 'White-label app: €690 egyszeri + €69/hó. Egyedi app: €1,690 egyszeri + €69/hó.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/hó', features: ['Spin wheel', 'QR + Wallet', 'Email automatizáció', 'Review generálás', 'Analytics dashboard'] },
+          { name: 'Growth', price: '€59/hó', features: ['3 wheel', 'Prioritásos support', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan wheel', 'Több helyszín', 'WhatsApp integráció'] },
+        ],
+        extras: 'Wallet pass: $0.15/telepítés. Nincs setup díj.',
+      },
+      analysis: {
+        title: '12 hónapos költségelemzés',
+        rows: [
+          { scenario: 'Legkisebb budget', bonusqr: '€0 (ingyenes plan)', spinix: '€348 (€29 × 12)', verdict: 'BonusQR nyer áron.' },
+          { scenario: 'Alap fizetős plan', bonusqr: '€228 (€19 × 12)', spinix: '€348 (€29 × 12)', verdict: 'BonusQR €120/évvel olcsóbb.' },
+          { scenario: 'Pro funkciók + review eszköz', bonusqr: '€828 (€69 × 12) + ~€600 review eszköz', spinix: '€348 (€29 × 12, review benne)', verdict: 'SpiniX ~€1,080/évet spórol.' },
+          { scenario: 'White-label app', bonusqr: '€690 + €828 = €1,518', spinix: 'Nem elérhető', verdict: 'Csak BonusQR kínálja.' },
+        ],
+        note: 'A költségegyenlet megfordul ha beleszámítod a review generálást. Külön review eszköz €50-200/hó. SpiniX tartalmazza €29/hó-ért összesen.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs BonusQR: hol nyer melyik',
+      sections: [
+        {
+          title: 'BonusQR nyer: loyalty típusok rugalmassága',
+          icon: 'gift',
+          content: 'BonusQR 7-11 különböző loyalty mechanikát kínál: pecsétek, pontok, cashback, látogatás jutalmak, kedvezmény szintek, üdvözlő kuponok, speciális alkalmak, versenyek és referral. SpiniX egy mechanikát kínál: a spin wheelt. Ha kifejezetten "vegyél 9-et, a 10. ingyen" pecsétgyűjtőt akarsz, BonusQR natívan csinálja.',
+        },
+        {
+          title: 'BonusQR nyer: ingyenes plan és alacsonyabb belépő',
+          icon: 'dollar',
+          content: 'BonusQR ingyenes planja tényleg használható tesztelésre. Nincs bankkártya, nincs időkorlát. A €19/hó fizetős plan €10/hó-val olcsóbb. Fontos: az ingyenes plan nem tartalmaz push értesítéseket, email marketinget és haladó funkciókat. A legtöbb vállalkozás 2-3 hónapon belül kinövi.',
+        },
+        {
+          title: 'BonusQR nyer: nyelvi lefedettség és white-label',
+          icon: 'globe',
+          content: 'BonusQR 8 nyelvet támogat vs SpiniX 3. Ha Csehországban, Szlovákiában, Lengyelországban, Olaszországban vagy Spanyolországban működsz, BonusQR-nek van natív nyelvi támogatása. Plus a white-label app opció (€690) saját márkaként jelenik meg az app store-okban.',
+        },
+        {
+          title: 'SpiniX nyer: elköteleződés gamifikációval',
+          icon: 'zap',
+          content: 'Ez az alapvető különbség. BonusQR pecsétgyűjtője: "gyere vissza 10-szer, kapj valamit." SpiniX spin wheelje: "gyere vissza most, nyerj valamit." A változó arányú megerősítés (a spin) mérhetően magasabb elköteleződést hoz mint a determinisztikus progresszió (a pecsét). 73% pecsét alapú loyalty tag inaktív. SpiniX 46% regisztrációt és 21% visszatérést ér el.',
+        },
+        {
+          title: 'SpiniX nyer: review generálás mint alap funkció',
+          icon: 'star',
+          content: 'BonusQR át tudja irányítani a vendégeket Google Reviews-ra, de alap link. SpiniX a jutalom utáni flow-ba integrálja: vendég nyer, jól érzi magát, review kérés jön. 33% hagy egyet. Az időzítés mindent jelent - pozitív érzelmi csúcson kérni drámaian növeli a konverziót.',
+        },
+        {
+          title: 'SpiniX nyer: automatikus email szekvencia',
+          icon: 'email',
+          content: 'BonusQR emailt és push-t kínál fizetős planokon, de manuálisan kell kampányt létrehozni és küldeni. SpiniX 6-email automatikus szekvenciát futtat: üdvözlés + jutalom (nap 0), lejárat emlékeztető (nap 11), review kérés (nap 1-2 látogatás után), visszatérés ösztönző (nap 21-30), születésnap, visszacsábítás (nap 60-90). Egyszer beállítod, örökre fut.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'SpiniX vagy BonusQR: melyiket válaszd?',
+      items: [
+        { situation: 'Nulla budget, alap loyalty kell', recommendation: 'BonusQR', reason: 'Ingyenes plan működik. Kezdd ott, upgrade-elj később.' },
+        { situation: 'Kávézó "vegyél 9-et, a 10. ingyen" modellel', recommendation: 'BonusQR', reason: 'Pont ez a pecsétgyűjtők lényege. BonusQR jól csinálja.' },
+        { situation: 'Étterem magasabb elköteleződést + review-kat akar', recommendation: 'SpiniX', reason: 'Gamifikáció több elköteleződést hoz. Review generálás fizeti az előfizetést.' },
+        { situation: 'White-label app kell saját márkával', recommendation: 'BonusQR', reason: 'SpiniX nem kínál white-labelt. BonusQR igen (€690+).' },
+        { situation: 'Csehországban, Lengyelországban vagy Olaszországban', recommendation: 'BonusQR', reason: 'Natív nyelvi támogatás. SpiniX csak EN, HU, DE.' },
+        { situation: 'Loyalty + review eszköz egyben kell', recommendation: 'SpiniX', reason: '€29/hó mindkettőt tartalmazza. BonusQR + külön review = €69-269/hó.' },
+        { situation: 'Szálloda vagy spa (egyszeri vendégek)', recommendation: 'SpiniX', reason: 'Pecsétgyűjtő nem működik egyszeri vendégeknél. Azonnali spin jutalom igen.' },
+        { situation: 'SEA vagy UK piac (WhatsApp-os)', recommendation: 'SpiniX', reason: 'WhatsApp integráció 98% megnyitással. BonusQR nem kínál WhatsApp-ot.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs BonusQR: GYIK',
+      items: [
+        {
+          q: 'Tényleg örökre ingyenes a BonusQR ingyenes planja?',
+          a: 'Igen. BonusQR valódi ingyenes-örökre plant kínál alap loyalty funkciókkal. Kapsz pecséteket, cashback-et, látogatás jutalmakat és Wallet integrációt. Amit nem kapsz: push értesítések, email marketing, versenyek, speciális alkalmak kuponok és referral program.',
+        },
+        {
+          q: 'Meg tudom csinálni a pecsétgyűjtőt SpiniX-ben?',
+          a: 'Közvetlenül nem. SpiniX spin wheelt használ, nem pecséteket. Beállíthatsz nyereményeket amik "ingyenes kávé" vagy "ingyenes desszert" különböző valószínűségekkel, de nincs "gyűjts 10-et, kapj 1 ingyen" mechanika.',
+        },
+        {
+          q: 'Melyik hoz több visszatérő vendéget?',
+          a: 'A gamifikációs kutatás következetesen azt mutatja, hogy a változó jutalmak felülmúlják a determinisztikusakat. SpiniX adat: 21% visszatérés 14 napon belül. Pecsétgyűjtő iparági benchmark: 12-18% kitöltési arány.',
+        },
+        {
+          q: 'Futtathatom mindkét platformot egyszerre?',
+          a: 'Igen. Néhány vállalkozás BonusQR-t használ pecsétgyűjtőnek (törzsvendégek) és SpiniX-et gamifikált elköteleződésre és review generálásra (új vendégek). Két QR kód, két élmény.',
+        },
+        {
+          q: 'Melyiknek jobb a review generálása?',
+          a: 'SpiniX. BonusQR linkelni tud Google Reviews-ra, de SpiniX a jutalom pillanatába integrálja a review kérést. Az időzítés rengeteget számít - kérni amikor a vendég épp nyert 33% konverziót hoz vs tipikus 5-10%.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Nézd meg melyik mechanika működik jobban a vendégeidnél',
+      subtitle: 'Próbáld ki a SpiniX-et 14 napig ingyen. 10 perc setup. Hasonlítsd össze az elköteleződést a jelenlegi rendszereddel.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó olvasmányok',
+      posts: [
+        { title: 'Miért Veri a Spin a Pontokat (Idegtudomány)', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Digitális Pecsétgyűjtő vs QR Loyalty Játék', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: '5 Loyalty Program Hiba', slug: '/blog/restaurant-loyalty-program-mistakes' },
+        { title: 'Loyalty Független Éttermeknek', slug: '/blog/loyalty-program-independent-restaurant' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="bonusqr" lang={lang} />

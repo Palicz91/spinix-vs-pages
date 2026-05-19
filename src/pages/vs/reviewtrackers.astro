@@ -1,0 +1,420 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'ReviewTrackers Alternative for Restaurants — Revix vs ReviewTrackers (2026 Comparison)',
+      description: 'ReviewTrackers starts at $89/month per location with annual contracts. Revix charges per reply ($0.29-$0.49) with no contract. Full feature and cost comparison for restaurant owners.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'ReviewTrackers vs Revix',
+      subtitle: 'ReviewTrackers is a review monitoring and analytics platform built for multi-location chains and franchise networks. Revix is an AI review reply engine for restaurants that only charges when it writes a response. If you\'re paying $89+/month per location for ReviewTrackers but mainly need Google review replies, this page breaks down why per-reply pricing might save you thousands.',
+    },
+    tldr: {
+      title: 'ReviewTrackers vs Revix: the short version',
+      reviewtrackers: 'ReviewTrackers is a review monitoring platform: tracks reviews across 100+ sites, AI "Smart Response" drafts, review assignment and escalation workflows, sentiment analysis, customizable reporting, and multi-location dashboards. Pricing starts at $89/month per location. 10 locations run $500-1,000/month. 100 locations $5,000+/month. Annual contract typical. Built for multi-location restaurant groups, franchise networks, healthcare chains, and hospitality brands.',
+      revix: 'Revix is an AI-powered Google review reply engine. Claude Sonnet writes each response using your restaurant\'s context (menu, tone, past reviews). Pay per reply: 99 Ft (~$0.29) for positive, 199 Ft (~$0.49) for negative reviews. A typical restaurant pays 3,000-10,000 Ft/month ($8-28). No contract, no setup fee. Connect your Google Business Profile in 10 minutes. Built for independent restaurants, cafes, and hotels.',
+      verdict: 'If you manage 50+ locations and need centralized review monitoring across 100+ sites with team workflows and escalation rules, ReviewTrackers is the broader tool. If your main need is high-quality AI replies to Google reviews without paying per-location fees, Revix.',
+    },
+    context: {
+      title: 'Why restaurant owners search for a ReviewTrackers alternative',
+      reasons: [
+        { title: 'Per-location pricing adds up fast', detail: 'ReviewTrackers charges per location. A 10-restaurant group pays $500-1,000/month ($6,000-12,000/year). A 5-location owner paying $89/location spends $5,340/year — for a tool where the primary daily use is reading and replying to Google reviews. The per-location model penalizes growth.' },
+        { title: 'Annual contracts lock you in', detail: 'ReviewTrackers typically requires annual commitments. If you sign up for 10 locations and close 2 mid-year, you\'re still paying for all 10. For restaurant groups where locations open and close, rigid annual billing creates waste.' },
+        { title: 'AI replies are generic across industries', detail: 'ReviewTrackers\' "Smart Response" feature generates draft replies, but they\'re built for any industry — hotels, healthcare, automotive, restaurants. The AI doesn\'t know your menu, your chef\'s name, or that the "patio seating" a guest mentioned is your rooftop terrace. Replies read like templates.' },
+        { title: 'Overkill for single-location restaurants', detail: 'ReviewTrackers is designed for chains managing dozens or hundreds of locations. The team assignment workflows, escalation rules, and multi-location dashboards don\'t add value for a single restaurant or a small 3-location group. You\'re paying for enterprise infrastructure you don\'t need.' },
+      ],
+    },
+    comparison: {
+      title: 'ReviewTrackers vs Revix: feature comparison',
+      headers: ['', 'ReviewTrackers', 'Revix'],
+      rows: [
+        { feature: 'Price', reviewtrackers: '$89+/mo per location', revix: '$8-28/mo typical (per reply)', winner: 'revix' },
+        { feature: 'Pricing model', reviewtrackers: 'Per location, flat monthly', revix: 'Per reply (pay only when used)', winner: 'revix' },
+        { feature: 'Contract', reviewtrackers: 'Annual contract typical', revix: 'None (disconnect anytime)', winner: 'revix' },
+        { feature: 'Setup fee', reviewtrackers: 'Varies (enterprise quotes)', revix: '$0', winner: 'revix' },
+        { feature: 'Review monitoring sites', reviewtrackers: '100+ platforms', revix: 'Google only', winner: 'reviewtrackers' },
+        { feature: 'AI review replies', reviewtrackers: 'Smart Response drafts (generic)', revix: 'Claude Sonnet 4.6 (restaurant-tuned)', winner: 'revix' },
+        { feature: 'Reply quality (AI model)', reviewtrackers: 'Undisclosed model', revix: 'Claude Sonnet 4.6 with RAG context', winner: 'revix' },
+        { feature: 'Review assignment workflows', reviewtrackers: 'Yes (assign to team, escalation rules)', revix: 'No (owner-direct model)', winner: 'reviewtrackers' },
+        { feature: 'Sentiment analysis', reviewtrackers: 'Yes (with trend reporting)', revix: 'Yes (per-review + trends)', winner: 'tie' },
+        { feature: 'Competitor analysis', reviewtrackers: 'Basic competitor tracking', revix: 'Yes (local cluster benchmarking)', winner: 'revix' },
+        { feature: 'Multi-location dashboards', reviewtrackers: 'Yes (centralized HQ view)', revix: 'Per-connection view', winner: 'reviewtrackers' },
+        { feature: 'Customizable reporting', reviewtrackers: 'Yes (scheduled, exportable)', revix: 'Monthly AI insight reports', winner: 'reviewtrackers' },
+        { feature: 'Fake review appeal drafts', reviewtrackers: 'No', revix: 'Yes (AI-generated with Google policy refs)', winner: 'revix' },
+        { feature: 'Guest profiling', reviewtrackers: 'No', revix: 'Yes (visit frequency, preferences, spend)', winner: 'revix' },
+        { feature: 'Onboarding time', reviewtrackers: 'Days to weeks (enterprise setup)', revix: '10 minutes', winner: 'revix' },
+        { feature: 'Target market', reviewtrackers: 'Multi-location chains, franchises', revix: 'Restaurants, cafes, hotels (1-20 locations)', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'ReviewTrackers vs Revix: which fits your business',
+      subtitle: 'The right tool depends on your location count and what you actually use daily, not the length of a feature list.',
+      tiers: [
+        {
+          title: 'Single restaurant or cafe',
+          description: '1 Google Business Profile, mainly needs review replies',
+          recommendation: 'Revix',
+          reason: 'ReviewTrackers at $89/month is built for chains — the team workflows, escalation rules, and multi-location dashboards add zero value for a single location getting 15-40 reviews/month. Revix handles the same Google reviews for $96-336/year with AI reply quality tuned to restaurants.',
+          annual: '$96-336/year with Revix',
+        },
+        {
+          title: '2-10 restaurant locations',
+          description: 'Small group needing consistent review management',
+          recommendation: 'Revix',
+          reason: 'At this size, ReviewTrackers costs $89-150/month per location ($2,136-18,000/year total). Revix per-reply pricing scales with actual review volume, not location count. A 5-location group typically pays $480-1,680/year total — saving $4,000-16,000 annually.',
+          annual: '$480-1,680/year with Revix',
+        },
+        {
+          title: '10-50 locations with team workflows',
+          description: 'Growing chain needing review assignment and escalation',
+          recommendation: 'ReviewTrackers or split approach',
+          reason: 'If you need centralized review assignment to regional managers, escalation rules for negative reviews, and scheduled reports for HQ, ReviewTrackers covers it. Alternatively, use Revix for AI replies ($2,000-8,000/year) and a simpler notification system for escalation.',
+          annual: '$10,000-60,000/year with ReviewTrackers',
+        },
+        {
+          title: '50+ locations, franchise network',
+          description: 'Large chain or franchise with distributed teams',
+          recommendation: 'ReviewTrackers',
+          reason: 'At this scale, centralized monitoring across 100+ review sites, team assignment workflows, franchise-level reporting, and escalation automation justify ReviewTrackers\' per-location cost. Revix is restaurant-focused and not designed for 50+ location franchise management with distributed review teams.',
+          annual: '$50,000+/year with ReviewTrackers',
+        },
+      ],
+    },
+    details: {
+      title: 'ReviewTrackers vs Revix: where each wins',
+      sections: [
+        {
+          title: 'ReviewTrackers wins: multi-site review monitoring',
+          icon: 'globe',
+          content: 'ReviewTrackers monitors reviews across 100+ sites: Google, Yelp, TripAdvisor, Facebook, Healthgrades, OpenTable, and many more. For a restaurant group with meaningful review volume on platforms beyond Google, having everything in one dashboard saves real time. Revix monitors Google only. For independent restaurants where 80-90% of reviews land on Google, that\'s usually enough. For hotel groups with heavy TripAdvisor traffic, that gap matters.',
+        },
+        {
+          title: 'ReviewTrackers wins: team workflows and escalation',
+          icon: 'building',
+          content: 'ReviewTrackers lets you assign reviews to specific team members, set escalation rules (e.g., all 1-star reviews go to the regional manager), and track response SLAs. This is genuinely useful for a 30-location chain where the GM at each location handles their own reviews but HQ needs visibility. Revix is owner-direct: you connect your Google Business Profile, Revix writes replies, you approve. No team assignment layer — which is simpler but doesn\'t scale for distributed teams.',
+        },
+        {
+          title: 'Revix wins: AI reply quality for restaurants',
+          icon: 'star',
+          content: 'ReviewTrackers\' "Smart Response" feature generates draft replies using an undisclosed AI model. The responses are designed for any industry — healthcare, automotive, hospitality, retail. Revix uses Claude Sonnet 4.6 with your restaurant\'s specific context: menu items, cuisine type, staff names, seasonal specials, and past review patterns. When a guest mentions "the truffle risotto was cold," Revix knows that dish and crafts a reply that addresses it specifically. ReviewTrackers\' AI would produce a generic apology template.',
+        },
+        {
+          title: 'Revix wins: per-reply pricing (5-30x cheaper)',
+          icon: 'zap',
+          content: 'A single restaurant getting 25 Google reviews/month pays ReviewTrackers $89/month ($3.56 per review monitored). With Revix, responding to those 25 reviews costs roughly 4,000 Ft ($11) total. That\'s 8x less. For a 5-location group, ReviewTrackers costs $445-750/month ($5,340-9,000/year). Revix for the same group: $480-1,680/year. You only pay when Revix actually writes a reply — no flat fee during slow months.',
+        },
+        {
+          title: 'Revix wins: competitor benchmarking',
+          icon: 'chart',
+          content: 'Revix includes local cluster benchmarking: your restaurant\'s rating, review velocity, response rate, and sentiment compared to similar businesses within 20 km. This is a geo-aware scoring system that shows where you stand locally and what to improve first. ReviewTrackers offers basic competitor tracking — you manually add competitors and see their rating. It doesn\'t auto-discover local competitors or score your performance against a local cluster.',
+        },
+        {
+          title: 'Revix wins: fake review defense',
+          icon: 'shield',
+          content: 'When a suspicious review appears, Revix generates an appeal draft citing specific Google review policies, with evidence points and suggested language for removal requests. ReviewTrackers doesn\'t include this. For restaurants that face review bombing or competitor-planted fake reviews, having an AI-generated appeal ready in minutes saves hours of policy research and drafting.',
+        },
+      ],
+    },
+    cost: {
+      title: 'ReviewTrackers vs Revix cost for a single restaurant',
+      subtitle: 'Annual comparison for a restaurant receiving 30 Google reviews per month.',
+      rows: [
+        { item: 'Monthly cost', reviewtrackers: '$89+ (per location)', revix: '~$9-15 (per reply)' },
+        { item: 'Setup fee', reviewtrackers: 'Varies', revix: '$0' },
+        { item: 'Contract length', reviewtrackers: 'Annual typical', revix: 'None' },
+        { item: 'First year total', reviewtrackers: '$1,068+', revix: '$108-180' },
+        { item: 'Cost per review responded', reviewtrackers: '$2.97+ (if responding to all 30)', revix: '$0.29-0.49' },
+        { item: 'Cancellation', reviewtrackers: 'End of annual term', revix: 'Disconnect Google instantly' },
+        { item: 'Time to first AI reply', reviewtrackers: 'Days (after onboarding)', revix: '10 minutes' },
+      ],
+      note: 'For a single restaurant, ReviewTrackers costs 6-10x more than Revix annually. ReviewTrackers includes multi-site monitoring, team workflows, and reporting that a single location won\'t use. If review replies are your primary need, that\'s $900+/year spent on unused features.',
+    },
+    scenarios: {
+      title: 'Revix or ReviewTrackers: which should you choose?',
+      items: [
+        { situation: 'Single restaurant, Google is your main review platform', recommendation: 'Revix', reason: 'Per-reply pricing means you pay $8-28/month instead of $89+. Better AI quality for restaurant-specific replies.' },
+        { situation: 'Restaurant group (2-10 locations)', recommendation: 'Revix', reason: 'Per-reply pricing scales with review volume, not location count. A 5-location group saves $4,000-7,000/year vs ReviewTrackers.' },
+        { situation: 'Need team review assignment and escalation', recommendation: 'ReviewTrackers', reason: 'Revix is owner-direct. ReviewTrackers lets you assign reviews to GMs and escalate 1-star reviews to regional managers.' },
+        { situation: 'Monitor Yelp + TripAdvisor + Google', recommendation: 'ReviewTrackers', reason: 'Revix is Google-only. If you get significant volume on other platforms, ReviewTrackers\' multi-site inbox matters.' },
+        { situation: 'Priority is AI reply quality for food/hospitality', recommendation: 'Revix', reason: 'Claude Sonnet with restaurant context beats generic multi-industry AI. Replies reference actual dishes, experiences, and your tone.' },
+        { situation: 'Need scheduled reports for HQ or investors', recommendation: 'ReviewTrackers', reason: 'ReviewTrackers offers customizable, scheduled, exportable reports for multi-location oversight.' },
+        { situation: 'Budget under $50/month', recommendation: 'Revix', reason: 'ReviewTrackers starts at $89/location. Revix per-reply pricing fits any budget — you control spend by volume.' },
+        { situation: 'Franchise network (50+ locations)', recommendation: 'ReviewTrackers', reason: 'At franchise scale, centralized workflows, SLA tracking, and multi-location dashboards are worth the per-location cost.' },
+      ],
+    },
+    pricing: {
+      title: 'ReviewTrackers pricing breakdown (2026)',
+      subtitle: 'ReviewTrackers does not publish exact pricing. These figures come from G2 reviews, Capterra reports, and business owner accounts as of early 2026.',
+      tiers: [
+        { name: 'Single location', range: '$89+/mo', note: 'Review monitoring across 100+ sites, Smart Response AI drafts, basic sentiment analysis. Annual contract typical.' },
+        { name: '10 locations', range: '$500-1,000/mo', note: 'Volume discount applies. Team assignment workflows, multi-location dashboard, scheduled reporting.' },
+        { name: '100+ locations (enterprise)', range: '$5,000+/mo', note: 'Custom pricing. Dedicated account manager, API access, franchise-level reporting, escalation automation.' },
+      ],
+      hidden: [
+        'Per-location pricing — adding locations increases your bill immediately',
+        'Annual contract typical, difficult to exit mid-term',
+        'Enterprise setup fees vary (not disclosed publicly)',
+        'Closing a location mid-contract doesn\'t reduce your bill',
+        'Volume discounts require long-term commitment negotiation',
+      ],
+      disclaimer: 'These prices are estimates from publicly available reviews and user reports as of early 2026. ReviewTrackers pricing varies by location count, contract length, and negotiation. Contact ReviewTrackers directly for a current quote.',
+    },
+    faq: {
+      title: 'ReviewTrackers vs Revix: FAQ',
+      items: [
+        {
+          q: 'Is ReviewTrackers worth it for a single restaurant?',
+          a: 'For most single-location restaurants, no. ReviewTrackers is built for multi-location chains — its team assignment workflows, escalation rules, and multi-location dashboards don\'t add value for one location. At $89+/month ($1,068+/year), you\'re paying for enterprise infrastructure designed for franchise networks. A single restaurant getting 30 Google reviews/month would pay $108-180/year with Revix for better AI reply quality, tuned specifically to restaurants. ReviewTrackers makes sense starting at 20-50+ locations where centralized team management and multi-platform monitoring justify the per-location cost.',
+        },
+        {
+          q: 'How does ReviewTrackers compare to Birdeye?',
+          a: 'Both are multi-location review management platforms, but they differ in scope and price. Birdeye is broader: it includes surveys, webchat, SMS messaging, social media management, and listings sync alongside review monitoring. Birdeye starts at $299/month per location. ReviewTrackers is more focused: review monitoring, AI response drafts, team workflows, and reporting. It starts at $89/month per location. If you only need review management with team workflows, ReviewTrackers costs less. If you want messaging, surveys, and social media bundled in, Birdeye covers more but costs 3x as much. For restaurants that mainly need AI review replies, Revix at $8-28/month beats both on price and restaurant-specific AI quality.',
+        },
+        {
+          q: 'Does ReviewTrackers have AI review replies?',
+          a: 'Yes, ReviewTrackers offers "Smart Response" — AI-generated draft replies. The AI model is not publicly disclosed. The drafts are designed for all industries (healthcare, automotive, hospitality, retail), so they tend toward generic templates. For restaurant-specific replies that reference your menu, cuisine style, and guest experiences, Revix uses Claude Sonnet 4.6 with RAG context — a model that\'s publicly benchmarked and restaurant-tuned.',
+        },
+        {
+          q: 'Can I use ReviewTrackers for just one location?',
+          a: 'Technically yes, but it\'s not cost-effective. ReviewTrackers\' per-location pricing starts at $89/month. The platform is designed around multi-location workflows (team assignment, escalation, HQ dashboards) that a single location doesn\'t need. You\'d pay $1,068+/year for features built for chains while using it basically as a Google review notification tool. Revix costs $108-180/year for the same single restaurant and delivers better AI reply quality.',
+        },
+        {
+          q: 'How does Revix handle multiple locations?',
+          a: 'Revix works per Google Business Profile connection. You can connect multiple locations and manage them from one account. Each location\'s AI context (menu, tone, past reviews) is separate, so replies are tailored per restaurant. Revix is optimized for 1-20 locations. At 50+ locations where you need team assignment, escalation rules, and franchise-level reporting, ReviewTrackers is the better fit.',
+        },
+        {
+          q: 'What review sites does ReviewTrackers monitor?',
+          a: 'ReviewTrackers monitors 100+ review sites including Google, Yelp, TripAdvisor, Facebook, OpenTable, Healthgrades, Cars.com, and many industry-specific platforms. Revix monitors Google only. For restaurants, Google typically accounts for 80-90% of review volume and has the highest impact on local search. If you have significant Yelp or TripAdvisor volume, ReviewTrackers\' multi-site coverage matters.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review replies without per-location fees',
+      subtitle: 'Claude Sonnet quality replies tuned to your restaurant. Per-response pricing. No contract. Live in 10 minutes.',
+      button: 'Connect Your Google Reviews',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related comparisons',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Revix vs Podium', slug: '/vs/podium' },
+        { title: 'Unanswered Google Reviews Cost You Revenue', slug: '/blog/unanswered-google-reviews-cost' },
+        { title: 'Google Reviews Drive Restaurant Revenue', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'ReviewTrackers Alternatíva Éttermeknek — Revix vs ReviewTrackers (2026 Összehasonlítás)',
+      description: 'ReviewTrackers $89/hó-tól indul lokációnként éves szerződéssel. Revix válaszonként számol ($0.29-$0.49) szerződés nélkül. Teljes funkció- és költség-összehasonlítás étterem tulajdonosoknak.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'ReviewTrackers vs Revix',
+      subtitle: 'ReviewTrackers review figyelő és analitikai platform multi-lokációs láncoknak és franchise hálózatoknak. Revix egy AI review válasz motor éttermeknek, ami csak akkor számol fel díjat amikor válaszol. Ha $89+/hó-t fizetsz lokációnként a ReviewTrackers-nek de főleg Google review válaszokra van szükséged, ez az oldal bemutatja miért spórolhatsz ezreket válaszonkénti árazással.',
+    },
+    tldr: {
+      title: 'ReviewTrackers vs Revix: röviden',
+      reviewtrackers: 'ReviewTrackers review figyelő platform: 100+ oldalon követi a véleményeket, AI "Smart Response" válasz vázlatok, review hozzárendelés és eszkalációs munkafolyamatok, sentiment analízis, testreszabható riportok és multi-lokációs dashboardok. Árazás $89/hó-tól lokációnként. 10 lokáció $500-1,000/hó. 100 lokáció $5,000+/hó. Éves szerződés jellemző. Multi-lokációs étterem csoportoknak, franchise hálózatoknak, egészségügyi láncoknak és vendéglátó márkáknak épült.',
+      revix: 'Revix AI-vezérelt Google review válasz motor. Claude Sonnet írja a válaszokat az éttermed kontextusával (étlap, hangnem, korábbi vélemények). Válaszonkénti ár: 99 Ft pozitív, 199 Ft negatív review-kra. Tipikus étterem 3,000-10,000 Ft/hó-t fizet ($8-28). Nincs szerződés, nincs setup díj. Google Business Profile csatlakoztatás 10 perc. Független éttermeknek, kávézóknak és szállodáknak készült.',
+      verdict: 'Ha 50+ lokációt kezelsz és centralizált review figyelés kell 100+ oldalon csapat munkafolyamatokkal és eszkalációs szabályokkal, ReviewTrackers a szélesebb eszköz. Ha fő igényed minőségi AI válaszok Google review-kra lokációnkénti díjak nélkül, Revix.',
+    },
+    context: {
+      title: 'Miért keresnek étterem tulajdonosok ReviewTrackers alternatívát',
+      reasons: [
+        { title: 'Lokációnkénti árazás gyorsan összeadódik', detail: 'ReviewTrackers lokációnként számol. 10 éttermes csoport $500-1,000/hó-t fizet ($6,000-12,000/év). 5 lokációs tulajdonos $89/lokáció áron $5,340/évet költ — egy eszközre amit napi szinten főleg Google review olvasásra és válaszolásra használ. A lokációnkénti modell bünteti a növekedést.' },
+        { title: 'Éves szerződés beköt', detail: 'ReviewTrackers jellemzően éves elköteleződést kér. Ha 10 lokációra írsz alá és 2-t bezársz év közben, még mindig mind a 10-ért fizetsz. Étterem csoportoknál ahol lokációk nyílnak és zárnak, a merev éves számlázás pazarlást okoz.' },
+        { title: 'AI válaszok iparágak között generikusak', detail: 'ReviewTrackers "Smart Response" funkciója válasz vázlatokat generál, de bármely iparágra épülnek — szállodák, egészségügy, autó, éttermek. Az AI nem ismeri az étlapodat, a séfed nevét, vagy hogy a vendég által említett "terasz" a tetőteraszod. A válaszok sablonként hatnak.' },
+        { title: 'Túlméretezett egyetlen étteremnek', detail: 'ReviewTrackers tucatnyi vagy száznyi lokációt kezelő láncoknak készült. A csapat hozzárendelés, eszkalációs szabályok és multi-lokációs dashboardok nem adnak értéket egyetlen étteremnek vagy kis 3 lokációs csoportnak. Enterprise infrastruktúráért fizetsz amit nem használsz.' },
+      ],
+    },
+    comparison: {
+      title: 'ReviewTrackers vs Revix: funkció összehasonlítás',
+      headers: ['', 'ReviewTrackers', 'Revix'],
+      rows: [
+        { feature: 'Ár', reviewtrackers: '$89+/hó lokációnként', revix: '$8-28/hó tipikus (válaszonként)', winner: 'revix' },
+        { feature: 'Árazási modell', reviewtrackers: 'Lokációnkénti, fix havi', revix: 'Válaszonkénti (csak ha használod)', winner: 'revix' },
+        { feature: 'Szerződés', reviewtrackers: 'Éves szerződés jellemző', revix: 'Nincs (bármikor leválasztható)', winner: 'revix' },
+        { feature: 'Setup díj', reviewtrackers: 'Változó (enterprise árajánlat)', revix: '$0', winner: 'revix' },
+        { feature: 'Review figyelés oldalak', reviewtrackers: '100+ platform', revix: 'Csak Google', winner: 'reviewtrackers' },
+        { feature: 'AI review válaszok', reviewtrackers: 'Smart Response vázlatok (generikus)', revix: 'Claude Sonnet 4.6 (étterem-specifikus)', winner: 'revix' },
+        { feature: 'Válasz minőség (AI modell)', reviewtrackers: 'Nem nyilvános modell', revix: 'Claude Sonnet 4.6 RAG kontextussal', winner: 'revix' },
+        { feature: 'Review hozzárendelés', reviewtrackers: 'Igen (csapathoz, eszkalációs szabályok)', revix: 'Nem (tulajdonos-közvetlen modell)', winner: 'reviewtrackers' },
+        { feature: 'Sentiment analízis', reviewtrackers: 'Igen (trend riportokkal)', revix: 'Igen (review-nkénti + trendek)', winner: 'tie' },
+        { feature: 'Versenytárs elemzés', reviewtrackers: 'Alapszintű versenytárs-követés', revix: 'Igen (helyi klaszter benchmarking)', winner: 'revix' },
+        { feature: 'Multi-lokációs dashboardok', reviewtrackers: 'Igen (centralizált HQ nézet)', revix: 'Kapcsolatonkénti nézet', winner: 'reviewtrackers' },
+        { feature: 'Testreszabható riportok', reviewtrackers: 'Igen (ütemezett, exportálható)', revix: 'Havi AI insight riportok', winner: 'reviewtrackers' },
+        { feature: 'Hamis review fellebbezés', reviewtrackers: 'Nem', revix: 'Igen (AI draft Google policy hivatkozásokkal)', winner: 'revix' },
+        { feature: 'Vendég profilozás', reviewtrackers: 'Nem', revix: 'Igen (látogatási gyakoriság, preferenciák)', winner: 'revix' },
+        { feature: 'Onboarding idő', reviewtrackers: 'Napok-hetek (enterprise setup)', revix: '10 perc', winner: 'revix' },
+        { feature: 'Célpiac', reviewtrackers: 'Multi-lokációs láncok, franchise-ok', revix: 'Éttermek, kávézók, szállodák (1-20 lokáció)', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'ReviewTrackers vs Revix: melyik illik a vállalkozásodhoz',
+      subtitle: 'A jó eszköz a lokáció számtól és napi használattól függ, nem a funkciólista hosszától.',
+      tiers: [
+        {
+          title: 'Egyetlen étterem vagy kávézó',
+          description: '1 Google Business Profile, főleg review válaszok kellenek',
+          recommendation: 'Revix',
+          reason: 'ReviewTrackers $89/hó láncoknak épült — a csapat munkafolyamatok, eszkalációs szabályok és multi-lokációs dashboardok nulla értéket adnak egyetlen lokációnak ami havi 15-40 review-t kap. Revix ugyanazokat a Google review-kat kezeli évi $96-336-ért jobb AI válasz minőséggel éttermekre hangolva.',
+          annual: '$96-336/év Revix-szel',
+        },
+        {
+          title: '2-10 étterem lokáció',
+          description: 'Kis csoport konzisztens review kezeléssel',
+          recommendation: 'Revix',
+          reason: 'ReviewTrackers ezen a méreten $89-150/hó lokációnként ($2,136-18,000/év összesen). Revix válaszonkénti árazása a tényleges review volumennel skálázódik, nem a lokáció számmal. 5 lokációs csoport tipikusan $480-1,680/évet fizet összesen — évi $4,000-16,000 megtakarítás.',
+          annual: '$480-1,680/év Revix-szel',
+        },
+        {
+          title: '10-50 lokáció csapat munkafolyamatokkal',
+          description: 'Növekvő lánc review hozzárendeléssel és eszkalációval',
+          recommendation: 'ReviewTrackers vagy megosztott megközelítés',
+          reason: 'Ha centralizált review hozzárendelés kell regionális menedzserekhez, eszkalációs szabályok negatív review-kra és ütemezett riportok a központnak, ReviewTrackers lefedi. Alternatívaként használj Revix-et AI válaszokra ($2,000-8,000/év) és egyszerűbb értesítési rendszert eszkalációhoz.',
+          annual: '$10,000-60,000/év ReviewTrackers-szel',
+        },
+        {
+          title: '50+ lokáció, franchise hálózat',
+          description: 'Nagy lánc vagy franchise elosztott csapatokkal',
+          recommendation: 'ReviewTrackers',
+          reason: 'Ezen a skálán a centralizált figyelés 100+ review oldalon, csapat hozzárendelés, franchise-szintű riporting és eszkaláció automatizálás indokolja ReviewTrackers lokációnkénti költségét. Revix étterem-fókuszú és nem 50+ lokációs franchise kezelésre tervezett elosztott review csapatokkal.',
+          annual: '$50,000+/év ReviewTrackers-szel',
+        },
+      ],
+    },
+    details: {
+      title: 'ReviewTrackers vs Revix: hol nyer melyik',
+      sections: [
+        {
+          title: 'ReviewTrackers nyer: multi-oldal review figyelés',
+          icon: 'globe',
+          content: 'ReviewTrackers 100+ oldalon figyeli a véleményeket: Google, Yelp, TripAdvisor, Facebook, Healthgrades, OpenTable és sok más. Étterem csoportnak ahol Google-ön kívüli platformokon is jelentős review volumen van, az egységes dashboard valós időt spórol. Revix csak Google-t figyel. Független éttermeknek ahol a review-k 80-90%-a Google-ön van, ez általában elég. Szálloda csoportoknál erős TripAdvisor forgalommal ez a különbség számít.',
+        },
+        {
+          title: 'ReviewTrackers nyer: csapat munkafolyamatok és eszkaláció',
+          icon: 'building',
+          content: 'ReviewTrackers lehetővé teszi review-k hozzárendelését csapattagokhoz, eszkalációs szabályok beállítását (pl. minden 1 csillagos review a regionális menedzserhez kerül) és válaszidő SLA-k követését. Ez valóban hasznos 30 lokációs láncnál ahol minden lokáció GM-je kezeli a saját review-kat de a központnak átláthatóság kell. Revix tulajdonos-közvetlen: csatlakoztatod a Google Business Profile-t, Revix megírja a válaszokat, te jóváhagyod. Nincs csapat hozzárendelési réteg — ami egyszerűbb de nem skálázódik elosztott csapatokra.',
+        },
+        {
+          title: 'Revix nyer: AI válasz minőség éttermeknek',
+          icon: 'star',
+          content: 'ReviewTrackers "Smart Response" funkciója nem nyilvános AI modellel generál válasz vázlatokat. A válaszok bármely iparágra vannak tervezve — egészségügy, autó, vendéglátás, kiskereskedelem. Revix Claude Sonnet 4.6-ot használ az éttermed specifikus kontextusával: étlap elemek, konyha típus, személyzet nevek, szezonális ajánlatok és korábbi review minták. Amikor egy vendég megemlíti hogy "a szarvasgomba rizottó hideg volt", Revix ismeri az ételt és olyan választ ír ami specifikusan kezeli. ReviewTrackers AI-ja generikus bocsánatkérés sablont adna.',
+        },
+        {
+          title: 'Revix nyer: válaszonkénti árazás (5-30x olcsóbb)',
+          icon: 'zap',
+          content: 'Havi 25 Google review-t kapó étterem ReviewTrackers-nek $89/hó-t fizet ($3.56 review-nként). Revix-szel azokra a 25 review-ra válaszolni összesen kb. 4,000 Ft ($11). Az 8x kevesebb. 5 lokációs csoportnak ReviewTrackers $445-750/hó ($5,340-9,000/év). Revix ugyanannak a csoportnak: $480-1,680/év. Csak akkor fizetsz amikor Revix tényleg ír egy választ — nincs fix díj lassú hónapokban.',
+        },
+        {
+          title: 'Revix nyer: versenytárs benchmarking',
+          icon: 'chart',
+          content: 'Revix helyi klaszter benchmarkingot tartalmaz: az éttermed értékelése, review sebessége, válaszadási aránya és sentimentje összehasonlítva hasonló vállalkozásokkal 20 km-en belül. Ez geo-tudatos pontozási rendszer ami megmutatja hol állsz helyben és mit javíts először. ReviewTrackers alapszintű versenytárs-követést kínál — manuálisan adod hozzá a versenytársakat és látod az értékelésüket. Nem fedez fel automatikusan helyi versenytársakat és nem pontoz a helyi klaszterhez képest.',
+        },
+        {
+          title: 'Revix nyer: hamis review védelem',
+          icon: 'shield',
+          content: 'Gyanús review megjelenésekor Revix fellebbezés vázlatot generál specifikus Google review policy hivatkozásokkal, bizonyítékokkal és javasolt megfogalmazással az eltávolítási kérelemhez. ReviewTrackers nem tartalmazza ezt. Éttermeknek akik review bombázással vagy versenytárs által írt hamis véleményekkel szembesülnek, az AI-generált fellebbezés percek alatt kész — órákat spórol policy kutatásból és megfogalmazásból.',
+        },
+      ],
+    },
+    cost: {
+      title: 'ReviewTrackers vs Revix költség egyetlen étteremre',
+      subtitle: 'Éves összehasonlítás havi 30 Google review-t kapó étteremre.',
+      rows: [
+        { item: 'Havi költség', reviewtrackers: '$89+ (lokációnként)', revix: '~$9-15 (válaszonként)' },
+        { item: 'Setup díj', reviewtrackers: 'Változó', revix: '$0' },
+        { item: 'Szerződés hossz', reviewtrackers: 'Éves jellemző', revix: 'Nincs' },
+        { item: 'Első éves összköltség', reviewtrackers: '$1,068+', revix: '$108-180' },
+        { item: 'Költség review-nkénti válaszra', reviewtrackers: '$2.97+ (mind a 30-ra válaszolva)', revix: '$0.29-0.49' },
+        { item: 'Lemondás', reviewtrackers: 'Éves időszak végén', revix: 'Google leválasztás azonnal' },
+        { item: 'Idő az első AI válaszig', reviewtrackers: 'Napok (onboarding után)', revix: '10 perc' },
+      ],
+      note: 'Egyetlen étteremre ReviewTrackers évente 6-10x drágább mint Revix. ReviewTrackers multi-oldal figyelést, csapat munkafolyamatokat és riportokat tartalmaz amiket egyetlen lokáció nem használ. Ha review válaszok a fő igényed, $900+/évet költesz nem használt funkciókra.',
+    },
+    scenarios: {
+      title: 'Revix vagy ReviewTrackers: melyiket válaszd?',
+      items: [
+        { situation: 'Egyetlen étterem, Google a fő review platform', recommendation: 'Revix', reason: 'Válaszonkénti árazás: $8-28/hó a $89+ helyett. Jobb AI minőség étterem-specifikus válaszokhoz.' },
+        { situation: 'Étterem csoport (2-10 lokáció)', recommendation: 'Revix', reason: 'Válaszonkénti árazás review volumennel skálázódik, nem lokáció számmal. 5 lokációs csoport $4,000-7,000/évet spórol vs ReviewTrackers.' },
+        { situation: 'Csapat review hozzárendelés és eszkaláció kell', recommendation: 'ReviewTrackers', reason: 'Revix tulajdonos-közvetlen. ReviewTrackers lehetővé teszi review-k hozzárendelését GM-ekhez és 1 csillagos review-k eszkalálását regionális menedzserekhez.' },
+        { situation: 'Yelp + TripAdvisor + Google figyelés kell', recommendation: 'ReviewTrackers', reason: 'Revix csak Google. Ha más platformokon is jelentős volumen van, ReviewTrackers multi-oldal postaládája számít.' },
+        { situation: 'AI válasz minőség a prioritás éttermeknek', recommendation: 'Revix', reason: 'Claude Sonnet étterem kontextussal felülmúlja a generikus multi-iparág AI-t. Válaszok konkrét ételeket és élményeket hivatkoznak.' },
+        { situation: 'Ütemezett riportok kellenek a központnak', recommendation: 'ReviewTrackers', reason: 'ReviewTrackers testreszabható, ütemezett, exportálható riportokat kínál multi-lokációs felügyelethez.' },
+        { situation: 'Budget $50/hó alatt', recommendation: 'Revix', reason: 'ReviewTrackers $89/lokációtól indul. Revix válaszonkénti árazás bármely budgetbe belefér.' },
+        { situation: 'Franchise hálózat (50+ lokáció)', recommendation: 'ReviewTrackers', reason: 'Franchise méretben a centralizált munkafolyamatok, SLA követés és multi-lokációs dashboardok megérik a lokációnkénti költséget.' },
+      ],
+    },
+    pricing: {
+      title: 'ReviewTrackers árazás részletesen (2026)',
+      subtitle: 'ReviewTrackers nem teszi közzé a pontos árakat. Ezek az adatok G2, Capterra és üzlettulajdonosi beszámolókból származnak, 2026 eleje.',
+      tiers: [
+        { name: 'Egy lokáció', range: '$89+/hó', note: 'Review figyelés 100+ oldalon, Smart Response AI vázlatok, alapszintű sentiment analízis. Éves szerződés jellemző.' },
+        { name: '10 lokáció', range: '$500-1,000/hó', note: 'Mennyiségi kedvezmény. Csapat hozzárendelés, multi-lokációs dashboard, ütemezett riportok.' },
+        { name: '100+ lokáció (enterprise)', range: '$5,000+/hó', note: 'Egyedi árazás. Dedikált account manager, API hozzáférés, franchise-szintű riporting, eszkaláció automatizálás.' },
+      ],
+      hidden: [
+        'Lokációnkénti árazás — új lokáció azonnal növeli a számlát',
+        'Éves szerződés jellemző, időszak közben nehéz kilépni',
+        'Enterprise setup díjak változóak (nyilvánosan nem közölt)',
+        'Lokáció bezárása szerződés közben nem csökkenti a számlát',
+        'Mennyiségi kedvezmények hosszú távú elköteleződés tárgyalást igényelnek',
+      ],
+      disclaimer: 'Ezek becsült árak nyilvánosan elérhető review-kból és felhasználói beszámolókból, 2026 eleje. ReviewTrackers árazás lokáció szám, szerződés hossz és alkupozíció szerint változik. Aktuális árajánlatért keresd közvetlenül a ReviewTrackers-t.',
+    },
+    faq: {
+      title: 'ReviewTrackers vs Revix: GYIK',
+      items: [
+        {
+          q: 'Megéri a ReviewTrackers egyetlen étteremnek?',
+          a: 'A legtöbb egyetlen lokációs étteremnek nem. ReviewTrackers multi-lokációs láncoknak épült — a csapat hozzárendelés, eszkalációs szabályok és multi-lokációs dashboardok nem adnak értéket egy lokációnak. $89+/hó-ért ($1,068+/év) franchise hálózatoknak tervezett enterprise infrastruktúráért fizetsz. Havi 30 Google review-t kapó étterem Revix-szel $108-180/évet fizetne jobb AI válasz minőségért, kifejezetten éttermekre hangolva. ReviewTrackers 20-50+ lokációtól van értelme ahol a centralizált csapatkezelés és multi-platform figyelés indokolja a lokációnkénti költséget.',
+        },
+        {
+          q: 'Hogyan viszonyul a ReviewTrackers a Birdeye-hoz?',
+          a: 'Mindkettő multi-lokációs review kezelő platform, de eltérnek hatókörben és árban. Birdeye szélesebb: felmérések, webchat, SMS üzenetkezelés, social media kezelés és listing szinkron a review figyelés mellett. Birdeye $299/hó-tól indul lokációnként. ReviewTrackers fókuszáltabb: review figyelés, AI válasz vázlatok, csapat munkafolyamatok és riportok. $89/hó-tól indul lokációnként. Ha csak review kezelés kell csapat munkafolyamatokkal, ReviewTrackers kevesebbe kerül. Ha üzenetkezelés, felmérések és social media is kell egy csomagban, Birdeye többet fed le de 3x annyiba kerül. Éttermeknek akiknek főleg AI review válaszok kellenek, Revix $8-28/hó-ért mindkettőt veri árban és étterem-specifikus AI minőségben.',
+        },
+        {
+          q: 'Van ReviewTrackers-nek AI review válasza?',
+          a: 'Igen, ReviewTrackers "Smart Response" funkciót kínál — AI-generált válasz vázlatok. Az AI modell nyilvánosan nem ismert. A vázlatok minden iparágra vannak tervezve (egészségügy, autó, vendéglátás, kiskereskedelem), így generikus sablonok felé hajlanak. Étterem-specifikus válaszokhoz amik hivatkozzák az étlapodat, konyha stílusodat és vendég élményeket, Revix Claude Sonnet 4.6-ot használ RAG kontextussal — nyilvánosan benchmark-olt és éttermekre hangolt modell.',
+        },
+        {
+          q: 'Használhatom ReviewTrackers-t csak egy lokációra?',
+          a: 'Technikailag igen, de nem költséghatékony. ReviewTrackers lokációnkénti árazása $89/hó-tól indul. A platform multi-lokációs munkafolyamatok köré épül (csapat hozzárendelés, eszkaláció, HQ dashboardok) amiket egyetlen lokáció nem használ. $1,068+/évet fizetnél láncoknak épített funkciókért miközben lényegében Google review értesítő eszközként használod. Revix $108-180/évet kér ugyanarra az étteremre jobb AI válasz minőséggel.',
+        },
+        {
+          q: 'Hogyan kezeli a Revix a több lokációt?',
+          a: 'Revix Google Business Profile kapcsolatonként működik. Több lokációt csatlakoztathatsz és egy fiókból kezeled. Minden lokáció AI kontextusa (étlap, hangnem, korábbi review-k) külön van, így a válaszok éttermenkénti testreszabottak. Revix 1-20 lokációra optimalizált. 50+ lokációnál ahol csapat hozzárendelés, eszkalációs szabályok és franchise-szintű riporting kell, ReviewTrackers a jobb választás.',
+        },
+        {
+          q: 'Milyen review oldalakat figyel a ReviewTrackers?',
+          a: 'ReviewTrackers 100+ review oldalt figyel: Google, Yelp, TripAdvisor, Facebook, OpenTable, Healthgrades, Cars.com és sok iparág-specifikus platform. Revix csak Google-t figyel. Éttermeknek a Google tipikusan a review volumen 80-90%-át teszi ki és a legnagyobb hatással van a helyi keresésre. Ha jelentős Yelp vagy TripAdvisor volumened van, ReviewTrackers multi-oldal lefedettsége számít.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review válaszok lokációnkénti díjak nélkül',
+      subtitle: 'Claude Sonnet minőségű válaszok az étteremedre hangolva. Válaszonkénti árazás. Nincs szerződés. 10 perc alatt él.',
+      button: 'Csatlakoztasd a Google Review-jaid',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó összehasonlítások',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Revix vs Podium', slug: '/vs/podium' },
+        { title: 'A Megválaszolatlan Google Értékelések Ára', slug: '/blog/unanswered-google-reviews-cost' },
+        { title: 'Google Értékelések és Éttermi Bevétel', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="reviewtrackers" lang={lang} />

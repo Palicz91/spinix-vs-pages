@@ -1,0 +1,330 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Square Loyalty Pricing, Reviews, and a €29 Alternative (2026)',
+      description: 'Square Loyalty starts at $45/mo and locks you into Square POS. SpiniX is €29/mo flat, works with any POS, and adds gamification + Google review collection. Full feature comparison.',
+    },
+    hero: {
+      eyebrow: 'Comparison',
+      headline: 'SpiniX<br/>vs Square Loyalty',
+      subline: 'One locks you into a POS. One works everywhere.<br/>Here\'s the honest breakdown.',
+    },
+    tldr: {
+      title: 'SpiniX vs Square Loyalty: TL;DR',
+      spinix: '<strong>SpiniX:</strong> €29/mo flat. Gamified prize wheel, automated review collection, Apple/Google Wallet, email follow-ups. Works with any POS or none.',
+      square: '<strong>Square Loyalty:</strong> From $45/mo (scales with visits). Points-based system. Requires Square POS. No review collection, no gamification.',
+      verdict: 'Square is solid if you\'re already in their ecosystem. SpiniX does more for less — and you\'re not locked in.',
+    },
+    comparison: {
+      title: 'SpiniX vs Square Loyalty: feature comparison',
+      headers: ['Feature', 'SpiniX', 'Square Loyalty'],
+      rows: [
+        ['Monthly price', '€29 flat', 'From $45/mo*'],
+        ['POS required', 'None — works with any', 'Square POS only'],
+        ['Prize wheel / gamification', true, false],
+        ['Automated email sequences', true, 'With Square Marketing add-on'],
+        ['Google review collection', true, false],
+        ['Apple / Google Wallet pass', true, 'Apple Wallet only (view points)'],
+        ['Guest email capture', '46% signup rate', 'Phone number only by default'],
+        ['Setup time', '10 minutes', '15–30 minutes'],
+        ['Multi-language support', true, 'English, French, Japanese, Spanish'],
+        ['Works without internet', true, false],
+      ],
+      footnote: '*Square Loyalty pricing scales with loyalty visits per location. Previously charged per visit; now bundled into Plus ($60/mo) or available as add-on from $45/mo.',
+    },
+    pricing: {
+      title: 'SpiniX vs Square Loyalty: real cost breakdown',
+      intro: 'Square\'s pricing scales up as you grow. SpiniX stays flat.',
+      scenarios: [
+        { label: 'Small café', visits: '0–200', square: '$45/mo', spinix: '€29/mo', note: 'Square is 55% more expensive' },
+        { label: 'Busy restaurant', visits: '200–500', square: '$45–75/mo', spinix: '€29/mo', note: 'Gap widens as you grow' },
+        { label: 'High-traffic spot', visits: '500+', square: '$75–150+/mo', spinix: '€29/mo', note: 'You save $50–120+/mo with SpiniX' },
+      ],
+      extras: {
+        title: 'Hidden costs with Square',
+        items: [
+          'Square Marketing (email/SMS): additional $15/mo+',
+          'Square POS hardware: $0–799 upfront',
+          'Locked into Square payment processing fees',
+          'No review collection — need a separate tool ($20–50/mo)',
+        ],
+      },
+      conclusion: 'With SpiniX, €29/mo covers gamification, email automation, review collection, and Wallet passes. No add-ons needed.',
+    },
+    forgetting: {
+      headline: 'Square Loyalty\'s forgetting problem',
+      p1: 'Square gives your guests points. They get a text when they earn some. Then what?',
+      timeline: [
+        'Day 1: "Cool, I earned 50 points!"',
+        'Day 7: Points forgotten. No follow-up from Square.',
+        'Day 14: They\'re eating at your competitor.',
+      ],
+      p2: '<strong>Points without follow-up are wasted money.</strong>',
+      highlight: 'SpiniX sends automated emails on Day 3, 7, and 10 after each visit. Your guest can\'t forget — because we won\'t let them.',
+    },
+    dopamine: {
+      headline: 'Why a prize wheel beats a points counter',
+      p1: 'Square uses a traditional points system: spend money, earn points, redeem later. It works. But it\'s predictable.',
+      p2: 'SpiniX uses a <strong>spin-the-wheel mechanic with variable rewards</strong>. Behavioral psychology research shows variable rewards trigger 3x more dopamine than predictable ones. It\'s the same principle that makes games addictive — except here, it brings your guests back.',
+      stats: [
+        '46% of guests scan the QR and sign up',
+        '33% leave a Google review after spinning',
+        '21% return within 14 days',
+      ],
+    },
+    wallet: {
+      headline: 'Apple & Google Wallet — not just "view your points"',
+      p1: 'Square recently added Apple Wallet support, but it\'s limited to viewing your points balance. No push notifications, no return reminders.',
+      p2: 'SpiniX creates a full digital loyalty pass in Apple and Google Wallet. It sits next to their credit cards and boarding passes — the most-opened app on any phone. We can send push notifications to the lock screen: new rewards, reminders, special offers.',
+      highlight: 'Your loyalty program lives in the one place your guests check 50+ times a day.',
+    },
+    whoFor: {
+      title: 'SpiniX or Square Loyalty: who should use which?',
+      square: {
+        title: 'Stay with Square Loyalty if:',
+        points: [
+          'You\'re already deep in the Square ecosystem (POS, payments, payroll)',
+          'You want loyalty tied directly to transaction data',
+          'You prefer a traditional points-based program',
+          'Your main goal is tracking spend patterns, not driving return visits',
+        ],
+      },
+      spinix: {
+        title: 'Choose SpiniX if:',
+        points: [
+          'You want guests to actually come back (not just collect points)',
+          'You want more Google reviews on autopilot',
+          'You use any POS — or no POS at all',
+          'You want Apple/Google Wallet passes with push notifications',
+          'You don\'t want to pay for email marketing as a separate add-on',
+          'You have multiple locations with different POS systems',
+        ],
+      },
+    },
+    switchGuide: {
+      title: 'How to switch from Square Loyalty to SpiniX',
+      steps: [
+        { title: 'Sign up for SpiniX', desc: 'Create your account, customize your prize wheel and rewards. Takes about 10 minutes.' },
+        { title: 'Print your QR codes', desc: 'Place them on tables, menus, receipts, and takeaway bags. Every touchpoint becomes an enrollment point.' },
+        { title: 'Keep Square running (optional)', desc: 'You don\'t have to cancel Square on day one. Run both for a week and compare enrollment rates.' },
+        { title: 'Cancel Square Loyalty when ready', desc: 'Once you see the SpiniX results, drop the Square Loyalty add-on and save $45+/mo.' },
+      ],
+      note: 'Most restaurants see results within the first weekend. No data migration needed — SpiniX builds your guest database from scratch through QR scans.',
+    },
+    faq: {
+      title: 'SpiniX vs Square Loyalty: FAQ',
+      items: [
+        {
+          q: 'Can I use SpiniX if I already have Square POS?',
+          a: 'Yes. SpiniX is POS-independent. Your Square POS handles payments, SpiniX handles loyalty, reviews, and guest engagement. They don\'t conflict.',
+        },
+        {
+          q: 'Does SpiniX replace Square Marketing too?',
+          a: 'Partially. SpiniX includes automated email sequences (welcome, follow-up, win-back) at no extra cost. For advanced SMS campaigns or custom segmentation, you may still want a dedicated email tool.',
+        },
+        {
+          q: 'How does SpiniX collect Google reviews?',
+          a: 'After a guest spins the wheel and claims their reward, SpiniX shows a one-tap prompt to leave a Google review. 33% of guests follow through — that\'s 10–20x higher than asking manually.',
+        },
+        {
+          q: 'What if my guests don\'t have Apple or Google Wallet?',
+          a: 'The core experience (spin the wheel, claim reward, leave review) works via any mobile browser. The Wallet pass is an optional bonus that increases return visits through push notifications.',
+        },
+        {
+          q: 'Is €29/month really the full price? No per-visit fees?',
+          a: 'Yes. €29/month flat. Unlimited guests, unlimited spins, unlimited emails. No per-visit charges, no add-on fees, no hardware costs.',
+        },
+        {
+          q: 'Can I try SpiniX before canceling Square Loyalty?',
+          a: 'Absolutely. Most restaurants run both side-by-side for a week to compare. Your first month with SpiniX is 90% off (€2.90) so there\'s almost no risk.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX results across 80+ restaurants',
+      items: [
+        { value: '33%', label: 'of guests leave a Google review' },
+        { value: '46%', label: 'sign up with their email' },
+        { value: '21%', label: 'return within 14 days' },
+      ],
+    },
+    cta: {
+      title: 'Ready to actually bring guests back?',
+      subtitle: 'Try SpiniX for €2.90 your first month. Works with any POS. No per-visit fees.',
+      button: 'Try It — 90% Off First Month',
+      badges: [
+        '✓ 90% off first month',
+        '✓ 10-minute setup',
+        '✓ Cancel anytime',
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Square Loyalty árazás és egy €29-es alternatíva (2026)',
+      description: 'Square Loyalty $45/hó-tól, kizárólag Square POS-szal. SpiniX €29/hó fix, bármilyen POS-szal működik, gamifikáció + Google review gyűjtés. Teljes funkció-összehasonlítás.',
+    },
+    hero: {
+      eyebrow: 'Összehasonlítás',
+      headline: 'SpiniX<br/>vs Square Loyalty',
+      subline: 'Az egyik POS-hoz köt. A másik mindenhol működik.<br/>Íme az őszinte összehasonlítás.',
+    },
+    tldr: {
+      title: 'SpiniX vs Square Loyalty: röviden',
+      spinix: '<strong>SpiniX:</strong> €29/hó fix. Szerencsekerék, automatikus review gyűjtés, Apple/Google Wallet, email követés. Bármilyen POS-szal működik.',
+      square: '<strong>Square Loyalty:</strong> $45/hó-tól (forgalommal nő). Pontgyűjtő rendszer. Square POS kötelező. Nincs review gyűjtés, nincs gamifikáció.',
+      verdict: 'A Square jó ha már az ökoszisztémájukban vagy. A SpiniX többet ad kevesebbért — és nem vagy bezárva.',
+    },
+    comparison: {
+      title: 'SpiniX vs Square Loyalty: funkció összehasonlítás',
+      headers: ['Funkció', 'SpiniX', 'Square Loyalty'],
+      rows: [
+        ['Havi ár', '€29 fix', '$45/hó-tól*'],
+        ['POS szükséges', 'Nem — bármivel működik', 'Csak Square POS'],
+        ['Szerencsekerék / gamifikáció', true, false],
+        ['Automatikus email sorozatok', true, 'Square Marketing add-on-nal'],
+        ['Google vélemény gyűjtés', true, false],
+        ['Apple / Google Wallet pass', true, 'Csak Apple Wallet (pontok megtekintése)'],
+        ['Vendég email gyűjtés', '46%-os regisztrációs arány', 'Alapból csak telefonszám'],
+        ['Beállítási idő', '10 perc', '15–30 perc'],
+        ['Többnyelvű támogatás', true, 'Angol, francia, japán, spanyol'],
+        ['Offline működés', true, false],
+      ],
+      footnote: '*A Square Loyalty ára a loyalty visitek számával nő lokációnként. Korábban visitenként számoltak; most a Plus csomagba ($60/hó) van beépítve vagy add-on-ként $45/hó-tól.',
+    },
+    pricing: {
+      title: 'SpiniX vs Square Loyalty: valódi költségek',
+      intro: 'A Square ára nő ahogy növekszel. A SpiniX fix marad.',
+      scenarios: [
+        { label: 'Kis kávézó', visits: '0–200', square: '$45/hó', spinix: '€29/hó', note: 'A Square 55%-kal drágább' },
+        { label: 'Forgalmas étterem', visits: '200–500', square: '$45–75/hó', spinix: '€29/hó', note: 'A különbség nő a forgalommal' },
+        { label: 'Nagy forgalmú hely', visits: '500+', square: '$75–150+/hó', spinix: '€29/hó', note: 'Spórolsz $50–120+/hó a SpiniX-szel' },
+      ],
+      extras: {
+        title: 'Rejtett költségek a Square-nél',
+        items: [
+          'Square Marketing (email/SMS): további $15/hó+',
+          'Square POS hardver: $0–799 egyszeri',
+          'Be vagy zárva a Square fizetési jutalékaiba',
+          'Nincs review gyűjtés — külön eszköz kell ($20–50/hó)',
+        ],
+      },
+      conclusion: 'A SpiniX-nél €29/hó fedezi a gamifikációt, email automatizálást, review gyűjtést és Wallet pass-okat. Nincs szükség add-on-okra.',
+    },
+    forgetting: {
+      headline: 'A Square Loyalty felejtés problémája',
+      p1: 'A Square pontokat ad a vendégeidnek. Kapnak egy SMS-t. Aztán mi történik?',
+      timeline: [
+        '1. nap: "Jó, kaptam 50 pontot!"',
+        '7. nap: Elfelejtették a pontokat. Nincs follow-up a Square-től.',
+        '14. nap: A konkurenciánál esznek.',
+      ],
+      p2: '<strong>Pontok követés nélkül kidobott pénz.</strong>',
+      highlight: 'A SpiniX automatikus emaileket küld a 3., 7. és 10. napon minden látogatás után. A vendéged nem felejt — mert nem hagyjuk.',
+    },
+    dopamine: {
+      headline: 'Miért ver a szerencsekerék egy pontszámlálót?',
+      p1: 'A Square hagyományos pontrendszert használ: költs, gyűjts, válts be. Működik. De kiszámítható.',
+      p2: 'A SpiniX <strong>szerencsekerék mechanikát használ változó jutalmakkal</strong>. A viselkedéspszichológiai kutatások szerint a változó jutalmak 3x annyi dopamint váltanak ki mint a kiszámíthatóak. Ugyanaz az elv ami a játékokat addiktívvá teszi — csak itt a vendégeidet hozza vissza.',
+      stats: [
+        'A vendégek 46%-a scanneli a QR-t és regisztrál',
+        '33% Google véleményt ír a pörgetés után',
+        '21% visszatér 14 napon belül',
+      ],
+    },
+    wallet: {
+      headline: 'Apple és Google Wallet — nem csak "nézd meg a pontjaidat"',
+      p1: 'A Square nemrég adott Apple Wallet támogatást, de csak a pontegyenleg megtekintésére. Nincs push értesítés, nincs visszatérési emlékeztető.',
+      p2: 'A SpiniX teljes digitális loyalty pass-t hoz létre Apple és Google Wallet-ben. A bankkártyáik és beszállókártyáik mellett ül — a legtöbbször megnyitott app bármilyen telefonon. Push értesítéseket küldhetünk a zárolási képernyőre: új jutalmak, emlékeztetők, akciók.',
+      highlight: 'A loyalty programod ott él ahol a vendégeid naponta 50+ alkalommal ránéznek.',
+    },
+    whoFor: {
+      title: 'SpiniX vagy Square Loyalty: kinek melyik?',
+      square: {
+        title: 'Maradj a Square Loyalty-nál ha:',
+        points: [
+          'Már mélyen benne vagy a Square ökoszisztémában (POS, fizetés, bérszámfejtés)',
+          'A loyalty-t közvetlenül a tranzakciós adatokhoz akarod kötni',
+          'Hagyományos pontprogramot szeretnél',
+          'A fő célod a költési minták követése, nem a visszatérés ösztönzése',
+        ],
+      },
+      spinix: {
+        title: 'Válaszd a SpiniX-et ha:',
+        points: [
+          'Azt akarod, hogy a vendégek tényleg visszajöjjenek (ne csak pontokat gyűjtsenek)',
+          'Több Google véleményt akarsz autopilóton',
+          'Bármilyen POS-t használsz — vagy semmit',
+          'Apple/Google Wallet pass-okat akarsz push értesítésekkel',
+          'Nem akarsz külön fizetni email marketingért',
+          'Több lokációd van különböző POS rendszerekkel',
+        ],
+      },
+    },
+    switchGuide: {
+      title: 'Hogyan válts Square Loyalty-ról SpiniX-re',
+      steps: [
+        { title: 'Regisztrálj a SpiniX-re', desc: 'Hozd létre a fiókod, szabd testre a szerencsekereket és a jutalmakat. Kb. 10 perc.' },
+        { title: 'Nyomtasd ki a QR kódokat', desc: 'Helyezd el az asztalokon, étlapokon, számlákon és elviteles csomagokon. Minden érintkezési pont regisztrációs pont lesz.' },
+        { title: 'Tartsd futva a Square-t (opcionális)', desc: 'Nem kell az első napon leállítani. Futtasd mindkettőt egy hétig és hasonlítsd össze a regisztrációs arányokat.' },
+        { title: 'Mondj le a Square Loyalty-ról amikor kész vagy', desc: 'Ha látod a SpiniX eredményeket, dobd a Square Loyalty add-on-t és spórolj $45+/hó-t.' },
+      ],
+      note: 'A legtöbb étterem az első hétvégén lát eredményeket. Nincs szükség adat migrációra — a SpiniX a nulláról építi a vendég adatbázist QR szkennelésen keresztül.',
+    },
+    faq: {
+      title: 'SpiniX vs Square Loyalty: GYIK',
+      items: [
+        {
+          q: 'Használhatom a SpiniX-et ha már van Square POS-om?',
+          a: 'Igen. A SpiniX POS-független. A Square POS kezeli a fizetéseket, a SpiniX kezeli a loyalty-t, review-kat és vendég elköteleződést. Nem ütköznek.',
+        },
+        {
+          q: 'A SpiniX kiváltja a Square Marketing-et is?',
+          a: 'Részben. A SpiniX tartalmazza az automatikus email sorozatokat (üdvözlő, követő, visszacsábító) extra költség nélkül. Haladó SMS kampányokhoz vagy egyedi szegmentáláshoz lehet hogy kell még egy külön email eszköz.',
+        },
+        {
+          q: 'Hogyan gyűjt a SpiniX Google véleményeket?',
+          a: 'Miután a vendég pörgeti a kereket és beváltja a jutalmát, a SpiniX egy egygombos promptot mutat Google vélemény írásra. A vendégek 33%-a megteszi — ez 10–20x magasabb mint kézzel kérni.',
+        },
+        {
+          q: 'Mi van ha a vendégeimnek nincs Apple vagy Google Wallet-jük?',
+          a: 'Az alap élmény (kerék pörgetés, jutalom beváltás, vélemény írás) bármilyen mobil böngészőből működik. A Wallet pass opcionális bónusz ami push értesítésekkel növeli a visszatérést.',
+        },
+        {
+          q: 'Tényleg €29/hó a teljes ár? Nincs látogatásonkénti díj?',
+          a: 'Igen. €29/hó fix. Korlátlan vendég, korlátlan pörgetés, korlátlan email. Nincs látogatásonkénti díj, nincs add-on díj, nincs hardver költség.',
+        },
+        {
+          q: 'Kipróbálhatom a SpiniX-et mielőtt lemondanám a Square Loyalty-t?',
+          a: 'Persze. A legtöbb étterem egy hétig párhuzamosan futtatja mindkettőt az összehasonlításhoz. Az első hónapod a SpiniX-nél 90% kedvezményes (€2.90), szóval szinte nincs kockázat.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX eredmények 80+ étteremnél',
+      items: [
+        { value: '33%', label: 'a vendégek közül Google véleményt ír' },
+        { value: '46%', label: 'megadja az email címét' },
+        { value: '21%', label: 'visszatér 14 napon belül' },
+      ],
+    },
+    cta: {
+      title: 'Készen állsz, hogy tényleg visszajöjjenek?',
+      subtitle: 'Próbáld ki a SpiniX-et €2.90-ért az első hónapban. Bármilyen POS-szal működik. Nincs látogatásonkénti díj.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      badges: [
+        '✓ 90% kedvezmény az első hónapban',
+        '✓ 10 perc beállítás',
+        '✓ Bármikor lemondható',
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="square-loyalty" lang={lang} />

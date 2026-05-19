@@ -1,0 +1,310 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Loyally.ai vs SpiniX: Digital Cards or Gamified Spin Wheel? (2026)',
+      description: 'Loyally.ai offers digital loyalty cards from $12/mo. SpiniX gamifies loyalty with spin wheels at €29/mo. Compare features, pricing, wallet support, and engagement.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Loyally.ai',
+      subtitle: 'Both work without a POS. Both support Apple and Google Wallet. The difference: Loyally digitizes loyalty cards with 100+ templates. SpiniX replaces the card entirely with a gamified spin wheel.',
+    },
+    tldr: {
+      title: 'SpiniX vs Loyally: the short version',
+      competitor: 'Loyally.ai is a digital loyalty card platform with 100+ templates, Apple/Google Wallet integration, CRM, and push notifications. Plans from $12/mo. Design a card in 5 minutes, share via QR. Best for businesses wanting a clean digital loyalty card without complexity.',
+      spinix: 'SpiniX replaces the loyalty card with a spin wheel game. Every scan triggers a random reward. Built-in Google review generation (33% conversion), automated 6-email sequence, and Wallet passes. €29/mo. Best for hospitality businesses wanting gamified engagement plus review collection.',
+      verdict: 'If you want the cheapest digital loyalty card ($12/mo), Loyally wins on price. If you want gamification that drives higher engagement plus built-in review generation, SpiniX delivers more value per dollar despite the higher price.',
+    },
+    honesty: {
+      title: 'Being honest upfront',
+      content: 'Loyally is significantly cheaper at the entry level ($12/mo vs €29/mo). If all you need is a digital stamp/loyalty card with Wallet support, Loyally does that well at a lower price point. This comparison matters when you need more than a card — when engagement, reviews, and email automation matter.',
+    },
+    comparison: {
+      title: 'SpiniX vs Loyally: feature comparison',
+      headers: ['', 'Loyally.ai', 'SpiniX'],
+      rows: [
+        { feature: 'Starting price', competitor: '$12/mo', spinix: '€29/mo', winner: 'competitor' },
+        { feature: 'Mid-tier price', competitor: '$24/mo', spinix: '€59/mo', winner: 'competitor' },
+        { feature: 'Premium price', competitor: '$78/mo', spinix: '€99/mo', winner: 'competitor' },
+        { feature: 'POS required', competitor: 'No', spinix: 'No', winner: 'tie' },
+        { feature: 'Apple/Google Wallet', competitor: 'Yes', spinix: 'Yes', winner: 'tie' },
+        { feature: 'Card templates', competitor: '100+ templates', spinix: 'Custom spin wheel', winner: 'competitor' },
+        { feature: 'CRM system', competitor: 'Yes (built-in)', spinix: 'Guest database + timeline', winner: 'tie' },
+        { feature: 'Push notifications', competitor: 'Unlimited', spinix: 'Via Wallet pass', winner: 'competitor' },
+        { feature: 'Core loyalty mechanic', competitor: 'Digital cards (stamps, points)', spinix: 'Spin wheel (variable rewards)', winner: 'spinix' },
+        { feature: 'Gamification', competitor: 'No', spinix: 'Core mechanic on every scan', winner: 'spinix' },
+        { feature: 'Google review generation', competitor: 'No', spinix: '33% conversion rate', winner: 'spinix' },
+        { feature: 'Automated email sequence', competitor: 'No (push only)', spinix: '6-email automated flow', winner: 'spinix' },
+        { feature: 'WhatsApp integration', competitor: 'No', spinix: 'Yes (SEA/UK markets)', winner: 'spinix' },
+        { feature: 'Email marketing campaigns', competitor: 'No', spinix: 'AI campaign builder', winner: 'spinix' },
+        { feature: 'QR-based enrollment', competitor: 'Yes', spinix: 'Yes', winner: 'tie' },
+        { feature: 'Setup time', competitor: '5 minutes', spinix: '10 minutes', winner: 'competitor' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Loyally pricing',
+      competitor: {
+        name: 'Loyally.ai',
+        plans: [
+          { name: 'Essential', price: '$12/mo', features: ['Unlimited cards', 'CRM', 'Push notifications', 'Basic templates'] },
+          { name: 'Growth', price: '$24/mo', features: ['Everything in Essential', 'Advanced templates', 'Priority support'] },
+          { name: 'Premium', price: '$78/mo', features: ['Everything in Growth', 'White-label', 'API access', 'Dedicated support'] },
+        ],
+        extras: 'All plans include unlimited members and push notifications.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['Spin wheel', 'QR + Wallet', 'Email automation', 'Review generation', 'Analytics'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 wheels', 'Priority support', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited wheels', 'Multi-location', 'WhatsApp integration'] },
+        ],
+        extras: 'Wallet passes: $0.15 per install. No setup fees.',
+      },
+      analysis: {
+        title: 'Cost analysis over 12 months',
+        rows: [
+          { scenario: 'Basic loyalty card only', competitor: '$144 ($12 × 12)', spinix: '€348 (€29 × 12)', verdict: 'Loyally saves ~$200/year for card-only needs.' },
+          { scenario: 'Loyalty + review tool', competitor: '$144 + $600-2400 review tool', spinix: '€348 (reviews included)', verdict: 'SpiniX saves $396-2,196/year.' },
+          { scenario: 'Loyalty + email marketing', competitor: '$144 + $300-600 email tool', spinix: '€348 (email campaigns included)', verdict: 'SpiniX saves $96-396/year.' },
+        ],
+        note: 'Loyally wins on standalone loyalty card pricing. SpiniX wins when you need loyalty + reviews + email in one tool.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Loyally: where each wins',
+      sections: [
+        {
+          title: 'Loyally wins: price and card templates',
+          icon: 'dollar',
+          content: 'At $12/mo, Loyally is less than half the price of SpiniX. If your business model is "give stamps, fill a card, earn a reward," Loyally does that with 100+ professionally designed templates. Design a loyalty card in 5 minutes, generate a QR code, share it. Simple and effective for stamp-based loyalty.',
+        },
+        {
+          title: 'Loyally wins: unlimited push notifications',
+          icon: 'globe',
+          content: 'Loyally includes unlimited push notifications on all plans. Send time-limited offers, happy hour alerts, or seasonal promotions directly to customers\' phones. SpiniX sends notifications via Wallet pass updates — effective but less flexible than dedicated push. For businesses that rely heavily on flash deals and real-time promotions, Loyally has an edge.',
+        },
+        {
+          title: 'SpiniX wins: gamification drives higher engagement',
+          icon: 'zap',
+          content: 'Loyally uses deterministic rewards: "collect 10 stamps, get 1 free." SpiniX uses variable ratio reinforcement: every scan produces a different reward. Research shows variable rewards produce 3x more dopamine than predictable ones. 73% of stamp-based loyalty members go inactive. SpiniX maintains 46% enrollment and 21% return within 14 days.',
+        },
+        {
+          title: 'SpiniX wins: built-in Google review generation',
+          icon: 'star',
+          content: 'Loyally doesn\'t include review generation. SpiniX integrates review prompting into the post-reward moment: guest spins, wins, feels positive, gets asked for a review. 33% leave one. At €29/month (loyalty + reviews), SpiniX costs less than Loyally + a separate review tool.',
+        },
+        {
+          title: 'SpiniX wins: automated email sequence + campaigns',
+          icon: 'email',
+          content: 'Loyally has push notifications but no email marketing. SpiniX runs a 6-email automated sequence (welcome, reminders, review request, win-back) plus an AI-powered campaign builder for custom emails. Email remains the highest-ROI marketing channel at $36-42 returned per $1 spent.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'Loyally or SpiniX: which should you choose?',
+      items: [
+        { situation: 'Tightest budget, just need a digital card', recommendation: 'Loyally', reason: '$12/mo. Hard to beat on price for basic digital loyalty.' },
+        { situation: 'Cafe wanting "buy 9, get 10th free"', recommendation: 'Loyally', reason: 'That\'s exactly what digital stamp cards do. Great templates too.' },
+        { situation: 'Restaurant wanting reviews + loyalty', recommendation: 'SpiniX', reason: '€29/mo includes both. Loyally + review tool = $62-212/mo.' },
+        { situation: 'Need email marketing to guest list', recommendation: 'SpiniX', reason: 'AI campaign builder included. Loyally has no email capability.' },
+        { situation: 'Hotel or experience venue (one-time guests)', recommendation: 'SpiniX', reason: 'Instant rewards work for single visits. Stamp cards need repeat visits.' },
+        { situation: 'Need white-label solution', recommendation: 'Loyally', reason: '$78/mo Premium plan includes white-label. SpiniX doesn\'t offer it.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Loyally: FAQ',
+      items: [
+        {
+          q: 'Can Loyally generate Google reviews?',
+          a: 'No. Loyally focuses on digital loyalty cards and push notifications. For Google review generation, you need a separate tool. SpiniX includes review prompting with 33% conversion as a core feature at no extra cost.',
+        },
+        {
+          q: 'Is Loyally\'s $12/mo plan enough for most businesses?',
+          a: 'For basic digital loyalty cards with Wallet support and push notifications, yes. The $12/mo Essential plan includes unlimited cards and members. You\'ll miss email marketing, review generation, and gamification — which is where SpiniX differs.',
+        },
+        {
+          q: 'Which has better Wallet integration?',
+          a: 'Both support Apple Wallet and Google Wallet. Loyally generates Wallet-compatible loyalty cards. SpiniX generates Wallet passes with reward details, expiry dates, and push update capability. Functionally similar, different content on the pass.',
+        },
+        {
+          q: 'Can I switch from Loyally to SpiniX?',
+          a: 'Yes. SpiniX doesn\'t require data migration — you start fresh with a new QR code. Your existing customers scan the new code and join the spin wheel. Both platforms are month-to-month, so you can switch without penalty.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Cards or games — which engages your guests more?',
+      subtitle: 'Try SpiniX free for 14 days. Set up in 10 minutes. Compare engagement against your current loyalty system.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Digital Punch Card vs QR Loyalty Game', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: 'Why Spin Beats Points (Neuroscience)', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Physical vs Digital Loyalty Cards', slug: '/blog/physical-vs-digital-loyalty-cards' },
+        { title: 'Cafe Loyalty Program Ideas', slug: '/blog/cafe-loyalty-program-ideas' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Loyally.ai vs SpiniX: digitális kártya vagy gamifikált szerencsekerék? (2026)',
+      description: 'Loyally.ai digitális loyalty kártyák $12/hó-tól. SpiniX gamifikált loyalty szerencsekerékkel €29/hó. Funkciók, árak, wallet támogatás és engagement.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs Loyally.ai',
+      subtitle: 'Mindkettő POS nélkül működik. Mindkettő támogatja az Apple és Google Wallet-et. A különbség: Loyally digitalizálja a loyalty kártyákat 100+ sablonnal. SpiniX teljesen lecseréli a kártyát gamifikált spin wheel-re.',
+    },
+    tldr: {
+      title: 'SpiniX vs Loyally: röviden',
+      competitor: 'Loyally.ai digitális loyalty kártya platform 100+ sablonnal, Apple/Google Wallet integrációval, CRM-mel és push értesítésekkel. Tervek $12/hó-tól. Tervezz kártyát 5 perc alatt, oszd meg QR-rel. Legjobb: egyszerű digitális loyalty kártya komplexitás nélkül.',
+      spinix: 'SpiniX a loyalty kártyát spin wheel játékra cseréli. Minden scan véletlenszerű jutalmat ad. Beépített Google review generálás (33% konverzió), automatikus 6-email szekvencia és Wallet pass. €29/hó. Legjobb: hospitality üzleteknek gamifikált engagement és review gyűjtés.',
+      verdict: 'Ha a legolcsóbb digitális loyalty kártya kell ($12/hó), Loyally nyer árban. Ha gamifikáció ami magasabb elköteleződést hoz + beépített review generálás kell, SpiniX több értéket ad dolláronként.',
+    },
+    honesty: {
+      title: 'Legyünk őszinték',
+      content: 'Loyally jelentősen olcsóbb belépő szinten ($12/hó vs €29/hó). Ha csak digitális pecsét/loyalty kártya kell Wallet támogatással, Loyally azt jól csinálja alacsonyabb áron. Ez az összehasonlítás akkor fontos amikor többre van szükséged — amikor az elköteleződés, reviewk és email automatizáció számít.',
+    },
+    comparison: {
+      title: 'SpiniX vs Loyally: funkció összehasonlítás',
+      headers: ['', 'Loyally.ai', 'SpiniX'],
+      rows: [
+        { feature: 'Kezdő ár', competitor: '$12/hó', spinix: '€29/hó', winner: 'competitor' },
+        { feature: 'Közép ár', competitor: '$24/hó', spinix: '€59/hó', winner: 'competitor' },
+        { feature: 'Prémium ár', competitor: '$78/hó', spinix: '€99/hó', winner: 'competitor' },
+        { feature: 'POS szükséges', competitor: 'Nem', spinix: 'Nem', winner: 'tie' },
+        { feature: 'Apple/Google Wallet', competitor: 'Igen', spinix: 'Igen', winner: 'tie' },
+        { feature: 'Kártya sablonok', competitor: '100+ sablon', spinix: 'Egyedi spin wheel', winner: 'competitor' },
+        { feature: 'CRM rendszer', competitor: 'Igen (beépített)', spinix: 'Vendég adatbázis + timeline', winner: 'tie' },
+        { feature: 'Push értesítések', competitor: 'Korlátlan', spinix: 'Wallet pass-on keresztül', winner: 'competitor' },
+        { feature: 'Alap loyalty mechanika', competitor: 'Digitális kártyák (pecsétek, pontok)', spinix: 'Spin wheel (változó jutalmak)', winner: 'spinix' },
+        { feature: 'Gamifikáció', competitor: 'Nincs', spinix: 'Alap mechanika minden scannél', winner: 'spinix' },
+        { feature: 'Google review generálás', competitor: 'Nincs', spinix: '33% konverzió', winner: 'spinix' },
+        { feature: 'Automatikus email szekvencia', competitor: 'Nincs (csak push)', spinix: '6-email automatikus flow', winner: 'spinix' },
+        { feature: 'WhatsApp integráció', competitor: 'Nincs', spinix: 'Igen (SEA/UK)', winner: 'spinix' },
+        { feature: 'Email marketing kampányok', competitor: 'Nincs', spinix: 'AI kampány generátor', winner: 'spinix' },
+        { feature: 'QR regisztráció', competitor: 'Igen', spinix: 'Igen', winner: 'tie' },
+        { feature: 'Setup idő', competitor: '5 perc', spinix: '10 perc', winner: 'competitor' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Loyally árazás',
+      competitor: {
+        name: 'Loyally.ai',
+        plans: [
+          { name: 'Essential', price: '$12/hó', features: ['Korlátlan kártya', 'CRM', 'Push értesítések', 'Alap sablonok'] },
+          { name: 'Growth', price: '$24/hó', features: ['Minden az Essential-ből', 'Haladó sablonok', 'Prioritás support'] },
+          { name: 'Premium', price: '$78/hó', features: ['Minden a Growth-ból', 'White-label', 'API hozzáférés', 'Dedikált support'] },
+        ],
+        extras: 'Minden plan korlátlan tagot és push értesítést tartalmaz.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/hó', features: ['Spin wheel', 'QR + Wallet', 'Email automatizáció', 'Review generálás', 'Analitika'] },
+          { name: 'Growth', price: '€59/hó', features: ['3 kerék', 'Prioritás support', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan kerék', 'Multi-location', 'WhatsApp integráció'] },
+        ],
+        extras: 'Wallet pass: $0.15/install. Nincs setup díj.',
+      },
+      analysis: {
+        title: 'Költségelemzés 12 hónapra',
+        rows: [
+          { scenario: 'Alap loyalty kártya', competitor: '$144 ($12 × 12)', spinix: '€348 (€29 × 12)', verdict: 'Loyally ~$200-t spórol/év kártya-only igényekre.' },
+          { scenario: 'Loyalty + review eszköz', competitor: '$144 + $600-2400 review tool', spinix: '€348 (review benne van)', verdict: 'SpiniX $396-2196-t spórol/év.' },
+          { scenario: 'Loyalty + email marketing', competitor: '$144 + $300-600 email tool', spinix: '€348 (email kampányok benne)', verdict: 'SpiniX $96-396-t spórol/év.' },
+        ],
+        note: 'Loyally nyer önálló loyalty kártya árban. SpiniX nyer amikor loyalty + reviewk + email egy eszközben kell.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Loyally: ki miben nyer',
+      sections: [
+        {
+          title: 'Loyally nyer: ár és kártya sablonok',
+          icon: 'dollar',
+          content: '$12/hó-val Loyally kevesebb mint fél ára a SpiniX-nek. Ha az üzleti modelled "adj pecséteket, töltsd ki a kártyát, kapj jutalmat," Loyally ezt 100+ professzionálisan tervezett sablonnal csinálja. Tervezz loyalty kártyát 5 perc alatt, generálj QR kódot, oszd meg.',
+        },
+        {
+          title: 'Loyally nyer: korlátlan push értesítések',
+          icon: 'globe',
+          content: 'Loyally korlátlan push értesítéseket tartalmaz minden planon. Küldj időlimitált ajánlatokat, happy hour riasztásokat vagy szezonális promóciókat közvetlenül a vendégek telefonjára. SpiniX Wallet pass frissítéseken keresztül küld értesítéseket — hatékony de kevésbé rugalmas.',
+        },
+        {
+          title: 'SpiniX nyer: gamifikáció magasabb elköteleződést hoz',
+          icon: 'zap',
+          content: 'Loyally determinisztikus jutalmakat használ: "gyűjts 10 pecsétet, kapj 1 ingyen." SpiniX változó arány megerősítést: minden scan más jutalmat ad. A kutatás szerint a változó jutalmak 3x több dopamint termelnek. 73% a pecsét-alapú loyalty tagok közül inaktívvá válik. SpiniX 46% regisztrációt és 21% visszatérést tart 14 napon belül.',
+        },
+        {
+          title: 'SpiniX nyer: beépített Google review generálás',
+          icon: 'star',
+          content: 'Loyally nem tartalmaz review generálást. SpiniX a jutalom pillanatába integrálja a review kérést — a vendégek pörgetnek, nyernek, jól érzik magukat, review-t kérünk. 33% ír is egyet. €29/hó-ért (loyalty + reviewk) SpiniX kevesebbbe kerül mint Loyally + külön review eszköz.',
+        },
+        {
+          title: 'SpiniX nyer: automatikus email szekvencia + kampányok',
+          icon: 'email',
+          content: 'Loyally-nak van push értesítése de nincs email marketingje. SpiniX 6-email automatikus szekvenciát futtat (üdvözlő, emlékeztetők, review kérés, win-back) plusz AI kampány generátort egyedi emailekhez.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'Loyally vagy SpiniX: melyiket válaszd?',
+      items: [
+        { situation: 'Legszűkebb budget, csak digitális kártya kell', recommendation: 'Loyally', reason: '$12/hó. Nehéz verni árban alap digitális loyalty-ra.' },
+        { situation: 'Kávézó "vegyél 9-et, a 10. ingyen"', recommendation: 'Loyally', reason: 'Pontosan erre valók a digitális pecsétkártyák.' },
+        { situation: 'Étterem reviewk + loyalty egy helyen', recommendation: 'SpiniX', reason: '€29/hó mindkettőt fedi. Loyally + review eszköz = $62-212/hó.' },
+        { situation: 'Email marketing kell a vendéglistához', recommendation: 'SpiniX', reason: 'AI kampány generátor benne van. Loyally-nak nincs email képessége.' },
+        { situation: 'Szálloda vagy élmény helyszín', recommendation: 'SpiniX', reason: 'Azonnali jutalmak működnek egyszeri látogatásnál. Pecsétkártyák többszöri látogatást igényelnek.' },
+        { situation: 'White-label megoldás kell', recommendation: 'Loyally', reason: '$78/hó Premium plan tartalmazza. SpiniX nem kínálja.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Loyally: GYIK',
+      items: [
+        {
+          q: 'Tud a Loyally Google review-kat generálni?',
+          a: 'Nem. Loyally digitális loyalty kártyákra és push értesítésekre fókuszál. Google review generáláshoz külön eszköz kell. SpiniX 33% konverzióval tartalmazza alapfunkcióként.',
+        },
+        {
+          q: 'Elég a Loyally $12/hó-s planja a legtöbb üzletnek?',
+          a: 'Alap digitális loyalty kártyákhoz Wallet támogatással és push-sal igen. Hiányozni fog az email marketing, review generálás és gamifikáció — itt tér el a SpiniX.',
+        },
+        {
+          q: 'Melyiknek jobb a Wallet integráció?',
+          a: 'Mindkettő támogatja az Apple és Google Wallet-et. Loyally Wallet-kompatibilis loyalty kártyákat generál. SpiniX Wallet pass-okat jutalom részletekkel, lejárati dátummal és push frissítéssel.',
+        },
+        {
+          q: 'Át tudok váltani Loyally-ról SpiniX-re?',
+          a: 'Igen. SpiniX nem igényel adat migrációt — új QR kóddal indulsz. A meglévő vendégeid az új kódot scannelik és csatlakoznak. Mindkét platform havi bontású, büntetés nélkül válthatsz.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Kártyák vagy játékok — melyik köti le jobban a vendégeidet?',
+      subtitle: 'Próbáld ki a SpiniX-et 14 napig ingyen. 10 perc setup. Hasonlítsd össze az elköteleződést.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó olvasmányok',
+      posts: [
+        { title: 'Digitális Pecsétgyűjtő vs QR Loyalty Játék', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: 'Miért Veri a Spin a Pontokat', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Fizikai vs Digitális Loyalty Kártyák', slug: '/blog/physical-vs-digital-loyalty-cards' },
+        { title: 'Kávézó Loyalty Program Ötletek', slug: '/blog/cafe-loyalty-program-ideas' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="loyally" lang={lang} />

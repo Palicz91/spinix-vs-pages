@@ -1,0 +1,428 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Grade.us Alternative for Restaurants — Revix vs Grade.us (2026 Comparison)',
+      description: 'Grade.us costs $54-110/mo per seat and targets agencies. Revix charges per reply ($0.29-$0.49) for restaurant owners directly. Full feature and pricing comparison.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'Grade.us vs Revix',
+      subtitle: 'Grade.us is a white-label review management platform built for marketing agencies and SEOs who manage reviews on behalf of clients. Revix is an AI review reply engine for restaurant owners who manage their own Google reviews. If you\'re a restaurant owner evaluating Grade.us, this page explains why a tool built for agencies may not be the best fit — and what to use instead.',
+    },
+    tldr: {
+      title: 'Grade.us vs Revix: the short version',
+      gradeus: 'Grade.us is a white-label review platform for agencies: review generation via drip campaigns (email/SMS), review monitoring across third-party sites, SEO-friendly review widgets, a brandable dashboard for client reporting, and multi-location management. Pricing runs $54/mo (Professional), $110/mo (Agency), or $440/year for a white-label add-on. Monthly billing available — no forced annual contract. Target audience: marketing agencies, SEO firms, and white-label resellers managing 10-500+ client locations.',
+      revix: 'Revix is an AI-powered Google review reply engine. Claude Sonnet writes each response using your restaurant\'s context (menu, tone, past reviews). Pay per reply: 99 Ft (~$0.29) for positive, 199 Ft (~$0.49) for negative reviews. A typical restaurant pays 3,000-10,000 Ft/month ($8-28). No contract, no setup fee. Connect your Google Business Profile in 10 minutes. Built for independent restaurants, cafes, and hotels managing their own reputation.',
+      verdict: 'Grade.us is the best choice if you\'re an agency managing review campaigns for dozens of clients. Revix is the best choice if you\'re a restaurant owner who wants AI-quality replies to your own Google reviews without hiring an agency.',
+    },
+    context: {
+      title: 'Why restaurant owners land on Grade.us — and why it may not fit',
+      reasons: [
+        { title: 'Grade.us is built for agencies, not business owners', detail: 'Grade.us\'s core value is white-labeling: agencies put their own brand on the dashboard, run drip campaigns on behalf of clients, and generate reports with the agency\'s logo. If you\'re a restaurant owner, you\'re paying for branding and client-management features you\'ll never use.' },
+        { title: 'No AI review replies', detail: 'Grade.us focuses on review generation (getting more reviews) and review monitoring (tracking reviews across sites). It does not write AI-generated replies to your reviews. You still have to craft every response yourself or hire someone to do it.' },
+        { title: 'Per-seat pricing adds up for direct use', detail: 'At $54/mo (Professional) for a single seat, you\'re paying $648/year for review collection and monitoring — without any AI reply capability. A restaurant owner using Revix for AI replies pays $96-336/year and gets actual responses written for every review.' },
+        { title: 'Review widgets are for websites, not Google', detail: 'Grade.us\'s review marketing feature (SEO widgets displaying reviews on your website) is useful for agencies building client sites. For a restaurant owner, the priority is responding to Google reviews where 80-90% of customers actually read them — not embedding widgets on a website.' },
+      ],
+    },
+    comparison: {
+      title: 'Grade.us vs Revix: feature comparison',
+      headers: ['', 'Grade.us', 'Revix'],
+      rows: [
+        { feature: 'Price', gradeus: '$54-110/mo per seat', revix: '$8-28/mo typical (per reply)', winner: 'revix' },
+        { feature: 'Pricing model', gradeus: 'Per seat, monthly billing', revix: 'Per reply (pay only when used)', winner: 'revix' },
+        { feature: 'Contract', gradeus: 'Monthly (no forced annual)', revix: 'None (disconnect anytime)', winner: 'tie' },
+        { feature: 'White-label dashboard', gradeus: 'Yes (core feature, $440/yr or free at 100 seats)', revix: 'No', winner: 'gradeus' },
+        { feature: 'Review generation (drip campaigns)', gradeus: 'Yes (email + SMS drip sequences)', revix: 'Via SpiniX spin wheel (33% rate)', winner: 'gradeus' },
+        { feature: 'Review monitoring', gradeus: 'Yes (Google, Yelp, Facebook, 80+ sites)', revix: 'Google only', winner: 'gradeus' },
+        { feature: 'AI review replies', gradeus: 'No', revix: 'Yes (Claude Sonnet, restaurant-tuned)', winner: 'revix' },
+        { feature: 'Reply quality (AI model)', gradeus: 'N/A (manual replies only)', revix: 'Claude Sonnet 4.6 with RAG context', winner: 'revix' },
+        { feature: 'Review marketing widgets', gradeus: 'Yes (SEO-friendly embeds for websites)', revix: 'No', winner: 'gradeus' },
+        { feature: 'Multi-client management', gradeus: 'Yes (agency dashboard for 10-500+ clients)', revix: 'No (direct business use)', winner: 'gradeus' },
+        { feature: 'Sentiment analysis', gradeus: 'Basic', revix: 'Yes (per-review + trend tracking)', winner: 'revix' },
+        { feature: 'Competitor analysis', gradeus: 'No', revix: 'Yes (local cluster benchmarking)', winner: 'revix' },
+        { feature: 'Fake review appeal drafts', gradeus: 'No', revix: 'Yes (AI-generated with Google policy refs)', winner: 'revix' },
+        { feature: 'Guest profiling', gradeus: 'No', revix: 'Yes (visit frequency, preferences, spend)', winner: 'revix' },
+        { feature: 'Onboarding time', gradeus: '30-60 min (campaign setup)', revix: '10 minutes', winner: 'revix' },
+        { feature: 'Target user', gradeus: 'Marketing agencies and SEOs', revix: 'Restaurant owners directly', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Grade.us vs Revix: which fits your situation',
+      subtitle: 'These tools serve different users. The right pick depends on whether you\'re an agency or a restaurant owner.',
+      tiers: [
+        {
+          title: 'Restaurant owner (1-5 locations)',
+          description: 'You manage your own Google reviews, no agency involved',
+          recommendation: 'Revix',
+          reason: 'Grade.us is designed for agencies to manage clients. As a direct business owner, you\'d pay $54/mo for review collection and monitoring — but still write every reply yourself. Revix handles the replies automatically with Claude Sonnet for $8-28/month. You skip the agency middleman and get better AI than any template.',
+          annual: '$96-336/year with Revix',
+        },
+        {
+          title: 'Marketing agency (10-50 restaurant clients)',
+          description: 'You manage review campaigns for multiple restaurant clients',
+          recommendation: 'Grade.us',
+          reason: 'Grade.us is built exactly for this. White-label the dashboard with your agency brand, run drip campaigns per client, pull branded reports. The $110/mo Agency plan with multi-client management pays for itself if you charge clients $200+/mo for reputation services. Revix doesn\'t offer white-labeling or agency dashboards.',
+          annual: '$1,320/year with Grade.us (Agency plan)',
+        },
+        {
+          title: 'SEO firm adding review services',
+          description: 'You want to add review management to your SEO offering',
+          recommendation: 'Grade.us',
+          reason: 'Grade.us\'s review marketing widgets and SEO-friendly review pages integrate well with SEO service packages. The white-label means clients see your brand, not Grade.us. This is their strongest use case.',
+          annual: '$648-1,320/year with Grade.us',
+        },
+        {
+          title: 'Restaurant group (5-20 locations, self-managed)',
+          description: 'Operations team handles reviews internally, no agency',
+          recommendation: 'Revix',
+          reason: 'A 10-location group on Grade.us Professional would pay $540/mo ($6,480/year) for monitoring and collection — still no AI replies. Revix per-reply pricing for 10 locations typically costs $960-3,360/year, and every review gets an AI-crafted response. The math favors Revix for direct management.',
+          annual: '$960-3,360/year with Revix',
+        },
+      ],
+    },
+    details: {
+      title: 'Grade.us vs Revix: where each wins',
+      sections: [
+        {
+          title: 'Grade.us wins: white-label agency platform',
+          icon: 'building',
+          content: 'Grade.us is the best white-label review platform for agencies. Replace their branding with yours, give each client a branded dashboard, pull PDF reports with your logo, and manage 100+ client locations from one interface. The white-label add-on costs $440/year or becomes free when you reach 100 seats. No other review tool does white-labeling as well at this price point. If you run an agency, this is Grade.us\'s strongest advantage.',
+        },
+        {
+          title: 'Grade.us wins: review generation drip campaigns',
+          icon: 'clock',
+          content: 'Grade.us automates review collection with email and SMS drip sequences. Set up a campaign, import customer contacts, and the system sends timed follow-ups asking for reviews on Google, Yelp, or Facebook. Conversion rates typically run 10-15%. Revix doesn\'t have traditional drip campaigns — it pairs with SpiniX\'s gamified spin wheel which drives review collection at a 33% rate, but through a different mechanism (in-venue QR scan, not post-visit email drips).',
+        },
+        {
+          title: 'Grade.us wins: review marketing widgets',
+          icon: 'globe',
+          content: 'Grade.us offers SEO-friendly widgets that display your best reviews on your website. These are useful for agencies building client websites who want to showcase social proof. For SEO purposes, structured review data on your domain can help. Revix does not offer website widgets — it focuses on the Google review response side.',
+        },
+        {
+          title: 'Revix wins: AI review replies (Grade.us has none)',
+          icon: 'star',
+          content: 'This is the biggest gap. Grade.us monitors reviews and helps you collect them, but when a review comes in, you write the reply yourself. There is no AI reply feature. Revix uses Claude Sonnet 4.6 with your restaurant\'s specific context — menu items, cuisine type, staff names, past review patterns — to generate replies that reference actual dishes and experiences. For a restaurant getting 20-50 reviews per month, that\'s 20-50 replies you don\'t have to write.',
+        },
+        {
+          title: 'Revix wins: per-reply pricing for direct business use',
+          icon: 'zap',
+          content: 'Grade.us charges $54/mo per seat regardless of how many reviews you get. A quiet month with 5 reviews costs the same as a busy month with 40. Revix charges per reply: 99 Ft (~$0.29) positive, 199 Ft (~$0.49) negative. A restaurant with 25 reviews/month pays about $9-12. You only pay when the AI writes a response. No flat fee, no wasted spend on low-volume months.',
+        },
+        {
+          title: 'Revix wins: competitor benchmarking and fake review defense',
+          icon: 'shield',
+          content: 'Revix includes local cluster benchmarking (your rating, review velocity, and response rate vs similar businesses within 20 km) and AI-generated fake review appeal drafts citing Google\'s review policies. Grade.us offers neither. For restaurant owners dealing with competitive local markets or suspicious reviews, these features matter daily.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Grade.us vs Revix cost for a single restaurant',
+      subtitle: 'Annual comparison for a restaurant receiving 30 Google reviews per month.',
+      rows: [
+        { item: 'Monthly cost', gradeus: '$54 (Professional, 1 seat)', revix: '~$9-15 (per reply)' },
+        { item: 'Setup fee', gradeus: '$0', revix: '$0' },
+        { item: 'Contract length', gradeus: 'Monthly (no annual lock-in)', revix: 'None' },
+        { item: 'First year total', gradeus: '$648', revix: '$108-180' },
+        { item: 'AI replies included', gradeus: 'No (manual replies only)', revix: 'Yes (all reviews auto-replied)' },
+        { item: 'Cost per review responded', gradeus: '$54/mo + your time writing replies', revix: '$0.29-0.49 (AI writes them)' },
+        { item: 'Time to first AI reply', gradeus: 'N/A (no AI replies)', revix: '10 minutes' },
+      ],
+      note: 'Grade.us costs 3.6-6x more than Revix annually for a single restaurant — and still requires you to manually write every reply. The $648/year Grade.us fee covers review collection and monitoring only. Revix\'s $108-180/year covers AI-generated replies to every review.',
+    },
+    scenarios: {
+      title: 'Revix or Grade.us: which should you choose?',
+      items: [
+        { situation: 'Restaurant owner managing your own Google reviews', recommendation: 'Revix', reason: 'Grade.us doesn\'t write replies for you. Revix does. Per-reply pricing at $8-28/mo vs $54/mo for monitoring-only.' },
+        { situation: 'Marketing agency managing 10+ restaurant clients', recommendation: 'Grade.us', reason: 'White-label dashboard, drip campaigns, branded reports. This is what Grade.us was built for.' },
+        { situation: 'SEO firm adding review services to your package', recommendation: 'Grade.us', reason: 'Review widgets, white-label, and review generation integrate with SEO service bundles.' },
+        { situation: 'Need AI-quality replies without writing them yourself', recommendation: 'Revix', reason: 'Grade.us has zero AI reply capability. Revix uses Claude Sonnet with restaurant context for every response.' },
+        { situation: 'Want to collect more reviews via email/SMS drips', recommendation: 'Grade.us', reason: 'Grade.us specializes in drip campaigns for review generation. Revix pairs with SpiniX for in-venue collection instead.' },
+        { situation: 'Restaurant group (5-20 locations) self-managing reviews', recommendation: 'Revix', reason: 'Per-reply pricing scales with review volume. 10 locations save $3,000+/year vs Grade.us — and get AI replies included.' },
+        { situation: 'Budget under $30/month for review management', recommendation: 'Revix', reason: 'Grade.us starts at $54/mo. Revix per-reply pricing fits any budget and includes AI responses.' },
+        { situation: 'Need white-label reporting for client presentations', recommendation: 'Grade.us', reason: 'Grade.us white-label is best-in-class for agencies. Revix does not offer white-label features.' },
+      ],
+    },
+    pricing: {
+      title: 'Grade.us pricing breakdown (2026)',
+      subtitle: 'Grade.us publishes its pricing. These are the current plans as of early 2026.',
+      tiers: [
+        { name: 'Professional ($54/mo per seat)', range: '$54/mo', note: 'Review monitoring, review generation drip campaigns, basic reporting. Single-user access. Good for freelancers or single-location testing.' },
+        { name: 'Agency ($110/mo per seat)', range: '$110/mo', note: 'Multi-client dashboard, team access, advanced reporting, priority support. Designed for agencies managing multiple client accounts.' },
+        { name: 'Partner (custom pricing)', range: 'Custom', note: 'Volume discounts for 50+ seats, dedicated account manager, API access. For large agencies and resellers.' },
+      ],
+      hidden: [
+        'White-label add-on: $440/year (free at 100+ seats)',
+        'SMS credits for drip campaigns billed separately',
+        'No AI reply feature on any tier — manual responses only',
+        'Per-seat pricing means 10 clients on Agency = $1,100/month',
+        'Review widget customization may require higher tiers',
+      ],
+      disclaimer: 'Grade.us pricing is publicly listed on their website. SMS campaign costs vary by volume and carrier. Contact Grade.us for current Partner tier pricing and volume discounts.',
+    },
+    faq: {
+      title: 'Grade.us vs Revix: FAQ',
+      items: [
+        {
+          q: 'Is Grade.us for restaurant owners or agencies?',
+          a: 'Grade.us is built for agencies. Its core features — white-label dashboard, multi-client management, branded reporting, and drip campaigns run on behalf of clients — are designed for marketing agencies and SEO firms. A restaurant owner can use it, but you\'d be paying for agency features you don\'t need and still writing every review reply yourself. If you\'re a restaurant owner managing your own reviews, Revix is the direct-use tool with AI replies included.',
+        },
+        {
+          q: 'Can I white-label Revix for my clients?',
+          a: 'No. Revix is designed for direct business use — restaurant owners connect their Google Business Profile and manage their own reviews with AI-generated replies. There is no white-label option, no agency dashboard, and no multi-client management. If you\'re an agency that needs white-label review management, Grade.us is purpose-built for that. If your agency clients want AI reply quality, you could recommend Revix to them for direct use alongside your agency\'s other services.',
+        },
+        {
+          q: 'Does Grade.us write AI replies to reviews?',
+          a: 'No. Grade.us focuses on review generation (collecting reviews via drip campaigns) and review monitoring (tracking reviews across sites). When a review arrives, you write the response manually. There is no AI reply feature. This is the biggest functional difference from Revix, which auto-generates Claude Sonnet replies for every Google review using your restaurant\'s context.',
+        },
+        {
+          q: 'How much does Grade.us cost for a single restaurant?',
+          a: 'The Professional plan costs $54/month ($648/year) for one seat. This gives you review monitoring, drip campaigns for review collection, and basic reporting — but no AI replies. A restaurant owner using Revix for the same review volume would pay $108-336/year and get AI-generated replies to every review. Grade.us makes more financial sense when you\'re an agency charging clients $200+/month for reputation management and need the white-label wrapper.',
+        },
+        {
+          q: 'Which tool is better for collecting more reviews?',
+          a: 'Grade.us has stronger traditional review generation with email/SMS drip campaigns that achieve 10-15% conversion rates. You import customer contacts and the system sends timed follow-ups directing people to Google, Yelp, or Facebook. Revix pairs with SpiniX\'s gamified spin wheel for in-venue review collection at a 33% rate — higher conversion but requires a QR scan in the restaurant. Different approaches: Grade.us is post-visit email outreach, SpiniX is in-venue gamification.',
+        },
+        {
+          q: 'Can I use Grade.us and Revix together?',
+          a: 'Yes. Some agencies use Grade.us for review generation and monitoring across platforms, then recommend Revix to restaurant clients for AI reply quality on Google reviews. Grade.us collects the reviews; Revix responds to them. This split approach costs more than Revix alone but makes sense for agencies that want white-label reporting plus best-in-class AI replies for their restaurant clients.',
+        },
+        {
+          q: 'Does Grade.us require an annual contract?',
+          a: 'No. Grade.us offers monthly billing on all plans — you can cancel month-to-month. This is a genuine advantage over platforms like Birdeye or Podium that require 12-month contracts. Both Grade.us and Revix offer contract-free usage, though Revix has no monthly minimum at all (you only pay per reply).',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review replies without the agency middleman',
+      subtitle: 'Claude Sonnet quality replies tuned to your restaurant. Per-response pricing. No contract. Live in 10 minutes.',
+      button: 'Connect Your Google Reviews',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related comparisons',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Revix vs Podium', slug: '/vs/podium' },
+        { title: 'Review Gating and Google Policy', slug: '/blog/review-gating-google-policy' },
+        { title: 'Google Reviews Drive Restaurant Revenue', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Grade.us Alternatíva Éttermeknek — Revix vs Grade.us (2026 Összehasonlítás)',
+      description: 'Grade.us $54-110/hó székenként, ügynökségeknek készült. Revix válaszonként számol ($0.29-$0.49) közvetlenül étterem tulajdonosoknak. Teljes funkció- és ár-összehasonlítás.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'Grade.us vs Revix',
+      subtitle: 'Grade.us white-label review kezelő platform marketing ügynökségeknek és SEO szakembereknek, akik ügyfelek nevében kezelik a véleményeket. Revix egy AI review válasz motor étterem tulajdonosoknak, akik saját Google véleményeiket kezelik. Ha étterem tulajdonosként értékeled a Grade.us-t, ez az oldal elmagyarázza miért nem biztos hogy egy ügynökségeknek épített eszköz a legjobb választás — és mit használj helyette.',
+    },
+    tldr: {
+      title: 'Grade.us vs Revix: röviden',
+      gradeus: 'Grade.us white-label review platform ügynökségeknek: review generálás drip kampányokkal (email/SMS), review figyelés harmadik fél oldalakon, SEO-barát review widgetek, márkázható dashboard ügyfél riportokhoz, és multi-lokáció kezelés. Árazás $54/hó (Professional), $110/hó (Agency), vagy $440/év a white-label kiegészítőért. Havi számlázás elérhető — nincs kötelező éves szerződés. Célközönség: marketing ügynökségek, SEO cégek és white-label viszonteladók 10-500+ ügyfél lokációval.',
+      revix: 'Revix AI-vezérelt Google review válasz motor. Claude Sonnet írja a válaszokat az éttermed kontextusával (étlap, hangnem, korábbi vélemények). Válaszonkénti ár: 99 Ft pozitív, 199 Ft negatív review-kra. Tipikus étterem 3,000-10,000 Ft/hó-t fizet ($8-28). Nincs szerződés, nincs setup díj. Google Business Profile csatlakoztatás 10 perc. Független éttermeknek, kávézóknak és szállodáknak készült, akik saját reputációjukat kezelik.',
+      verdict: 'Grade.us a legjobb választás ha ügynökség vagy és tucatnyi ügyfél review kampányait kezeled. Revix a legjobb választás ha étterem tulajdonos vagy és AI minőségű válaszokat szeretnél saját Google véleményeidre ügynökség bérlése nélkül.',
+    },
+    context: {
+      title: 'Miért találnak rá étterem tulajdonosok a Grade.us-ra — és miért nem biztos hogy illik',
+      reasons: [
+        { title: 'Grade.us ügynökségeknek épül, nem üzlettulajdonosoknak', detail: 'Grade.us alapértéke a white-labeling: ügynökségek saját márkájukat teszik a dashboardra, drip kampányokat futtatnak ügyfelek nevében, és az ügynökség logójával generálnak riportokat. Ha étterem tulajdonos vagy, márkaépítési és ügyfélkezelési funkciókért fizetsz amiket soha nem használsz.' },
+        { title: 'Nincs AI review válasz', detail: 'Grade.us a review generálásra (több vélemény szerzés) és review figyelésre (vélemények követése oldalakon) fókuszál. Nem ír AI-generált válaszokat a véleményeidre. Minden választ magadnak kell megírnod vagy valakit fizetned érte.' },
+        { title: 'Székenként árazás összeadódik közvetlen használatnál', detail: '$54/hó-nál (Professional) egyetlen székre $648/évet fizetsz review gyűjtésért és figyelésért — AI válasz képesség nélkül. Étterem tulajdonos Revix-et használva AI válaszokra $96-336/évet fizet és valódi válaszokat kap minden review-ra.' },
+        { title: 'Review widgetek weboldalakra valók, nem Google-re', detail: 'Grade.us review marketing funkciója (SEO widgetek véleményekkel a weboldaladon) hasznos ügynökségeknek akik ügyfél oldalakat építenek. Étterem tulajdonosnak a prioritás a Google review-kra válaszolni ahol az ügyfelek 80-90%-a olvassa — nem widgeteket beágyazni egy weboldalra.' },
+      ],
+    },
+    comparison: {
+      title: 'Grade.us vs Revix: funkció összehasonlítás',
+      headers: ['', 'Grade.us', 'Revix'],
+      rows: [
+        { feature: 'Ár', gradeus: '$54-110/hó székenként', revix: '$8-28/hó tipikus (válaszonként)', winner: 'revix' },
+        { feature: 'Árazási modell', gradeus: 'Székenként, havi számlázás', revix: 'Válaszonkénti (csak ha használod)', winner: 'revix' },
+        { feature: 'Szerződés', gradeus: 'Havi (nincs kötelező éves)', revix: 'Nincs (bármikor leválasztható)', winner: 'tie' },
+        { feature: 'White-label dashboard', gradeus: 'Igen (alap funkció, $440/év vagy ingyenes 100 széknél)', revix: 'Nem', winner: 'gradeus' },
+        { feature: 'Review generálás (drip kampányok)', gradeus: 'Igen (email + SMS drip sorozatok)', revix: 'SpiniX spin wheel-en keresztül (33%)', winner: 'gradeus' },
+        { feature: 'Review figyelés', gradeus: 'Igen (Google, Yelp, Facebook, 80+ oldal)', revix: 'Csak Google', winner: 'gradeus' },
+        { feature: 'AI review válaszok', gradeus: 'Nem', revix: 'Igen (Claude Sonnet, étterem-specifikus)', winner: 'revix' },
+        { feature: 'Válasz minőség (AI modell)', gradeus: 'N/A (csak manuális válaszok)', revix: 'Claude Sonnet 4.6 RAG kontextussal', winner: 'revix' },
+        { feature: 'Review marketing widgetek', gradeus: 'Igen (SEO-barát beágyazások weboldalakra)', revix: 'Nem', winner: 'gradeus' },
+        { feature: 'Multi-ügyfél kezelés', gradeus: 'Igen (ügynökségi dashboard 10-500+ ügyfélre)', revix: 'Nem (közvetlen üzleti használat)', winner: 'gradeus' },
+        { feature: 'Sentiment analízis', gradeus: 'Alapszintű', revix: 'Igen (review-nkénti + trend követés)', winner: 'revix' },
+        { feature: 'Versenytárs elemzés', gradeus: 'Nem', revix: 'Igen (helyi klaszter benchmarking)', winner: 'revix' },
+        { feature: 'Hamis review fellebbezés', gradeus: 'Nem', revix: 'Igen (AI draft Google policy hivatkozásokkal)', winner: 'revix' },
+        { feature: 'Vendég profilozás', gradeus: 'Nem', revix: 'Igen (látogatási gyakoriság, preferenciák)', winner: 'revix' },
+        { feature: 'Onboarding idő', gradeus: '30-60 perc (kampány beállítás)', revix: '10 perc', winner: 'revix' },
+        { feature: 'Célfelhasználó', gradeus: 'Marketing ügynökségek és SEO-k', revix: 'Étterem tulajdonosok közvetlenül', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Grade.us vs Revix: melyik illik a helyzetedhez',
+      subtitle: 'Ezek az eszközök különböző felhasználókat szolgálnak. A jó választás attól függ hogy ügynökség vagy étterem tulajdonos vagy.',
+      tiers: [
+        {
+          title: 'Étterem tulajdonos (1-5 lokáció)',
+          description: 'Saját Google véleményeidet kezeled, nincs ügynökség',
+          recommendation: 'Revix',
+          reason: 'Grade.us ügynökségeknek való ügyfelek kezelésére. Közvetlen üzlettulajdonosként $54/hó-t fizetnél review gyűjtésért és figyelésért — de minden választ magad írsz. Revix automatikusan kezeli a válaszokat Claude Sonnet-tel $8-28/hó-ért. Kihagyod az ügynökségi közvetítőt és jobb AI-t kapsz mint bármely sablon.',
+          annual: '$96-336/év Revix-szel',
+        },
+        {
+          title: 'Marketing ügynökség (10-50 étterem ügyfél)',
+          description: 'Több étterem ügyfél review kampányait kezeled',
+          recommendation: 'Grade.us',
+          reason: 'Grade.us pontosan erre van építve. White-label a dashboard az ügynökséged márkájával, drip kampányok ügyfelenként, márkázott riportok. A $110/hó Agency csomag multi-ügyfél kezeléssel megtérül ha ügyfeleknek $200+/hó-t számlázol reputáció szolgáltatásokért. Revix nem kínál white-labeling-et vagy ügynökségi dashboardot.',
+          annual: '$1,320/év Grade.us-szal (Agency csomag)',
+        },
+        {
+          title: 'SEO cég review szolgáltatás hozzáadásával',
+          description: 'Review kezelést szeretnél az SEO csomagodhoz adni',
+          recommendation: 'Grade.us',
+          reason: 'Grade.us review marketing widgetjei és SEO-barát review oldalai jól integrálódnak SEO szolgáltatás csomagokba. A white-label azt jelenti hogy ügyfelek a te márkádat látják, nem a Grade.us-ét. Ez a legerősebb használati esetük.',
+          annual: '$648-1,320/év Grade.us-szal',
+        },
+        {
+          title: 'Étterem csoport (5-20 lokáció, saját kezelésben)',
+          description: 'Operációs csapat kezeli a review-kat belsőleg, nincs ügynökség',
+          recommendation: 'Revix',
+          reason: '10 lokációs csoport Grade.us Professional-on $540/hó-t fizetne ($6,480/év) figyelésért és gyűjtésért — AI válaszok nélkül. Revix válaszonkénti árazása 10 lokációra tipikusan $960-3,360/év, és minden review AI-generált választ kap. A matek Revix-nek kedvez közvetlen kezelésnél.',
+          annual: '$960-3,360/év Revix-szel',
+        },
+      ],
+    },
+    details: {
+      title: 'Grade.us vs Revix: hol nyer melyik',
+      sections: [
+        {
+          title: 'Grade.us nyer: white-label ügynökségi platform',
+          icon: 'building',
+          content: 'Grade.us a legjobb white-label review platform ügynökségeknek. Cseréld le a márkájukat a tiédre, adj minden ügyfélnek márkázott dashboardot, generálj PDF riportokat a logóddal, és kezelj 100+ ügyfél lokációt egy felületről. A white-label kiegészítő $440/évre jön vagy ingyenes lesz 100 széknél. Semmilyen más review eszköz nem csinálja ilyen jól a white-labeling-et ezen az áron. Ha ügynökséget vezetsz, ez a Grade.us legerősebb előnye.',
+        },
+        {
+          title: 'Grade.us nyer: review generálás drip kampányokkal',
+          icon: 'clock',
+          content: 'Grade.us automatizálja a review gyűjtést email és SMS drip sorozatokkal. Állíts be egy kampányt, importáld az ügyfél kontaktokat, és a rendszer időzített follow-upokat küld Google, Yelp vagy Facebook véleménykérésekkel. Konverziós ráták tipikusan 10-15%. Revix-nek nincs hagyományos drip kampánya — a SpiniX gamifikált spin wheel-jével párosul ami 33%-os arányban gyűjt review-kat, de más mechanizmussal (helyszíni QR szken, nem postvizites email drip).',
+        },
+        {
+          title: 'Grade.us nyer: review marketing widgetek',
+          icon: 'globe',
+          content: 'Grade.us SEO-barát widgeteket kínál amik a legjobb véleményeidet jelenítik meg a weboldaladon. Ezek hasznosak ügynökségeknek akik ügyfél weboldalakat építenek és social proof-ot szeretnének megjeleníteni. SEO szempontból a strukturált review adat a domaineden segíthet. Revix nem kínál weboldal widgeteket — a Google review válasz oldalra fókuszál.',
+        },
+        {
+          title: 'Revix nyer: AI review válaszok (Grade.us-ban nincs)',
+          icon: 'star',
+          content: 'Ez a legnagyobb különbség. Grade.us figyeli a véleményeket és segít gyűjteni, de amikor megérkezik egy review, te írod a választ. Nincs AI válasz funkció. Revix Claude Sonnet 4.6-ot használ az éttermed specifikus kontextusával — étlap elemek, konyha típus, személyzet nevek, korábbi review minták — hogy olyan válaszokat generáljon amik konkrét ételeket és élményeket hivatkoznak. Havi 20-50 review-t kapó étteremnek ez 20-50 válasz amit nem neked kell megírni.',
+        },
+        {
+          title: 'Revix nyer: válaszonkénti árazás közvetlen üzleti használatra',
+          icon: 'zap',
+          content: 'Grade.us $54/hó-t számol székenként függetlenül attól hány review-t kapsz. Csendes hónap 5 review-val ugyanannyiba kerül mint egy forgalmas 40-nel. Revix válaszonként számol: 99 Ft (~$0.29) pozitív, 199 Ft (~$0.49) negatív. Havi 25 review-s étterem kb. $9-12-t fizet. Csak akkor fizetsz amikor az AI választ ír. Nincs fix díj, nincs kidobott pénz alacsony volumennél.',
+        },
+        {
+          title: 'Revix nyer: versenytárs benchmarking és hamis review védelem',
+          icon: 'shield',
+          content: 'Revix helyi klaszter benchmarkingot tartalmaz (értékelésed, review sebességed és válaszadási arányod vs hasonló vállalkozások 20 km-en belül) és AI-generált hamis review fellebbezés vázlatokat Google review policy hivatkozásokkal. Grade.us egyiket sem kínálja. Étterem tulajdonosoknak akik versenyző helyi piacokkal vagy gyanús review-kkal szembesülnek, ezek a funkciók napi szinten számítanak.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Grade.us vs Revix költség egyetlen étteremre',
+      subtitle: 'Éves összehasonlítás havi 30 Google review-t kapó étteremre.',
+      rows: [
+        { item: 'Havi költség', gradeus: '$54 (Professional, 1 szék)', revix: '~$9-15 (válaszonként)' },
+        { item: 'Setup díj', gradeus: '$0', revix: '$0' },
+        { item: 'Szerződés hossz', gradeus: 'Havi (nincs éves kötés)', revix: 'Nincs' },
+        { item: 'Első éves összköltség', gradeus: '$648', revix: '$108-180' },
+        { item: 'AI válaszok tartalmazza', gradeus: 'Nem (csak manuális válaszok)', revix: 'Igen (minden review auto-válaszol)' },
+        { item: 'Költség review-nkénti válaszra', gradeus: '$54/hó + a te időd válaszírásra', revix: '$0.29-0.49 (AI írja)' },
+        { item: 'Idő az első AI válaszig', gradeus: 'N/A (nincs AI válasz)', revix: '10 perc' },
+      ],
+      note: 'Grade.us évente 3.6-6x drágább mint Revix egyetlen étteremre — és még mindig manuálisan kell írnod minden választ. A $648/éves Grade.us díj review gyűjtést és figyelést fedez. Revix $108-180/éve AI-generált válaszokat fedez minden review-ra.',
+    },
+    scenarios: {
+      title: 'Revix vagy Grade.us: melyiket válaszd?',
+      items: [
+        { situation: 'Étterem tulajdonos aki saját Google véleményeit kezeli', recommendation: 'Revix', reason: 'Grade.us nem ír válaszokat neked. Revix igen. Válaszonkénti árazás $8-28/hó vs $54/hó csak figyelésre.' },
+        { situation: 'Marketing ügynökség 10+ étterem ügyféllel', recommendation: 'Grade.us', reason: 'White-label dashboard, drip kampányok, márkázott riportok. Erre van a Grade.us építve.' },
+        { situation: 'SEO cég review szolgáltatással kiegészítve', recommendation: 'Grade.us', reason: 'Review widgetek, white-label és review generálás SEO csomagokba integrálódik.' },
+        { situation: 'AI minőségű válaszok kellenek anélkül hogy magad írd', recommendation: 'Revix', reason: 'Grade.us-nak nulla AI válasz képessége van. Revix Claude Sonnet-et használ étterem kontextussal minden válaszhoz.' },
+        { situation: 'Több review-t szeretnél gyűjteni email/SMS drip-pel', recommendation: 'Grade.us', reason: 'Grade.us drip kampányokra specializálódott review generáláshoz. Revix a SpiniX-szel párosul helyszíni gyűjtéshez.' },
+        { situation: 'Étterem csoport (5-20 lokáció) saját review kezeléssel', recommendation: 'Revix', reason: 'Válaszonkénti árazás review volumennel skálázódik. 10 lokáció $3,000+/évet spórol vs Grade.us — és AI válaszok is benne vannak.' },
+        { situation: 'Budget $30/hó alatt review kezelésre', recommendation: 'Revix', reason: 'Grade.us $54/hó-tól indul. Revix válaszonkénti árazás bármely budgetbe belefér és AI válaszokat tartalmaz.' },
+        { situation: 'White-label riporting kell ügyfél prezentációkhoz', recommendation: 'Grade.us', reason: 'Grade.us white-label a legjobb az ügynökségeknek. Revix nem kínál white-label funkciókat.' },
+      ],
+    },
+    pricing: {
+      title: 'Grade.us árazás részletesen (2026)',
+      subtitle: 'Grade.us nyilvánosan közzéteszi az árazását. Ezek az aktuális csomagok 2026 eleje alapján.',
+      tiers: [
+        { name: 'Professional ($54/hó székenként)', range: '$54/hó', note: 'Review figyelés, review generálás drip kampányokkal, alapszintű riporting. Egyfelhasználós hozzáférés. Freelancereknek vagy egylokációs teszteléshez.' },
+        { name: 'Agency ($110/hó székenként)', range: '$110/hó', note: 'Multi-ügyfél dashboard, csapat hozzáférés, haladó riporting, prioritásos támogatás. Több ügyfél fiókot kezelő ügynökségeknek.' },
+        { name: 'Partner (egyedi árazás)', range: 'Egyedi', note: 'Volumen kedvezmények 50+ székre, dedikált account manager, API hozzáférés. Nagy ügynökségeknek és viszonteladóknak.' },
+      ],
+      hidden: [
+        'White-label kiegészítő: $440/év (ingyenes 100+ széknél)',
+        'SMS kreditek drip kampányokhoz külön számlázva',
+        'Nincs AI válasz funkció semelyik csomagnál — csak manuális válaszok',
+        'Székenként árazás: 10 ügyfél Agency-n = $1,100/hó',
+        'Review widget testreszabás magasabb csomagot igényelhet',
+      ],
+      disclaimer: 'Grade.us árazás nyilvánosan elérhető a weboldalukon. SMS kampány költségek volumentől és szolgáltatótól függően változnak. Partner csomag árazásért és volumen kedvezményekért keresd közvetlenül a Grade.us-t.',
+    },
+    faq: {
+      title: 'Grade.us vs Revix: GYIK',
+      items: [
+        {
+          q: 'A Grade.us étterem tulajdonosoknak vagy ügynökségeknek való?',
+          a: 'Grade.us ügynökségeknek van építve. Alap funkciói — white-label dashboard, multi-ügyfél kezelés, márkázott riporting és drip kampányok ügyfelek nevében — marketing ügynökségeknek és SEO cégeknek készültek. Étterem tulajdonos használhatja, de ügynökségi funkciókért fizetnél amiket nem használsz és még mindig minden review választ magad írnál. Ha étterem tulajdonos vagy és saját véleményeidet kezeled, Revix a közvetlen használatú eszköz AI válaszokkal.',
+        },
+        {
+          q: 'White-label-ezhetem a Revix-et ügyfeleim számára?',
+          a: 'Nem. Revix közvetlen üzleti használatra van tervezve — étterem tulajdonosok csatlakoztatják Google Business Profile-jukat és AI-generált válaszokkal kezelik saját véleményeiket. Nincs white-label opció, nincs ügynökségi dashboard és nincs multi-ügyfél kezelés. Ha ügynökség vagy és white-label review kezelés kell, Grade.us erre van építve. Ha ügynökségi ügyfeleid AI válasz minőséget szeretnének, ajánlhatod nekik a Revix-et közvetlen használatra az ügynökséged egyéb szolgáltatásai mellett.',
+        },
+        {
+          q: 'A Grade.us ír AI válaszokat review-kra?',
+          a: 'Nem. Grade.us review generálásra (vélemények gyűjtése drip kampányokkal) és review figyelésre (vélemények követése oldalakon) fókuszál. Amikor megérkezik egy review, te írod a választ manuálisan. Nincs AI válasz funkció. Ez a legnagyobb funkcionális különbség a Revix-hez képest, ami Claude Sonnet válaszokat auto-generál minden Google review-ra az éttermed kontextusát használva.',
+        },
+        {
+          q: 'Mennyibe kerül a Grade.us egyetlen étteremnek?',
+          a: 'A Professional csomag $54/hó ($648/év) egy székre. Ezért review figyelést, drip kampányokat review gyűjtéshez és alapszintű riportingot kapsz — de AI válaszokat nem. Étterem tulajdonos Revix-et használva ugyanarra a review volumenre $108-336/évet fizetne és AI-generált válaszokat kapna minden review-ra. Grade.us anyagilag akkor éri meg jobban ha ügynökség vagy és $200+/hó-t számlázol ügyfeleknek reputáció kezelésért és a white-label wrapper kell.',
+        },
+        {
+          q: 'Melyik eszköz jobb több review gyűjtésére?',
+          a: 'Grade.us erősebb hagyományos review generálásban email/SMS drip kampányokkal 10-15%-os konverziós aránnyal. Importálod az ügyfél kontaktokat és a rendszer időzített follow-upokat küld Google, Yelp vagy Facebook véleménykéréssel. Revix a SpiniX gamifikált spin wheel-jével párosul helyszíni review gyűjtéshez 33%-os arányban — magasabb konverzió de az étteremben QR szkent igényel. Különböző megközelítések: Grade.us postvizites email outreach, SpiniX helyszíni gamifikáció.',
+        },
+        {
+          q: 'Használhatom a Grade.us-t és Revix-et együtt?',
+          a: 'Igen. Néhány ügynökség Grade.us-t használ review generálásra és figyelésre platformokon keresztül, majd Revix-et ajánl étterem ügyfeleiknek AI válasz minőségért Google review-kon. Grade.us gyűjti a véleményeket; Revix válaszol rájuk. Ez a megosztott megközelítés többe kerül mint Revix egyedül, de ügynökségeknek akik white-label riportingot és legjobb AI válaszokat akarják étterem ügyfeleiknek, van értelme.',
+        },
+        {
+          q: 'A Grade.us éves szerződést igényel?',
+          a: 'Nem. Grade.us havi számlázást kínál minden csomagnál — hónapról hónapra lemondható. Ez valódi előny olyan platformokkal szemben mint a Birdeye vagy Podium amik 12 hónapos szerződést követelnek. Grade.us és Revix is szerződésmentes használatot kínál, bár Revix-nek nincs havi minimuma sem (csak válaszonként fizetsz).',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review válaszok az ügynökségi közvetítő nélkül',
+      subtitle: 'Claude Sonnet minőségű válaszok az étteremedre hangolva. Válaszonkénti árazás. Nincs szerződés. 10 perc alatt él.',
+      button: 'Csatlakoztasd a Google Review-jaid',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó összehasonlítások',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Revix vs Podium', slug: '/vs/podium' },
+        { title: 'Review Gating és Google Szabályzat', slug: '/blog/review-gating-google-policy' },
+        { title: 'Google Értékelések és Éttermi Bevétel', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="grade-us" lang={lang} />

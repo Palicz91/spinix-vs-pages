@@ -1,0 +1,260 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Loopy Loyalty Alternative for Small Restaurants: Full Comparison (2026)',
+      description: 'Loopy Loyalty starts at $15/mo with digital stamps. SpiniX costs €29/mo with gamified spin wheels and built-in Google review generation. Full feature comparison.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Loopy Loyalty',
+      subtitle: 'Both are QR-based loyalty platforms. SpiniX uses gamification (spin wheels), Loopy uses digital stamp cards.',
+      updatedDate: 'Updated February 2025',
+    },
+    verdict: {
+      title: 'SpiniX vs Loopy Loyalty: quick verdict',
+      spinix: {
+        title: 'Choose SpiniX if:',
+        points: [
+          'You want instant-win gamification (not stamps)',
+          'Google review generation is important',
+          'You want automated email follow-ups',
+          'Higher engagement matters more than simplicity',
+        ],
+      },
+      competitor: {
+        title: 'Choose Loopy Loyalty if:',
+        points: [
+          'You prefer traditional stamp card mechanics',
+          'Simplicity is your top priority',
+          'You don\'t need review generation',
+          'Lower price point is essential',
+        ],
+      },
+    },
+    comparison: {
+      title: 'SpiniX vs Loopy Loyalty: feature comparison',
+      headers: ['Feature', 'SpiniX', 'Loopy Loyalty'],
+      rows: [
+        { feature: 'Starting Price', spinix: '€29/month', competitor: '$15/month', winner: 'competitor' },
+        { feature: 'Loyalty Mechanic', spinix: 'Spin wheel (gamified)', competitor: 'Digital stamps', winner: 'spinix' },
+        { feature: 'Instant Rewards', spinix: 'Yes (every spin wins)', competitor: 'No (collect stamps first)', winner: 'spinix' },
+        { feature: 'Google Review Generation', spinix: 'Built-in (33% rate)', competitor: 'Not included', winner: 'spinix' },
+        { feature: 'Email Automation', spinix: 'Yes (3-email sequence)', competitor: 'Basic notifications', winner: 'spinix' },
+        { feature: 'Email Capture Rate', spinix: '46%', competitor: '~30%', winner: 'spinix' },
+        { feature: 'Customer Psychology', spinix: 'Dopamine/instant gratification', competitor: 'Delayed gratification', winner: 'spinix' },
+        { feature: 'Setup Time', spinix: '15 minutes', competitor: '10 minutes', winner: 'tie' },
+        { feature: 'Mobile Wallet', spinix: 'Apple/Google Wallet', competitor: 'Apple/Google Wallet', winner: 'tie' },
+        { feature: 'White Label', spinix: 'Pro plan', competitor: 'Available', winner: 'tie' },
+        { feature: 'Best For', spinix: 'Engagement-focused', competitor: 'Budget-focused', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Loopy Loyalty pricing',
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['1 location', 'Unlimited spins', 'Email automation', 'Review generation'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 locations', 'WhatsApp', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited locations', 'White label', 'API access'] },
+        ],
+        note: 'Higher price, more engagement features.',
+      },
+      competitor: {
+        name: 'Loopy Loyalty',
+        plans: [
+          { name: 'Starter', price: '$15/mo', features: ['1 stamp card', 'Basic analytics', 'Push notifications'] },
+          { name: 'Growth', price: '$30/mo', features: ['3 stamp cards', 'Customer segments'] },
+          { name: 'Ultimate', price: '$45/mo', features: ['Unlimited cards', 'Remove branding'] },
+        ],
+        note: 'Lower price, traditional stamp mechanics.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Loopy Loyalty: detailed breakdown',
+      sections: [
+        {
+          title: 'Gamification vs Stamps: The Core Difference',
+          content: 'Loopy Loyalty digitizes the traditional stamp card - collect 10 stamps, get a reward. SpiniX uses gamification - spin a wheel, win instantly. Research shows 57% of customers prefer instant rewards over collecting stamps. The dopamine hit from spinning creates stronger emotional engagement than watching a stamp counter increment.',
+        },
+        {
+          title: 'Psychology of Engagement',
+          content: 'Stamp cards suffer from "goal gradient" dropout - most customers abandon before completing the card (only 20% finish). SpiniX\'s instant-win approach means every interaction is rewarding. Customers don\'t need to wait 10 visits to feel value. This drives 46% email opt-in vs ~30% for stamp-based programs.',
+        },
+        {
+          title: 'Review Generation',
+          content: 'SpiniX has Google review generation built into the core flow - customers are prompted right after winning (33% leave reviews). Loopy Loyalty is purely a loyalty tool and doesn\'t include review generation. If reviews matter for your business, SpiniX handles both in one platform.',
+        },
+        {
+          title: 'Email Automation',
+          content: 'SpiniX includes a 3-email automated sequence (Day 1, 7, 10) based on forgetting curve research. This brings customers back before they forget you. Loopy offers basic push notifications but not the same level of email automation for driving redemptions.',
+        },
+        {
+          title: 'Price vs Value',
+          content: 'Loopy is cheaper ($15 vs €29 starting). But SpiniX includes review generation that would cost $200+/month separately (Birdeye, Podium). If you need both loyalty AND reviews, SpiniX is actually cheaper total. If you only need basic loyalty, Loopy\'s lower price makes sense.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX vs Loopy Loyalty: performance data',
+      note: 'Based on available data and research',
+      items: [
+        { label: 'Email Capture Rate', spinix: '46%', competitor: '~30%', source: 'Gamification vs stamps' },
+        { label: 'Reward Psychology', spinix: 'Instant win', competitor: 'Delayed (10 stamps)', source: 'Program design' },
+        { label: 'Review Generation', spinix: '33%', competitor: '0%', source: 'Built-in feature' },
+        { label: 'Card Completion Rate', spinix: 'N/A (instant)', competitor: '~20%', source: 'Industry average for stamps' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Loopy Loyalty: FAQ',
+      items: [
+        {
+          q: 'Which is better for cafes specifically?',
+          a: 'Both work well for cafes. If your customers love the traditional "buy 9, get 10th free" experience, Loopy is great. If you want to stand out with something more engaging and also get Google reviews, SpiniX is better.',
+        },
+        {
+          q: 'Can I run both stamp cards and spin wheels?',
+          a: 'With SpiniX, you can structure prizes to simulate stamps (e.g., "Free coffee after 5 visits" as a wheel segment). But true stamp mechanics require Loopy. You could technically run both systems for different customer segments.',
+        },
+        {
+          q: 'Which has better customer support?',
+          a: 'Both offer good support for their price points. SpiniX offers direct founder support on all plans. Loopy has email support with faster response on higher tiers.',
+        },
+        {
+          q: 'What about customer data and analytics?',
+          a: 'Both provide customer data and basic analytics. SpiniX focuses on engagement metrics (spins, redemptions, reviews). Loopy focuses on visit frequency and stamp progress.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Ready for Gamified Loyalty?',
+      subtitle: 'Instant rewards, review generation, and automated follow-ups in one platform.',
+      button: 'Try It — 90% Off First Month',
+      badges: ['No credit card required', '15-min setup', '30-day money-back guarantee'],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Loopy Loyalty alternatíva kis éttermeknek: teljes összehasonlítás (2026)',
+      description: 'Loopy Loyalty $15/hó-tól digitális pecsétekkel. SpiniX €29/hó gamifikált szerencsekerékkel és beépített Google értékelés gyűjtéssel. Teljes összehasonlítás.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs Loopy Loyalty',
+      subtitle: 'Mindkettő QR-alapú loyalty platform. A SpiniX gamifikációt (szerencsekerék), a Loopy digitális pecsétgyűjtést használ.',
+      updatedDate: 'Frissítve: 2025. Február',
+    },
+    verdict: {
+      title: 'SpiniX vs Loopy Loyalty: gyors verdikt',
+      spinix: {
+        title: 'Válaszd a SpiniX-et ha:',
+        points: [
+          'Azonnali nyereményes gamifikációt szeretnél (nem pecséteket)',
+          'Fontos a Google vélemény generálás',
+          'Automatikus email követést szeretnél',
+          'A magasabb elköteleződés fontosabb az egyszerűségnél',
+        ],
+      },
+      competitor: {
+        title: 'Válaszd a Loopy Loyalty-t ha:',
+        points: [
+          'Hagyományos pecsétgyűjtő mechanikát preferálsz',
+          'Az egyszerűség a legfontosabb',
+          'Nincs szükséged vélemény generálásra',
+          'Az alacsonyabb ár elengedhetetlen',
+        ],
+      },
+    },
+    comparison: {
+      title: 'SpiniX vs Loopy Loyalty: funkció összehasonlítás',
+      headers: ['Funkció', 'SpiniX', 'Loopy Loyalty'],
+      rows: [
+        { feature: 'Kezdő Ár', spinix: '€29/hó', competitor: '$15/hó', winner: 'competitor' },
+        { feature: 'Loyalty Mechanika', spinix: 'Szerencsekerék (gamifikált)', competitor: 'Digitális pecsétek', winner: 'spinix' },
+        { feature: 'Azonnali Jutalom', spinix: 'Igen (minden pörgetés nyer)', competitor: 'Nem (gyűjts pecséteket)', winner: 'spinix' },
+        { feature: 'Google Vélemény Generálás', spinix: 'Beépített (33%)', competitor: 'Nem tartalmazza', winner: 'spinix' },
+        { feature: 'Email Automatizálás', spinix: 'Igen (3 emailes sorozat)', competitor: 'Alap értesítések', winner: 'spinix' },
+        { feature: 'Email Gyűjtési Arány', spinix: '46%', competitor: '~30%', winner: 'spinix' },
+        { feature: 'Beállítási Idő', spinix: '15 perc', competitor: '10 perc', winner: 'tie' },
+        { feature: 'Mobil Wallet', spinix: 'Apple/Google Wallet', competitor: 'Apple/Google Wallet', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Loopy Loyalty árazás',
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Kezdő', price: '€29/hó', features: ['1 helyszín', 'Korlátlan pörgetés', 'Vélemény generálás'] },
+          { name: 'Fejlődő', price: '€59/hó', features: ['3 helyszín', 'WhatsApp', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan helyszín', 'White label'] },
+        ],
+        note: 'Magasabb ár, több elköteleződési funkció.',
+      },
+      competitor: {
+        name: 'Loopy Loyalty',
+        plans: [
+          { name: 'Starter', price: '$15/hó', features: ['1 pecsétkártya', 'Alap analitika'] },
+          { name: 'Growth', price: '$30/hó', features: ['3 pecsétkártya', 'Szegmensek'] },
+          { name: 'Ultimate', price: '$45/hó', features: ['Korlátlan kártya', 'Branding eltávolítás'] },
+        ],
+        note: 'Alacsonyabb ár, hagyományos pecsét mechanika.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Loopy Loyalty: részletes elemzés',
+      sections: [
+        {
+          title: 'Gamifikáció vs Pecsétek: A Fő Különbség',
+          content: 'A Loopy Loyalty digitalizálja a hagyományos pecsétkártyát - gyűjts 10 pecsétet, kapj jutalmat. A SpiniX gamifikációt használ - pörgess kereket, nyerj azonnal. A kutatások szerint a vendégek 57%-a azonnali jutalmakat preferál a pecsétgyűjtéssel szemben.',
+        },
+        {
+          title: 'Elköteleződés Pszichológiája',
+          content: 'A pecsétkártyák a "cél gradiens" lemorzsolódástól szenvednek - a vendégek többsége abbahagyja a kártya kitöltése előtt (csak 20% fejezi be). A SpiniX azonnali nyereményes megközelítése azt jelenti, hogy minden interakció jutalmazó.',
+        },
+        {
+          title: 'Vélemény Generálás',
+          content: 'A SpiniX-ben beépített a Google vélemény generálás - a vendégeket közvetlenül nyerés után kérik fel (33% hagy véleményt). A Loopy Loyalty tisztán loyalty eszköz, nem tartalmaz vélemény generálást.',
+        },
+        {
+          title: 'Ár vs Érték',
+          content: 'A Loopy olcsóbb ($15 vs €29 kezdő). De a SpiniX tartalmaz vélemény generálást, ami külön $200+/hó lenne. Ha loyalty ÉS vélemények kellenek, a SpiniX összességében olcsóbb.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX vs Loopy Loyalty: teljesítmény adatok',
+      note: 'Elérhető adatok és kutatások alapján',
+      items: [
+        { label: 'Email Gyűjtési Arány', spinix: '46%', competitor: '~30%', source: 'Gamifikáció vs pecsétek' },
+        { label: 'Jutalom Pszichológia', spinix: 'Azonnali nyeremény', competitor: 'Késleltetett (10 pecsét)', source: 'Program design' },
+        { label: 'Vélemény Generálás', spinix: '33%', competitor: '0%', source: 'Beépített funkció' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Loopy Loyalty: GYIK',
+      items: [
+        {
+          q: 'Melyik jobb kifejezetten kávézóknak?',
+          a: 'Mindkettő jól működik kávézóknak. Ha a vendégeid szeretik a hagyományos "vegyél 9-et, a 10. ingyen" élményt, a Loopy remek. Ha ki akarsz tűnni és Google véleményeket is szeretnél, a SpiniX jobb.',
+        },
+        {
+          q: 'Futtathatok egyszerre pecsétgyűjtőt és szerencekeréket?',
+          a: 'A SpiniX-szel strukturálhatod a nyereményeket, hogy szimulálják a pecséteket. De valódi pecsét mechanika a Loopy-hoz kell. Technikailag futtathatod mindkét rendszert különböző szegmenseknek.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Készen Állsz a Gamifikált Loyaltyra?',
+      subtitle: 'Azonnali jutalmak, vélemény generálás és automatikus követés egy platformban.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      badges: ['Bankkártya nem szükséges', '15 perces beállítás', '30 napos garancia'],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="loopy-loyalty" lang={lang} />

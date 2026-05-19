@@ -1,0 +1,430 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Reputation.com Alternative for Restaurants — Revix vs Reputation.com (2026 Comparison)',
+      description: 'Reputation.com is enterprise-priced ($500-2,000+/month) with annual contracts and long onboarding. Revix charges per reply ($0.29-$0.49) with no contract. Full feature and cost comparison for restaurant owners.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'Reputation.com vs Revix',
+      subtitle: 'Reputation.com is an enterprise reputation management platform built for large restaurant chains, franchises, and multi-brand operations. Revix is an AI review reply engine for independent restaurants that charges per response. If you\'re a single-location or small-group restaurant evaluating Reputation.com, this page explains what you\'d actually pay, what you\'d use, and where the money goes.',
+    },
+    tldr: {
+      title: 'Reputation.com vs Revix: the short version',
+      reputation: 'Reputation.com is a full-stack reputation platform for enterprise: review monitoring across all major platforms, automated review requests (SMS/email/QR), brand-approved response templates, AI-powered sentiment analysis, listings management (menus/hours/photos published everywhere), payment and delivery app integration, natural language analytics queries, and staff coaching based on customer feedback. No public pricing — estimated $500-2,000+/month. Annual contract required. Long onboarding (weeks to months). Built for large restaurant chains, franchises, and multi-brand operations.',
+      revix: 'Revix is an AI-powered Google review reply engine. Claude Sonnet writes each response using your restaurant\'s context (menu, tone, past reviews). Pay per reply: 99 Ft (~$0.29) for positive, 199 Ft (~$0.49) for negative reviews. A typical restaurant pays 3,000-10,000 Ft/month ($8-28). No contract, no setup fee. Connect your Google Business Profile in 10 minutes. Built for independent restaurants, cafes, and hotels.',
+      verdict: 'If you manage 50+ locations and need listings sync, delivery app integration, staff coaching dashboards, and enterprise analytics, Reputation.com is purpose-built for that scale. If you\'re an independent restaurant or small group that needs high-quality AI replies to Google reviews without enterprise pricing, Revix.',
+    },
+    context: {
+      title: 'Why restaurant owners search for a Reputation.com alternative',
+      reasons: [
+        { title: 'No public pricing — you can\'t budget without a sales call', detail: 'Reputation.com does not publish pricing on its website. You need to request a demo, go through a sales process, and negotiate a custom quote. Estimates from user reports range from $500 to $2,000+ per month depending on location count and features. For a single restaurant owner trying to compare options, this opacity makes planning impossible.' },
+        { title: 'Built for enterprise, sold to enterprise', detail: 'Reputation.com\'s feature set — multi-brand management, franchise-level reporting, delivery app integration, staff coaching — is designed for chains with 50-500+ locations. If you run 1-10 restaurants, most of these features are irrelevant to your operation. You\'d be paying enterprise rates for enterprise tools you don\'t need.' },
+        { title: 'Long onboarding and annual contracts', detail: 'Implementation typically takes weeks to months, involving dedicated account managers, data migration, and platform configuration. Annual contracts are standard. For a restaurant that wants to start responding to Google reviews this week, that timeline doesn\'t match.' },
+        { title: 'AI responses are template-driven, not restaurant-tuned', detail: 'Reputation.com uses brand-approved response templates and AI assistance across industries. The result works for consistent brand voice at scale but lacks the dish-specific, experience-aware context that independent restaurants need. When a guest mentions "the lamb shank was undercooked," a template-based system gives a generic apology. Revix references that specific dish.' },
+      ],
+    },
+    comparison: {
+      title: 'Reputation.com vs Revix: feature comparison',
+      headers: ['', 'Reputation.com', 'Revix'],
+      rows: [
+        { feature: 'Price', reputation: '$500-2,000+/mo (custom quote)', revix: '$8-28/mo typical (per reply)', winner: 'revix' },
+        { feature: 'Pricing transparency', reputation: 'No public pricing', revix: 'Published per-reply rates', winner: 'revix' },
+        { feature: 'Contract', reputation: 'Annual (custom terms)', revix: 'None (disconnect anytime)', winner: 'revix' },
+        { feature: 'Onboarding time', reputation: 'Weeks to months', revix: '10 minutes', winner: 'revix' },
+        { feature: 'Review monitoring platforms', reputation: 'All major platforms', revix: 'Google only', winner: 'reputation' },
+        { feature: 'AI review replies', reputation: 'Brand-approved templates + AI assist', revix: 'Claude Sonnet 4.6, restaurant-tuned', winner: 'revix' },
+        { feature: 'Listings management', reputation: 'Yes (menus, hours, photos everywhere)', revix: 'No', winner: 'reputation' },
+        { feature: 'Delivery app integration', reputation: 'Yes (Uber Eats, DoorDash, etc.)', revix: 'No', winner: 'reputation' },
+        { feature: 'Item-level sentiment analysis', reputation: 'Yes (menu item feedback)', revix: 'Yes (per-review topics + trends)', winner: 'tie' },
+        { feature: 'Staff coaching from feedback', reputation: 'Yes (location + staff dashboards)', revix: 'No', winner: 'reputation' },
+        { feature: 'Multi-brand management', reputation: 'Yes (franchise hierarchy)', revix: 'Per-location connections', winner: 'reputation' },
+        { feature: 'Natural language analytics', reputation: 'Yes (ask questions in plain English)', revix: 'AI insight chat (scoring-based)', winner: 'tie' },
+        { feature: 'Competitor benchmarking', reputation: 'Yes (nearby restaurant comparison)', revix: 'Yes (geo-aware cluster scoring)', winner: 'tie' },
+        { feature: 'Fake review appeal drafts', reputation: 'No', revix: 'Yes (AI-generated with Google policy refs)', winner: 'revix' },
+        { feature: 'Guest profiling', reputation: 'Basic CRM', revix: 'Yes (visit frequency, preferences, spend)', winner: 'revix' },
+        { feature: 'Setup fee', reputation: 'Custom (often $1,000+)', revix: '$0', winner: 'revix' },
+        { feature: 'Target market', reputation: 'Enterprise chains, franchises', revix: 'Independent restaurants 1-20 locations', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Reputation.com vs Revix: which fits your business',
+      subtitle: 'The right tool depends on your operation size and what you actually need day-to-day.',
+      tiers: [
+        {
+          title: 'Single restaurant or cafe',
+          description: '1 Google Business Profile, mainly needs review replies',
+          recommendation: 'Revix',
+          reason: 'Reputation.com doesn\'t target single locations — you likely won\'t get a quote under $500/month, and onboarding alone takes weeks. Revix handles Google reviews for $96-336/year with 10-minute setup. For a single restaurant, the decision is clear.',
+          annual: '$96-336/year with Revix',
+        },
+        {
+          title: '2-10 restaurant locations',
+          description: 'Small group needing consistent review management',
+          recommendation: 'Revix',
+          reason: 'At this size, Reputation.com would likely quote $6,000-24,000+/year. Most of the enterprise features (franchise hierarchy, delivery app integration, staff coaching) aren\'t relevant for a small group. Revix per-reply pricing scales with actual review volume: a 5-location group typically pays $480-1,680/year total.',
+          annual: '$480-1,680/year with Revix',
+        },
+        {
+          title: '20-100 locations, multi-brand',
+          description: 'Growing chain or franchise with listings and operational needs',
+          recommendation: 'Reputation.com',
+          reason: 'At this scale, you need centralized listings management, franchise-level reporting, delivery platform integration, and staff performance dashboards. Reputation.com\'s platform is built exactly for this. The cost is justified when spread across 20+ locations with real operational complexity.',
+          annual: '$12,000-24,000+/year with Reputation.com',
+        },
+        {
+          title: '100+ locations, enterprise',
+          description: 'National chain, QSR franchise, or multi-brand hospitality group',
+          recommendation: 'Reputation.com',
+          reason: 'Enterprise-grade reputation management at this scale requires compliance controls, brand-approved templates, multi-tier reporting, and integrations with existing tech stacks (POS, CRM, delivery). Reputation.com has the infrastructure and support team. Revix is not designed for 100+ location enterprise deployments.',
+          annual: 'Custom enterprise pricing with Reputation.com',
+        },
+      ],
+    },
+    details: {
+      title: 'Reputation.com vs Revix: where each wins',
+      sections: [
+        {
+          title: 'Reputation.com wins: enterprise-scale listings management',
+          icon: 'globe',
+          content: 'Reputation.com publishes your menus, hours, photos, and business details across every directory and platform simultaneously. For a chain with 50+ locations where a menu change needs to propagate to Google, Yelp, Apple Maps, Facebook, and 40+ other directories, this saves hundreds of hours annually. Revix does not manage listings — it focuses on review intelligence and AI replies.',
+        },
+        {
+          title: 'Reputation.com wins: delivery app integration and staff coaching',
+          icon: 'building',
+          content: 'Reputation.com integrates with Uber Eats, DoorDash, Grubhub, and other delivery platforms to pull ratings and feedback into one dashboard. It also provides staff coaching dashboards — location managers can see which staff-related feedback appears in reviews and act on it. These are operational tools for chains managing hundreds of employees across locations. Revix does not offer delivery integration or staff coaching features.',
+        },
+        {
+          title: 'Reputation.com wins: multi-brand franchise hierarchy',
+          icon: 'store',
+          content: 'If you manage multiple restaurant brands under one parent company, Reputation.com\'s franchise hierarchy lets you view performance at the brand, region, and location level. Corporate can enforce brand-approved response templates while giving location managers limited editing ability. This governance model is essential for franchises. Revix works per Google Business Profile connection — no hierarchy or brand governance layer.',
+        },
+        {
+          title: 'Revix wins: AI reply quality for independent restaurants',
+          icon: 'star',
+          content: 'Reputation.com\'s response system prioritizes brand consistency with templates that work across hundreds of locations. The result is professional but formulaic. Revix uses Claude Sonnet 4.6 with your specific restaurant context: menu items, cuisine type, past review patterns, and your preferred tone. When a guest mentions "the truffle risotto was outstanding," Revix knows that dish and crafts a reply that references it. Template-based systems can\'t match that specificity.',
+        },
+        {
+          title: 'Revix wins: per-reply pricing (20-70x cheaper for SMB)',
+          icon: 'zap',
+          content: 'A restaurant getting 30 Google reviews/month would pay Reputation.com an estimated $500-2,000/month. With Revix, responding to those 30 reviews costs roughly 5,000 Ft ($14) total. Even at the low end of Reputation.com\'s range, that\'s 35x more expensive. You only pay when Revix writes a reply — no flat fee during slow months, no annual commitment locking you in.',
+        },
+        {
+          title: 'Revix wins: fake review defense',
+          icon: 'shield',
+          content: 'When a suspicious review appears, Revix generates an appeal draft citing specific Google review policies, with evidence points and suggested language for removal requests. Reputation.com monitors reviews but does not generate policy-based appeal drafts. For restaurants facing review bombing or competitor-planted fake reviews, having an AI-generated appeal ready in minutes saves hours of policy research.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Reputation.com vs Revix cost for a single restaurant',
+      subtitle: 'Annual comparison for a restaurant receiving 30 Google reviews per month.',
+      rows: [
+        { item: 'Monthly cost', reputation: '$500-2,000+ (estimated)', revix: '~$9-15 (per reply)' },
+        { item: 'Setup fee', reputation: 'Custom ($1,000+ typical)', revix: '$0' },
+        { item: 'Contract length', reputation: 'Annual required', revix: 'None' },
+        { item: 'First year total', reputation: '$7,000-25,000+', revix: '$108-180' },
+        { item: 'Cost per review responded', reputation: '$16-67+ (if responding to all 30)', revix: '$0.29-0.49' },
+        { item: 'Cancellation', reputation: 'Per contract terms', revix: 'Disconnect Google instantly' },
+        { item: 'Time to first AI reply', reputation: 'Weeks (after onboarding)', revix: '10 minutes' },
+      ],
+      note: 'For a single restaurant, Reputation.com costs 40-140x more than Revix annually. Reputation.com includes enterprise features (listings, delivery integration, staff coaching), but if review management is your primary need, you\'re paying $7,000+/year for tools designed for 50-500 location chains.',
+    },
+    scenarios: {
+      title: 'Revix or Reputation.com: which should you choose?',
+      items: [
+        { situation: 'Single restaurant, Google is your main review platform', recommendation: 'Revix', reason: 'Reputation.com doesn\'t target single locations. Per-reply pricing means you pay $8-28/month instead of $500+.' },
+        { situation: 'Restaurant group (2-10 locations)', recommendation: 'Revix', reason: 'Per-reply pricing scales with review volume, not location count. A 5-location group saves $5,000-22,000+/year vs Reputation.com.' },
+        { situation: 'Need listings sync across 40+ directories', recommendation: 'Reputation.com', reason: 'Revix does not manage listings. If menu/hours/photo publishing across directories is a daily need, Reputation.com handles it at scale.' },
+        { situation: 'Franchise with brand-approved response templates', recommendation: 'Reputation.com', reason: 'Franchise governance — corporate controls templates, location managers edit within limits — is a core Reputation.com feature. Revix has no brand hierarchy.' },
+        { situation: 'Priority is AI reply quality for food/hospitality', recommendation: 'Revix', reason: 'Claude Sonnet with restaurant context beats brand-approved templates for specificity. Replies reference actual dishes, experiences, and your tone.' },
+        { situation: 'Need delivery app integration (Uber Eats, DoorDash)', recommendation: 'Reputation.com', reason: 'Revix does not integrate with delivery platforms. Reputation.com pulls delivery ratings and feedback into one dashboard.' },
+        { situation: 'Budget under $100/month', recommendation: 'Revix', reason: 'Reputation.com doesn\'t offer plans in this range. Revix per-reply pricing fits any budget — you control spend by volume.' },
+        { situation: 'Need staff coaching from review feedback', recommendation: 'Reputation.com', reason: 'Revix doesn\'t provide staff-level dashboards. Reputation.com surfaces which staff behaviors appear in reviews and helps managers coach accordingly.' },
+      ],
+    },
+    pricing: {
+      title: 'Reputation.com pricing breakdown (2026)',
+      subtitle: 'Reputation.com does not publish pricing. These estimates come from user reports on G2, Capterra, industry forums, and direct conversations as of early 2026.',
+      tiers: [
+        { name: 'Small-mid (estimated)', range: '$500-800/mo', note: 'Basic review monitoring, response tools, and listings management. Likely requires 5+ locations minimum. Annual contract.' },
+        { name: 'Mid-market (estimated)', range: '$800-1,500/mo', note: 'Full platform: sentiment analysis, competitive benchmarking, delivery integration, staff coaching. 10-50 locations.' },
+        { name: 'Enterprise (estimated)', range: '$1,500-2,000+/mo', note: 'Multi-brand hierarchy, custom integrations, dedicated account team, compliance controls. 50-500+ locations. Per-location pricing decreases at scale.' },
+      ],
+      hidden: [
+        'No public pricing — you must go through a sales process to get a quote',
+        'Setup/implementation fees are standard (often $1,000+ for smaller accounts)',
+        'Annual contracts are the norm — month-to-month is typically not offered',
+        'Per-location pricing means costs multiply with each new restaurant added',
+        'Add-on modules (delivery integration, advanced analytics) may carry extra fees',
+      ],
+      disclaimer: 'These prices are estimates from publicly available reviews and user reports as of early 2026. Reputation.com pricing varies significantly by location count, feature set, and negotiation. Contact Reputation.com directly for a current quote.',
+    },
+    faq: {
+      title: 'Reputation.com vs Revix: FAQ',
+      items: [
+        {
+          q: 'Does Reputation.com publish pricing?',
+          a: 'No. Reputation.com does not list prices on its website. You need to request a demo and go through a sales conversation to receive a custom quote. Based on user reports across G2, Capterra, and industry forums, estimates range from $500 to $2,000+ per month depending on location count and feature tier. This lack of pricing transparency makes it difficult for small restaurant owners to evaluate the tool without a significant time investment in the sales process.',
+        },
+        {
+          q: 'Can a single restaurant use Reputation.com?',
+          a: 'Technically yes, but Reputation.com\'s platform, pricing, and sales process are designed for multi-location businesses and enterprise chains. A single restaurant would likely receive a quote of $500+/month for features built for franchise operations — multi-brand hierarchy, staff coaching dashboards, delivery app integration — that a single location doesn\'t need. Revix is designed for exactly this use case: a single restaurant paying $8-28/month for AI review replies with 10-minute setup.',
+        },
+        {
+          q: 'Does Revix monitor reviews on platforms other than Google?',
+          a: 'No. Revix monitors and responds to Google reviews only. For restaurants, Google typically accounts for 80-90% of review volume and has the highest impact on local search visibility. If you need Yelp, TripAdvisor, DoorDash, or Uber Eats review monitoring, Reputation.com or a dedicated multi-platform tool would be needed alongside Revix.',
+        },
+        {
+          q: 'How does Revix AI reply quality compare to Reputation.com?',
+          a: 'Reputation.com uses brand-approved response templates with AI assistance — designed for consistency across hundreds of locations. The replies are professional but formulaic. Revix uses Claude Sonnet 4.6 with RAG (retrieval-augmented generation) that pulls your restaurant\'s specific context: menu items, cuisine style, past reviews, and your preferred tone. For a review mentioning a specific dish, Revix references that dish by name and context. Template-based systems trade specificity for brand consistency.',
+        },
+        {
+          q: 'What does Reputation.com\'s item-level sentiment analysis do?',
+          a: 'Reputation.com can analyze review text to identify sentiment about specific menu items — for example, detecting that "tacos" are mentioned positively 85% of the time while "wait time" appears negatively 60% of the time. This helps chains identify which menu items perform well and which need attention across locations. Revix provides per-review sentiment analysis and topic detection, but Reputation.com\'s item-level aggregation across 50+ locations gives enterprise chains a menu optimization angle.',
+        },
+        {
+          q: 'How long does Reputation.com take to set up?',
+          a: 'Implementation typically takes weeks to months depending on location count and integration complexity. Enterprise accounts with POS, CRM, and delivery platform integrations can take 2-3 months. Revix connects to your Google Business Profile in 10 minutes — no integrations, no account manager meetings, no data migration. The first AI reply can be generated the same day.',
+        },
+        {
+          q: 'Can Revix handle 50+ locations?',
+          a: 'Revix works per Google Business Profile connection. Technically, you can connect 50+ locations. But Revix is optimized for 1-20 restaurant locations. At 50+ locations with multi-platform needs, listings management, delivery integration, and franchise governance, a platform like Reputation.com makes more sense for centralized management and operational reporting.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review replies without the enterprise price tag',
+      subtitle: 'Claude Sonnet quality replies tuned to your restaurant. Per-response pricing. No contract. Live in 10 minutes.',
+      button: 'Connect Your Google Reviews',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related comparisons',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Revix vs Podium', slug: '/vs/podium' },
+        { title: 'Google Review Rewards Policy Guide', slug: '/blog/rewards-for-google-reviews-policy' },
+        { title: 'Restaurant Loyalty Statistics 2025', slug: '/blog/restaurant-loyalty-statistics-2025' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Reputation.com Alternatíva Éttermeknek — Revix vs Reputation.com (2026 Összehasonlítás)',
+      description: 'Reputation.com enterprise árazású ($500-2,000+/hó) éves szerződéssel és hosszú onboardinggal. Revix válaszonként számol ($0.29-$0.49) szerződés nélkül. Teljes funkció- és költség-összehasonlítás étterem tulajdonosoknak.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'Reputation.com vs Revix',
+      subtitle: 'Reputation.com enterprise reputáció-kezelő platform nagy étterem láncoknak, franchise-oknak és multi-brand operációknak. Revix AI review válasz motor független éttermeknek, válaszonkénti árazással. Ha egyetlen vagy kis étterem csoportként értékeled a Reputation.com-ot, ez az oldal elmagyarázza mennyit fizetnél valójában, mit használnál, és hova megy a pénz.',
+    },
+    tldr: {
+      title: 'Reputation.com vs Revix: röviden',
+      reputation: 'Reputation.com teljes reputáció platform enterprise-nak: review figyelés az összes fő platformon, automatikus review kérések (SMS/email/QR), brand-jóváhagyott válasz sablonok, AI-vezérelt sentiment analízis, listing kezelés (étlap/nyitvatartás/fotók mindenhol), fizetési és kiszállítási app integráció, természetes nyelvi analitika lekérdezések, és munkatárs coaching vendég visszajelzés alapján. Nincs publikus árazás — becsült $500-2,000+/hó. Éves szerződés kötelező. Hosszú onboarding (hetek-hónapok). Nagy étterem láncoknak, franchise-oknak és multi-brand operációknak készült.',
+      revix: 'Revix AI-vezérelt Google review válasz motor. Claude Sonnet írja a válaszokat az éttermed kontextusával (étlap, hangnem, korábbi vélemények). Válaszonkénti ár: 99 Ft pozitív, 199 Ft negatív review-kra. Tipikus étterem 3,000-10,000 Ft/hó-t fizet ($8-28). Nincs szerződés, nincs setup díj. Google Business Profile csatlakoztatás 10 perc. Független éttermeknek, kávézóknak és szállodáknak készült.',
+      verdict: 'Ha 50+ lokációt kezelsz és listing szinkron, kiszállítási app integráció, munkatárs coaching dashboardok és enterprise analitika kell, Reputation.com erre a skálára van építve. Ha független étterem vagy kis csoport vagy és minőségi AI válaszok kellenek Google review-kra enterprise árazás nélkül, Revix.',
+    },
+    context: {
+      title: 'Miért keresnek étterem tulajdonosok Reputation.com alternatívát',
+      reasons: [
+        { title: 'Nincs publikus árazás — nem tudsz tervezni sales hívás nélkül', detail: 'Reputation.com nem teszi közzé az árait a weboldalán. Demo-t kell kérned, végig kell menned egy sales folyamaton, és egyedi ajánlatot kapsz. Felhasználói beszámolók alapján a becslések $500-tól $2,000+/hó-ig terjednek lokáció számtól és funkcióktól függően. Egy étterem tulajdonosnak aki opciókat hasonlít össze, ez az átláthatatlanság lehetetlenné teszi a tervezést.' },
+        { title: 'Enterprise-nak épült, enterprise-nak adják', detail: 'Reputation.com funkciói — multi-brand kezelés, franchise szintű riporting, kiszállítási app integráció, munkatárs coaching — 50-500+ lokációs láncoknak készültek. Ha 1-10 éttermet üzemeltetsz, ezeknek a funkcióknak a többsége irreleváns. Enterprise árat fizetnél enterprise eszközökért amikre nincs szükséged.' },
+        { title: 'Hosszú onboarding és éves szerződés', detail: 'A bevezetés tipikusan hetekbe-hónapokba telik, dedikált account managerrel, adatmigrációval és platform konfigurációval. Éves szerződés a standard. Egy étteremnek ami ezen a héten szeretne Google review-kra válaszolni, ez az időkeret nem passzol.' },
+        { title: 'AI válaszok sablon-alapúak, nem étterem-specifikusak', detail: 'Reputation.com brand-jóváhagyott válasz sablonokat és AI asszisztenciát használ iparágakon átívelően. Az eredmény konzisztens brand hangot ad skálán, de hiányzik az étel-specifikus, élmény-tudatos kontextus amit független éttermek igényelnek. Ha egy vendég megemlíti hogy "a bárány combja nyers volt", a sablon-alapú rendszer generikus bocsánatkérést ad. Revix az adott ételt hivatkozza.' },
+      ],
+    },
+    comparison: {
+      title: 'Reputation.com vs Revix: funkció összehasonlítás',
+      headers: ['', 'Reputation.com', 'Revix'],
+      rows: [
+        { feature: 'Ár', reputation: '$500-2,000+/hó (egyedi ajánlat)', revix: '$8-28/hó tipikus (válaszonként)', winner: 'revix' },
+        { feature: 'Árazási átláthatóság', reputation: 'Nincs publikus ár', revix: 'Közzétett válaszonkénti díjak', winner: 'revix' },
+        { feature: 'Szerződés', reputation: 'Éves (egyedi feltételek)', revix: 'Nincs (bármikor leválasztható)', winner: 'revix' },
+        { feature: 'Onboarding idő', reputation: 'Hetek-hónapok', revix: '10 perc', winner: 'revix' },
+        { feature: 'Review figyelés platformok', reputation: 'Összes fő platform', revix: 'Csak Google', winner: 'reputation' },
+        { feature: 'AI review válaszok', reputation: 'Brand-sablonok + AI asszisztencia', revix: 'Claude Sonnet 4.6, étterem-specifikus', winner: 'revix' },
+        { feature: 'Listing kezelés', reputation: 'Igen (étlap, nyitvatartás, fotók mindenhol)', revix: 'Nem', winner: 'reputation' },
+        { feature: 'Kiszállítási app integráció', reputation: 'Igen (Uber Eats, DoorDash stb.)', revix: 'Nem', winner: 'reputation' },
+        { feature: 'Étel-szintű sentiment analízis', reputation: 'Igen (étlap elem visszajelzés)', revix: 'Igen (review-nkénti témák + trendek)', winner: 'tie' },
+        { feature: 'Munkatárs coaching visszajelzésből', reputation: 'Igen (lokáció + munkatárs dashboardok)', revix: 'Nem', winner: 'reputation' },
+        { feature: 'Multi-brand kezelés', reputation: 'Igen (franchise hierarchia)', revix: 'Lokációnkénti kapcsolatok', winner: 'reputation' },
+        { feature: 'Természetes nyelvi analitika', reputation: 'Igen (kérdések egyszerű nyelvezeten)', revix: 'AI insight chat (scoring-alapú)', winner: 'tie' },
+        { feature: 'Versenytárs benchmarking', reputation: 'Igen (közeli étterem összehasonlítás)', revix: 'Igen (geo-tudatos klaszter pontozás)', winner: 'tie' },
+        { feature: 'Hamis review fellebbezés', reputation: 'Nem', revix: 'Igen (AI draft Google policy hivatkozásokkal)', winner: 'revix' },
+        { feature: 'Vendég profilozás', reputation: 'Alapszintű CRM', revix: 'Igen (látogatási gyakoriság, preferenciák)', winner: 'revix' },
+        { feature: 'Setup díj', reputation: 'Egyedi (tipikusan $1,000+)', revix: '$0', winner: 'revix' },
+        { feature: 'Célpiac', reputation: 'Enterprise láncok, franchise-ok', revix: 'Független éttermek 1-20 lokáció', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Reputation.com vs Revix: melyik illik a vállalkozásodhoz',
+      subtitle: 'A jó eszköz a működésed méretétől és napi szintű igényeidtől függ.',
+      tiers: [
+        {
+          title: 'Egyetlen étterem vagy kávézó',
+          description: '1 Google Business Profile, főleg review válaszok kellenek',
+          recommendation: 'Revix',
+          reason: 'Reputation.com nem céloz egyetlen lokációt — valószínűleg nem kapsz $500/hó alatti ajánlatot, és az onboarding önmagában hetekbe telik. Revix évi $96-336-ért kezeli a Google review-kat 10 perces setuppal. Egyetlen étteremnek egyértelmű a döntés.',
+          annual: '$96-336/év Revix-szel',
+        },
+        {
+          title: '2-10 étterem lokáció',
+          description: 'Kis csoport konzisztens review kezeléssel',
+          recommendation: 'Revix',
+          reason: 'Reputation.com ezen a méreten valószínűleg $6,000-24,000+/évet kér. Az enterprise funkciók többsége (franchise hierarchia, kiszállítási app integráció, munkatárs coaching) nem releváns kis csoportnak. Revix válaszonkénti árazás a tényleges review volumennel skálázódik: 5 lokációs csoport tipikusan $480-1,680/évet fizet összesen.',
+          annual: '$480-1,680/év Revix-szel',
+        },
+        {
+          title: '20-100 lokáció, multi-brand',
+          description: 'Növekvő lánc vagy franchise listing és operációs igényekkel',
+          recommendation: 'Reputation.com',
+          reason: 'Ezen a skálán centralizált listing kezelés, franchise szintű riporting, kiszállítási platform integráció és munkatárs teljesítmény dashboardok kellenek. Reputation.com platformja pontosan erre van építve. A költség indokolt 20+ lokációra valódi operációs komplexitással.',
+          annual: '$12,000-24,000+/év Reputation.com-mal',
+        },
+        {
+          title: '100+ lokáció, enterprise',
+          description: 'Országos lánc, QSR franchise, vagy multi-brand vendéglátó csoport',
+          recommendation: 'Reputation.com',
+          reason: 'Ezen a skálán enterprise szintű reputáció kezelés compliance kontrollokat, brand-jóváhagyott sablonokat, többszintű riportingot és meglévő tech stack integrációkat igényel (POS, CRM, kiszállítás). Reputation.com rendelkezik az infrastruktúrával és support csapattal. Revix nem 100+ lokációs enterprise kiépítésekre van tervezve.',
+          annual: 'Egyedi enterprise árazás Reputation.com-mal',
+        },
+      ],
+    },
+    details: {
+      title: 'Reputation.com vs Revix: hol nyer melyik',
+      sections: [
+        {
+          title: 'Reputation.com nyer: enterprise szintű listing kezelés',
+          icon: 'globe',
+          content: 'Reputation.com az étlapodat, nyitvatartásodat, fotóidat és üzleti adataidat egyszerre publikálja minden könyvtárba és platformra. 50+ lokációs láncnak ahol egy étlap változásnak Google-re, Yelp-re, Apple Maps-re, Facebook-ra és 40+ más könyvtárba kell eljutnia, ez évente több száz óra megtakarítás. Revix nem kezel listingeket — review intelligenciára és AI válaszokra fókuszál.',
+        },
+        {
+          title: 'Reputation.com nyer: kiszállítási app integráció és munkatárs coaching',
+          icon: 'building',
+          content: 'Reputation.com integrálódik az Uber Eats, DoorDash, Grubhub és más kiszállítási platformokkal hogy az értékeléseket és visszajelzéseket egy dashboardra húzza. Munkatárs coaching dashboardokat is biztosít — lokáció menedzserek látják mely munkatárs-visszajelzések jelennek meg a review-kban és cselekedhetnek. Ezek operációs eszközök láncoknak akik lokációnként több száz alkalmazottat kezelnek. Revix nem kínál kiszállítási integrációt vagy munkatárs coaching funkciókat.',
+        },
+        {
+          title: 'Reputation.com nyer: multi-brand franchise hierarchia',
+          icon: 'store',
+          content: 'Ha több étterem márkát kezelsz egy anyavállalat alatt, Reputation.com franchise hierarchiája márka, régió és lokáció szinten mutatja a teljesítményt. A központ kikényszerítheti a brand-jóváhagyott válasz sablonokat miközben a lokáció menedzsereknek korlátozott szerkesztési lehetőséget ad. Ez a governance modell franchise-oknak elengedhetetlen. Revix Google Business Profile kapcsolatonként működik — nincs hierarchia vagy brand governance réteg.',
+        },
+        {
+          title: 'Revix nyer: AI válasz minőség független éttermeknek',
+          icon: 'star',
+          content: 'Reputation.com válasz rendszere a brand konzisztenciát helyezi előtérbe sablonokkal amik száz lokációra működnek. Az eredmény profi de formulaszerű. Revix Claude Sonnet 4.6-ot használ az éttermed specifikus kontextusával: étlap elemek, konyha típus, korábbi review minták és preferált hangnem. Amikor egy vendég megemlíti hogy "a szarvasgomba rizottó kiemelkedő volt", Revix ismeri az ételt és olyan választ ír ami hivatkozza. Sablon-alapú rendszerek nem tudják ezt a specifikusságot.',
+        },
+        {
+          title: 'Revix nyer: válaszonkénti árazás (20-70x olcsóbb KKV-nak)',
+          icon: 'zap',
+          content: 'Havi 30 Google review-t kapó étterem Reputation.com-nak becsülten $500-2,000/hó-t fizet. Revix-szel azokra a 30 review-ra válaszolni összesen kb. 5,000 Ft ($14). Még Reputation.com legalacsonyabb árkategóriáján is 35x drágább. Csak akkor fizetsz amikor Revix tényleg ír egy választ — nincs fix díj lassú hónapokban, nincs éves elköteleződés.',
+        },
+        {
+          title: 'Revix nyer: hamis review védelem',
+          icon: 'shield',
+          content: 'Gyanús review megjelenésekor Revix fellebbezés vázlatot generál specifikus Google review policy hivatkozásokkal, bizonyítékokkal és javasolt megfogalmazással az eltávolítási kérelemhez. Reputation.com figyeli a review-kat de nem generál policy-alapú fellebbezés vázlatokat. Éttermeknek akik review bombázással vagy versenytárs által írt hamis véleményekkel szembesülnek, az AI-generált fellebbezés percek alatt kész — órákat spórol policy kutatásból.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Reputation.com vs Revix költség egyetlen étteremre',
+      subtitle: 'Éves összehasonlítás havi 30 Google review-t kapó étteremre.',
+      rows: [
+        { item: 'Havi költség', reputation: '$500-2,000+ (becsült)', revix: '~$9-15 (válaszonként)' },
+        { item: 'Setup díj', reputation: 'Egyedi (tipikusan $1,000+)', revix: '$0' },
+        { item: 'Szerződés hossz', reputation: 'Éves kötelező', revix: 'Nincs' },
+        { item: 'Első éves összköltség', reputation: '$7,000-25,000+', revix: '$108-180' },
+        { item: 'Költség review-nkénti válaszra', reputation: '$16-67+ (mind a 30-ra válaszolva)', revix: '$0.29-0.49' },
+        { item: 'Lemondás', reputation: 'Szerződési feltételek szerint', revix: 'Google leválasztás azonnal' },
+        { item: 'Idő az első AI válaszig', reputation: 'Hetek (onboarding után)', revix: '10 perc' },
+      ],
+      note: 'Egyetlen étteremre Reputation.com évente 40-140x drágább mint Revix. Reputation.com enterprise funkciókat tartalmaz (listingek, kiszállítási integráció, munkatárs coaching), de ha a review kezelés a fő igényed, $7,000+/évet fizetnél 50-500 lokációs láncoknak tervezett eszközökért.',
+    },
+    scenarios: {
+      title: 'Revix vagy Reputation.com: melyiket válaszd?',
+      items: [
+        { situation: 'Egyetlen étterem, Google a fő review platform', recommendation: 'Revix', reason: 'Reputation.com nem céloz egyetlen lokációt. Válaszonkénti árazás: $8-28/hó a $500+ helyett.' },
+        { situation: 'Étterem csoport (2-10 lokáció)', recommendation: 'Revix', reason: 'Válaszonkénti árazás review volumennel skálázódik, nem lokáció számmal. 5 lokációs csoport $5,000-22,000+/évet spórol vs Reputation.com.' },
+        { situation: 'Listing szinkron kell 40+ könyvtárba', recommendation: 'Reputation.com', reason: 'Revix nem kezel listingeket. Ha étlap/nyitvatartás/fotó publikálás könyvtárakba napi igény, Reputation.com skálán kezeli.' },
+        { situation: 'Franchise brand-jóváhagyott válasz sablonokkal', recommendation: 'Reputation.com', reason: 'Franchise governance — központ kontrollálja a sablonokat, lokáció menedzserek korlátok közt szerkesztenek — Reputation.com alap funkciója. Revix-nek nincs brand hierarchiája.' },
+        { situation: 'AI válasz minőség a prioritás éttermeknek', recommendation: 'Revix', reason: 'Claude Sonnet étterem kontextussal specifikusabb mint brand-jóváhagyott sablonok. Válaszok konkrét ételeket, élményeket és hangnemedet hivatkoznak.' },
+        { situation: 'Kiszállítási app integráció kell (Uber Eats, DoorDash)', recommendation: 'Reputation.com', reason: 'Revix nem integrálódik kiszállítási platformokkal. Reputation.com egy dashboardra húzza a kiszállítási értékeléseket és visszajelzéseket.' },
+        { situation: 'Budget $100/hó alatt', recommendation: 'Revix', reason: 'Reputation.com nem kínál csomagot ebben a tartományban. Revix válaszonkénti árazás bármely budgetbe belefér.' },
+        { situation: 'Munkatárs coaching kell review visszajelzésből', recommendation: 'Reputation.com', reason: 'Revix nem biztosít munkatárs szintű dashboardokat. Reputation.com felszínre hozza mely munkatárs viselkedések jelennek meg review-kban és segít a menedzsereknek coaching-olni.' },
+      ],
+    },
+    pricing: {
+      title: 'Reputation.com árazás részletesen (2026)',
+      subtitle: 'Reputation.com nem teszi közzé az árait. Ezek a becslések G2, Capterra, iparági fórumok és közvetlen beszélgetések alapján készültek, 2026 eleje.',
+      tiers: [
+        { name: 'Kis-közepes (becsült)', range: '$500-800/hó', note: 'Alapszintű review figyelés, válasz eszközök és listing kezelés. Valószínűleg minimum 5+ lokáció. Éves szerződés.' },
+        { name: 'Mid-market (becsült)', range: '$800-1,500/hó', note: 'Teljes platform: sentiment analízis, versenytárs benchmarking, kiszállítási integráció, munkatárs coaching. 10-50 lokáció.' },
+        { name: 'Enterprise (becsült)', range: '$1,500-2,000+/hó', note: 'Multi-brand hierarchia, egyedi integrációk, dedikált account csapat, compliance kontrollok. 50-500+ lokáció. Lokációnkénti ár csökken skálánál.' },
+      ],
+      hidden: [
+        'Nincs publikus árazás — sales folyamaton kell végig menni az ajánlatért',
+        'Setup/implementáció díjak standardok (kisebb fiókoknál gyakran $1,000+)',
+        'Éves szerződés a norma — havi díjazás tipikusan nem elérhető',
+        'Lokációnkénti árazás — minden új étteremmel nő a költség',
+        'Kiegészítő modulok (kiszállítási integráció, haladó analitika) extra díjasak lehetnek',
+      ],
+      disclaimer: 'Ezek becsült árak nyilvánosan elérhető review-kból és felhasználói beszámolókból, 2026 eleje. Reputation.com árazás lokáció szám, funkció készlet és alkupozíció szerint jelentősen változik. Aktuális árajánlatért keresd közvetlenül a Reputation.com-ot.',
+    },
+    faq: {
+      title: 'Reputation.com vs Revix: GYIK',
+      items: [
+        {
+          q: 'Reputation.com közzéteszi az árazását?',
+          a: 'Nem. Reputation.com nem listázza az árait a weboldalán. Demo-t kell kérned és végig kell menned egy sales beszélgetésen egyedi ajánlatért. G2, Capterra és iparági fórumok felhasználói beszámolói alapján a becslések $500-tól $2,000+/hó-ig terjednek lokáció számtól és funkció szinttől függően. Ez az árazási átláthatatlanság megnehezíti kis étterem tulajdonosoknak az eszköz értékelését jelentős időbefektetés nélkül a sales folyamatba.',
+        },
+        {
+          q: 'Egyetlen étterem használhatja a Reputation.com-ot?',
+          a: 'Technikailag igen, de Reputation.com platformja, árazása és sales folyamata multi-lokációs vállalkozásoknak és enterprise láncoknak van tervezve. Egyetlen étterem valószínűleg $500+/hó ajánlatot kap franchise operációkhoz épített funkciókra — multi-brand hierarchia, munkatárs coaching dashboardok, kiszállítási app integráció — amikre egyetlen lokációnak nincs szüksége. Revix pontosan erre az esetre van tervezve: egyetlen étterem havi $8-28-ot fizet AI review válaszokért 10 perces setuppal.',
+        },
+        {
+          q: 'A Revix figyel review-kat Google-ön kívüli platformokon?',
+          a: 'Nem. Revix csak Google review-kat figyel és válaszol. Éttermeknek a Google tipikusan a review volumen 80-90%-át teszi ki és a legnagyobb hatással van a helyi keresési láthatóságra. Ha Yelp, TripAdvisor, DoorDash vagy Uber Eats review figyelés kell, Reputation.com vagy dedikált multi-platform eszköz kellene Revix mellé.',
+        },
+        {
+          q: 'Hogyan viszonyul a Revix AI válasz minősége a Reputation.com-hoz?',
+          a: 'Reputation.com brand-jóváhagyott válasz sablonokat használ AI asszisztenciával — konzisztenciára tervezve százas lokáció skálán. A válaszok profik de formulaszerűek. Revix Claude Sonnet 4.6-ot használ RAG-gel (retrieval-augmented generation) ami az éttermed specifikus kontextusát húzza: étlap elemek, konyha stílus, korábbi review-k és preferált hangnem. Étterem review-nál ami konkrét ételt említ, Revix név szerint és kontextussal hivatkozza. Sablon-alapú rendszerek specifikusságot cserélnek brand konzisztenciára.',
+        },
+        {
+          q: 'Mit csinál a Reputation.com étel-szintű sentiment analízise?',
+          a: 'Reputation.com a review szöveget elemezve azonosítja a sentimentet specifikus étlap elemekről — például érzékelve hogy a "tacos" 85%-ban pozitívan jelenik meg míg a "várakozási idő" 60%-ban negatívan. Ez segít a láncoknak azonosítani mely étlap elemek teljesítenek jól és melyek igényelnek figyelmet lokációk között. Revix review-nkénti sentiment analízist és téma detektálást biztosít, de Reputation.com étel-szintű aggregálása 50+ lokáción étlap optimalizálási szempontot ad enterprise láncoknak.',
+        },
+        {
+          q: 'Mennyi idő a Reputation.com beüzemelése?',
+          a: 'Az implementáció tipikusan hetekbe-hónapokba telik lokáció számtól és integráció komplexitástól függően. Enterprise fiókok POS, CRM és kiszállítási platform integrációkkal 2-3 hónapot vehetnek igénybe. Revix 10 perc alatt csatlakozik a Google Business Profile-odhoz — nincs integráció, nincs account manager meeting, nincs adatmigráció. Az első AI válasz ugyanazon a napon generálható.',
+        },
+        {
+          q: 'Revix kezel 50+ lokációt?',
+          a: 'Revix Google Business Profile kapcsolatonként működik. Technikailag 50+ lokáció csatlakoztatható. De Revix 1-20 étterem lokációra van optimalizálva. 50+ lokációnál multi-platform igénnyel, listing kezeléssel, kiszállítási integrációval és franchise governance-szel egy platform mint Reputation.com több értelmet ad a centralizált kezeléshez és operációs riportinghoz.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review válaszok enterprise árcédula nélkül',
+      subtitle: 'Claude Sonnet minőségű válaszok az étteremedre hangolva. Válaszonkénti árazás. Nincs szerződés. 10 perc alatt él.',
+      button: 'Csatlakoztasd a Google Review-jaid',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó összehasonlítások',
+      posts: [
+        { title: 'Revix vs Birdeye', slug: '/vs/birdeye' },
+        { title: 'Revix vs Podium', slug: '/vs/podium' },
+        { title: 'Google Review Jutalom Policy Útmutató', slug: '/blog/rewards-for-google-reviews-policy' },
+        { title: 'Éttermi Lojalitási Statisztikák 2025', slug: '/blog/restaurant-loyalty-statistics-2025' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="reputation-com" lang={lang} />

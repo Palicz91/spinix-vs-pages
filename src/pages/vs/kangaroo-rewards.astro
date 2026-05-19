@@ -1,0 +1,296 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Kangaroo Rewards Pricing & a €29 Alternative for Restaurants (2026)',
+      description: 'Kangaroo Rewards starts at $79/mo and requires POS integration. SpiniX starts at €29/mo with no POS needed. Side-by-side pricing and feature comparison.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Kangaroo Rewards',
+      subtitle: 'Kangaroo is a strong mid-market loyalty platform built around POS integration and app-based engagement. SpiniX is a hospitality-first platform built around QR gamification and Wallet passes. Different tools for different problems.',
+    },
+    tldr: {
+      title: 'SpiniX vs Kangaroo Rewards: the short version',
+      kangaroo: 'Kangaroo Rewards is best for retail and e-commerce businesses already using Shopify, Lightspeed, or similar POS systems. Points, tiers, cashback, referrals. Strong email/SMS marketing. $79/mo minimum.',
+      spinix: 'SpiniX is best for restaurants, cafes, and hotels that want instant guest engagement without POS integration. QR scan, spin wheel, Apple/Google Wallet, automated reviews. €29/mo.',
+      verdict: 'If you already have a POS and want deep purchase-data loyalty, Kangaroo is solid. If you want zero-friction guest enrollment with gamification and review generation, SpiniX.',
+    },
+    comparison: {
+      title: 'SpiniX vs Kangaroo Rewards: feature comparison',
+      headers: ['', 'Kangaroo Rewards', 'SpiniX'],
+      rows: [
+        { feature: 'Starting price', kangaroo: '$79/mo', spinix: '€29/mo', winner: 'spinix' },
+        { feature: 'POS integration required', kangaroo: 'Yes (Shopify, Lightspeed, etc.)', spinix: 'No - standalone QR', winner: 'spinix' },
+        { feature: 'Guest enrollment method', kangaroo: 'App download or POS checkout', spinix: 'QR scan - 15 seconds, no app', winner: 'spinix' },
+        { feature: 'Apple/Google Wallet', kangaroo: 'Through their app', spinix: 'Native - direct to Wallet', winner: 'spinix' },
+        { feature: 'Gamification', kangaroo: 'Spin-to-Win on tablet only', spinix: 'Spin wheel on every QR scan', winner: 'spinix' },
+        { feature: 'Reward types', kangaroo: 'Points, tiers, cashback, referrals', spinix: 'Instant spin rewards every visit', winner: 'tie' },
+        { feature: 'Google review generation', kangaroo: 'Not built-in', spinix: 'Automatic flow (33% conversion)', winner: 'spinix' },
+        { feature: 'Email marketing', kangaroo: 'Built-in email + SMS + push', spinix: 'Automated 6-email sequence', winner: 'tie' },
+        { feature: 'SMS marketing', kangaroo: 'Built-in', spinix: 'WhatsApp (SEA/UK markets)', winner: 'tie' },
+        { feature: 'Referral program', kangaroo: 'Built-in', spinix: 'Not yet (planned)', winner: 'kangaroo' },
+        { feature: 'Tiered loyalty', kangaroo: 'Yes - custom tiers and levels', spinix: 'No - instant rewards model', winner: 'kangaroo' },
+        { feature: 'Purchase tracking', kangaroo: 'Full POS-linked transaction data', spinix: 'Visit-based (scan frequency)', winner: 'kangaroo' },
+        { feature: 'Setup time', kangaroo: '60+ minutes (POS integration)', spinix: '10 minutes (print QR, done)', winner: 'spinix' },
+        { feature: 'E-commerce support', kangaroo: 'Full (Shopify, BigCommerce, Woo)', spinix: 'No (in-person only)', winner: 'kangaroo' },
+        { feature: 'White-label app', kangaroo: 'Yes (higher tier)', spinix: 'No', winner: 'kangaroo' },
+        { feature: 'Multi-location', kangaroo: 'Yes - per location or unified', spinix: 'Yes - per location', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Kangaroo Rewards pricing',
+      kangaroo: {
+        name: 'Kangaroo Rewards',
+        plans: [
+          { name: 'Starter', price: '$79/mo', features: ['Core loyalty features', 'Basic integration', 'Points & rewards'] },
+          { name: 'Plus', price: 'Custom quote', features: ['Advanced segmentation', 'White-label app', 'Multi-location'] },
+          { name: 'Enterprise', price: 'Custom quote', features: ['API access', 'AI campaigns', 'Full customization'] },
+        ],
+        note: 'POS integration may have additional setup costs depending on provider.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['1 spin wheel', 'QR + Wallet', 'Email automation', 'Review generation'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 wheels', 'Priority support', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited wheels', 'Multi-location', 'WhatsApp integration'] },
+        ],
+        note: 'No POS needed. No setup fees. Wallet passes billed per install ($0.15).',
+      },
+      annual: 'First year cost for a single restaurant: Kangaroo $948+ vs SpiniX €348. Kangaroo costs 2.7x more before adding POS integration fees.',
+    },
+    details: {
+      title: 'SpiniX vs Kangaroo Rewards: where each wins',
+      sections: [
+        {
+          title: 'Kangaroo wins: deep purchase data',
+          icon: 'chart',
+          content: 'Because Kangaroo integrates with your POS, it knows exactly what each customer bought, how much they spent, and when. This powers advanced segmentation - you can target "customers who spent $50+ in the last 30 days" or "people who bought menu item X." SpiniX tracks visits and engagement but not individual purchases. If purchase-level data drives your marketing strategy, Kangaroo has the edge.',
+        },
+        {
+          title: 'Kangaroo wins: referral and tiered loyalty',
+          icon: 'users',
+          content: 'Kangaroo offers built-in referral programs (reward both referrer and new customer) and tiered loyalty (Bronze, Silver, Gold). These are powerful for businesses with high-frequency repeat customers. SpiniX uses instant rewards on every visit instead of tiers, which drives different psychology - immediate gratification vs aspirational progression.',
+        },
+        {
+          title: 'SpiniX wins: zero-friction enrollment',
+          icon: 'qr',
+          content: 'Kangaroo requires either an app download or registration at the POS checkout. Both create friction. SpiniX: guest scans QR at the table, enters email, spins, wins. 15 seconds, no app, no POS interaction, no staff involvement. This is why QR-based loyalty achieves 46% enrollment vs 12% for app-based programs.',
+        },
+        {
+          title: 'SpiniX wins: gamification that works on every phone',
+          icon: 'zap',
+          content: 'Kangaroo offers "Spin to Win" but only on a tablet at the counter. The guest has to go to the tablet and interact with it. SpiniX delivers the spin wheel directly to the guest\'s phone via QR - every table, every guest, no hardware. Variable rewards on every scan produce 3x more dopamine than deterministic point systems.',
+        },
+        {
+          title: 'SpiniX wins: automatic Google review generation',
+          icon: 'star',
+          content: 'After a guest wins a reward, SpiniX shows an optional Google review prompt. 33% leave a review. That\'s built into the flow, not a separate tool. Kangaroo doesn\'t include review generation. You\'d need a separate service ($50-200/mo) to match what SpiniX includes by default.',
+        },
+        {
+          title: 'SpiniX wins: no POS dependency',
+          icon: 'shield',
+          content: 'Kangaroo works best when connected to Shopify, Lightspeed, Square, or similar POS systems. No POS? Limited functionality. SpiniX works with any business regardless of POS - print a QR code, stick it on the table, done. This makes SpiniX ideal for restaurants using basic POS systems, cash registers, or no POS at all.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'SpiniX or Kangaroo Rewards: which should you choose?',
+      items: [
+        { situation: 'Shopify retail store with e-commerce', recommendation: 'Kangaroo', reason: 'Deep Shopify integration and purchase tracking justify the higher price.' },
+        { situation: 'Restaurant with 10-50 tables, no specific POS', recommendation: 'SpiniX', reason: 'QR at every table. No POS needed. Review generation included.' },
+        { situation: 'Cafe wanting simple loyalty + reviews', recommendation: 'SpiniX', reason: 'Faster setup, lower cost, gamification drives higher engagement.' },
+        { situation: 'Multi-location retail chain with Lightspeed POS', recommendation: 'Kangaroo', reason: 'POS integration across locations with unified customer data.' },
+        { situation: 'Hotel or spa wanting guest engagement', recommendation: 'SpiniX', reason: 'QR works for one-time and repeat guests. No app barrier.' },
+        { situation: 'Budget under $50/month', recommendation: 'SpiniX', reason: 'SpiniX starts at €29. Kangaroo starts at $79.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Kangaroo Rewards: FAQ',
+      items: [
+        {
+          q: 'Can I switch from Kangaroo to SpiniX?',
+          a: 'Yes. SpiniX is standalone, so you can run both simultaneously during transition. Export your customer emails from Kangaroo and import them into SpiniX. The QR-based enrollment will capture new guests immediately.',
+        },
+        {
+          q: 'Does Kangaroo work without a POS?',
+          a: 'Technically yes, through their tablet or manual entry. But Kangaroo\'s core strength is POS integration. Without it, you lose purchase tracking, automatic point awarding, and checkout-based enrollment - which are the main reasons to choose Kangaroo.',
+        },
+        {
+          q: 'Why doesn\'t SpiniX have a referral program?',
+          a: 'It\'s on the roadmap. Currently, SpiniX focuses on in-venue engagement (QR scan at the table). Referrals are a different acquisition channel. If referrals are critical to your strategy right now, Kangaroo or a dedicated referral tool may be better.',
+        },
+        {
+          q: 'Which has better analytics?',
+          a: 'Different strengths. Kangaroo shows purchase-level data (what was bought, how much spent). SpiniX shows engagement data (scan rate, spin rate, email open rate, review conversion, return visits). For hospitality, SpiniX\'s metrics are more actionable.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Try SpiniX free for 14 days',
+      subtitle: 'No POS integration needed. No app for your guests to download. Set up in 10 minutes, see results the same week.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Restaurant Loyalty Without an App', slug: '/blog/restaurant-loyalty-program-without-app' },
+        { title: 'Gamification: Why Spin Beats Points', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Loyalty for Independent Restaurants', slug: '/blog/loyalty-program-independent-restaurant' },
+        { title: '5 Loyalty Program Mistakes', slug: '/blog/restaurant-loyalty-program-mistakes' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Kangaroo Rewards árazás és egy €29-os alternatíva éttermeknek (2026)',
+      description: 'Kangaroo Rewards $79/hó-tól, POS integráció szükséges. SpiniX €29/hó-tól POS nélkül. Teljes funkció- és árösszehasonlítás éttermeknek.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs Kangaroo Rewards',
+      subtitle: 'A Kangaroo erős mid-market loyalty platform POS integráció köré építve. A SpiniX hospitality-first platform QR gamifikáció és Wallet passok köré építve. Különböző eszközök különböző problémákra.',
+    },
+    tldr: {
+      title: 'SpiniX vs Kangaroo Rewards: röviden',
+      kangaroo: 'A Kangaroo Rewards ideális retail és e-commerce üzleteknek akik már Shopify-t, Lightspeed-et használnak. Pontok, szintek, cashback, referral. Erős email/SMS marketing. $79/hó minimum.',
+      spinix: 'A SpiniX ideális éttermeknek, kávézóknak és szállodáknak akik azonnali vendég elköteleződést akarnak POS integráció nélkül. QR scan, spin wheel, Apple/Google Wallet, automatikus review. €29/hó.',
+      verdict: 'Ha már van POS-od és mély vásárlási adatokra épülő loyalty kell, a Kangaroo jó. Ha súrlódásmentes vendég regisztráció kell gamifikációval és review generálással, SpiniX.',
+    },
+    comparison: {
+      title: 'SpiniX vs Kangaroo Rewards: funkció összehasonlítás',
+      headers: ['', 'Kangaroo Rewards', 'SpiniX'],
+      rows: [
+        { feature: 'Kezdő ár', kangaroo: '$79/hó', spinix: '€29/hó', winner: 'spinix' },
+        { feature: 'POS integráció szükséges', kangaroo: 'Igen (Shopify, Lightspeed, stb.)', spinix: 'Nem - standalone QR', winner: 'spinix' },
+        { feature: 'Vendég regisztráció', kangaroo: 'App letöltés vagy POS checkout', spinix: 'QR scan - 15mp, nincs app', winner: 'spinix' },
+        { feature: 'Apple/Google Wallet', kangaroo: 'Saját appon keresztül', spinix: 'Natív - direkt Walletbe', winner: 'spinix' },
+        { feature: 'Gamifikáció', kangaroo: 'Spin-to-Win csak tableten', spinix: 'Spin wheel minden QR scannél', winner: 'spinix' },
+        { feature: 'Jutalom típusok', kangaroo: 'Pontok, szintek, cashback, referral', spinix: 'Azonnali spin jutalmak', winner: 'tie' },
+        { feature: 'Google review generálás', kangaroo: 'Nincs beépítve', spinix: 'Automatikus (33% konverzió)', winner: 'spinix' },
+        { feature: 'Email marketing', kangaroo: 'Beépített email + SMS + push', spinix: 'Automatikus 6-email szekvencia', winner: 'tie' },
+        { feature: 'SMS marketing', kangaroo: 'Beépített', spinix: 'WhatsApp (SEA/UK)', winner: 'tie' },
+        { feature: 'Referral program', kangaroo: 'Beépített', spinix: 'Még nincs (tervben)', winner: 'kangaroo' },
+        { feature: 'Szintezett loyalty', kangaroo: 'Igen - egyedi szintek', spinix: 'Nem - azonnali jutalmak', winner: 'kangaroo' },
+        { feature: 'Vásárlás követés', kangaroo: 'Teljes POS tranzakció adat', spinix: 'Látogatás alapú', winner: 'kangaroo' },
+        { feature: 'Setup idő', kangaroo: '60+ perc (POS integráció)', spinix: '10 perc (QR nyomtatás)', winner: 'spinix' },
+        { feature: 'E-commerce támogatás', kangaroo: 'Teljes (Shopify, BigCommerce)', spinix: 'Nem (csak személyes)', winner: 'kangaroo' },
+        { feature: 'White-label app', kangaroo: 'Igen (magasabb szinten)', spinix: 'Nem', winner: 'kangaroo' },
+        { feature: 'Több helyszín', kangaroo: 'Igen - helyszínenként vagy egységes', spinix: 'Igen - helyszínenként', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Kangaroo Rewards árazás',
+      kangaroo: {
+        name: 'Kangaroo Rewards',
+        plans: [
+          { name: 'Starter', price: '$79/hó', features: ['Alap loyalty funkciók', 'Alap integráció', 'Pontok és jutalmak'] },
+          { name: 'Plus', price: 'Egyedi árajánlat', features: ['Haladó szegmentáció', 'White-label app', 'Több helyszín'] },
+          { name: 'Enterprise', price: 'Egyedi árajánlat', features: ['API hozzáférés', 'AI kampányok', 'Teljes testreszabás'] },
+        ],
+        note: 'POS integráció további setup költséggel járhat a szolgáltatótól függően.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/hó', features: ['1 spin wheel', 'QR + Wallet', 'Email automatizáció', 'Review generálás'] },
+          { name: 'Growth', price: '€59/hó', features: ['3 wheel', 'Prioritásos support', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan wheel', 'Több helyszín', 'WhatsApp integráció'] },
+        ],
+        note: 'Nincs POS szükség. Nincs setup díj. Wallet pass: $0.15/telepítés.',
+      },
+      annual: 'Első éves költség egy étteremre: Kangaroo $948+ vs SpiniX €348. A Kangaroo 2.7x drágább POS integrációs díjak nélkül is.',
+    },
+    details: {
+      title: 'SpiniX vs Kangaroo Rewards: hol nyer melyik',
+      sections: [
+        {
+          title: 'Kangaroo nyer: mély vásárlási adatok',
+          icon: 'chart',
+          content: 'A Kangaroo a POS-on keresztül pontosan tudja mit vett minden vendég, mennyit költött, mikor. Haladó szegmentáció: "$50+ költők az elmúlt 30 napban." SpiniX látogatásokat és elköteleződést mér, de nem egyedi vásárlásokat.',
+        },
+        {
+          title: 'Kangaroo nyer: referral és szintezett loyalty',
+          icon: 'users',
+          content: 'Beépített referral program és szintezett loyalty (Bronz, Ezüst, Arany). Erős magas-frekvenciás visszatérő vendégeknél. SpiniX azonnali jutalmakat ad minden látogatásnál - más pszichológia.',
+        },
+        {
+          title: 'SpiniX nyer: súrlódásmentes regisztráció',
+          icon: 'qr',
+          content: 'Kangaroo app letöltést vagy POS regisztrációt igényel. SpiniX: QR scan az asztalnál, email, pörgetés, nyeremény. 15 másodperc. Ezért ér el a QR loyalty 46%-os regisztrációt vs 12% app alapúnál.',
+        },
+        {
+          title: 'SpiniX nyer: gamifikáció minden telefonon',
+          icon: 'zap',
+          content: 'Kangaroo "Spin to Win"-je csak tableten működik a pultnál. SpiniX a vendég telefonjára hozza a spin wheelt QR-en keresztül - minden asztal, minden vendég, hardver nélkül.',
+        },
+        {
+          title: 'SpiniX nyer: automatikus Google review',
+          icon: 'star',
+          content: 'Nyerés után SpiniX opcionális Google review promptot mutat. 33% hagy véleményt. Kangaroo-nál nincs review generálás - külön szolgáltatás kellene ($50-200/hó).',
+        },
+        {
+          title: 'SpiniX nyer: nincs POS függőség',
+          icon: 'shield',
+          content: 'Kangaroo POS nélkül korlátozott. SpiniX bármilyen üzlettel működik POS-tól függetlenül - nyomtass QR-t, ragaszd az asztalra, kész.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'SpiniX vagy Kangaroo Rewards: melyiket válaszd?',
+      items: [
+        { situation: 'Shopify retail bolt e-commerce-szel', recommendation: 'Kangaroo', reason: 'Mély Shopify integráció és vásárlás követés indokolja a magasabb árat.' },
+        { situation: 'Étterem 10-50 asztallal, nincs specifikus POS', recommendation: 'SpiniX', reason: 'QR minden asztalnál. Nincs POS szükség. Review generálás beépítve.' },
+        { situation: 'Kávézó egyszerű loyalty + review-kat akar', recommendation: 'SpiniX', reason: 'Gyorsabb setup, alacsonyabb ár, gamifikáció magasabb elköteleződést hoz.' },
+        { situation: 'Több helyszínes retail lánc Lightspeed POS-szal', recommendation: 'Kangaroo', reason: 'POS integráció helyszínek között egységes vendégadatokkal.' },
+        { situation: 'Szálloda vagy spa vendég elköteleződést akar', recommendation: 'SpiniX', reason: 'QR egyszeri és visszatérő vendégeknél is működik. Nincs app akadály.' },
+        { situation: 'Budget $50/hó alatt', recommendation: 'SpiniX', reason: 'SpiniX €29-tól indul. Kangaroo $79-tól.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Kangaroo Rewards: GYIK',
+      items: [
+        {
+          q: 'Át tudok váltani Kangaroo-ról SpiniX-re?',
+          a: 'Igen. A SpiniX standalone, mindkettőt futtathatod átmeneti időszakban. Exportáld a vendég emaileket Kangaroo-ból és importáld SpiniX-be. A QR alapú regisztráció azonnal gyűjti az új vendégeket.',
+        },
+        {
+          q: 'Működik a Kangaroo POS nélkül?',
+          a: 'Technikailag igen, tableten vagy manuális bevitellel. De a Kangaroo erőssége a POS integráció. Nélküle elveszted a vásárlás követést, automatikus pont adást és checkout regisztrációt.',
+        },
+        {
+          q: 'Miért nincs SpiniX-ben referral program?',
+          a: 'A roadmapon van. Jelenleg a SpiniX helyszíni elköteleződésre fókuszál (QR scan az asztalnál). Ha a referral kritikus, Kangaroo vagy dedikált referral eszköz jobb.',
+        },
+        {
+          q: 'Melyiknek jobb az analitikája?',
+          a: 'Más erősségek. Kangaroo vásárlási szintű adatokat mutat. SpiniX elköteleződési adatokat (scan arány, email open rate, review konverzió, visszatérés). Hospitality-ban a SpiniX metrikák használhatóbbak.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Próbáld ki a SpiniX-et 14 napig ingyen',
+      subtitle: 'Nincs POS integráció szükség. Nincs app a vendégeidnek. 10 perc setup, eredmények ugyanazon a héten.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó olvasmányok',
+      posts: [
+        { title: 'Éttermi Loyalty App Nélkül', slug: '/blog/restaurant-loyalty-program-without-app' },
+        { title: 'Gamifikáció: Miért Veri a Spin a Pontokat', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Loyalty Független Éttermeknek', slug: '/blog/loyalty-program-independent-restaurant' },
+        { title: '5 Loyalty Program Hiba', slug: '/blog/restaurant-loyalty-program-mistakes' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="kangaroo-rewards" lang={lang} />

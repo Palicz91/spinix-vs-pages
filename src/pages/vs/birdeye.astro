@@ -1,0 +1,432 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Birdeye Alternative for Restaurants — Revix vs Birdeye (2026 Comparison)',
+      description: 'Birdeye starts at $299/month with a 12-month contract. Revix charges per reply ($0.29-$0.49) with no contract. Full feature and cost comparison for restaurant owners.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'Birdeye vs Revix',
+      subtitle: 'Birdeye is a multi-channel reputation platform built for mid-to-large businesses managing reviews across 200+ sites. Revix is an AI review reply engine for restaurants that only charges when it writes a response. If you\'re paying $299+/month for Birdeye but mainly use it for Google review replies, this page explains why that might be 10-30x more than you need to spend.',
+    },
+    tldr: {
+      title: 'Birdeye vs Revix: the short version',
+      birdeye: 'Birdeye is an all-in-one reputation platform: review monitoring across 200+ sites, review generation via SMS/email, AI responses, surveys, messaging inbox, social media management, listings sync, and webchat. Pricing starts at $299/month (Starter) up to $499/month (Dominate). 12-month contract required. Setup fees can reach $5,000-15,000 for multi-location rollouts. Built for dental chains, auto dealerships, healthcare groups, and multi-location brands.',
+      revix: 'Revix is an AI-powered Google review reply engine. Claude Sonnet writes each response using your restaurant\'s context (menu, tone, past reviews). Pay per reply: 99 Ft (~$0.29) for positive, 199 Ft (~$0.49) for negative reviews. A typical restaurant pays 3,000-10,000 Ft/month ($8-28). No contract, no setup fee. Connect your Google Business Profile in 10 minutes. Built for independent restaurants, cafes, and hotels.',
+      verdict: 'If you need multi-platform monitoring, survey tools, messaging, listings management, and social media from one dashboard, Birdeye is the broader tool. If your main need is high-quality AI replies to Google reviews at a fraction of the cost, Revix.',
+    },
+    context: {
+      title: 'Why restaurant owners search for a Birdeye alternative',
+      reasons: [
+        { title: 'Paying for features you don\'t use', detail: 'Birdeye bundles review monitoring, surveys, messaging, webchat, listings, and social media into one package. Most restaurant owners only need review monitoring and replies. You\'re paying $299+/month for a suite when you use 20% of it.' },
+        { title: '12-month contract with difficult exit', detail: 'Birdeye requires a 12-month annual contract and 90 days written cancellation notice. Multiple users report billing continued after they attempted to cancel. If you want to test review management first, that\'s a $3,588+ commitment before knowing if it works for you.' },
+        { title: 'Surprise fees at renewal', detail: 'Birdeye has been reported to add an "Innovation Fee" at renewal time — a price increase packaged as a feature upgrade. Setup fees for multi-location accounts can run $5,000-15,000. The sticker price is not always the final price.' },
+        { title: 'AI replies lack restaurant context', detail: 'Birdeye\'s AI responses are generic templates applied across industries (dental, auto, healthcare, restaurants). Revix is built for restaurants specifically — it knows your menu items, your tone, and writes replies that reference actual dishes and experiences.' },
+      ],
+    },
+    comparison: {
+      title: 'Birdeye vs Revix: feature comparison',
+      headers: ['', 'Birdeye', 'Revix'],
+      rows: [
+        { feature: 'Price', birdeye: '$299-499/mo (per location)', revix: '$8-28/mo typical (per reply)', winner: 'revix' },
+        { feature: 'Pricing model', birdeye: 'Flat monthly + annual contract', revix: 'Per reply (pay only when used)', winner: 'revix' },
+        { feature: 'Contract', birdeye: '12 months (90-day cancellation notice)', revix: 'None (disconnect anytime)', winner: 'revix' },
+        { feature: 'Setup fee', birdeye: '$0-15,000 (varies by location count)', revix: '$0', winner: 'revix' },
+        { feature: 'Review monitoring sites', birdeye: '200+ platforms', revix: 'Google only', winner: 'birdeye' },
+        { feature: 'AI review replies', birdeye: 'Yes (generic multi-industry)', revix: 'Yes (Claude Sonnet, restaurant-tuned)', winner: 'revix' },
+        { feature: 'Reply quality (AI model)', birdeye: 'Undisclosed model', revix: 'Claude Sonnet 4.6 with RAG context', winner: 'revix' },
+        { feature: 'Review generation (SMS/email)', birdeye: 'Yes (built-in campaigns)', revix: 'Via SpiniX spin wheel (33% rate)', winner: 'birdeye' },
+        { feature: 'Sentiment analysis', birdeye: 'Yes', revix: 'Yes (per-review + trends)', winner: 'tie' },
+        { feature: 'Competitor analysis', birdeye: 'Basic', revix: 'Yes (local cluster benchmarking)', winner: 'revix' },
+        { feature: 'Surveys', birdeye: 'Yes (NPS, CSAT, custom)', revix: 'No', winner: 'birdeye' },
+        { feature: 'Messaging inbox', birdeye: 'Yes (SMS, webchat, social DMs)', revix: 'No', winner: 'birdeye' },
+        { feature: 'Social media management', birdeye: 'Yes (post, schedule, monitor)', revix: 'No', winner: 'birdeye' },
+        { feature: 'Listings sync', birdeye: 'Yes (Google, Yelp, Facebook, 60+)', revix: 'No', winner: 'birdeye' },
+        { feature: 'Fake review appeal drafts', birdeye: 'No', revix: 'Yes (AI-generated with Google policy refs)', winner: 'revix' },
+        { feature: 'Guest profiling', birdeye: 'Basic CRM', revix: 'Yes (visit frequency, preferences, spend)', winner: 'revix' },
+        { feature: 'Onboarding time', birdeye: 'Days to weeks', revix: '10 minutes', winner: 'revix' },
+        { feature: 'Target market', birdeye: 'Multi-industry, multi-location', revix: 'Restaurants, cafes, hotels', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Birdeye vs Revix: which fits your business',
+      subtitle: 'The right tool depends on what you actually need, not which has more features on a checklist.',
+      tiers: [
+        {
+          title: 'Single restaurant or cafe',
+          description: '1 Google Business Profile, mainly needs review replies',
+          recommendation: 'Revix',
+          reason: 'Birdeye at $299/month is overkill for a single location that gets 15-40 reviews/month. You\'d pay $3,588/year for features designed for multi-location chains. Revix handles the same Google reviews for $96-336/year, with better AI reply quality tuned to restaurants.',
+          annual: '$96-336/year with Revix',
+        },
+        {
+          title: '2-10 restaurant locations',
+          description: 'Small group needing consistent review management',
+          recommendation: 'Revix',
+          reason: 'At this size, Birdeye would cost $3,588-5,988/year per location ($7,176-59,880/year total). Revix per-reply pricing scales linearly with actual review volume, not location count. A 5-location group typically pays $480-1,680/year total.',
+          annual: '$480-1,680/year with Revix',
+        },
+        {
+          title: '10-50 locations needing multi-platform',
+          description: 'Growing chain with Yelp, TripAdvisor, and social media needs',
+          recommendation: 'Birdeye or split approach',
+          reason: 'If you need Yelp + TripAdvisor monitoring, survey tools, messaging inbox, and social media management from one dashboard, Birdeye covers it. Alternatively, use Revix for Google replies ($2,000-8,000/year) plus dedicated tools for specific channels.',
+          annual: '$35,000-60,000/year with Birdeye',
+        },
+        {
+          title: '50+ locations, enterprise',
+          description: 'Healthcare, auto, or multi-brand operation',
+          recommendation: 'Birdeye',
+          reason: 'At this scale, the unified dashboard for 200+ review sites, automated survey campaigns, listings management, and enterprise reporting justifies the cost. Birdeye\'s infrastructure is built for this. Revix is restaurant-focused and not designed for 50+ location enterprise deployments.',
+          annual: '$180,000+/year with Birdeye',
+        },
+      ],
+    },
+    details: {
+      title: 'Birdeye vs Revix: where each wins',
+      sections: [
+        {
+          title: 'Birdeye wins: multi-platform review monitoring',
+          icon: 'globe',
+          content: 'Birdeye monitors reviews across 200+ sites: Google, Yelp, TripAdvisor, Facebook, Healthgrades, Cars.com, Zillow, and dozens more. If your business gets meaningful review volume on platforms beyond Google, Birdeye\'s unified inbox saves real time. Revix monitors Google only. For restaurants where 80-90% of reviews are on Google, that\'s usually enough. But if you\'re a hotel with significant TripAdvisor volume, that gap matters.',
+        },
+        {
+          title: 'Birdeye wins: surveys, messaging, and listings',
+          icon: 'building',
+          content: 'Birdeye is a full reputation suite: NPS surveys, CSAT surveys, webchat widget, SMS messaging, social media scheduling, and business listings sync across 60+ directories. If you need these tools and want them in one place, Birdeye consolidates well. Revix does not offer surveys, messaging, or listings — it focuses entirely on review intelligence and AI replies.',
+        },
+        {
+          title: 'Revix wins: AI reply quality for restaurants',
+          icon: 'star',
+          content: 'Birdeye\'s AI replies are designed for any industry — dental offices, car dealerships, plumbers, restaurants. The result is generic. Revix uses Claude Sonnet 4.6 with your restaurant\'s specific context: menu items, cuisine type, staff names, seasonal specials, and past review patterns. When a guest mentions "the truffle risotto was cold," Revix knows that dish, the typical preparation, and crafts a reply that references it specifically. Birdeye\'s AI would give a generic apology.',
+        },
+        {
+          title: 'Revix wins: per-reply pricing (50-100x cheaper)',
+          icon: 'zap',
+          content: 'A restaurant getting 25 Google reviews/month pays Birdeye $299/month ($11.96 per review monitored). With Revix, responding to those 25 reviews costs roughly 4,000 Ft ($11) total. That\'s 27x less. Even a busy restaurant with 80 reviews/month would pay about $23 on Revix vs $299 on Birdeye. You only pay when Revix actually writes a reply — no flat fee for months with low review volume.',
+        },
+        {
+          title: 'Revix wins: competitor benchmarking',
+          icon: 'chart',
+          content: 'Revix includes local cluster benchmarking: your restaurant\'s rating, review velocity, response rate, and sentiment compared to similar businesses within 20 km. This isn\'t a basic "your competitor has 4.3 stars" widget — it\'s a geo-aware scoring system that shows where you stand in your local market and what to improve. Birdeye offers basic competitor tracking but not at this level of local granularity.',
+        },
+        {
+          title: 'Revix wins: fake review defense',
+          icon: 'shield',
+          content: 'When a suspicious review appears, Revix generates an appeal draft citing specific Google review policies, with evidence points and suggested language for removal requests. This isn\'t a feature Birdeye includes. For restaurants that face review bombing or competitor-planted reviews, having an AI-generated appeal ready in minutes saves hours of research.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Birdeye vs Revix cost for a single restaurant',
+      subtitle: 'Annual comparison for a restaurant receiving 30 Google reviews per month.',
+      rows: [
+        { item: 'Monthly cost', birdeye: '$299 (Starter plan)', revix: '~$9-15 (per reply)' },
+        { item: 'Setup fee', birdeye: '$0-500 (single location)', revix: '$0' },
+        { item: 'Contract length', birdeye: '12 months required', revix: 'None' },
+        { item: 'First year total', birdeye: '$3,588-4,088', revix: '$108-180' },
+        { item: 'Cost per review responded', birdeye: '$9.97 (if responding to all 30)', revix: '$0.29-0.49' },
+        { item: 'Cancellation', birdeye: '90-day written notice', revix: 'Disconnect Google instantly' },
+        { item: 'Time to first AI reply', birdeye: 'Days (after onboarding)', revix: '10 minutes' },
+      ],
+      note: 'For a single restaurant, Birdeye costs 20-37x more than Revix annually. Birdeye includes features beyond review replies (surveys, messaging, listings), but if review management is your primary need, you\'re paying $3,400+/year for tools you won\'t use.',
+    },
+    scenarios: {
+      title: 'Revix or Birdeye: which should you choose?',
+      items: [
+        { situation: 'Single restaurant, Google is your main review platform', recommendation: 'Revix', reason: 'Per-reply pricing means you pay $8-28/month instead of $299. Better AI quality for restaurant-specific replies.' },
+        { situation: 'Restaurant group (2-10 locations)', recommendation: 'Revix', reason: 'Per-reply pricing scales with review volume, not location count. A 5-location group saves $15,000+/year vs Birdeye.' },
+        { situation: 'Need Yelp + TripAdvisor + Google monitoring', recommendation: 'Birdeye', reason: 'Revix is Google-only. If you get significant review volume on other platforms, Birdeye\'s multi-platform inbox matters.' },
+        { situation: 'Want survey tools (NPS, CSAT)', recommendation: 'Birdeye', reason: 'Revix does not offer surveys. Birdeye has built-in NPS, CSAT, and custom survey templates.' },
+        { situation: 'Priority is AI reply quality for food/hospitality', recommendation: 'Revix', reason: 'Claude Sonnet with restaurant context beats generic multi-industry AI. Replies reference actual dishes, experiences, and your tone.' },
+        { situation: 'Need messaging inbox (SMS, webchat)', recommendation: 'Birdeye', reason: 'Revix has no messaging features. Birdeye consolidates SMS, webchat, and social DMs.' },
+        { situation: 'Budget under $50/month', recommendation: 'Revix', reason: 'Birdeye starts at $299. Revix per-reply pricing fits any budget — you control spend by volume.' },
+        { situation: 'Got burned by long contract with another tool', recommendation: 'Revix', reason: 'No contract, no cancellation notice period. Disconnect your Google Business Profile and you\'re done.' },
+      ],
+    },
+    pricing: {
+      title: 'Birdeye pricing breakdown (2026)',
+      subtitle: 'Birdeye publishes tier names but not exact prices. These figures come from G2 reviews, Capterra reports, and business owner posts as of early 2026.',
+      tiers: [
+        { name: 'Starter ($299/mo per location)', range: '$299/mo', note: 'Review monitoring, AI responses, review generation. 12-month contract. Basic reporting.' },
+        { name: 'Growth ($399/mo per location)', range: '$399/mo', note: 'Adds surveys, webchat, referrals, and benchmarking. Popular tier for multi-location businesses.' },
+        { name: 'Dominate ($499/mo per location)', range: '$499/mo', note: 'Full suite: social media, listings sync, advanced analytics, competitor tracking. Enterprise features.' },
+      ],
+      hidden: [
+        'Setup fees: $0-500 for single location, $5,000-15,000 for multi-location rollouts',
+        '12-month annual contract required on all tiers',
+        '90-day written cancellation notice — miss it and you auto-renew',
+        '"Innovation Fee" reported at renewal (unannounced price increase)',
+        'Per-location pricing — 5 locations on Growth = $1,995/month',
+      ],
+      disclaimer: 'These prices are estimates from publicly available reviews and user reports as of early 2026. Birdeye pricing varies by location count, industry, and negotiation. Contact Birdeye directly for a current quote.',
+    },
+    faq: {
+      title: 'Birdeye vs Revix: FAQ',
+      items: [
+        {
+          q: 'How much does Birdeye cost per month?',
+          a: 'Birdeye starts at $299/month per location (Starter tier), $399/month (Growth), and $499/month (Dominate). All require a 12-month contract. Multi-location setups may incur $5,000-15,000 in setup fees. A single restaurant on the Starter plan pays $3,588/year minimum. Revix per-reply pricing for the same restaurant is typically $108-336/year.',
+        },
+        {
+          q: 'Can I use Birdeye just for review responses?',
+          a: 'Yes, but you\'d be paying $299+/month for a suite where review responses are one of many features. Birdeye doesn\'t offer a review-reply-only plan. If AI review replies are your primary need, Revix is purpose-built for that at a fraction of the cost. You\'d need 600+ reviews per month on Revix to match Birdeye\'s $299 price — most restaurants get 15-50.',
+        },
+        {
+          q: 'Does Revix monitor reviews on platforms other than Google?',
+          a: 'No. Revix monitors and responds to Google reviews only. For restaurants, Google typically accounts for 80-90% of review volume and has the highest impact on local search visibility. If you need Yelp, TripAdvisor, or Facebook review monitoring, Birdeye or a dedicated multi-platform tool would be needed alongside Revix.',
+        },
+        {
+          q: 'Is it hard to cancel Birdeye?',
+          a: 'Multiple users on G2 and Reddit report difficulty canceling. Birdeye requires 90 days written notice before your contract renewal date. If you miss that window, the contract auto-renews for another 12 months. Some users report billing continued even after submitting cancellation. Revix has no contract — disconnect your Google Business Profile and billing stops immediately.',
+        },
+        {
+          q: 'How does Revix AI reply quality compare to Birdeye?',
+          a: 'Revix uses Claude Sonnet 4.6 — one of the top large language models — with RAG (retrieval-augmented generation) that pulls your restaurant\'s specific context: menu items, cuisine style, past reviews, and your preferred tone. Birdeye\'s AI is designed for all industries (dental, auto, retail, restaurants) and produces more generic responses. For a restaurant review mentioning a specific dish, Revix will reference that dish by name; Birdeye\'s AI typically won\'t.',
+        },
+        {
+          q: 'What is Birdeye\'s "Innovation Fee"?',
+          a: 'Some Birdeye customers report an "Innovation Fee" added at contract renewal — essentially a price increase framed as a service upgrade. This is not disclosed upfront during initial sales. It\'s worth asking about during contract negotiation and getting written confirmation of renewal pricing.',
+        },
+        {
+          q: 'Can Revix handle 50+ locations?',
+          a: 'Revix works per Google Business Profile connection. Technically, you can connect 50+ locations. But Revix is optimized for 1-20 restaurant locations. At 50+ locations with multi-platform needs (Yelp, Facebook, TripAdvisor), a broader platform like Birdeye makes more sense for centralized management.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review replies without the enterprise price tag',
+      subtitle: 'Claude Sonnet quality replies tuned to your restaurant. Per-response pricing. No contract. Live in 10 minutes.',
+      button: 'Connect Your Google Reviews',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related comparisons',
+      posts: [
+        { title: 'SpiniX vs Paytronix', slug: '/vs/paytronix' },
+        { title: 'Google Review Rewards Policy Guide', slug: '/blog/rewards-for-google-reviews-policy' },
+        { title: 'Unanswered Google Reviews Cost You Revenue', slug: '/blog/unanswered-google-reviews-cost' },
+        { title: 'Google Reviews Drive Restaurant Revenue', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Birdeye Alternatíva Éttermeknek — Revix vs Birdeye (2026 Összehasonlítás)',
+      description: 'Birdeye $299/hó-tól indul 12 hónapos szerződéssel. Revix válaszonként számol ($0.29-$0.49) szerződés nélkül. Teljes funkció- és költség-összehasonlítás étterem tulajdonosoknak.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'Birdeye vs Revix',
+      subtitle: 'Birdeye multi-csatornás reputáció platform közepes-nagy vállalkozásoknak, 200+ oldalon figyeli a véleményeket. Revix egy AI review válasz motor éttermeknek, ami csak akkor számol fel díjat amikor válaszol. Ha $299+/hó-t fizetsz a Birdeye-nak de főleg Google review válaszokra használod, ez az oldal elmagyarázza miért lehet 10-30x több mint amennyire szükséged van.',
+    },
+    tldr: {
+      title: 'Birdeye vs Revix: röviden',
+      birdeye: 'Birdeye all-in-one reputáció platform: review figyelés 200+ oldalon, review generálás SMS/email-lel, AI válaszok, felmérések, üzenetkezelő, social media kezelés, listing szinkron és webchat. Árazás $299/hó-tól (Starter) $499/hó-ig (Dominate). 12 hónapos szerződés kötelező. Setup díj elérheti a $5,000-15,000-t multi-lokációs kiépítésnél. Fogorvosi láncoknak, autókereskedőknek, egészségügyi csoportoknak és multi-lokációs brandeknek épül.',
+      revix: 'Revix AI-vezérelt Google review válasz motor. Claude Sonnet írja a válaszokat az éttermen kontextusával (étlap, hangnem, korábbi vélemények). Válaszonkénti ár: 99 Ft pozitív, 199 Ft negatív review-kra. Tipikus étterem 3,000-10,000 Ft/hó-t fizet ($8-28). Nincs szerződés, nincs setup díj. Google Business Profile csatlakoztatás 10 perc. Független éttermeknek, kávézóknak és szállodáknak készült.',
+      verdict: 'Ha multi-platform figyelés, felmérések, üzenetkezelés, listing kezelés és social media kell egy dashboardról, Birdeye a szélesebb eszköz. Ha fő igényed minőségi AI válaszok Google review-kra a költség töredékéért, Revix.',
+    },
+    context: {
+      title: 'Miért keresnek étterem tulajdonosok Birdeye alternatívát',
+      reasons: [
+        { title: 'Nem használt funkciókért fizetsz', detail: 'Birdeye csomagban kínál review figyelést, felméréseket, üzenetkezelést, webchat-et, listing-eket és social médiát. A legtöbb étterem tulajdonosnak csak review figyelés és válaszok kellenek. $299+/hó-t fizetsz egy csomagért aminek 20%-át használod.' },
+        { title: '12 hónapos szerződés nehéz kilépéssel', detail: 'Birdeye 12 hónapos éves szerződést és 90 napos írásos felmondást követel. Több felhasználó jelzi hogy a számlázás folytatódott a lemondási kísérlet után. Ha először teszteled a review kezelést, ez $3,588+ elköteleződés mielőtt tudnád hogy működik-e neked.' },
+        { title: 'Meglepetés díjak megújításkor', detail: 'Birdeye felhasználók "Innovation Fee"-ről számolnak be megújításkor — áremelés funkció-frissítésnek csomagolva. Multi-lokációs fiókok setup díja elérheti a $5,000-15,000-t. A kiírt ár nem mindig a végső ár.' },
+        { title: 'AI válaszok nélkülözik az étterem kontextust', detail: 'Birdeye AI válaszai iparágak közötti generikus sablonok (fogorvos, autó, egészségügy, étterem). Revix kifejezetten éttermekre épül — ismeri az étlapodat, a hangnemet, és olyan válaszokat ír amik konkrét ételeket és élményeket hivatkoznak.' },
+      ],
+    },
+    comparison: {
+      title: 'Birdeye vs Revix: funkció összehasonlítás',
+      headers: ['', 'Birdeye', 'Revix'],
+      rows: [
+        { feature: 'Ár', birdeye: '$299-499/hó (lokációnként)', revix: '$8-28/hó tipikus (válaszonként)', winner: 'revix' },
+        { feature: 'Árazási modell', birdeye: 'Fix havi + éves szerződés', revix: 'Válaszonkénti (csak ha használod)', winner: 'revix' },
+        { feature: 'Szerződés', birdeye: '12 hónap (90 napos felmondás)', revix: 'Nincs (bármikor leválasztható)', winner: 'revix' },
+        { feature: 'Setup díj', birdeye: '$0-15,000 (lokáció számtól függ)', revix: '$0', winner: 'revix' },
+        { feature: 'Review figyelés oldalak', birdeye: '200+ platform', revix: 'Csak Google', winner: 'birdeye' },
+        { feature: 'AI review válaszok', birdeye: 'Igen (generikus, multi-iparág)', revix: 'Igen (Claude Sonnet, étterem-specifikus)', winner: 'revix' },
+        { feature: 'Válasz minőség (AI modell)', birdeye: 'Nem nyilvános modell', revix: 'Claude Sonnet 4.6 RAG kontextussal', winner: 'revix' },
+        { feature: 'Review generálás (SMS/email)', birdeye: 'Igen (beépített kampányok)', revix: 'SpiniX spin wheel-en keresztül (33%)', winner: 'birdeye' },
+        { feature: 'Sentiment analízis', birdeye: 'Igen', revix: 'Igen (review-nkénti + trendek)', winner: 'tie' },
+        { feature: 'Versenytárs elemzés', birdeye: 'Alapszintű', revix: 'Igen (helyi klaszter benchmarking)', winner: 'revix' },
+        { feature: 'Felmérések', birdeye: 'Igen (NPS, CSAT, egyedi)', revix: 'Nem', winner: 'birdeye' },
+        { feature: 'Üzenetkezelő', birdeye: 'Igen (SMS, webchat, social DM)', revix: 'Nem', winner: 'birdeye' },
+        { feature: 'Social media kezelés', birdeye: 'Igen (posztolás, ütemezés, figyelés)', revix: 'Nem', winner: 'birdeye' },
+        { feature: 'Listing szinkron', birdeye: 'Igen (Google, Yelp, Facebook, 60+)', revix: 'Nem', winner: 'birdeye' },
+        { feature: 'Hamis review fellebbezés', birdeye: 'Nem', revix: 'Igen (AI draft Google policy hivatkozásokkal)', winner: 'revix' },
+        { feature: 'Vendég profilozás', birdeye: 'Alapszintű CRM', revix: 'Igen (látogatási gyakoriság, preferenciák)', winner: 'revix' },
+        { feature: 'Onboarding idő', birdeye: 'Napok-hetek', revix: '10 perc', winner: 'revix' },
+        { feature: 'Célpiac', birdeye: 'Multi-iparág, multi-lokáció', revix: 'Éttermek, kávézók, szállodák', winner: 'context' },
+      ],
+    },
+    sizing: {
+      title: 'Birdeye vs Revix: melyik illik a vállalkozásodhoz',
+      subtitle: 'A jó eszköz attól függ amire tényleg szükséged van, nem attól melyiknek van több funkciója egy listán.',
+      tiers: [
+        {
+          title: 'Egyetlen étterem vagy kávézó',
+          description: '1 Google Business Profile, főleg review válaszok kellenek',
+          recommendation: 'Revix',
+          reason: 'Birdeye $299/hó túlzás egyetlen lokációnak ami havi 15-40 review-t kap. $3,588/évet fizetnél multi-lokációs láncoknak tervezett funkciókért. Revix ugyanazokat a Google review-kat kezeli évi $96-336-ért, jobb AI válasz minőséggel éttermekre hangolva.',
+          annual: '$96-336/év Revix-szel',
+        },
+        {
+          title: '2-10 étterem lokáció',
+          description: 'Kis csoport konzisztens review kezeléssel',
+          recommendation: 'Revix',
+          reason: 'Birdeye ezen a méreten $3,588-5,988/év lokációnként ($7,176-59,880/év összesen). Revix válaszonkénti árazása a tényleges review volumennel skálázódik, nem a lokáció számmal. 5 lokációs csoport tipikusan $480-1,680/évet fizet összesen.',
+          annual: '$480-1,680/év Revix-szel',
+        },
+        {
+          title: '10-50 lokáció multi-platform igénnyel',
+          description: 'Növekvő lánc Yelp, TripAdvisor és social media igénnyel',
+          recommendation: 'Birdeye vagy megosztott megközelítés',
+          reason: 'Ha Yelp + TripAdvisor + Google figyelés, felmérések, üzenetkezelő és social media kezelés kell egy dashboardról, Birdeye lefedi. Alternatívaként használj Revix-et Google válaszokra ($2,000-8,000/év) plusz dedikált eszközöket az egyes csatornákra.',
+          annual: '$35,000-60,000/év Birdeye-jal',
+        },
+        {
+          title: '50+ lokáció, enterprise',
+          description: 'Egészségügy, autó, vagy multi-brand működés',
+          recommendation: 'Birdeye',
+          reason: 'Ezen a skálán az egységes dashboard 200+ review oldalra, automatizált felmérési kampányok, listing kezelés és enterprise riporting indokolja a költséget. Birdeye infrastruktúrája erre van építve. Revix étterem-fókuszú és nem 50+ lokációs enterprise kiépítésekre tervezett.',
+          annual: '$180,000+/év Birdeye-jal',
+        },
+      ],
+    },
+    details: {
+      title: 'Birdeye vs Revix: hol nyer melyik',
+      sections: [
+        {
+          title: 'Birdeye nyer: multi-platform review figyelés',
+          icon: 'globe',
+          content: 'Birdeye 200+ oldalon figyeli a véleményeket: Google, Yelp, TripAdvisor, Facebook, Healthgrades, Cars.com, Zillow és tucatnyi más. Ha a vállalkozásod jelentős review volument kap Google-ön kívüli platformokon, Birdeye egységes postaládája valós időt spórol. Revix csak Google-t figyel. Éttermeknek ahol a review-k 80-90%-a Google-ön van, ez általában elég. De szállodáknál jelentős TripAdvisor volumennel ez a különbség számít.',
+        },
+        {
+          title: 'Birdeye nyer: felmérések, üzenetkezelés és listingek',
+          icon: 'building',
+          content: 'Birdeye teljes reputációs csomag: NPS felmérések, CSAT felmérések, webchat widget, SMS üzenetkezelés, social media ütemezés és listing szinkron 60+ könyvtárban. Ha kellenek ezek és egy helyen akarod, Birdeye jól konszolidálja. Revix nem kínál felméréseket, üzenetkezelést vagy listingeket — kizárólag review intelligenciára és AI válaszokra fókuszál.',
+        },
+        {
+          title: 'Revix nyer: AI válasz minőség éttermeknek',
+          icon: 'star',
+          content: 'Birdeye AI válaszai bármely iparágra vannak tervezve — fogorvosi rendelők, autókereskedők, vízszerelők, éttermek. Az eredmény generikus. Revix Claude Sonnet 4.6-ot használ az éttermed specifikus kontextusával: étlap elemek, konyha típus, személyzet nevek, szezonális ajánlatok és korábbi review minták. Amikor egy vendég megemlíti hogy "a szarvasgomba rizottó hideg volt", Revix ismeri az ételt, a tipikus elkészítést és olyan választ ír ami specifikusan hivatkozza. Birdeye AI-ja generikus bocsánatkérést adna.',
+        },
+        {
+          title: 'Revix nyer: válaszonkénti árazás (50-100x olcsóbb)',
+          icon: 'zap',
+          content: 'Havi 25 Google review-t kapó étterem Birdeye-nak $299/hó-t fizet ($11.96 review-nként). Revix-szel azokra a 25 review-ra válaszolni összesen kb. 4,000 Ft ($11). Az 27x kevesebb. Még egy forgalmas étterem 80 review/hó-val is kb. $23-at fizetne Revix-en vs $299 Birdeye-on. Csak akkor fizetsz amikor Revix tényleg ír egy választ — nincs fix díj alacsony review volumennél.',
+        },
+        {
+          title: 'Revix nyer: versenytárs benchmarking',
+          icon: 'chart',
+          content: 'Revix helyi klaszter benchmarkingot tartalmaz: az éttermed értékelése, review sebessége, válaszadási aránya és sentimentje összehasonlítva hasonló vállalkozásokkal 20 km-en belül. Ez nem egy egyszerű "a versenytársadnak 4.3 csillaga van" widget — geo-tudatos pontozási rendszer ami megmutatja hol állsz a helyi piacon és mit javíts. Birdeye alapszintű versenytárs-követést kínál de nem ilyen helyi részletességgel.',
+        },
+        {
+          title: 'Revix nyer: hamis review védelem',
+          icon: 'shield',
+          content: 'Gyanús review megjelenésekor Revix fellebbezés vázlatot generál specifikus Google review policy hivatkozásokkal, bizonyítékokkal és javasolt megfogalmazással az eltávolítási kérelemhez. Ez nem Birdeye funkció. Éttermeknek akik review bombázással vagy versenytárs által írt hamis véleményekkel szembesülnek, az AI-generált fellebbezés percek alatt kész — órákat spórol kutatásból.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Birdeye vs Revix költség egyetlen étteremre',
+      subtitle: 'Éves összehasonlítás havi 30 Google review-t kapó étteremre.',
+      rows: [
+        { item: 'Havi költség', birdeye: '$299 (Starter csomag)', revix: '~$9-15 (válaszonként)' },
+        { item: 'Setup díj', birdeye: '$0-500 (egy lokáció)', revix: '$0' },
+        { item: 'Szerződés hossz', birdeye: '12 hónap kötelező', revix: 'Nincs' },
+        { item: 'Első éves összköltség', birdeye: '$3,588-4,088', revix: '$108-180' },
+        { item: 'Költség review-nkénti válaszra', birdeye: '$9.97 (mind a 30-ra válaszolva)', revix: '$0.29-0.49' },
+        { item: 'Lemondás', birdeye: '90 napos írásos értesítés', revix: 'Google leválasztás azonnal' },
+        { item: 'Idő az első AI válaszig', birdeye: 'Napok (onboarding után)', revix: '10 perc' },
+      ],
+      note: 'Egyetlen étteremre Birdeye évente 20-37x drágább mint Revix. Birdeye review válaszokon túl is kínál funkciókat (felmérések, üzenetkezelés, listingek), de ha a review kezelés a fő igényed, $3,400+/évet fizetsz nem használt eszközökért.',
+    },
+    scenarios: {
+      title: 'Revix vagy Birdeye: melyiket válaszd?',
+      items: [
+        { situation: 'Egyetlen étterem, Google a fő review platform', recommendation: 'Revix', reason: 'Válaszonkénti árazás: $8-28/hó a $299 helyett. Jobb AI minőség étterem-specifikus válaszokhoz.' },
+        { situation: 'Étterem csoport (2-10 lokáció)', recommendation: 'Revix', reason: 'Válaszonkénti árazás review volumennel skálázódik, nem lokáció számmal. 5 lokációs csoport $15,000+/évet spórol vs Birdeye.' },
+        { situation: 'Yelp + TripAdvisor + Google figyelés kell', recommendation: 'Birdeye', reason: 'Revix csak Google. Ha más platformokon is jelentős review volumen van, Birdeye multi-platform postaládája számít.' },
+        { situation: 'Felmérés eszközök kellenek (NPS, CSAT)', recommendation: 'Birdeye', reason: 'Revix nem kínál felméréseket. Birdeye beépített NPS, CSAT és egyedi felmérés sablonokkal rendelkezik.' },
+        { situation: 'AI válasz minőség a prioritás éttermeknek', recommendation: 'Revix', reason: 'Claude Sonnet étterem kontextussal felülmúlja a generikus multi-iparág AI-t. Válaszok konkrét ételeket és élményeket hivatkoznak.' },
+        { situation: 'Üzenetkezelő inbox kell (SMS, webchat)', recommendation: 'Birdeye', reason: 'Revix nem rendelkezik üzenetkezelő funkcióval. Birdeye SMS-t, webchat-et és social DM-eket konszolidál.' },
+        { situation: 'Budget $50/hó alatt', recommendation: 'Revix', reason: 'Birdeye $299-tól indul. Revix válaszonkénti árazás bármely budgetbe belefér — te irányítod a költséget a volumennel.' },
+        { situation: 'Megégettél hosszú szerződéssel más eszköznél', recommendation: 'Revix', reason: 'Nincs szerződés, nincs felmondási idő. Leválasztod a Google Business Profile-t és a számlázás azonnal leáll.' },
+      ],
+    },
+    pricing: {
+      title: 'Birdeye árazás részletesen (2026)',
+      subtitle: 'Birdeye közzéteszi a csomag neveket de nem a pontos árakat. Ezek az adatok G2, Capterra és üzlettulajdonosi posztokból származnak, 2026 eleje.',
+      tiers: [
+        { name: 'Starter ($299/hó lokációnként)', range: '$299/hó', note: 'Review figyelés, AI válaszok, review generálás. 12 hónapos szerződés. Alapszintű riporting.' },
+        { name: 'Growth ($399/hó lokációnként)', range: '$399/hó', note: 'Plusz felmérések, webchat, ajánlások és benchmarking. Népszerű multi-lokációs csomag.' },
+        { name: 'Dominate ($499/hó lokációnként)', range: '$499/hó', note: 'Teljes csomag: social media, listing szinkron, haladó analitika, versenytárs-követés. Enterprise funkciók.' },
+      ],
+      hidden: [
+        'Setup díjak: $0-500 egy lokációra, $5,000-15,000 multi-lokációs kiépítésre',
+        '12 hónapos éves szerződés kötelező minden csomagnál',
+        '90 napos írásos felmondás — ha lekésed, automatikus megújítás',
+        '"Innovation Fee" megújításkor (be nem jelentett áremelés)',
+        'Lokációnkénti árazás — 5 lokáció Growth-on = $1,995/hó',
+      ],
+      disclaimer: 'Ezek becsült árak nyilvánosan elérhető review-kból és felhasználói beszámolókból, 2026 eleje. Birdeye árazás lokáció szám, iparág és alkupozíció szerint változik. Aktuális árajánlatért keresd közvetlenül a Birdeye-t.',
+    },
+    faq: {
+      title: 'Birdeye vs Revix: GYIK',
+      items: [
+        {
+          q: 'Mennyibe kerül a Birdeye havonta?',
+          a: 'Birdeye $299/hó-tól indul lokációnként (Starter), $399/hó (Growth) és $499/hó (Dominate). Mindhez 12 hónapos szerződés kell. Multi-lokációs setup $5,000-15,000 díjat vonhat. Egyetlen étterem a Starter csomagon minimum $3,588/évet fizet. Revix válaszonkénti árazása ugyanarra az étteremre tipikusan $108-336/év.',
+        },
+        {
+          q: 'Használhatom a Birdeye-t csak review válaszokra?',
+          a: 'Igen, de $299+/hó-t fizetnél egy csomagért ahol a review válaszok az egyik funkció a sokból. Birdeye nem kínál csak-review-válasz csomagot. Ha AI review válaszok a fő igényed, Revix erre van építve a költség töredékéért. Havi 600+ review kellene Revix-en hogy elérje Birdeye $299-es árát — a legtöbb étterem 15-50-et kap.',
+        },
+        {
+          q: 'A Revix figyel review-kat Google-ön kívüli platformokon?',
+          a: 'Nem. Revix csak Google review-kat figyel és válaszol. Éttermeknek a Google tipikusan a review volumen 80-90%-át teszi ki és a legnagyobb hatással van a helyi keresési láthatóságra. Ha Yelp, TripAdvisor vagy Facebook review figyelés kell, Birdeye vagy dedikált multi-platform eszköz kellene Revix mellé.',
+        },
+        {
+          q: 'Nehéz lemondani a Birdeye-t?',
+          a: 'Több G2 és Reddit felhasználó jelzi a lemondás nehézségét. Birdeye 90 napos írásos értesítést követel a szerződés megújulási dátuma előtt. Ha lekésed, a szerződés automatikusan megújul újabb 12 hónapra. Néhány felhasználó jelzi hogy a számlázás a lemondás benyújtása után is folytatódott. Revix-nek nincs szerződése — Google Business Profile leválasztásával a számlázás azonnal leáll.',
+        },
+        {
+          q: 'Hogyan viszonyul a Revix AI válasz minősége a Birdeye-hoz?',
+          a: 'Revix Claude Sonnet 4.6-ot használ — az egyik legjobb nagy nyelvi modellt — RAG-gel (retrieval-augmented generation) ami az éttermed specifikus kontextusát húzza: étlap elemek, konyha stílus, korábbi review-k és preferált hangnem. Birdeye AI-ja minden iparágra van tervezve (fogorvos, autó, kiskereskedelem, étterem) és generikusabb válaszokat ad. Étterem review-nál ami konkrét ételt említ, Revix név szerint hivatkozza; Birdeye AI tipikusan nem.',
+        },
+        {
+          q: 'Mi az a Birdeye "Innovation Fee"?',
+          a: 'Néhány Birdeye ügyfél "Innovation Fee"-ről számol be szerződés megújításkor — lényegében áremelés szolgáltatás-frissítésnek csomagolva. Ezt az értékesítés során nem közlik előre. Érdemes rákérdezni szerződés tárgyaláskor és írásos megerősítést kérni a megújítási árazásról.',
+        },
+        {
+          q: 'Revix kezel 50+ lokációt?',
+          a: 'Revix Google Business Profile kapcsolatonként működik. Technikailag 50+ lokáció csatlakoztatható. De Revix 1-20 étterem lokációra van optimalizálva. 50+ lokációnál multi-platform igénnyel (Yelp, Facebook, TripAdvisor) egy szélesebb platform mint Birdeye több értelmet ad a centralizált kezeléshez.',
+        },
+      ],
+    },
+    cta: {
+      title: 'AI review válaszok enterprise árcédula nélkül',
+      subtitle: 'Claude Sonnet minőségű válaszok az étteremedre hangolva. Válaszonkénti árazás. Nincs szerződés. 10 perc alatt él.',
+      button: 'Csatlakoztasd a Google Review-jaid',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó összehasonlítások',
+      posts: [
+        { title: 'SpiniX vs Paytronix', slug: '/vs/paytronix' },
+        { title: 'Google Review Jutalom Policy Útmutató', slug: '/blog/rewards-for-google-reviews-policy' },
+        { title: 'A Megválaszolatlan Google Értékelések Ára', slug: '/blog/unanswered-google-reviews-cost' },
+        { title: 'Google Értékelések és Éttermi Bevétel', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="birdeye" lang={lang} />

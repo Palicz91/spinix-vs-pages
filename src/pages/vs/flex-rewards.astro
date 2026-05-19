@@ -1,0 +1,236 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Flex Rewards vs SpiniX: Stamp Cards or Spin Wheel? (2026 Comparison)',
+      description: 'Flex Rewards offers stamp cards at $36/mo. SpiniX gamifies loyalty with spin wheels at €29/mo. Compare features, pricing, wallet support, and engagement data.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Flex Rewards',
+      subtitle: 'Both use QR codes. Both work without a POS. The core difference: Flex Rewards digitizes the stamp card mechanic with multi-card programs. SpiniX replaces stamps with a gamified spin wheel that includes review generation and email automation.',
+    },
+    tldr: {
+      title: 'SpiniX vs Flex Rewards: the short version',
+      competitor: 'Flex Rewards is a digital stamp card platform at $36/mo with all features included. Stamp cards (1-100 stamps), prepaid cards, membership cards, digital passports. QR enrollment, push + email notifications, unlimited members. Multi-location support ($14.50/extra venue). Free until 50th customer. Best for businesses wanting multiple card types with simple stamp mechanics.',
+      spinix: 'SpiniX replaces stamp mechanics with a spin wheel game. Every QR scan triggers a random reward. Built-in Google review generation (33% conversion), automated 6-email sequence, Apple/Google Wallet passes, and AI campaign builder. €29/mo. Best for hospitality businesses wanting gamified engagement plus automated marketing.',
+      verdict: 'Flex Rewards offers more card types (stamps, prepaid, membership, passports) at a comparable price. SpiniX offers fewer mechanics but higher engagement through gamification, plus review generation and email automation that Flex Rewards lacks.',
+    },
+    honesty: {
+      title: 'Being honest upfront',
+      content: 'Flex Rewards is free until your 50th customer — a genuine try-before-you-buy. SpiniX charges from day one (with a promotional first month). If you need multiple card programs (stamp card + membership card + prepaid), Flex Rewards handles that natively. SpiniX does one thing: gamified spin wheels.',
+    },
+    comparison: {
+      title: 'SpiniX vs Flex Rewards: feature comparison',
+      headers: ['', 'Flex Rewards', 'SpiniX'],
+      rows: [
+        { feature: 'Price', competitor: '$36/mo (all features)', spinix: '€29/mo', winner: 'spinix' },
+        { feature: 'Free tier', competitor: 'Free until 50 customers', spinix: '90% off first month', winner: 'competitor' },
+        { feature: 'POS required', competitor: 'No', spinix: 'No', winner: 'tie' },
+        { feature: 'Card/program types', competitor: 'Stamps, prepaid, membership, passport', spinix: 'Spin wheel only', winner: 'competitor' },
+        { feature: 'Apple/Google Wallet', competitor: 'Not mentioned', spinix: 'Yes (passes with push)', winner: 'spinix' },
+        { feature: 'QR enrollment', competitor: 'Yes (no app needed)', spinix: 'Yes (no app needed)', winner: 'tie' },
+        { feature: 'Push notifications', competitor: 'Unlimited', spinix: 'Via Wallet pass', winner: 'competitor' },
+        { feature: 'Email notifications', competitor: 'Unlimited', spinix: 'Automated 6-email sequence', winner: 'spinix' },
+        { feature: 'Core loyalty mechanic', competitor: 'Deterministic stamps (1-100)', spinix: 'Variable rewards (spin wheel)', winner: 'spinix' },
+        { feature: 'Gamification', competitor: 'No', spinix: 'Core mechanic on every scan', winner: 'spinix' },
+        { feature: 'Google review generation', competitor: 'No', spinix: '33% conversion rate', winner: 'spinix' },
+        { feature: 'Email marketing campaigns', competitor: 'Basic messages', spinix: 'AI campaign builder', winner: 'spinix' },
+        { feature: 'WhatsApp integration', competitor: 'No', spinix: 'Yes (SEA/UK markets)', winner: 'spinix' },
+        { feature: 'Multi-location', competitor: 'Yes ($14.50/extra venue)', spinix: 'Yes (Growth plan)', winner: 'tie' },
+        { feature: 'Welcome/birthday rewards', competitor: 'Yes (automated)', spinix: 'Yes (email sequence)', winner: 'tie' },
+        { feature: 'Survey rewards', competitor: 'Yes', spinix: 'No', winner: 'competitor' },
+        { feature: 'Referral program', competitor: 'Yes', spinix: 'No', winner: 'competitor' },
+        { feature: 'Analytics', competitor: 'Real-time reports', spinix: 'Dashboard + weekly digest', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Flex Rewards pricing',
+      competitor: {
+        name: 'Flex Rewards',
+        plans: [
+          { name: 'Flex Loyalty Plus+', price: '$36/mo', features: ['All features included', '2 card programs', 'Unlimited members', 'Push + email', 'QR codes', '24/7 support'] },
+        ],
+        extras: 'Extra card program: $10/mo. Extra venue: $14.50/mo. Free until 50th customer. 30-day free trial.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['Spin wheel', 'QR + Wallet', 'Email automation', 'Review generation', 'Analytics'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 wheels', 'Priority support', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited wheels', 'Multi-location', 'WhatsApp integration'] },
+        ],
+        extras: 'Wallet passes: $0.15 per install. No setup fees.',
+      },
+      analysis: {
+        title: 'Cost analysis over 12 months',
+        rows: [
+          { scenario: 'Single location, basic loyalty', competitor: '$432 ($36 × 12)', spinix: '€348 (€29 × 12)', verdict: 'SpiniX slightly cheaper with more features.' },
+          { scenario: 'Single location + review tool', competitor: '$432 + $600-2400 review tool', spinix: '€348 (reviews included)', verdict: 'SpiniX saves $684-2,484/year.' },
+          { scenario: '3 locations', competitor: '$780 ($36 + $29 × 12)', spinix: '€708 (€59 × 12)', verdict: 'Comparable. SpiniX includes reviews.' },
+        ],
+        note: 'Flex Rewards has a simpler pricing model (one plan, all features). SpiniX is slightly cheaper at base level and includes review generation that Flex Rewards doesn\'t offer.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Flex Rewards: where each wins',
+      sections: [
+        {
+          title: 'Flex Rewards wins: multiple card types',
+          icon: 'gift',
+          content: 'Flex Rewards supports stamp cards (1-100 stamps), prepaid cards, membership cards, and digital passports — all on one platform. You can run a coffee stamp card alongside a VIP membership program. SpiniX offers one mechanic: the spin wheel. If you need different loyalty programs for different customer segments, Flex Rewards has more variety.',
+        },
+        {
+          title: 'Flex Rewards wins: free until 50 customers',
+          icon: 'dollar',
+          content: 'Flex Rewards is genuinely free until your 50th customer signs up. No credit card, no time limit. For a new business testing whether digital loyalty works, this is risk-free validation. SpiniX offers a promotional first month but charges from the start.',
+        },
+        {
+          title: 'SpiniX wins: gamification drives engagement',
+          icon: 'zap',
+          content: 'Flex Rewards uses deterministic stamps: "collect X stamps, get Y reward." SpiniX uses variable ratio reinforcement: every scan produces a different, unknown reward. Variable rewards produce 3x more dopamine than predictable ones. 73% of stamp-based loyalty members go inactive before completing their card. SpiniX maintains 46% enrollment and 21% return within 14 days.',
+        },
+        {
+          title: 'SpiniX wins: Google review generation',
+          icon: 'star',
+          content: 'Flex Rewards doesn\'t include review management. SpiniX builds review prompting into the post-reward moment: guest spins, wins, gets asked for a review at peak positive emotion. 33% leave one. A standalone review tool costs $50-200/month. SpiniX includes it at €29/month total.',
+        },
+        {
+          title: 'SpiniX wins: Apple/Google Wallet passes',
+          icon: 'globe',
+          content: 'Flex Rewards doesn\'t mention Apple or Google Wallet integration — rewards live in-app or browser. SpiniX generates native Wallet passes that stay on the customer\'s phone with push notification capability. Wallet passes have no "download an app" friction and persist even after browser tabs close.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'Flex Rewards or SpiniX: which should you choose?',
+      items: [
+        { situation: 'Need multiple card types (stamps + membership)', recommendation: 'Flex Rewards', reason: 'Native support for stamps, prepaid, membership, and passports.' },
+        { situation: 'New business, want to test loyalty free', recommendation: 'Flex Rewards', reason: 'Free until 50 customers. Zero risk to try.' },
+        { situation: 'Restaurant wanting reviews + loyalty', recommendation: 'SpiniX', reason: '€29/mo includes both. Flex + review tool = $86-236/mo.' },
+        { situation: 'Want Apple/Google Wallet passes', recommendation: 'SpiniX', reason: 'Native Wallet pass generation. Flex Rewards doesn\'t offer Wallet.' },
+        { situation: 'Hotel or bar (one-time guests)', recommendation: 'SpiniX', reason: 'Instant rewards on first visit. Stamp cards need repeat visits to pay off.' },
+        { situation: 'Need survey-based rewards', recommendation: 'Flex Rewards', reason: 'Survey reward unlocking built-in. SpiniX doesn\'t have survey features.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Flex Rewards: FAQ',
+      items: [
+        {
+          q: 'Does Flex Rewards support Apple/Google Wallet?',
+          a: 'Based on available information, Flex Rewards doesn\'t mention Apple or Google Wallet integration. Rewards are managed through their app or browser interface. SpiniX generates native Wallet passes that stay on the customer\'s phone permanently.',
+        },
+        {
+          q: 'Can Flex Rewards generate Google reviews?',
+          a: 'No. Flex Rewards focuses on stamp cards, memberships, and digital loyalty programs. For Google review generation, you\'d need a separate tool. SpiniX includes review prompting with 33% conversion as a core feature.',
+        },
+        {
+          q: 'Is the free-until-50-customers offer real?',
+          a: 'Yes. Flex Rewards doesn\'t charge until your 50th customer signs up. Charities and non-profits may qualify for permanent free or discounted access. After the 50th customer, the $36/mo subscription starts.',
+        },
+        {
+          q: 'Which is better for a cafe?',
+          a: 'Depends on what matters more. For "buy 9, get 10th free" stamp card: Flex Rewards. For gamified engagement that produces Google reviews and builds an email list: SpiniX. Some cafes run both — stamp card for regulars, spin wheel for new guests.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Stamps or spins — which brings guests back?',
+      subtitle: 'Try SpiniX free for 14 days. Set up in 10 minutes. Compare engagement against stamp cards.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Digital Punch Card vs QR Loyalty Game', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: 'Why Spin Beats Points (Neuroscience)', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Cafe Loyalty Program Ideas', slug: '/blog/cafe-loyalty-program-ideas' },
+        { title: '5 Loyalty Program Mistakes', slug: '/blog/restaurant-loyalty-program-mistakes' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Flex Rewards vs SpiniX: pecsétkártya vagy szerencsekerék? (2026)',
+      description: 'Flex Rewards pecsétkártyák $36/hó. SpiniX gamifikált loyalty szerencsekerékkel €29/hó. Funkciók, árak, wallet támogatás és engagement adatok.',
+    },
+    hero: { badge: 'Összehasonlítás', title: 'SpiniX vs Flex Rewards', subtitle: 'Mindkettő QR-t használ, POS nélkül. A különbség: Flex Rewards digitalizálja a pecsétkártyát multi-card programokkal. SpiniX a pecséteket gamifikált spin wheel-re cseréli review generálással és email automatizációval.' },
+    tldr: {
+      title: 'SpiniX vs Flex Rewards: röviden',
+      competitor: 'Flex Rewards digitális pecsétkártya platform $36/hó, minden funkcióval. Pecsétkártyák (1-100 pecsét), előre fizetett kártyák, tagsági kártyák, digitális útlevelek. QR regisztráció, push + email, korlátlan tag. Multi-location ($14.50/extra helyszín). Ingyenes 50. vendégig.',
+      spinix: 'SpiniX a pecsét mechanikát spin wheel játékra cseréli. Minden QR scan véletlenszerű jutalmat ad. Beépített Google review generálás (33% konverzió), automatikus 6-email szekvencia, Apple/Google Wallet pass, AI kampány generátor. €29/hó.',
+      verdict: 'Flex Rewards több kártya típust kínál (pecsétek, előrefizetett, tagság, útlevél) hasonló áron. SpiniX kevesebb mechanikát kínál de magasabb elköteleződést gamifikációval, plusz review generálás és email automatizáció amit Flex nem tartalmaz.',
+    },
+    honesty: { title: 'Legyünk őszinték', content: 'Flex Rewards ingyenes az 50. vendégig — valódi kipróbálás vásárlás előtt. SpiniX az első naptól számít (promóciós első hónappal). Ha több kártya program kell (pecsétkártya + tagsági + előrefizetett), Flex Rewards ezt natívan kezeli.' },
+    comparison: {
+      title: 'SpiniX vs Flex Rewards: funkció összehasonlítás',
+      headers: ['', 'Flex Rewards', 'SpiniX'],
+      rows: [
+        { feature: 'Ár', competitor: '$36/hó (minden funkció)', spinix: '€29/hó', winner: 'spinix' },
+        { feature: 'Ingyenes szint', competitor: 'Ingyenes 50 vendégig', spinix: '90% az első hónapra', winner: 'competitor' },
+        { feature: 'POS szükséges', competitor: 'Nem', spinix: 'Nem', winner: 'tie' },
+        { feature: 'Kártya/program típusok', competitor: 'Pecsétek, előrefizetett, tagság, útlevél', spinix: 'Csak spin wheel', winner: 'competitor' },
+        { feature: 'Apple/Google Wallet', competitor: 'Nem említve', spinix: 'Igen (push-os pass)', winner: 'spinix' },
+        { feature: 'QR regisztráció', competitor: 'Igen (app nélkül)', spinix: 'Igen (app nélkül)', winner: 'tie' },
+        { feature: 'Push értesítések', competitor: 'Korlátlan', spinix: 'Wallet pass-on keresztül', winner: 'competitor' },
+        { feature: 'Email értesítések', competitor: 'Korlátlan', spinix: 'Automatikus 6-email szekvencia', winner: 'spinix' },
+        { feature: 'Alap loyalty mechanika', competitor: 'Determinisztikus pecsétek (1-100)', spinix: 'Változó jutalmak (spin wheel)', winner: 'spinix' },
+        { feature: 'Gamifikáció', competitor: 'Nincs', spinix: 'Alap mechanika minden scannél', winner: 'spinix' },
+        { feature: 'Google review generálás', competitor: 'Nincs', spinix: '33% konverzió', winner: 'spinix' },
+        { feature: 'Email marketing kampányok', competitor: 'Alap üzenetek', spinix: 'AI kampány generátor', winner: 'spinix' },
+        { feature: 'WhatsApp integráció', competitor: 'Nincs', spinix: 'Igen (SEA/UK)', winner: 'spinix' },
+        { feature: 'Multi-location', competitor: 'Igen ($14.50/extra)', spinix: 'Igen (Growth plan)', winner: 'tie' },
+        { feature: 'Üdvözlő/születésnapi jutalmak', competitor: 'Igen (automatikus)', spinix: 'Igen (email szekvencia)', winner: 'tie' },
+        { feature: 'Kérdőív jutalmak', competitor: 'Igen', spinix: 'Nincs', winner: 'competitor' },
+        { feature: 'Ajánló program', competitor: 'Igen', spinix: 'Nincs', winner: 'competitor' },
+        { feature: 'Analitika', competitor: 'Valós idejű riportok', spinix: 'Dashboard + heti digest', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Flex Rewards árazás',
+      competitor: { name: 'Flex Rewards', plans: [{ name: 'Flex Loyalty Plus+', price: '$36/hó', features: ['Minden funkció', '2 kártya program', 'Korlátlan tag', 'Push + email', 'QR kódok', '24/7 support'] }], extras: 'Extra kártya: $10/hó. Extra helyszín: $14.50/hó. Ingyenes 50. vendégig.' },
+      spinix: { name: 'SpiniX', plans: [{ name: 'Starter', price: '€29/hó', features: ['Spin wheel', 'QR + Wallet', 'Email automatizáció', 'Review generálás', 'Analitika'] }, { name: 'Growth', price: '€59/hó', features: ['3 kerék', 'Prioritás support', 'Haladó analitika'] }, { name: 'Pro', price: '€99/hó', features: ['Korlátlan kerék', 'Multi-location', 'WhatsApp'] }], extras: 'Wallet pass: $0.15/install. Nincs setup díj.' },
+      analysis: { title: 'Költségelemzés 12 hónapra', rows: [{ scenario: 'Egy helyszín, alap loyalty', competitor: '$432 ($36 × 12)', spinix: '€348 (€29 × 12)', verdict: 'SpiniX kicsit olcsóbb több funkcióval.' }, { scenario: 'Egy helyszín + review eszköz', competitor: '$432 + $600-2400 review tool', spinix: '€348 (review benne van)', verdict: 'SpiniX $684-2484-t spórol/év.' }, { scenario: '3 helyszín', competitor: '$780 ($36 + $29 × 12)', spinix: '€708 (€59 × 12)', verdict: 'Hasonló. SpiniX-ben review benne van.' }], note: 'Flex egyszerűbb árazás (egy plan, minden funkció). SpiniX kicsit olcsóbb alapszinten és tartalmaz review generálást.' },
+    },
+    details: {
+      title: 'SpiniX vs Flex Rewards: ki miben nyer',
+      sections: [
+        { title: 'Flex Rewards nyer: több kártya típus', icon: 'gift', content: 'Flex Rewards pecsétkártyákat (1-100 pecsét), előrefizetett kártyákat, tagsági kártyákat és digitális útleveleket támogat — mind egy platformon. SpiniX egy mechanikát kínál: a spin wheel-t. Ha különböző loyalty programok kellenek különböző vendégszegmensekhez, Flex-nek több választéka van.' },
+        { title: 'Flex Rewards nyer: ingyenes 50 vendégig', icon: 'dollar', content: 'Flex Rewards valóban ingyenes amíg az 50. vendéged regisztrál. Nincs bankkártya, nincs időlimit. Új üzletnek ami teszteli a digitális loyalty-t ez kockázatmentes validáció.' },
+        { title: 'SpiniX nyer: gamifikáció magasabb elköteleződést hoz', icon: 'zap', content: 'Flex determinisztikus pecséteket használ: "gyűjts X pecsétet, kapj Y jutalmat." SpiniX változó arány megerősítést: minden scan más jutalmat ad. A változó jutalmak 3x több dopamint termelnek. 73% a pecsét-alapú tagokból inaktív lesz. SpiniX 46% regisztrációt és 21% visszatérést tart.' },
+        { title: 'SpiniX nyer: Google review generálás', icon: 'star', content: 'Flex nem tartalmaz review kezelést. SpiniX a jutalom pillanatába építi a review kérést. 33% ír review-t. €29/hó összesen kevesebb mint Flex + külön review eszköz.' },
+        { title: 'SpiniX nyer: Apple/Google Wallet pass-ok', icon: 'globe', content: 'Flex Rewards nem említi az Apple vagy Google Wallet integrációt. SpiniX natív Wallet pass-okat generál amik a vendég telefonján maradnak push értesítési képességgel.' },
+      ],
+    },
+    scenarios: {
+      title: 'Flex Rewards vagy SpiniX: melyiket válaszd?',
+      items: [
+        { situation: 'Több kártya típus kell (pecsétek + tagság)', recommendation: 'Flex Rewards', reason: 'Natív támogatás pecsétekhez, előrefizetetthez, tagsághoz.' },
+        { situation: 'Új üzlet, ingyenesen tesztelné a loyalty-t', recommendation: 'Flex Rewards', reason: 'Ingyenes 50 vendégig. Nulla kockázat.' },
+        { situation: 'Étterem reviewk + loyalty egy helyen', recommendation: 'SpiniX', reason: '€29/hó mindkettőt fedi. Flex + review eszköz = $86-236/hó.' },
+        { situation: 'Apple/Google Wallet pass kell', recommendation: 'SpiniX', reason: 'Natív Wallet pass generálás. Flex nem kínálja.' },
+        { situation: 'Szálloda vagy bár (egyszeri vendégek)', recommendation: 'SpiniX', reason: 'Azonnali jutalmak az első látogatásnál.' },
+        { situation: 'Kérdőív alapú jutalmak kellenek', recommendation: 'Flex Rewards', reason: 'Kérdőív jutalom feloldás beépítve.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Flex Rewards: GYIK',
+      items: [
+        { q: 'Támogatja a Flex Rewards az Apple/Google Wallet-et?', a: 'Az elérhető információk alapján nem. A jutalmak app-on vagy böngészőn keresztül kezelhetők. SpiniX natív Wallet pass-okat generál amik a vendég telefonján maradnak.' },
+        { q: 'Tud a Flex Rewards Google review-kat generálni?', a: 'Nem. Flex pecsétkártyákra és tagsági programokra fókuszál. SpiniX 33% konverzióval tartalmazza a review generálást alapfunkcióként.' },
+        { q: 'Valódi az ingyenes-50-vendégig ajánlat?', a: 'Igen. Flex nem számít díjat az 50. vendégig. Jótékonysági szervezetek és non-profitok állandó ingyenes vagy kedvezményes hozzáférést kaphatnak.' },
+        { q: 'Melyik jobb kávézónak?', a: 'Attól függ mi számít jobban. "Vegyél 9-et, a 10. ingyen" pecsétkártya: Flex. Gamifikált elköteleződés ami Google review-kat és email listát épít: SpiniX.' },
+      ],
+    },
+    cta: { title: 'Pecsétek vagy pörgetés — melyik hozza vissza a vendégeket?', subtitle: 'Próbáld ki a SpiniX-et 14 napig ingyen. 10 perc setup. Hasonlítsd össze a pecsétkártyákkal.', button: 'Próbáld Ki — 90% Az Első Hónapra', secondary: 'Árazás' },
+    related: { title: 'Kapcsolódó olvasmányok', posts: [{ title: 'Digitális Pecsétgyűjtő vs QR Loyalty Játék', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' }, { title: 'Miért Veri a Spin a Pontokat', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' }, { title: 'Kávézó Loyalty Program Ötletek', slug: '/blog/cafe-loyalty-program-ideas' }, { title: '5 Loyalty Program Hiba', slug: '/blog/restaurant-loyalty-program-mistakes' }] },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="flex-rewards" lang={lang} />

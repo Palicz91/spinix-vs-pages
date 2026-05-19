@@ -1,0 +1,308 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Como Sense vs SpiniX: Enterprise Loyalty or Gamified Rewards? (2026)',
+      description: 'Como Sense starts at $59/mo and requires POS integration. SpiniX starts at €29/mo with no POS needed. Side-by-side: features, pricing, setup complexity, and engagement data.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Como Sense',
+      subtitle: 'Different weight classes. Como Sense is an enterprise-grade engagement platform for multi-location chains with POS integration. SpiniX is a gamified loyalty tool for independent restaurants and small chains that works without any POS.',
+    },
+    tldr: {
+      title: 'SpiniX vs Como: the short version',
+      como: 'Como Sense is a data-driven customer engagement platform for F&B and retail chains. Branded mobile app, AI-powered campaigns, points/stamps/cashback, scratch cards. Requires POS integration (Revel, MICROS, PAR). Pricing starts at $59/mo with custom quotes. Best for multi-location chains that already have a POS ecosystem.',
+      spinix: 'SpiniX replaces loyalty card mechanics with a spin wheel game. QR scan, instant reward, Apple/Google Wallet pass, automated email sequence, built-in Google review generation. €29/mo. No POS required. Best for independent restaurants and small hospitality businesses wanting high engagement without IT complexity.',
+      verdict: 'If you operate 5+ locations with a POS system and need enterprise CRM with AI segmentation, Como is built for that. If you want something running in 10 minutes with gamified engagement and review generation, SpiniX is the faster path.',
+    },
+    honesty: {
+      title: 'Being honest upfront',
+      content: 'Como is a bigger platform with deeper analytics and AI-powered segmentation. SpiniX does not compete on CRM depth or multi-chain orchestration. This comparison is relevant for restaurant owners evaluating whether they need enterprise-grade tools or whether a simpler, gamified approach produces better results per dollar.',
+    },
+    comparison: {
+      title: 'SpiniX vs Como: feature comparison',
+      headers: ['', 'Como Sense', 'SpiniX'],
+      rows: [
+        { feature: 'Starting price', como: '$59/mo (custom quotes)', spinix: '€29/mo', winner: 'spinix' },
+        { feature: 'Setup time', como: 'Days-weeks (POS integration)', spinix: '10 minutes', winner: 'spinix' },
+        { feature: 'POS required', como: 'Yes (Revel, MICROS, PAR)', spinix: 'No', winner: 'spinix' },
+        { feature: 'Branded mobile app', como: 'Yes (included)', spinix: 'No (Wallet pass instead)', winner: 'como' },
+        { feature: 'Apple/Google Wallet', como: 'Yes', spinix: 'Yes', winner: 'tie' },
+        { feature: 'AI-powered campaigns', como: 'Yes (proprietary AI)', spinix: 'AI campaign builder', winner: 'como' },
+        { feature: 'Customer segmentation', como: 'Advanced (AI-driven)', spinix: 'Basic (opt-in, inactive)', winner: 'como' },
+        { feature: 'Loyalty mechanics', como: 'Points, stamps, cashback, scratch cards', spinix: 'Spin wheel (variable rewards)', winner: 'como' },
+        { feature: 'Gamification', como: 'Scratch cards (add-on)', spinix: 'Core mechanic on every scan', winner: 'spinix' },
+        { feature: 'Google review generation', como: 'Not included', spinix: '33% conversion rate', winner: 'spinix' },
+        { feature: 'Automated email sequence', como: 'Campaign-based (manual setup)', spinix: '6-email automated flow', winner: 'spinix' },
+        { feature: 'WhatsApp integration', como: 'No', spinix: 'Yes (SEA/UK markets)', winner: 'spinix' },
+        { feature: 'Multi-location', como: 'Yes (core strength)', spinix: 'Yes (Growth plan)', winner: 'como' },
+        { feature: 'QR-based enrollment', como: 'Via app download', spinix: 'Direct scan, no app needed', winner: 'spinix' },
+        { feature: 'Analytics depth', como: 'Enterprise-grade', spinix: 'Dashboard + weekly digest', winner: 'como' },
+        { feature: 'Contract', como: 'Annual (typically)', spinix: 'Month-to-month', winner: 'spinix' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Como pricing',
+      como: {
+        name: 'Como Sense',
+        plans: [
+          { name: 'Standard', price: 'From $59/mo', features: ['Custom quote required', 'POS integration setup', 'Branded app', 'Points + stamps + cashback'] },
+          { name: 'Enterprise', price: 'Custom', features: ['Multi-location dashboard', 'AI segmentation', 'Dedicated support', 'API access'] },
+        ],
+        extras: 'Setup fees vary. Annual contracts typical. Up to 50% off setup fees sometimes available.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['Spin wheel', 'QR + Wallet', 'Email automation', 'Review generation', 'Analytics dashboard'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 wheels', 'Priority support', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited wheels', 'Multi-location', 'WhatsApp integration'] },
+        ],
+        extras: 'Wallet passes: $0.15 per install. No setup fees. No annual contract.',
+      },
+      analysis: {
+        title: 'Cost analysis over 12 months',
+        rows: [
+          { scenario: 'Single restaurant', como: '~$708+ ($59 × 12)', spinix: '€348 (€29 × 12)', verdict: 'SpiniX saves ~$400/year with reviews included.' },
+          { scenario: 'Single location + review tool', como: '$708 + $600-2400 review tool', spinix: '€348 (reviews included)', verdict: 'SpiniX saves $960-2,760/year.' },
+          { scenario: '5 locations, enterprise needs', como: 'Custom ($200-500/mo est.)', spinix: '€99/mo ($1,188/year)', verdict: 'Como has better multi-chain tools at this scale.' },
+        ],
+        note: 'Como\'s pricing is not public. Estimates based on Capterra ($59/mo starting) and industry reports. Actual quotes may differ significantly based on features and locations.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Como: where each wins',
+      sections: [
+        {
+          title: 'Como wins: enterprise CRM and AI segmentation',
+          icon: 'star',
+          content: 'Como\'s proprietary AI analyzes customer behavior to predict spending patterns and automate targeted campaigns. You can segment by visit frequency, average spend, last visit date, and dozens of other attributes. For a 10-location chain running differentiated campaigns per location, this depth matters. SpiniX offers basic segmentation (opted-in, inactive, redeemed) but nothing close to AI-driven behavior prediction.',
+        },
+        {
+          title: 'Como wins: branded mobile app',
+          icon: 'globe',
+          content: 'Como includes a fully branded mobile app with your restaurant\'s name in the app store. Push notifications, digital menu, loyalty card, and ordering — all under your brand. SpiniX uses Apple/Google Wallet passes instead of an app. The trade-off: apps require download (friction), Wallet passes don\'t. Average restaurant app has 30-day retention of 25%. Wallet passes stay on the phone indefinitely.',
+        },
+        {
+          title: 'SpiniX wins: zero POS dependency',
+          icon: 'zap',
+          content: 'Como requires POS integration with Revel, MICROS, PAR, or ICRTouch. If your restaurant uses a different POS — or no POS — Como doesn\'t work. Setup takes days to weeks. SpiniX works with any setup: print a QR code, guests scan, done. Running in 10 minutes. This matters for independent restaurants where POS migration isn\'t an option.',
+        },
+        {
+          title: 'SpiniX wins: built-in Google review generation',
+          icon: 'star',
+          content: 'Como doesn\'t include review management. For Google reviews, you need a separate tool ($50-200/month). SpiniX builds review prompting into the reward moment — guests spin, win, feel good, get asked for a review. 33% leave one. The timing is everything. At €29/month total (loyalty + reviews), SpiniX costs less than most standalone review tools.',
+        },
+        {
+          title: 'SpiniX wins: gamification as core mechanic',
+          icon: 'zap',
+          content: 'Como offers scratch cards as an add-on gamification feature. SpiniX makes gamification the entire experience. Every QR scan triggers a spin wheel — variable rewards, unpredictable outcomes, dopamine-driven engagement. The difference: Como adds gamification on top. SpiniX builds from gamification up.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'Como or SpiniX: which should you choose?',
+      items: [
+        { situation: '5+ locations with POS ecosystem', recommendation: 'Como', reason: 'Enterprise CRM, multi-location dashboard, and AI segmentation justify the cost at scale.' },
+        { situation: 'Independent restaurant, no POS loyalty', recommendation: 'SpiniX', reason: 'Running in 10 minutes, no integration needed. €29/mo includes reviews.' },
+        { situation: 'Need a branded app in app stores', recommendation: 'Como', reason: 'SpiniX uses Wallet passes, not a standalone app.' },
+        { situation: 'Want reviews + loyalty in one tool', recommendation: 'SpiniX', reason: '€29/mo covers both. Como + review tool = $109-259/mo.' },
+        { situation: 'Tight budget, need results fast', recommendation: 'SpiniX', reason: 'Half the cost, no setup fees, no POS requirement, no annual contract.' },
+        { situation: 'Hotel or tourist restaurant (one-time guests)', recommendation: 'SpiniX', reason: 'Instant spin rewards work for first-time visitors. Points/stamps need repeat visits to deliver value.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Como: FAQ',
+      items: [
+        {
+          q: 'Can Como work without a POS?',
+          a: 'Como is designed around POS integration. Without a compatible POS (Revel, MICROS, PAR, ICRTouch), you lose automatic transaction tracking — the foundation of their loyalty mechanics. You\'d be paying enterprise prices for a platform that can\'t track what customers buy.',
+        },
+        {
+          q: 'Does Como offer review generation?',
+          a: 'No. Como focuses on loyalty, CRM, and marketing automation. For Google review management, you\'d need a separate tool. SpiniX includes review generation with 33% conversion as a core feature.',
+        },
+        {
+          q: 'Is Como worth the price for a single restaurant?',
+          a: 'Probably not. Como\'s strengths — AI segmentation, multi-location orchestration, branded app — deliver the most value at scale (5+ locations). A single restaurant paying $59+/mo for Como gets analytics depth but misses the review generation and gamification that SpiniX offers at half the price.',
+        },
+        {
+          q: 'Can SpiniX replace Como for a growing chain?',
+          a: 'SpiniX\'s Pro plan supports multiple locations and wheels. For 2-5 locations, it works well. Beyond 10 locations with complex campaign needs across different demographics, Como\'s enterprise tools become more relevant.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Enterprise features or instant results?',
+      subtitle: 'Try SpiniX free for 14 days. Set up in 10 minutes. No POS required. See gamified engagement in action.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Why Spin Beats Points (Neuroscience)', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Loyalty for Independent Restaurants', slug: '/blog/loyalty-program-independent-restaurant' },
+        { title: '5 Loyalty Program Mistakes', slug: '/blog/restaurant-loyalty-program-mistakes' },
+        { title: 'The Real Cost of Loyalty Software', slug: '/blog/physical-vs-digital-loyalty-cards' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Como Sense vs SpiniX: vállalati loyalty vagy gamifikált jutalmak? (2026)',
+      description: 'Como Sense $59/hó-tól, POS integráció szükséges. SpiniX €29/hó, POS nélkül. Funkciók, árak, setup komplexitás és engagement adatok.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs Como Sense',
+      subtitle: 'Más súlycsoport. Como Sense vállalati szintű engagement platform multi-location láncoknak POS integrációval. SpiniX gamifikált loyalty eszköz független éttermeknek és kis láncoknak, POS nélkül.',
+    },
+    tldr: {
+      title: 'SpiniX vs Como: röviden',
+      como: 'Como Sense adat-vezérelt ügyfél-engagement platform F&B és retail láncoknak. Brandelt mobil app, AI kampányok, pontok/pecsétek/cashback, scratch cards. POS integráció szükséges (Revel, MICROS, PAR). Ár $59/hó-tól egyedi árajánlattal. Legjobb: multi-location láncoknak meglévő POS ökoszisztémával.',
+      spinix: 'SpiniX a loyalty kártya mechanikát spin wheel játékra cseréli. QR scan, azonnali jutalom, Apple/Google Wallet pass, automatikus email szekvencia, beépített Google review generálás. €29/hó. POS nem szükséges. Legjobb: független éttermeknek és kis hospitality üzleteknek.',
+      verdict: 'Ha 5+ helyszíned van POS rendszerrel és vállalati CRM kell AI szegmentálással, a Como erre épült. Ha 10 perc alatt működő gamifikált engagement és review generálás kell, SpiniX a gyorsabb út.',
+    },
+    honesty: {
+      title: 'Legyünk őszinték',
+      content: 'Como nagyobb platform mélyebb analitikával és AI szegmentálással. SpiniX nem versenyez CRM mélységben vagy multi-chain orchestrációban. Ez az összehasonlítás azoknak szól akik mérlegelik hogy vállalati eszközökre van-e szükségük, vagy az egyszerűbb, gamifikált megközelítés jobb eredményt hoz forintonként.',
+    },
+    comparison: {
+      title: 'SpiniX vs Como: funkció összehasonlítás',
+      headers: ['', 'Como Sense', 'SpiniX'],
+      rows: [
+        { feature: 'Kezdő ár', como: '$59/hó (egyedi árajánlat)', spinix: '€29/hó', winner: 'spinix' },
+        { feature: 'Setup idő', como: 'Napok-hetek (POS integráció)', spinix: '10 perc', winner: 'spinix' },
+        { feature: 'POS szükséges', como: 'Igen (Revel, MICROS, PAR)', spinix: 'Nem', winner: 'spinix' },
+        { feature: 'Brandelt mobil app', como: 'Igen (benne van)', spinix: 'Nem (Wallet pass helyette)', winner: 'como' },
+        { feature: 'Apple/Google Wallet', como: 'Igen', spinix: 'Igen', winner: 'tie' },
+        { feature: 'AI kampányok', como: 'Igen (saját AI)', spinix: 'AI kampány generátor', winner: 'como' },
+        { feature: 'Ügyfél szegmentálás', como: 'Haladó (AI-vezérelt)', spinix: 'Alap (opt-in, inaktív)', winner: 'como' },
+        { feature: 'Loyalty mechanikák', como: 'Pontok, pecsétek, cashback, scratch cards', spinix: 'Spin wheel (változó jutalmak)', winner: 'como' },
+        { feature: 'Gamifikáció', como: 'Scratch cards (kiegészítő)', spinix: 'Alap mechanika minden scannél', winner: 'spinix' },
+        { feature: 'Google review generálás', como: 'Nincs benne', spinix: '33% konverzió', winner: 'spinix' },
+        { feature: 'Automatikus email', como: 'Kampány alapú (manuális)', spinix: '6-email automatikus flow', winner: 'spinix' },
+        { feature: 'WhatsApp integráció', como: 'Nincs', spinix: 'Igen (SEA/UK)', winner: 'spinix' },
+        { feature: 'Multi-location', como: 'Igen (fő erősség)', spinix: 'Igen (Growth plan)', winner: 'como' },
+        { feature: 'QR regisztráció', como: 'App letöltésen keresztül', spinix: 'Közvetlen scan, app nélkül', winner: 'spinix' },
+        { feature: 'Analitika mélység', como: 'Vállalati szintű', spinix: 'Dashboard + heti digest', winner: 'como' },
+        { feature: 'Szerződés', como: 'Éves (jellemzően)', spinix: 'Havi bontás', winner: 'spinix' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Como árazás',
+      como: {
+        name: 'Como Sense',
+        plans: [
+          { name: 'Standard', price: '$59/hó-tól', features: ['Egyedi árajánlat szükséges', 'POS integráció setup', 'Brandelt app', 'Pontok + pecsétek + cashback'] },
+          { name: 'Enterprise', price: 'Egyedi', features: ['Multi-location dashboard', 'AI szegmentálás', 'Dedikált support', 'API hozzáférés'] },
+        ],
+        extras: 'Setup díjak változnak. Éves szerződés jellemző.',
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/hó', features: ['Spin wheel', 'QR + Wallet', 'Email automatizáció', 'Review generálás', 'Analytics dashboard'] },
+          { name: 'Growth', price: '€59/hó', features: ['3 kerék', 'Prioritás support', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan kerék', 'Multi-location', 'WhatsApp integráció'] },
+        ],
+        extras: 'Wallet pass: $0.15/install. Nincs setup díj. Nincs éves kötöttség.',
+      },
+      analysis: {
+        title: 'Költségelemzés 12 hónapra',
+        rows: [
+          { scenario: 'Egy étterem', como: '~$708+ ($59 × 12)', spinix: '€348 (€29 × 12)', verdict: 'SpiniX ~$400-t spórol reviewkkal együtt.' },
+          { scenario: 'Egy helyszín + review eszköz', como: '$708 + $600-2400 review tool', spinix: '€348 (review benne van)', verdict: 'SpiniX $960-2760-t spórol/év.' },
+          { scenario: '5 helyszín, vállalati igények', como: 'Egyedi ($200-500/hó becs.)', spinix: '€99/hó (€1188/év)', verdict: 'Como-nak jobb multi-chain eszközei vannak ezen a szinten.' },
+        ],
+        note: 'Como árazás nem nyilvános. Becslés Capterra ($59/hó induló) és iparági riportok alapján.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Como: ki miben nyer',
+      sections: [
+        {
+          title: 'Como nyer: vállalati CRM és AI szegmentálás',
+          icon: 'star',
+          content: 'Como saját AI-ja elemzi az ügyfelek viselkedését, megjósolja a költési mintákat és automatizálja a célzott kampányokat. Szegmentálhatsz látogatási gyakoriság, átlagos költés, utolsó látogatás dátuma és tucatnyi más attribútum alapján. SpiniX alap szegmentálást kínál (opt-in, inaktív, beváltott) de semmi AI-vezérelt viselkedés-predikciót.',
+        },
+        {
+          title: 'Como nyer: brandelt mobil app',
+          icon: 'globe',
+          content: 'Como tartalmaz egy brandelt mobil appot a te étttermed nevével az app store-ban. Push értesítések, digitális menü, loyalty kártya, rendelés — mind a te márkád alatt. SpiniX Apple/Google Wallet pass-t használ app helyett. A trade-off: az appokat le kell tölteni (súrlódás), a Wallet pass-okat nem.',
+        },
+        {
+          title: 'SpiniX nyer: nulla POS függőség',
+          icon: 'zap',
+          content: 'Como POS integrációt igényel Revel, MICROS, PAR vagy ICRTouch rendszerekkel. Ha az éttermed más POS-t használ — vagy nincs POS-od — a Como nem működik. A setup napokat-heteket vesz igénybe. SpiniX bármivel működik: nyomtass egy QR kódot, a vendégek scannelik, kész. 10 perc alatt fut.',
+        },
+        {
+          title: 'SpiniX nyer: beépített Google review generálás',
+          icon: 'star',
+          content: 'Como nem tartalmaz review kezelést. Google reviewkhoz külön eszköz kell ($50-200/hó). SpiniX a jutalom pillanatába építi a review kérést — a vendégek pörgetnek, nyernek, jól érzik magukat, review-t kérünk. 33% ír is egyet. €29/hó összesen (loyalty + reviewk) kevesebb mint a legtöbb önálló review eszköz.',
+        },
+        {
+          title: 'SpiniX nyer: gamifikáció mint alapmechanika',
+          icon: 'zap',
+          content: 'Como scratch cards-ot kínál kiegészítő gamifikációként. SpiniX az egész élményt gamifikációra építi. Minden QR scan spin wheel-t indít — változó jutalmak, kiszámíthatatlan eredmények, dopamin-vezérelt elköteleződés.',
+        },
+      ],
+    },
+    scenarios: {
+      title: 'Como vagy SpiniX: melyiket válaszd?',
+      items: [
+        { situation: '5+ helyszín POS ökoszisztémával', recommendation: 'Como', reason: 'Vállalati CRM, multi-location dashboard és AI szegmentálás megéri a költséget ezen a szinten.' },
+        { situation: 'Független étterem, nincs POS loyalty', recommendation: 'SpiniX', reason: '10 perc alatt fut, nem kell integráció. €29/hó reviewkkal együtt.' },
+        { situation: 'Brandelt app kell az app store-ba', recommendation: 'Como', reason: 'SpiniX Wallet pass-t használ, nem önálló appot.' },
+        { situation: 'Reviewk + loyalty egy eszközben', recommendation: 'SpiniX', reason: '€29/hó mindkettőt fedi. Como + review eszköz = $109-259/hó.' },
+        { situation: 'Szoros budget, gyors eredmények', recommendation: 'SpiniX', reason: 'Fél ár, nincs setup díj, nincs POS követelmény, nincs éves kötöttség.' },
+        { situation: 'Szálloda vagy turista étterem', recommendation: 'SpiniX', reason: 'Azonnali spin jutalmak működnek egyszeri vendégeknél. Pontgyűjtés többszöri látogatást igényel.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Como: GYIK',
+      items: [
+        {
+          q: 'Működik a Como POS nélkül?',
+          a: 'Como POS integráció köré épült. Kompatibilis POS nélkül (Revel, MICROS, PAR, ICRTouch) elveszíted az automatikus tranzakció követést — a loyalty mechanikájuk alapját. Vállalati árat fizetnél egy platformért ami nem tudja követni mit vesznek az ügyfelek.',
+        },
+        {
+          q: 'Van review generálás a Como-ban?',
+          a: 'Nincs. Como loyalty-ra, CRM-re és marketing automatizálásra fókuszál. Google review kezeléshez külön eszköz kell. SpiniX 33% konverzióval tartalmazza a review generálást alapfunkcióként.',
+        },
+        {
+          q: 'Megéri a Como egy éttermnek?',
+          a: 'Valószínűleg nem. Como erősségei — AI szegmentálás, multi-location orchestráció, brandelt app — 5+ helyszínnél adják a legtöbb értéket. Egy étterem $59+/hó-ért mély analitikát kap de lemarad a review generálásról és gamifikációról amit SpiniX fél áron kínál.',
+        },
+        {
+          q: 'Helyettesítheti a SpiniX a Como-t egy növekvő láncnál?',
+          a: 'SpiniX Pro plan több helyszínt és kereket támogat. 2-5 helyszínre jól működik. 10+ helyszín felett komplex kampányigényekkel más demográfiák felé a Como vállalati eszközei relevánsabbá válnak.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Vállalati funkciók vagy azonnali eredmények?',
+      subtitle: 'Próbáld ki a SpiniX-et 14 napig ingyen. 10 perc setup. POS nem szükséges.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó olvasmányok',
+      posts: [
+        { title: 'Miért Veri a Spin a Pontokat (Idegtudomány)', slug: '/blog/gamification-restaurant-spin-wheel-vs-points' },
+        { title: 'Loyalty Független Éttermeknek', slug: '/blog/loyalty-program-independent-restaurant' },
+        { title: '5 Loyalty Program Hiba', slug: '/blog/restaurant-loyalty-program-mistakes' },
+        { title: 'Digitális vs Fizikai Loyalty Kártyák', slug: '/blog/physical-vs-digital-loyalty-cards' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="como-loyalty" lang={lang} />

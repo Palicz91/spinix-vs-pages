@@ -1,0 +1,370 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Toast Loyalty Pricing, Reviews, and a €29 Alternative (2026)',
+      description: 'Toast Loyalty costs $185/mo bundled and requires Toast POS ($69-165+/mo extra). SpiniX is €29/mo, works with any POS, adds gamification + review collection. Full feature comparison.',
+    },
+    hero: {
+      eyebrow: 'Comparison',
+      headline: 'SpiniX<br/>vs Toast Loyalty',
+      subline: 'One locks you into a 2-year POS contract. One works everywhere.<br/>Here\'s the honest breakdown.',
+    },
+    tldr: {
+      title: 'SpiniX vs Toast Loyalty: TL;DR',
+      spinix: '<strong>SpiniX:</strong> €29/mo flat. Gamified prize wheel, automated review collection, Apple/Google Wallet, email follow-ups. Works with any POS or none.',
+      toast: '<strong>Toast Loyalty:</strong> Part of Toast Marketing Essentials ($185/mo). Points-based system with deep POS integration. Requires Toast POS ($69-165+/mo). No review collection, no gamification.',
+      verdict: 'Toast Loyalty is strong if you\'re already locked into Toast POS. But you\'re paying $250+/mo minimum for loyalty + POS. SpiniX does more for €29/mo — with no lock-in.',
+    },
+    comparison: {
+      title: 'SpiniX vs Toast Loyalty: feature comparison',
+      headers: ['Feature', 'SpiniX', 'Toast Loyalty'],
+      rows: [
+        ['Monthly price', '€29 flat', '$185/mo (Marketing Essentials bundle)*'],
+        ['POS required', 'None — works with any', 'Toast POS only ($69-165+/mo)'],
+        ['Contract', 'Month-to-month, cancel anytime', '2-year minimum, early termination fee'],
+        ['Prize wheel / gamification', true, false],
+        ['Automated email sequences', true, 'Included in Marketing Essentials'],
+        ['Google review collection', true, false],
+        ['Apple / Google Wallet pass', true, false],
+        ['Guest email capture', '46% signup rate', 'Phone number at checkout'],
+        ['Loyalty type', 'Variable rewards (spin wheel)', 'Points per dollar spent'],
+        ['Setup time', '10 minutes', '1-3 days (POS configuration)'],
+        ['Multi-language support', true, 'English, French, Japanese, Spanish'],
+        ['Works without internet', true, false],
+      ],
+      footnote: '*Toast Loyalty is bundled into "Marketing Essentials" at $185/mo which includes loyalty, gift cards, and email/SMS. Loyalty cannot be purchased separately. Toast POS subscription ($69-165+/mo) is required on top.',
+    },
+    pricing: {
+      title: 'SpiniX vs Toast Loyalty: real cost breakdown',
+      intro: 'Toast\'s loyalty isn\'t $50/month anymore. Here\'s what you actually pay.',
+      scenarios: [
+        {
+          label: 'Toast total cost',
+          items: [
+            { name: 'Toast POS (Point of Sale plan)', cost: '$69/mo' },
+            { name: 'Marketing Essentials (loyalty + gift cards + email/SMS)', cost: '$185/mo' },
+            { name: 'Online ordering (if needed)', cost: '$75/mo' },
+            { name: 'Hardware (amortized)', cost: '$25-50/mo' },
+          ],
+          total: '$254-379+/mo',
+        },
+        {
+          label: 'SpiniX total cost',
+          items: [
+            { name: 'SpiniX (loyalty + reviews + email + Wallet)', cost: '€29/mo' },
+            { name: 'Your existing POS (any)', cost: '$0 extra' },
+            { name: 'Hardware needed', cost: '$0' },
+          ],
+          total: '€29/mo',
+        },
+      ],
+      savings: 'Annual savings with SpiniX: $2,700-4,200+',
+      conclusion: 'Toast bundles everything together which sounds convenient — until you see the bill. SpiniX gives you loyalty, reviews, email, and Wallet for a fraction of the cost.',
+    },
+    forgetting: {
+      headline: 'Toast Loyalty\'s forgetting problem',
+      p1: 'Toast gives your guests points when they pay. They might see a balance on their receipt. Then what?',
+      timeline: [
+        'Day 1: "I earned 50 points at checkout."',
+        'Day 7: Receipt is in the trash. Points forgotten.',
+        'Day 14: They\'re trying the new place down the street.',
+      ],
+      p2: '<strong>Points on a receipt don\'t drive return visits.</strong>',
+      highlight: 'SpiniX sends automated emails on Day 3, 7, and 10 after each visit. Your guest can\'t forget — because we won\'t let them.',
+    },
+    dopamine: {
+      headline: 'SpiniX spin wheel vs Toast Loyalty points',
+      p1: 'Toast uses a traditional points system: spend money, earn points, redeem later. Predictable. Forgettable.',
+      p2: 'SpiniX uses a <strong>spin-the-wheel mechanic with variable rewards</strong>. Behavioral psychology research shows variable rewards trigger 3x more dopamine than predictable ones. It\'s the same principle that makes games addictive — except here, it brings your guests back.',
+      stats: [
+        '46% of guests scan the QR and sign up',
+        '33% leave a Google review after spinning',
+        '21% return within 14 days',
+      ],
+    },
+    wallet: {
+      headline: 'SpiniX Wallet passes vs Toast Loyalty',
+      p1: 'Toast Loyalty lives inside the Toast ecosystem. There\'s no Wallet pass, no push notifications to the lock screen, no persistent presence on your guest\'s phone between visits.',
+      p2: 'SpiniX creates a full digital loyalty pass in Apple and Google Wallet. It sits next to their credit cards and boarding passes — the most-opened app on any phone. We can send push notifications to the lock screen: new rewards, reminders, special offers.',
+      highlight: 'Your loyalty program lives in the one place your guests check 50+ times a day.',
+    },
+    lockin: {
+      headline: 'Toast Loyalty lock-in vs SpiniX flexibility',
+      p1: 'Toast requires a 2-year contract minimum. If you cancel early, you owe the remaining hardware balance plus potential software fees. We\'ve seen early termination fees range from $1,000 to $5,000+.',
+      p2: 'Your loyalty data lives inside Toast. Switch POS? You lose your entire loyalty program, customer list, and points history.',
+      highlight: 'SpiniX is month-to-month. Cancel anytime. Your guest email list is yours — export it whenever you want. Switch POS systems without losing a single loyalty member.',
+    },
+    whoFor: {
+      title: 'SpiniX or Toast Loyalty: who should use which?',
+      toast: {
+        title: 'Stay with Toast Loyalty if:',
+        points: [
+          'You\'re deep into a Toast contract and switching POS isn\'t an option',
+          'You need loyalty points tied directly to transaction amounts',
+          'You want one vendor for POS, ordering, payroll, and loyalty',
+          'Your main goal is tracking spend patterns, not driving return visits',
+        ],
+      },
+      spinix: {
+        title: 'Choose SpiniX if:',
+        points: [
+          'You want guests to actually come back (not just collect points)',
+          'You want more Google reviews on autopilot',
+          'You use any POS — or you\'re considering switching away from Toast',
+          'You want Apple/Google Wallet passes with push notifications',
+          'You don\'t want to pay $185+/mo just for loyalty',
+          'You want month-to-month flexibility, not a 2-year contract',
+        ],
+      },
+    },
+    switchGuide: {
+      title: 'How to switch from Toast Loyalty to SpiniX',
+      steps: [
+        { title: 'Sign up for SpiniX', desc: 'Create your account, customize your prize wheel and rewards. Takes about 10 minutes.' },
+        { title: 'Print your QR codes', desc: 'Place them on tables, menus, receipts, and takeaway bags. Every touchpoint becomes an enrollment point.' },
+        { title: 'Run both side-by-side', desc: 'Keep Toast Loyalty active while you test SpiniX. Compare enrollment rates and guest engagement for 1-2 weeks.' },
+        { title: 'Drop Toast Marketing Essentials', desc: 'Once you see the SpiniX results, remove the $185/mo Marketing Essentials add-on. Keep Toast POS if you want — SpiniX works alongside it.' },
+      ],
+      note: 'You don\'t have to leave Toast POS to use SpiniX. Most restaurants keep Toast for payments and use SpiniX for loyalty, reviews, and guest engagement — saving $185/mo instantly.',
+    },
+    faq: {
+      title: 'SpiniX vs Toast Loyalty: FAQ',
+      items: [
+        {
+          q: 'Can I use SpiniX if I already have Toast POS?',
+          a: 'Yes. SpiniX is POS-independent. Keep Toast for payments and order management, use SpiniX for loyalty, reviews, and guest engagement. They don\'t conflict. You just drop the $185/mo Marketing Essentials add-on.',
+        },
+        {
+          q: 'Does Toast Loyalty have gamification?',
+          a: 'No. Toast Loyalty is purely points-based (earn X points per dollar, redeem for rewards). No spin wheels, no instant-win mechanics, no variable rewards.',
+        },
+        {
+          q: 'Is Toast Loyalty really $185/month?',
+          a: 'Toast bundles loyalty into their "Marketing Essentials" package at $185/mo, which also includes gift cards and email/SMS marketing. You can\'t buy loyalty separately. This is on top of your Toast POS subscription ($69-165+/mo).',
+        },
+        {
+          q: 'Which is better for Google review generation?',
+          a: 'SpiniX, by far. Toast Loyalty doesn\'t include review generation at all. You\'d need a separate tool like Birdeye or Podium ($200-300/mo). SpiniX has it built-in — 33% of guests leave a review after spinning the wheel.',
+        },
+        {
+          q: 'What if I\'m switching away from Toast POS entirely?',
+          a: 'With Toast Loyalty, you lose everything — it only works with Toast POS. With SpiniX, your loyalty program is completely independent. Switch to Square, Clover, Lightspeed, or anything else without losing a single guest.',
+        },
+        {
+          q: 'Is €29/month really the full price?',
+          a: 'Yes. €29/month flat. Unlimited guests, unlimited spins, unlimited emails, Apple/Google Wallet passes, review collection. No per-visit charges, no add-on fees, no hardware costs. First month is 90% off (€2.90).',
+        },
+        {
+          q: 'Can I export my guest data from SpiniX?',
+          a: 'Yes. Your guest email list is yours. Export it anytime as CSV. With Toast, your loyalty data is locked inside their ecosystem.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX results across 80+ restaurants',
+      items: [
+        { value: '33%', label: 'of guests leave a Google review' },
+        { value: '46%', label: 'sign up with their email' },
+        { value: '21%', label: 'return within 14 days' },
+      ],
+    },
+    cta: {
+      title: 'Ready to stop overpaying for loyalty?',
+      subtitle: 'Try SpiniX for €2.90 your first month. Works with any POS — including Toast. No contracts.',
+      button: 'Try It — 90% Off First Month',
+      badges: [
+        '✓ 90% off first month',
+        '✓ 10-minute setup',
+        '✓ Cancel anytime',
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Toast Loyalty árazás és egy €29-es alternatíva (2026)',
+      description: 'Toast Loyalty $185/hó csomagban, plusz Toast POS $69-165+/hó. SpiniX €29/hó fix, bármilyen POS-szal működik, gamifikáció + Google review gyűjtés. Teljes funkció-összehasonlítás.',
+    },
+    hero: {
+      eyebrow: 'Összehasonlítás',
+      headline: 'SpiniX<br/>vs Toast Loyalty',
+      subline: 'Az egyik 2 éves POS szerződéshez köt. A másik mindenhol működik.<br/>Íme az őszinte összehasonlítás.',
+    },
+    tldr: {
+      title: 'SpiniX vs Toast Loyalty: röviden',
+      spinix: '<strong>SpiniX:</strong> €29/hó fix. Szerencsekerék, automatikus review gyűjtés, Apple/Google Wallet, email követés. Bármilyen POS-szal működik.',
+      toast: '<strong>Toast Loyalty:</strong> A Toast Marketing Essentials része ($185/hó). Pontgyűjtő rendszer mély POS integrációval. Toast POS kötelező ($69-165+/hó). Nincs review gyűjtés, nincs gamifikáció.',
+      verdict: 'A Toast Loyalty erős ha már be vagy zárva a Toast POS-ba. De $250+/hó minimumot fizetsz loyalty + POS-ért. A SpiniX többet ad €29/hó-ért — lock-in nélkül.',
+    },
+    comparison: {
+      title: 'SpiniX vs Toast Loyalty: funkció összehasonlítás',
+      headers: ['Funkció', 'SpiniX', 'Toast Loyalty'],
+      rows: [
+        ['Havi ár', '€29 fix', '$185/hó (Marketing Essentials csomag)*'],
+        ['POS szükséges', 'Nem — bármivel működik', 'Csak Toast POS ($69-165+/hó)'],
+        ['Szerződés', 'Havi, bármikor lemondható', '2 év minimum, felmondási díj'],
+        ['Szerencsekerék / gamifikáció', true, false],
+        ['Automatikus email sorozatok', true, 'Marketing Essentials-ben benne'],
+        ['Google vélemény gyűjtés', true, false],
+        ['Apple / Google Wallet pass', true, false],
+        ['Vendég email gyűjtés', '46%-os regisztrációs arány', 'Telefonszám a kasszánál'],
+        ['Loyalty típus', 'Változó jutalmak (szerencsekerék)', 'Pont per elköltött dollár'],
+        ['Beállítási idő', '10 perc', '1-3 nap (POS konfiguráció)'],
+        ['Többnyelvű támogatás', true, 'Angol, francia, japán, spanyol'],
+        ['Offline működés', true, false],
+      ],
+      footnote: '*A Toast Loyalty a "Marketing Essentials" csomagban van $185/hó-ért, ami loyalty + ajándékkártya + email/SMS. Külön nem vásárolható. Toast POS előfizetés ($69-165+/hó) szükséges ezen felül.',
+    },
+    pricing: {
+      title: 'SpiniX vs Toast Loyalty: valódi költségek',
+      intro: 'A Toast loyalty nem $50/hó többé. Íme mit fizetss valójában.',
+      scenarios: [
+        {
+          label: 'Toast teljes költség',
+          items: [
+            { name: 'Toast POS (Point of Sale csomag)', cost: '$69/hó' },
+            { name: 'Marketing Essentials (loyalty + ajándékkártya + email/SMS)', cost: '$185/hó' },
+            { name: 'Online rendelés (ha kell)', cost: '$75/hó' },
+            { name: 'Hardver (amortizált)', cost: '$25-50/hó' },
+          ],
+          total: '$254-379+/hó',
+        },
+        {
+          label: 'SpiniX teljes költség',
+          items: [
+            { name: 'SpiniX (loyalty + review-k + email + Wallet)', cost: '€29/hó' },
+            { name: 'Meglévő POS-od (bármilyen)', cost: '$0 extra' },
+            { name: 'Szükséges hardver', cost: '$0' },
+          ],
+          total: '€29/hó',
+        },
+      ],
+      savings: 'Éves megtakarítás SpiniX-szel: $2,700-4,200+',
+      conclusion: 'A Toast mindent egybe csomagol, ami kényelmesen hangzik — amíg meg nem látod a számlát. A SpiniX loyalty-t, review-kat, emailt és Wallet-et ad a költség töredékéért.',
+    },
+    forgetting: {
+      headline: 'A Toast Loyalty felejtés problémája',
+      p1: 'A Toast pontokat ad a vendégeidnek fizetéskor. Lehet hogy látják a számlán. Aztán mi történik?',
+      timeline: [
+        '1. nap: "Kaptam 50 pontot a kasszánál."',
+        '7. nap: A számla a kukában van. A pontok elfelejtve.',
+        '14. nap: Az új helyet próbálják az utca végén.',
+      ],
+      p2: '<strong>Pontok egy számlán nem hoznak vissza vendéget.</strong>',
+      highlight: 'A SpiniX automatikus emaileket küld a 3., 7. és 10. napon minden látogatás után. A vendéged nem felejt — mert nem hagyjuk.',
+    },
+    dopamine: {
+      headline: 'SpiniX szerencsekerék vs Toast Loyalty pontok',
+      p1: 'A Toast hagyományos pontrendszert használ: költs, gyűjts, válts be. Kiszámítható. Felejthető.',
+      p2: 'A SpiniX <strong>szerencsekerék mechanikát használ változó jutalmakkal</strong>. A viselkedéspszichológiai kutatások szerint a változó jutalmak 3x annyi dopamint váltanak ki mint a kiszámíthatóak. Ugyanaz az elv ami a játékokat addiktívvá teszi — csak itt a vendégeidet hozza vissza.',
+      stats: [
+        'A vendégek 46%-a scanneli a QR-t és regisztrál',
+        '33% Google véleményt ír a pörgetés után',
+        '21% visszatér 14 napon belül',
+      ],
+    },
+    wallet: {
+      headline: 'SpiniX Wallet passok vs Toast Loyalty',
+      p1: 'A Toast Loyalty a Toast ökoszisztémán belül él. Nincs Wallet pass, nincs push értesítés a zárolási képernyőre, nincs tartós jelenlét a vendéged telefonján a látogatások között.',
+      p2: 'A SpiniX teljes digitális loyalty pass-t hoz létre Apple és Google Wallet-ben. A bankkártyáik és beszállókártyáik mellett ül — a legtöbbször megnyitott app bármilyen telefonon. Push értesítéseket küldhetünk: új jutalmak, emlékeztetők, akciók.',
+      highlight: 'A loyalty programod ott él ahol a vendégeid naponta 50+ alkalommal ránéznek.',
+    },
+    lockin: {
+      headline: 'Toast Loyalty lock-in vs SpiniX rugalmasság',
+      p1: 'A Toast minimum 2 éves szerződést kér. Ha korábban mondasz le, tartozol a hátralévő hardver egyenleggel plusz szoftver díjakkal. A felmondási díjak $1,000-tól $5,000+-ig terjednek.',
+      p2: 'A loyalty adataid a Toast-ban élnek. POS-t váltasz? Elveszted az egész loyalty programot, vendéglistát és pont-előzményt.',
+      highlight: 'A SpiniX havi díjas. Bármikor lemondható. A vendég email listád a tiéd — bármikor exportálhatod. Válts POS-t egyetlen loyalty tag elvesztése nélkül.',
+    },
+    whoFor: {
+      title: 'SpiniX vagy Toast Loyalty: kinek melyik?',
+      toast: {
+        title: 'Maradj a Toast Loyalty-nál ha:',
+        points: [
+          'Mélyen benne vagy egy Toast szerződésben és a POS váltás nem opció',
+          'A loyalty pontokat közvetlenül a tranzakciós összegekhez akarod kötni',
+          'Egy szállítót akarsz POS-ra, rendelésre, bérszámfejtésre és loyalty-ra',
+          'A fő célod a költési minták követése, nem a visszatérés ösztönzése',
+        ],
+      },
+      spinix: {
+        title: 'Válaszd a SpiniX-et ha:',
+        points: [
+          'Azt akarod, hogy a vendégek tényleg visszajöjjenek (ne csak pontokat gyűjtsenek)',
+          'Több Google véleményt akarsz autopilóton',
+          'Bármilyen POS-t használsz — vagy fontolgatod a Toast elhagyását',
+          'Apple/Google Wallet pass-okat akarsz push értesítésekkel',
+          'Nem akarsz $185+/hó-t fizetni csak a loyalty-ért',
+          'Havi rugalmasságot akarsz, nem 2 éves szerződést',
+        ],
+      },
+    },
+    switchGuide: {
+      title: 'Hogyan válts Toast Loyalty-ról SpiniX-re',
+      steps: [
+        { title: 'Regisztrálj a SpiniX-re', desc: 'Hozd létre a fiókod, szabd testre a szerencsekereket és a jutalmakat. Kb. 10 perc.' },
+        { title: 'Nyomtasd ki a QR kódokat', desc: 'Helyezd el az asztalokon, étlapokon, számlákon és elviteles csomagokon. Minden érintkezési pont regisztrációs pont lesz.' },
+        { title: 'Futtasd párhuzamosan', desc: 'Tartsd aktívan a Toast Loyalty-t míg teszteled a SpiniX-et. Hasonlítsd össze a regisztrációs arányokat 1-2 hétig.' },
+        { title: 'Dobd a Toast Marketing Essentials-t', desc: 'Ha látod a SpiniX eredményeket, töröld a $185/hó-s Marketing Essentials add-on-t. A Toast POS-t megtarthatod — a SpiniX mellette működik.' },
+      ],
+      note: 'Nem kell elhagynod a Toast POS-t a SpiniX használatához. A legtöbb étterem megtartja a Toast-ot fizetésekre és a SpiniX-et használja loyalty-ra, review-kra és vendég elköteleződésre — azonnal $185/hó-t spórolva.',
+    },
+    faq: {
+      title: 'SpiniX vs Toast Loyalty: GYIK',
+      items: [
+        {
+          q: 'Használhatom a SpiniX-et ha már van Toast POS-om?',
+          a: 'Igen. A SpiniX POS-független. Tartsd meg a Toast-ot fizetésekre és rendeléskezelésre, használd a SpiniX-et loyalty-ra, review-kra és vendég elköteleződésre. Nem ütköznek. Csak a $185/hó Marketing Essentials add-on-t kell törölnöd.',
+        },
+        {
+          q: 'A Toast Loyalty-nak van gamifikációja?',
+          a: 'Nincs. A Toast Loyalty tisztán pont-alapú (keress X pontot dolláronként, válts be jutalmakra). Nincs szerencsekerék, nincs azonnali nyerés, nincs változó jutalom.',
+        },
+        {
+          q: 'Tényleg $185/hó a Toast Loyalty?',
+          a: 'A Toast a loyalty-t a "Marketing Essentials" csomagba teszi $185/hó-ért, ami ajándékkártyát és email/SMS marketinget is tartalmaz. A loyalty külön nem vásárolható. Ez a Toast POS előfizetésen ($69-165+/hó) felül van.',
+        },
+        {
+          q: 'Melyik jobb Google vélemény generálásra?',
+          a: 'SpiniX, egyértelműen. A Toast Loyalty egyáltalán nem tartalmaz review gyűjtést. Ahhoz külön eszköz kell, pl. Birdeye vagy Podium ($200-300/hó). A SpiniX-ben beépített — a vendégek 33%-a ír review-t a kerékpörgetés után.',
+        },
+        {
+          q: 'Mi van ha teljesen elhagyom a Toast POS-t?',
+          a: 'A Toast Loyalty-val mindent elveszítesz — csak Toast POS-szal működik. A SpiniX-szel a loyalty programod teljesen független. Válts Square-re, Clover-re, Lightspeed-re vagy bármi másra egyetlen vendég elvesztése nélkül.',
+        },
+        {
+          q: 'Tényleg €29/hó a teljes ár?',
+          a: 'Igen. €29/hó fix. Korlátlan vendég, korlátlan pörgetés, korlátlan email, Apple/Google Wallet pass-ok, review gyűjtés. Nincs látogatásonkénti díj, nincs add-on, nincs hardver költség. Az első hónap 90% kedvezményes (€2.90).',
+        },
+        {
+          q: 'Exportálhatom a vendég adataimat a SpiniX-ből?',
+          a: 'Igen. A vendég email listád a tiéd. Bármikor exportálhatod CSV-ként. A Toast-nál a loyalty adataid az ökoszisztémájukba vannak zárva.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX eredmények 80+ étteremnél',
+      items: [
+        { value: '33%', label: 'a vendégek közül Google véleményt ír' },
+        { value: '46%', label: 'megadja az email címét' },
+        { value: '21%', label: 'visszatér 14 napon belül' },
+      ],
+    },
+    cta: {
+      title: 'Készen állsz, hogy ne fizess túl a loyalty-ért?',
+      subtitle: 'Próbáld ki a SpiniX-et €2.90-ért az első hónapban. Bármilyen POS-szal működik — a Toast-tal is. Nincs szerződés.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      badges: [
+        '✓ 90% kedvezmény az első hónapban',
+        '✓ 10 perc beállítás',
+        '✓ Bármikor lemondható',
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="toast-loyalty" lang={lang} />

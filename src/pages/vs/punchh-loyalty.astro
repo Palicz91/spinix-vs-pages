@@ -1,0 +1,256 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Punchh Alternative for 1-20 Location Restaurants (2026)',
+      description: 'Punchh costs $2,000+/mo with 2-6 month setup, built for 100+ location chains. SpiniX is €29/mo with 15-minute setup and built-in review generation. Side-by-side pricing and features.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Punchh',
+      subtitle: 'Punchh is enterprise loyalty for 100+ location chains. SpiniX is built for independent restaurants and small groups.',
+      updatedDate: 'Updated February 2025',
+    },
+    verdict: {
+      title: 'SpiniX vs Punchh: quick verdict',
+      spinix: {
+        title: 'Choose SpiniX if:',
+        points: [
+          'You have 1-10 locations',
+          'Budget is under €500/month total',
+          'You want simple setup without IT team',
+          'Gamification + reviews are priorities',
+        ],
+      },
+      competitor: {
+        title: 'Choose Punchh if:',
+        points: [
+          'You\'re a chain with 100+ locations',
+          'You have dedicated marketing/IT teams',
+          'You need deep POS/CRM integrations',
+          'Budget is $2,000+/month',
+        ],
+      },
+    },
+    comparison: {
+      title: 'SpiniX vs Punchh: feature comparison',
+      headers: ['Feature', 'SpiniX', 'Punchh'],
+      rows: [
+        { feature: 'Target Customer', spinix: '1-10 locations', competitor: '100+ locations', winner: 'tie' },
+        { feature: 'Starting Price', spinix: '€29/month', competitor: '$2,000+/month', winner: 'spinix' },
+        { feature: 'Setup Time', spinix: '15 minutes', competitor: '2-6 months', winner: 'spinix' },
+        { feature: 'Implementation', spinix: 'Self-service', competitor: 'Dedicated team', winner: 'tie' },
+        { feature: 'Loyalty Type', spinix: 'Gamified (instant win)', competitor: 'Points + offers + challenges', winner: 'tie' },
+        { feature: 'Mobile App', spinix: 'Web-based (no app)', competitor: 'Custom branded app', winner: 'competitor' },
+        { feature: 'POS Integration', spinix: 'Not required', competitor: '200+ integrations', winner: 'competitor' },
+        { feature: 'AI/ML Features', spinix: 'Basic segmentation', competitor: 'Advanced personalization', winner: 'competitor' },
+        { feature: 'Google Reviews', spinix: 'Built-in (33% rate)', competitor: 'Not core feature', winner: 'spinix' },
+        { feature: 'Contract', spinix: 'Month-to-month', competitor: 'Annual minimum', winner: 'spinix' },
+        { feature: 'Best For', spinix: 'SMB restaurants', competitor: 'Enterprise chains', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Punchh pricing',
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['1 location', 'Unlimited spins', 'Email automation', 'Review generation'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 locations', 'WhatsApp', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited locations', 'Priority support', 'API access'] },
+        ],
+        note: 'No setup fees. No annual commitment. Cancel anytime.',
+      },
+      competitor: {
+        name: 'Punchh',
+        plans: [
+          { name: 'Platform Fee', price: '$2,000+/mo', features: ['Base platform access', 'Standard integrations'] },
+          { name: '+ Per Location', price: '$50-100/location', features: ['Per-location licensing'] },
+          { name: '+ Implementation', price: '$25,000-100,000', features: ['One-time setup', 'Integration work'] },
+        ],
+        note: 'Enterprise pricing. Annual contracts required. Minimum 50+ locations typical.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Punchh: detailed breakdown',
+      sections: [
+        {
+          title: 'Who Is Punchh For?',
+          content: 'Punchh serves major restaurant chains like Yum! Brands (Taco Bell, KFC, Pizza Hut), Denny\'s, and El Pollo Loco. If you have 100+ locations, dedicated marketing teams, IT resources, and a budget of $50,000+/year, Punchh offers powerful enterprise features. For everyone else, it\'s massive overkill.',
+        },
+        {
+          title: 'The SMB Reality',
+          content: 'If you\'re an independent restaurant or small chain, Punchh won\'t even talk to you - their sales process is built for enterprise. SpiniX is designed specifically for the 95% of restaurants that aren\'t enterprise chains. You get 80% of the value at 2% of the cost.',
+        },
+        {
+          title: 'Implementation Complexity',
+          content: 'Punchh implementations take 2-6 months and require dedicated project managers, IT involvement, and POS integration work. SpiniX takes 15 minutes: create account → design wheel → print QR codes → done. No IT team needed.',
+        },
+        {
+          title: 'Feature Comparison Reality',
+          content: 'Yes, Punchh has more features: AI personalization, custom mobile apps, 200+ integrations, sophisticated offer management. But most of these features only matter at scale. For a 3-location restaurant group, a simple gamified system that drives reviews and return visits delivers better ROI.',
+        },
+        {
+          title: 'Total Cost of Ownership',
+          content: 'Punchh: $2,000+/month platform + $50-100/location + $25,000-100,000 implementation = $75,000-200,000+ first year for a 50-location chain. SpiniX: €99/month for unlimited locations = €1,188/year. That\'s 60-170x cheaper.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX vs Punchh: at a glance',
+      note: 'Different solutions for different scales',
+      items: [
+        { label: 'Minimum Budget', spinix: '€29/mo', competitor: '$2,000+/mo', source: 'Entry pricing' },
+        { label: 'Setup Time', spinix: '15 minutes', competitor: '2-6 months', source: 'Implementation timeline' },
+        { label: 'Target Size', spinix: '1-20 locations', competitor: '50-5,000 locations', source: 'Ideal customer' },
+        { label: 'Contract', spinix: 'Monthly', competitor: 'Annual', source: 'Terms' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Punchh: FAQ',
+      items: [
+        {
+          q: 'Can a small restaurant even use Punchh?',
+          a: 'Technically yes, but practically no. Punchh\'s sales process, pricing, and implementation are designed for 50+ location chains. They likely won\'t prioritize a 3-location restaurant group.',
+        },
+        {
+          q: 'What if I grow to 50+ locations?',
+          a: 'If you scale to enterprise size, you can evaluate enterprise solutions then. SpiniX\'s month-to-month contracts mean you\'re never locked in. Use SpiniX to grow, then reassess when you\'re actually enterprise-scale.',
+        },
+        {
+          q: 'Does SpiniX have an API like Punchh?',
+          a: 'Yes, on the Pro plan. It\'s simpler than Punchh\'s API but covers the core use cases: retrieving customer data, triggering events, and integrating with your systems.',
+        },
+        {
+          q: 'Is Punchh better at personalization?',
+          a: 'Yes, Punchh has sophisticated AI/ML for personalized offers at scale. But personalization benefits mostly appear at 50,000+ customers. For smaller customer bases, simple segmentation (which SpiniX offers) is usually sufficient.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Enterprise Features, SMB Pricing',
+      subtitle: 'Get gamification, reviews, and retention without enterprise budgets.',
+      button: 'Try It — 90% Off First Month',
+      badges: ['No enterprise sales process', '15-min setup', 'Month-to-month'],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Punchh alternatíva 1-20 helyszínes éttermeknek (2026)',
+      description: 'Punchh $2,000+/hó, 2-6 hónapos bevezetéssel, 100+ helyszínes láncoknak. SpiniX €29/hó, 15 perc beállítás, beépített review generálás. Árazás és funkciók egymás mellett.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs Punchh',
+      subtitle: 'A Punchh enterprise loyalty 100+ helyszínes láncoknak. A SpiniX független éttermekre és kis csoportokra épült.',
+      updatedDate: 'Frissítve: 2025. Február',
+    },
+    verdict: {
+      title: 'SpiniX vs Punchh: gyors verdikt',
+      spinix: {
+        title: 'Válaszd a SpiniX-et ha:',
+        points: [
+          '1-10 helyszíned van',
+          'A költségvetésed €500/hó alatt van összesen',
+          'Egyszerű beállítást szeretnél IT csapat nélkül',
+          'Gamifikáció + vélemények a prioritás',
+        ],
+      },
+      competitor: {
+        title: 'Válaszd a Punchh-ot ha:',
+        points: [
+          '100+ helyszínes lánc vagy',
+          'Van dedikált marketing/IT csapatod',
+          'Mély POS/CRM integrációkra van szükséged',
+          'A költségvetésed $2,000+/hó',
+        ],
+      },
+    },
+    comparison: {
+      title: 'SpiniX vs Punchh: funkció összehasonlítás',
+      headers: ['Funkció', 'SpiniX', 'Punchh'],
+      rows: [
+        { feature: 'Cél Ügyfél', spinix: '1-10 helyszín', competitor: '100+ helyszín', winner: 'tie' },
+        { feature: 'Kezdő Ár', spinix: '€29/hó', competitor: '$2,000+/hó', winner: 'spinix' },
+        { feature: 'Beállítási Idő', spinix: '15 perc', competitor: '2-6 hónap', winner: 'spinix' },
+        { feature: 'Loyalty Típus', spinix: 'Gamifikált', competitor: 'Pontok + ajánlatok', winner: 'tie' },
+        { feature: 'Mobil App', spinix: 'Web-alapú (nincs app)', competitor: 'Egyedi branded app', winner: 'competitor' },
+        { feature: 'POS Integráció', spinix: 'Nem szükséges', competitor: '200+ integráció', winner: 'competitor' },
+        { feature: 'Google Vélemények', spinix: 'Beépített (33%)', competitor: 'Nem fő funkció', winner: 'spinix' },
+        { feature: 'Szerződés', spinix: 'Havi', competitor: 'Éves minimum', winner: 'spinix' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Punchh árazás',
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Kezdő', price: '€29/hó', features: ['1 helyszín', 'Korlátlan pörgetés', 'Vélemény generálás'] },
+          { name: 'Fejlődő', price: '€59/hó', features: ['3 helyszín', 'WhatsApp', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan helyszín', 'API hozzáférés'] },
+        ],
+        note: 'Nincs beállítási díj. Nincs éves kötelezettség.',
+      },
+      competitor: {
+        name: 'Punchh',
+        plans: [
+          { name: 'Platform Díj', price: '$2,000+/hó', features: ['Alap platform hozzáférés'] },
+          { name: '+ Helyszínenként', price: '$50-100/helyszín', features: ['Helyszínenkénti licensz'] },
+          { name: '+ Implementáció', price: '$25,000-100,000', features: ['Egyszeri beállítás'] },
+        ],
+        note: 'Enterprise árazás. Éves szerződés szükséges. Tipikusan minimum 50+ helyszín.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Punchh: részletes elemzés',
+      sections: [
+        {
+          title: 'Kinek Való a Punchh?',
+          content: 'A Punchh nagy étteremláncokat szolgál ki mint a Taco Bell, KFC, Denny\'s. Ha 100+ helyszíned van, dedikált csapataid és $50,000+/év költségvetésed, a Punchh erős enterprise funkciókat kínál. Mindenki másnak hatalmas túlzás.',
+        },
+        {
+          title: 'A KKV Valóság',
+          content: 'Ha független étterem vagy kis lánc vagy, a Punchh nem is fog veled beszélni - az értékesítési folyamatuk enterprise-ra épült. A SpiniX kifejezetten arra a 95%-ra készült, akik nem enterprise láncok.',
+        },
+        {
+          title: 'Teljes Tulajdonlási Költség',
+          content: 'Punchh: $2,000+/hó platform + $50-100/helyszín + $25,000-100,000 implementáció = $75,000-200,000+ első év 50 helyszínre. SpiniX: €99/hó korlátlan helyszínre = €1,188/év. Ez 60-170x olcsóbb.',
+        },
+      ],
+    },
+    stats: {
+      title: 'SpiniX vs Punchh: áttekintés',
+      note: 'Különböző megoldások különböző méretekhez',
+      items: [
+        { label: 'Minimum Költségvetés', spinix: '€29/hó', competitor: '$2,000+/hó', source: 'Belépő ár' },
+        { label: 'Beállítási Idő', spinix: '15 perc', competitor: '2-6 hónap', source: 'Implementáció' },
+        { label: 'Cél Méret', spinix: '1-20 helyszín', competitor: '50-5,000 helyszín', source: 'Ideális ügyfél' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Punchh: GYIK',
+      items: [
+        {
+          q: 'Egy kis étterem egyáltalán használhatja a Punchh-ot?',
+          a: 'Technikailag igen, de gyakorlatilag nem. A Punchh értékesítése, árazása és implementációja 50+ helyszínes láncokra van tervezve.',
+        },
+        {
+          q: 'Mi van ha 50+ helyszínre növök?',
+          a: 'Ha enterprise méretre skálázol, akkor értékelheted az enterprise megoldásokat. A SpiniX havi szerződései azt jelentik, soha nem vagy bezárva.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Enterprise Funkciók, KKV Árazás',
+      subtitle: 'Szerezz gamifikációt, véleményeket és megtartást enterprise költségvetés nélkül.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      badges: ['Nincs enterprise értékesítési folyamat', '15 perces beállítás', 'Havi szerződés'],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="punchh-loyalty" lang={lang} />

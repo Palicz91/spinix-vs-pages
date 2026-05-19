@@ -1,0 +1,107 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'TouchBistro Loyalty vs SpiniX: Pricing, Features & Honest Comparison (2026)',
+      description: 'TouchBistro Loyalty requires their POS ($69+/mo) and doesn\'t collect Google reviews. SpiniX is €29/mo, works with any POS, adds gamification + review collection. Feature-by-feature comparison.',
+    },
+    hero: {
+      eyebrow: 'Comparison',
+      headline: 'SpiniX<br/>vs TouchBistro Loyalty',
+      subline: 'One requires a specific POS. One works everywhere.<br/>Here\'s the honest breakdown.',
+    },
+    tldr: {
+      title: 'SpiniX vs TouchBistro Loyalty: TL;DR',
+      spinix: '<strong>SpiniX:</strong> €29/mo flat. Gamified prize wheel, automated review collection, Apple/Google Wallet passes, email follow-ups. Works with any POS or none.',
+      competitor: '<strong>TouchBistro Loyalty:</strong> Add-on pricing (undisclosed, typically $50-99/mo). Points-based system with POS integration. Requires TouchBistro POS ($69+/mo). No review collection, no gamification. US/Canada only.',
+      verdict: 'TouchBistro Loyalty is solid if you already run TouchBistro POS. But you\'re paying $120+/mo minimum (POS + loyalty), it doesn\'t collect reviews, and it only works with their hardware. SpiniX does more for less — with no lock-in.',
+    },
+    definition: {
+      title: 'What is TouchBistro Loyalty?',
+      text: 'TouchBistro Loyalty is a points-based rewards add-on for TouchBistro\'s restaurant POS system. Customers earn points based on spend and items purchased, redeemable via a web app. It requires TouchBistro POS ($69+/mo) and is available in the US and Canada only.',
+    },
+    comparison: {
+      title: 'Feature comparison',
+      headers: ['Feature', 'SpiniX', 'TouchBistro'],
+      rows: [
+        ['Monthly price', '€29/mo', 'Undisclosed + POS $69+/mo'],
+        ['Contract', 'None — cancel anytime', 'Annual POS contract typical'],
+        ['Works with any POS', true, false],
+        ['Gamified prize wheel', true, false],
+        ['Google review collection', true, false],
+        ['Apple/Google Wallet passes', true, false],
+        ['Automated email reminders', true, 'Via Marketing add-on (extra cost)'],
+        ['Points-based rewards', false, true],
+        ['POS transaction tracking', 'Not needed', true],
+        ['Multi-location support', 'Up to 3 (Growth plan)', true],
+        ['Customer web app', 'QR-based (no download)', 'Web app'],
+        ['Setup time', '15 minutes', '1-2 weeks (POS install)'],
+        ['Geographic availability', 'Global (8 countries)', 'US and Canada only'],
+        ['Collects guest email', true, true],
+        ['WhatsApp messaging', 'Add-on', false],
+      ],
+    },
+    whenTouchBistro: {
+      title: 'When TouchBistro Loyalty makes more sense',
+      items: [
+        'You already use TouchBistro POS and want loyalty built into your existing workflow',
+        'You want points-based rewards tied to actual spending (item-level tracking)',
+        'You\'re a multi-unit chain in the US or Canada that needs centralized POS + loyalty',
+        'You don\'t care about Google review collection or gamification',
+      ],
+    },
+    whenSpiniX: {
+      title: 'When SpiniX makes more sense',
+      items: [
+        'You want to start collecting Google reviews automatically (TouchBistro doesn\'t do this)',
+        'You don\'t want to switch your POS or sign a long-term contract',
+        'You want a fun, gamified experience that gets guests excited (not just points)',
+        'You operate outside North America (TouchBistro Loyalty is US/Canada only)',
+        'You want Apple/Google Wallet passes that remind guests to return',
+        'You need something running in 15 minutes, not 2 weeks',
+      ],
+    },
+    honestTakeaways: {
+      title: 'Honest takeaways',
+      items: [
+        '<strong>TouchBistro\'s advantage:</strong> Deep POS integration. If you\'re already on their system, adding loyalty is seamless. Points per dollar spent is a proven model.',
+        '<strong>TouchBistro\'s weakness:</strong> POS lock-in. No review collection. No gamification. Undisclosed loyalty pricing. US/Canada only.',
+        '<strong>SpiniX\'s advantage:</strong> Works with any POS (or none). Gamified experience guests actually enjoy. Automated Google review collection. Global availability. €29/mo flat.',
+        '<strong>SpiniX\'s weakness:</strong> No POS integration — doesn\'t track item-level purchases. Not ideal for chains wanting centralized POS + loyalty in one vendor.',
+      ],
+    },
+    cta: {
+      title: 'Try SpiniX free for your restaurant',
+      text: '15-minute setup. No POS required. Cancel anytime.',
+      button: 'Start now',
+    },
+    faq: {
+      title: 'Frequently asked questions',
+      items: [
+        {
+          q: 'Can I use SpiniX alongside TouchBistro?',
+          a: 'Yes. SpiniX is POS-independent — it works with TouchBistro, Square, Toast, Clover, or no POS at all. The QR code sits on your table, not in your POS.',
+        },
+        {
+          q: 'Does TouchBistro collect Google reviews?',
+          a: 'No. TouchBistro Loyalty focuses on points and rewards. It does not prompt guests for Google reviews. SpiniX automatically asks for reviews after each spin — 34% of guests leave one.',
+        },
+        {
+          q: 'How much does TouchBistro Loyalty actually cost?',
+          a: 'TouchBistro doesn\'t publicly disclose loyalty pricing. You need their POS ($69+/mo minimum) plus the loyalty add-on. Total cost is typically $120-200+/mo depending on features.',
+        },
+        {
+          q: 'Is TouchBistro Loyalty available outside the US?',
+          a: 'TouchBistro Loyalty is currently available in the United States and Canada (excluding Québec). SpiniX operates in 8 countries globally.',
+        },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="touchbistro-loyalty" lang={lang} />

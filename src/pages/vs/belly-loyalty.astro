@@ -1,0 +1,159 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+// Language from cookie or URL param
+const lang = Astro.url.searchParams.get('lang') || Astro.cookies.get('lang')?.value || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Belly Loyalty Pricing & a €29 Alternative for Restaurants (2026)',
+      description: 'Belly starts at $129/mo plus tablet hardware. SpiniX is €29/mo, no hardware. Side-by-side pricing and feature comparison for 1-20 location restaurants.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs Belly',
+      subtitle: 'Both use gamification for customer loyalty. But one is built for enterprise, the other for independent restaurants.',
+      updatedDate: 'Updated February 2025',
+    },
+    verdict: {
+      title: 'SpiniX vs Belly: quick verdict',
+      spinix: {
+        title: 'Choose SpiniX if:',
+        points: [
+          "You're an independent restaurant or small chain",
+          'You want simple setup (15 minutes, not weeks)',
+          'Budget is under €100/month',
+          'You need Google review generation built-in',
+        ],
+      },
+      competitor: {
+        title: 'Choose Belly if:',
+        points: [
+          "You're a large chain (50+ locations)",
+          'You need tablet-based check-in hardware',
+          'You have dedicated IT support',
+          'Enterprise features are a priority',
+        ],
+      },
+    },
+    comparison: {
+      title: 'SpiniX vs Belly loyalty: feature comparison',
+      headers: ['Feature', 'SpiniX', 'Belly'],
+      rows: [
+        { feature: 'Starting Price', spinix: '€29/month', competitor: '$129/month + hardware', winner: 'spinix' },
+        { feature: 'Setup Time', spinix: '15 minutes', competitor: '1-2 weeks', winner: 'spinix' },
+        { feature: 'Hardware Required', spinix: 'No (QR codes only)', competitor: 'Yes (tablet)', winner: 'spinix' },
+        { feature: 'Gamification', spinix: 'Spin wheel', competitor: 'Points + prizes', winner: 'tie' },
+        { feature: 'Google Review Generation', spinix: 'Built-in (33% rate)', competitor: 'Not included', winner: 'spinix' },
+        { feature: 'Email Automation', spinix: 'Yes (3-email sequence)', competitor: 'Yes', winner: 'tie' },
+        { feature: 'Customer Data Capture', spinix: '46% opt-in', competitor: 'Varies by setup', winner: 'spinix' },
+        { feature: 'App Download Required', spinix: 'No', competitor: 'No (tablet check-in)', winner: 'tie' },
+        { feature: 'Multi-location Support', spinix: 'Yes (Growth plan)', competitor: 'Yes', winner: 'tie' },
+        { feature: 'POS Integration', spinix: 'No', competitor: 'Yes (major POS)', winner: 'competitor' },
+        { feature: 'Best For', spinix: 'SMB restaurants', competitor: 'Enterprise chains', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Belly pricing',
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['1 location', 'Unlimited spins', 'Email automation'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 locations', 'WhatsApp notifications', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited locations', 'Priority support', 'API access'] },
+        ],
+        note: 'No hardware costs. No setup fees.',
+      },
+      competitor: {
+        name: 'Belly',
+        plans: [
+          { name: 'Standard', price: '$129/mo', features: ['1 tablet', 'Basic rewards', 'Email campaigns'] },
+          { name: 'Pro', price: '$179/mo', features: ['Advanced analytics', 'API access', 'Priority support'] },
+          { name: 'Enterprise', price: 'Custom', features: ['Multi-location', 'Dedicated manager', 'Custom integrations'] },
+        ],
+        note: 'Plus $300-500 tablet hardware per location.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs Belly loyalty: detailed breakdown',
+      sections: [
+        { title: 'Approach to Gamification', content: 'Both SpiniX and Belly use gamification, but differently. Belly uses a points-based system where customers check in via tablet and earn points toward prizes. SpiniX uses instant-win spin wheels - customers scan a QR code and immediately win a prize. The instant gratification approach typically drives higher engagement.' },
+        { title: 'Hardware & Setup', content: "Belly requires a dedicated tablet at each location for customer check-in, plus initial setup and training. SpiniX is entirely QR-based - print codes, place them on tables, and you're live in 15 minutes." },
+        { title: 'Review Generation', content: "SpiniX has Google review generation built into the core flow - customers are prompted for reviews right after winning (33% leave reviews). Belly focuses on loyalty and doesn't include review generation." },
+        { title: 'Best Use Case', content: "Belly is designed for established chains with IT resources. SpiniX is built for independent restaurants who want results without complexity." },
+      ],
+    },
+    stats: {
+      title: 'SpiniX vs Belly: performance data',
+      items: [
+        { label: 'Average Enrollment Rate', spinix: '46%', competitor: '~30%' },
+        { label: 'Setup Time', spinix: '15 min', competitor: '1-2 weeks' },
+        { label: 'Monthly Cost (1 location)', spinix: '€29', competitor: '$129+' },
+        { label: 'Review Generation', spinix: '33%', competitor: 'N/A' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs Belly loyalty: FAQ',
+      items: [
+        { q: 'Is Belly still operating?', a: 'Belly was acquired by Mobivity in 2018. The product still exists but has shifted toward enterprise customers with larger budgets.' },
+        { q: 'Can I switch from Belly to SpiniX?', a: 'Yes. Since SpiniX is QR-based, you can run both systems simultaneously during transition.' },
+        { q: 'Which has better customer support?', a: 'SpiniX offers direct founder support for all plans. Belly support varies by plan tier.' },
+      ],
+    },
+    cta: {
+      title: 'Ready to Try SpiniX?',
+      subtitle: 'See why independent restaurants choose SpiniX over enterprise solutions.',
+      button: 'Start Free Trial',
+      badges: ['No credit card required', '15-min setup', '30-day money-back guarantee'],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Belly Loyalty arazas es egy €29-os alternativa ettermeknek (2026)',
+      description: 'Belly $129/ho + tablet hardver. SpiniX €29/ho hardver nelkul. Teljes osszehasonlitas.',
+    },
+    hero: { badge: 'Osszehasonlitas', title: 'SpiniX vs Belly', subtitle: 'Mindketto gamifikaciot hasznal. De az egyik enterprise-ra, a masik fuggetlen ettermekre epult.', updatedDate: 'Frissitve: 2025. Februar' },
+    verdict: {
+      title: 'SpiniX vs Belly: gyors verdikt',
+      spinix: { title: 'Valaszd a SpiniX-et ha:', points: ['Fuggetlen etterem vagy kis lanc vagy', 'Egyszeru beallitast szeretnel (15 perc)', 'A koltsegvetesed €100/ho alatt van', 'Beepitett Google velemeny generalasra van szukseged'] },
+      competitor: { title: 'Valaszd a Belly-t ha:', points: ['Nagy lanc vagy (50+ helyszin)', 'Tablet-alapu check-in hardverre van szukseged', 'Van dedikalt IT tamogatasod', 'Enterprise funkciok a prioritas'] },
+    },
+    comparison: {
+      title: 'SpiniX vs Belly: funkcio osszehasonlitas',
+      headers: ['Funkcio', 'SpiniX', 'Belly'],
+      rows: [
+        { feature: 'Kezdo Ar', spinix: '€29/ho', competitor: '$129/ho + hardver', winner: 'spinix' },
+        { feature: 'Beallitasi Ido', spinix: '15 perc', competitor: '1-2 het', winner: 'spinix' },
+        { feature: 'Hardver Szukseges', spinix: 'Nem (csak QR kod)', competitor: 'Igen (tablet)', winner: 'spinix' },
+        { feature: 'Gamifikacio', spinix: 'Szerencsekerék', competitor: 'Pontok + nyeremenyek', winner: 'tie' },
+        { feature: 'Google Velemeny Generalas', spinix: 'Beepitett (33%)', competitor: 'Nem tartalmazza', winner: 'spinix' },
+        { feature: 'Email Automatizalas', spinix: 'Igen (3 emailes sorozat)', competitor: 'Igen', winner: 'tie' },
+        { feature: 'Legjobb', spinix: 'KKV ettermek', competitor: 'Enterprise lancok', winner: 'tie' },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs Belly arazas',
+      spinix: { name: 'SpiniX', plans: [{ name: 'Kezdo', price: '€29/ho', features: ['1 helyszin', 'Korlatlan porgetes', 'Email automatizalas'] }, { name: 'Fejlodo', price: '€59/ho', features: ['3 helyszin', 'WhatsApp ertesitesek'] }, { name: 'Pro', price: '€99/ho', features: ['Korlatlan helyszin', 'API hozzaferes'] }], note: 'Nincs hardver koltseg.' },
+      competitor: { name: 'Belly', plans: [{ name: 'Standard', price: '$129/ho', features: ['1 tablet', 'Alap jutalmak'] }, { name: 'Pro', price: '$179/ho', features: ['Halado analitika'] }, { name: 'Enterprise', price: 'Egyedi', features: ['Multi-lokacio'] }], note: 'Plus $300-500 tablet hardver.' },
+    },
+    details: {
+      title: 'Reszletes osszehasonlitas',
+      sections: [
+        { title: 'Gamifikacio', content: 'A Belly pontrendszert hasznal tableten. A SpiniX azonnali nyeremeny szerecsekerekeket — a vendegek QR kodot olvasnak es azonnal nyernek.' },
+        { title: 'Hardver', content: 'A Belly dedikalt tabletet igenyel. A SpiniX QR kod alapu — nyomtass, tedd az asztalra, 15 perc alatt el.' },
+      ],
+    },
+    faq: {
+      title: 'Gyakori kerdesek',
+      items: [
+        { q: 'Meg mukodik a Belly?', a: 'A Belly-t a Mobivity vasarolta meg 2018-ban. Enterprise fele tolodott.' },
+        { q: 'At tudok valtani?', a: 'Igen. A SpiniX QR alapu, parhuzamosan futtathatod az atallas soran.' },
+      ],
+    },
+    cta: { title: 'Kiprobalnod a SpiniX-et?', subtitle: 'Nezd meg miert valasztjak a fuggetlen ettermek.', button: 'Ingyenes proba', badges: ['Nincs bankkartya', '15 perc beallitas', '30 napos penzvisszafizetesi garancia'] },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="belly-loyalty" lang={lang} />

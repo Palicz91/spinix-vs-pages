@@ -1,0 +1,432 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'Paytronix vs SpiniX: €29/mo Loyalty Alternative for 1-20 Locations',
+      description: 'Paytronix charges $500-2,000/mo and needs weeks of onboarding. Compare features, pricing, and setup time against SpiniX — self-service in 10 minutes.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'Paytronix vs SpiniX',
+      subtitle: 'This isn\'t really a head-to-head comparison. Paytronix is an enterprise platform for national restaurant chains. SpiniX is an SMB platform for independent restaurants. But if you\'re searching for "Paytronix alternative," you\'ve probably been quoted enterprise pricing for your 1-5 location business. This page is for you.',
+    },
+    tldr: {
+      title: 'Paytronix vs SpiniX: the short version',
+      paytronix: 'Paytronix (now part of PAR Engagement, which also includes Punchh) is enterprise-grade loyalty for multi-unit restaurant chains. Deep POS integration, predictive AI, online ordering, catering tools, and omnichannel marketing. Custom pricing, typically $500-2,000+/month. Requires dedicated onboarding over weeks or months. Built for Peet\'s Coffee, national QSR chains, and 50+ location brands.',
+      spinix: 'SpiniX is SMB loyalty for independent restaurants, cafes, and hotels. QR scan, spin wheel gamification, Apple/Google Wallet, automated review generation, and email sequences. €29/month. Self-service setup in 10 minutes. Built for the neighborhood restaurant with 1-20 locations.',
+      verdict: 'If you have 50+ locations, a POS ecosystem, and a dedicated marketing team, Paytronix is the right tool. If you have 1-20 locations and need something that works in 10 minutes at €29/month, SpiniX.',
+    },
+    context: {
+      title: 'Why people search for a Paytronix alternative',
+      reasons: [
+        { title: 'Got quoted enterprise pricing', detail: 'You called Paytronix, described your 3-location restaurant group, and were quoted $500+/month with a multi-week implementation. That\'s not a mistake - it\'s their market. They\'re designed for 50+ locations.' },
+        { title: 'Too complex for your needs', detail: 'Paytronix offers POS integration across 100+ systems, predictive AI, online ordering, catering, data warehouse exports. If you just want loyalty and reviews for a single restaurant, 90% of those features are irrelevant overhead.' },
+        { title: 'Annual contract concerns', detail: 'Enterprise platforms typically require annual commitments. If you\'re testing loyalty for the first time, locking into 12 months at $500+/month is a $6,000+ bet before you know if it works.' },
+        { title: 'Need faster implementation', detail: 'Paytronix onboarding involves dedicated project managers and can take weeks. SpiniX is 10 minutes: create account, configure wheel, print QR, done.' },
+      ],
+    },
+    comparison: {
+      title: 'Paytronix vs SpiniX: feature comparison',
+      headers: ['', 'Paytronix', 'SpiniX'],
+      rows: [
+        { feature: 'Price', paytronix: '$500-2,000+/mo (custom quote)', spinix: '€29/mo', winner: 'spinix' },
+        { feature: 'Target business size', paytronix: '50-5,000+ locations', spinix: '1-20 locations', winner: 'context' },
+        { feature: 'Setup time', paytronix: 'Weeks to months (project managed)', spinix: '10 minutes (self-service)', winner: 'spinix' },
+        { feature: 'Contract', paytronix: 'Annual (typically)', spinix: 'Monthly (cancel anytime)', winner: 'spinix' },
+        { feature: 'POS integration', paytronix: 'Deep (100+ POS partners)', spinix: 'Not required', winner: 'paytronix' },
+        { feature: 'Online ordering', paytronix: 'Yes (built-in)', spinix: 'No', winner: 'paytronix' },
+        { feature: 'Catering tools', paytronix: 'Yes', spinix: 'No', winner: 'paytronix' },
+        { feature: 'AI/ML personalization', paytronix: 'Yes (1:1 marketing, predictive)', spinix: 'No', winner: 'paytronix' },
+        { feature: 'Loyalty mechanics', paytronix: 'Points, tiers, challenges, offers', spinix: 'Spin wheel (variable rewards)', winner: 'paytronix' },
+        { feature: 'Apple/Google Wallet', paytronix: 'Optional', spinix: 'Core feature', winner: 'spinix' },
+        { feature: 'Google review generation', paytronix: 'Not a core feature', spinix: 'Automatic (33% conversion)', winner: 'spinix' },
+        { feature: 'Email/SMS/Push', paytronix: 'Enterprise omnichannel', spinix: 'Automated 6-email + WhatsApp', winner: 'paytronix' },
+        { feature: 'Gamification', paytronix: 'Challenges (goal-based)', spinix: 'Spin wheel (every visit)', winner: 'spinix' },
+        { feature: 'Guest enrollment', paytronix: 'POS checkout, app, credit card link', spinix: 'QR scan - 15 seconds', winner: 'spinix' },
+        { feature: 'Analytics', paytronix: 'Enterprise BI + data warehouse export', spinix: 'Dashboard + Telegram alerts', winner: 'paytronix' },
+        { feature: 'Dedicated support', paytronix: 'Yes (account manager)', spinix: 'Email + chat support', winner: 'paytronix' },
+        { feature: 'API access', paytronix: 'Yes (full API)', spinix: 'Limited', winner: 'paytronix' },
+        { feature: 'Multi-brand management', paytronix: 'Yes', spinix: 'No', winner: 'paytronix' },
+        { feature: 'Onboarding', paytronix: 'Dedicated team (weeks)', spinix: 'Self-service (10 minutes)', winner: 'spinix' },
+      ],
+    },
+    sizing: {
+      title: 'Paytronix vs SpiniX: right-sizing your loyalty platform',
+      subtitle: 'The most expensive mistake in loyalty isn\'t choosing the wrong features. It\'s choosing the wrong scale.',
+      tiers: [
+        {
+          title: '1-5 locations',
+          description: 'Single restaurant, small group, or cafe chain',
+          recommendation: 'SpiniX',
+          reason: 'Enterprise platforms are designed for scale you don\'t have. You\'ll pay for POS integration you don\'t need, AI personalization that requires data volumes you won\'t reach, and account management for a complexity that doesn\'t exist. SpiniX at €29/month gives you loyalty, gamification, reviews, and email automation. Everything else is overhead at this size.',
+          annual: '€348-708/year',
+        },
+        {
+          title: '5-20 locations',
+          description: 'Regional chain or restaurant group',
+          recommendation: 'SpiniX or mid-market',
+          reason: 'You\'re in the middle ground. Paytronix is still likely overkill ($6,000-24,000/year). SpiniX per-location pricing (€29-99/mo per location) can work up to ~20 locations. Above that, start evaluating mid-market options like Kangaroo Rewards or Square Loyalty if POS integration matters.',
+          annual: '€2,000-12,000/year with SpiniX',
+        },
+        {
+          title: '20-50 locations',
+          description: 'Growing chain needing unified systems',
+          recommendation: 'Mid-market or enterprise evaluation',
+          reason: 'This is the transition zone. You need multi-location management, possibly POS integration, and consolidated analytics. Evaluate Paytronix alongside Punchh (also PAR), Toast Loyalty, and SpiniX Pro to find the right fit for your tech stack and budget.',
+          annual: 'Varies widely',
+        },
+        {
+          title: '50+ locations',
+          description: 'National chain, franchise, or QSR brand',
+          recommendation: 'Paytronix',
+          reason: 'This is Paytronix\'s market. Deep POS integration across all locations, predictive AI that actually has enough data to work, online ordering, catering, and enterprise analytics. The $500-2,000/month investment makes sense at this scale because the per-location cost is tiny and the operational efficiency is real.',
+          annual: '$6,000-24,000+/year',
+        },
+      ],
+    },
+    details: {
+      title: 'Paytronix vs SpiniX: where each wins',
+      sections: [
+        {
+          title: 'Paytronix wins: enterprise-grade everything',
+          icon: 'building',
+          content: 'Paytronix integrates with 100+ POS systems, connects to online ordering and catering, offers predictive AI that analyzes millions of transactions, exports to data warehouses, and provides dedicated account management. For a 200-location QSR chain doing $50M+ in annual revenue, these features drive measurable operational efficiency. This infrastructure is what you pay $500-2,000/month for.',
+        },
+        {
+          title: 'Paytronix wins: scale and unified data',
+          icon: 'chart',
+          content: 'Paytronix\'s single platform manages loyalty across hundreds of locations with unified customer data. A guest who earns points in Location A can redeem in Location B. Marketing campaigns coordinate across all locations. SpiniX operates per-location. For 50+ locations, this unified approach saves significant management overhead.',
+        },
+        {
+          title: 'SpiniX wins: right-sized for SMB',
+          icon: 'store',
+          content: 'For a single restaurant, SpiniX does everything you need: loyalty, gamification, reviews, email automation, Wallet passes. No POS integration required (most independent restaurants don\'t have compatible POS systems anyway). No weeks-long onboarding. No annual contract. No $6,000/év minimum investment to test if loyalty works for your business.',
+        },
+        {
+          title: 'SpiniX wins: instant setup and zero overhead',
+          icon: 'clock',
+          content: 'Paytronix requires a project manager, POS integration testing, staff training, and weeks of setup. SpiniX: create account, configure prizes, print QR, stick it on the table. Your loyalty program is live in 10 minutes. For an independent restaurant owner already working 60+ hours per week, this isn\'t a luxury - it\'s a necessity.',
+        },
+        {
+          title: 'SpiniX wins: review generation',
+          icon: 'star',
+          content: 'Paytronix focuses on loyalty mechanics, ordering, and marketing. Google review generation isn\'t a core feature. SpiniX bakes it into the flow: guest spins, wins, gets a review prompt. 33% leave a review. For an independent restaurant where Google rating directly impacts discovery and foot traffic, this feature alone can justify the subscription.',
+        },
+        {
+          title: 'SpiniX wins: gamification on every phone',
+          icon: 'zap',
+          content: 'Paytronix offers "challenges" - goal-based gamification where guests complete specific tasks. SpiniX puts a spin wheel on every guest\'s phone at every visit. Paytronix\'s challenges work best for loyal, already-engaged customers. SpiniX\'s spin wheel captures first-time visitors who haven\'t committed to any loyalty program yet. Different psychology, different enrollment moment.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Paytronix vs SpiniX cost for a single restaurant',
+      subtitle: 'What enterprise pricing looks like when you have one location.',
+      rows: [
+        { item: 'Monthly subscription', paytronix: '$500-2,000+', spinix: '€29' },
+        { item: 'Setup/onboarding', paytronix: '$1,000-5,000+ (estimated)', spinix: '€0' },
+        { item: 'Annual contract', paytronix: 'Required (typically)', spinix: 'Monthly' },
+        { item: 'First year total', paytronix: '$7,000-29,000+', spinix: '€348' },
+        { item: 'POS integration cost', paytronix: 'Included (but requires compatible POS)', spinix: 'Not needed' },
+        { item: 'Staff training', paytronix: 'Required (provided)', spinix: '5 minutes ("scan this QR")' },
+        { item: 'Time to launch', paytronix: '2-8 weeks', spinix: '10 minutes' },
+      ],
+      note: 'For a single restaurant, Paytronix costs 20-83x more than SpiniX. The question isn\'t whether Paytronix is better - it is, at enterprise scale. The question is whether you need enterprise scale.',
+    },
+    scenarios: {
+      title: 'SpiniX or Paytronix: which should you choose?',
+      items: [
+        { situation: 'Single independent restaurant', recommendation: 'SpiniX', reason: 'Paytronix is designed for 50+ locations. You\'d be paying for infrastructure you\'ll never use.' },
+        { situation: '3-5 location restaurant group', recommendation: 'SpiniX', reason: 'Still too small for enterprise pricing. SpiniX per-location keeps costs manageable.' },
+        { situation: '50+ location chain with POS ecosystem', recommendation: 'Paytronix', reason: 'This is exactly what Paytronix is built for. Unified data, AI, POS integration at scale.' },
+        { situation: 'Testing loyalty for the first time', recommendation: 'SpiniX', reason: 'Monthly contract, €29/month, 10-minute setup. Test before committing to enterprise.' },
+        { situation: 'Need online ordering + loyalty together', recommendation: 'Paytronix', reason: 'SpiniX doesn\'t do ordering. Paytronix combines both on one platform.' },
+        { situation: 'Priority is Google reviews', recommendation: 'SpiniX', reason: 'Paytronix doesn\'t focus on review generation. SpiniX makes it automatic.' },
+        { situation: 'Franchise brand rolling out nationally', recommendation: 'Paytronix', reason: 'Multi-brand, multi-location, unified analytics. Enterprise infrastructure matters here.' },
+        { situation: 'Budget under $100/month', recommendation: 'SpiniX', reason: 'Paytronix doesn\'t operate in this price range. SpiniX starts at €29.' },
+      ],
+    },
+    pricing: {
+      title: 'Paytronix pricing breakdown (2026)',
+      subtitle: 'Paytronix does not publish pricing on their website. Here is what we know from public sources, G2 reviews, and restaurant owner reports.',
+      tiers: [
+        { name: 'Small chain (10-49 locations)', range: '$500-1,000/mo', note: 'Custom quote required. Annual contract typical. Setup fees $1,000-5,000.' },
+        { name: 'Mid-size chain (50-200 locations)', range: '$1,000-2,000/mo', note: 'Includes dedicated account manager, POS integration, and predictive AI. Multi-year discounts available.' },
+        { name: 'Enterprise (200+ locations)', range: '$2,000+/mo', note: 'Fully custom pricing. Includes all modules: loyalty, ordering, catering, CRM, data warehouse.' },
+      ],
+      hidden: [
+        'Setup and onboarding fees ($1,000-5,000+ depending on POS complexity)',
+        'Annual contract commitment (12-24 months typical)',
+        'POS integration costs may be separate for non-standard systems',
+        'Additional fees for premium modules (online ordering, catering, advanced AI)',
+      ],
+      disclaimer: 'These ranges are estimates based on publicly available information and user reports as of early 2026. Paytronix pricing varies by location count, modules selected, contract length, and POS ecosystem. Request a quote from Paytronix directly for exact pricing.',
+    },
+    faq: {
+      title: 'Paytronix vs SpiniX: FAQ',
+      items: [
+        {
+          q: 'How much does Paytronix cost per month?',
+          a: 'Paytronix does not publish pricing. Based on user reports and G2 reviews, expect $500-2,000+/month depending on location count and modules. Annual contracts are standard. Setup fees range from $1,000-5,000. For a single restaurant, the first-year cost is typically $7,000-29,000+. SpiniX starts at €29/month with no setup fee and no annual contract.',
+        },
+        {
+          q: 'Does Paytronix offer a free trial?',
+          a: 'No. Paytronix requires a sales consultation, custom quote, and dedicated onboarding. There is no self-service trial or freemium tier. The onboarding process typically takes 2-8 weeks. SpiniX offers immediate access with a 90% discount on the first month.',
+        },
+        {
+          q: 'Can I get Paytronix for a single restaurant?',
+          a: 'Technically you can request a quote. But Paytronix is optimized for multi-unit operations. Their onboarding process, pricing model, and feature set assume dozens or hundreds of locations. A single restaurant would be paying enterprise rates for SMB needs. Some regional Paytronix resellers may offer lighter packages, but the core platform isn\'t designed for this market.',
+        },
+        {
+          q: 'What\'s the difference between Paytronix and Punchh?',
+          a: 'PAR Technology acquired Punchh and is merging it into PAR Engagement alongside Paytronix. They\'re becoming one platform. Punchh historically focused on loyalty and CRM for restaurant chains, while Paytronix had a broader scope including convenience stores. The combined platform targets the same enterprise market.',
+        },
+        {
+          q: 'Can SpiniX scale to 50+ locations?',
+          a: 'SpiniX works per-location, so technically yes. But at 50+ locations, you\'d want unified customer data, cross-location point redemption, and centralized analytics - features SpiniX doesn\'t offer at that scale. The practical ceiling for SpiniX is around 15-20 locations before a mid-market or enterprise solution makes more sense.',
+        },
+        {
+          q: 'What if I start with SpiniX and outgrow it?',
+          a: 'That\'s a good problem. SpiniX has no annual contract, so you can switch anytime. Your customer email database exports from SpiniX. When you reach 20+ locations and need unified POS integration, evaluate Paytronix, Toast Loyalty, or Kangaroo Rewards. The guest data you\'ve collected with SpiniX transfers to whatever platform you choose next.',
+        },
+        {
+          q: 'Does Paytronix have a self-service option?',
+          a: 'Paytronix is working on lighter onboarding for smaller restaurant groups (1-9 units). However, their pricing and feature set still target multi-unit operations. If you have fewer than 10 locations and want self-service loyalty, SpiniX or similar SMB platforms are a better fit today.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Enterprise features at SMB prices',
+      subtitle: 'Loyalty, gamification, reviews, and email automation. 10-minute setup. €29/month. No annual contract.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related comparisons',
+      posts: [
+        { title: 'SpiniX vs Toast Loyalty', slug: '/vs/toast-loyalty' },
+        { title: 'SpiniX vs Square Loyalty', slug: '/vs/square-loyalty' },
+        { title: 'Loyalty for Independent Restaurants', slug: '/blog/loyalty-program-independent-restaurant' },
+        { title: '5 Loyalty Program Mistakes', slug: '/blog/restaurant-loyalty-program-mistakes' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'Paytronix Alternatíva Kis Éttermeknek (2026 Összehasonlítás)',
+      description: 'Paytronix 50+ helyszínes láncoknak készült. Ha 1-5 helyszíned van, a SpiniX loyalty-t, gamifikációt és Google review automatizálást ad 10 perces beállítással. Teljes funkció-összehasonlítás.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'Paytronix vs SpiniX',
+      subtitle: 'Ez nem igazi head-to-head összehasonlítás. Paytronix enterprise platform nemzeti étteremlánoknak. SpiniX SMB platform független éttermeknek. De ha "Paytronix alternative"-t keresel, valószínűleg enterprise árajánlatot kaptál az 1-5 lokációs üzletedre. Ez az oldal neked szól.',
+    },
+    tldr: {
+      title: 'Paytronix vs SpiniX: röviden',
+      paytronix: 'Paytronix (most a PAR Engagement része, ami Punchh-ot is tartalmazza) enterprise-grade loyalty multi-unit étteremlánoknak. Mély POS integráció, prediktív AI, online rendelés, catering eszközök, omnichannel marketing. Egyedi árazás, tipikusan $500-2,000+/hó. Dedikált onboarding heteken-hónapokon át. Peet\'s Coffee-nak és 50+ lokációs brandeknek tervezve.',
+      spinix: 'SpiniX SMB loyalty független éttermeknek, kávézóknak és szállodáknak. QR scan, spin wheel gamifikáció, Apple/Google Wallet, automatikus review generálás és email szekvenciák. €29/hó. Önkiszolgáló setup 10 perc. A sarki étteremnek 1-20 lokációval.',
+      verdict: 'Ha 50+ lokációd van, POS ökoszisztémád és dedikált marketing csapatod, Paytronix a megfelelő eszköz. Ha 1-20 lokációd van és 10 perc alatt €29/hó-ért kell valami ami működik, SpiniX.',
+    },
+    context: {
+      title: 'Miért keresnek Paytronix alternatívát',
+      reasons: [
+        { title: 'Enterprise árajánlatot kaptál', detail: 'Felhívtad a Paytronix-ot, leírtad a 3 lokációs étterem csoportod, és $500+/hó árajánlatot kaptál többhetes implementációval. Ez nem hiba - ez a piacuk. 50+ lokációra vannak tervezve.' },
+        { title: 'Túl komplex az igényeidhez', detail: 'Paytronix 100+ POS integrációt, prediktív AI-t, online rendelést, cateringet, data warehouse exportot kínál. Ha csak loyalty és review-k kellenek egy étteremhez, a funkciók 90%-a irreleváns overhead.' },
+        { title: 'Éves szerződés aggályok', detail: 'Enterprise platformok általában éves elköteleződést igényelnek. Ha először teszteled a loyaltyt, 12 hónapra $500+/hó = $6,000+ fogadás mielőtt tudnád működik-e.' },
+        { title: 'Gyorsabb implementáció kell', detail: 'Paytronix onboarding dedikált projekt menedzserrel heteket vesz igénybe. SpiniX 10 perc: fiók létrehozás, wheel konfiguráció, QR nyomtatás, kész.' },
+      ],
+    },
+    comparison: {
+      title: 'Paytronix vs SpiniX: funkció összehasonlítás',
+      headers: ['', 'Paytronix', 'SpiniX'],
+      rows: [
+        { feature: 'Ár', paytronix: '$500-2,000+/hó (egyedi)', spinix: '€29/hó', winner: 'spinix' },
+        { feature: 'Célcsoport méret', paytronix: '50-5,000+ lokáció', spinix: '1-20 lokáció', winner: 'context' },
+        { feature: 'Setup idő', paytronix: 'Hetek-hónapok (projekt menedzselt)', spinix: '10 perc (önkiszolgáló)', winner: 'spinix' },
+        { feature: 'Szerződés', paytronix: 'Éves (általában)', spinix: 'Havi (bármikor lemondható)', winner: 'spinix' },
+        { feature: 'POS integráció', paytronix: 'Mély (100+ POS partner)', spinix: 'Nem szükséges', winner: 'paytronix' },
+        { feature: 'Online rendelés', paytronix: 'Igen (beépített)', spinix: 'Nem', winner: 'paytronix' },
+        { feature: 'Catering eszközök', paytronix: 'Igen', spinix: 'Nem', winner: 'paytronix' },
+        { feature: 'AI/ML személyre szabás', paytronix: 'Igen (1:1 marketing, prediktív)', spinix: 'Nem', winner: 'paytronix' },
+        { feature: 'Loyalty mechanikák', paytronix: 'Pontok, szintek, kihívások, ajánlatok', spinix: 'Spin wheel (változó jutalmak)', winner: 'paytronix' },
+        { feature: 'Apple/Google Wallet', paytronix: 'Opcionális', spinix: 'Alap funkció', winner: 'spinix' },
+        { feature: 'Google review generálás', paytronix: 'Nem alap funkció', spinix: 'Automatikus (33% konverzió)', winner: 'spinix' },
+        { feature: 'Email/SMS/Push', paytronix: 'Enterprise omnichannel', spinix: 'Automatikus 6-email + WhatsApp', winner: 'paytronix' },
+        { feature: 'Gamifikáció', paytronix: 'Kihívások (cél alapú)', spinix: 'Spin wheel (minden látogatásnál)', winner: 'spinix' },
+        { feature: 'Vendég regisztráció', paytronix: 'POS checkout, app, kártya', spinix: 'QR scan - 15 mp', winner: 'spinix' },
+        { feature: 'Analitika', paytronix: 'Enterprise BI + data warehouse', spinix: 'Dashboard + Telegram alertek', winner: 'paytronix' },
+        { feature: 'Dedikált support', paytronix: 'Igen (account manager)', spinix: 'Email + chat', winner: 'paytronix' },
+        { feature: 'API hozzáférés', paytronix: 'Igen (teljes API)', spinix: 'Korlátozott', winner: 'paytronix' },
+        { feature: 'Multi-brand kezelés', paytronix: 'Igen', spinix: 'Nem', winner: 'paytronix' },
+        { feature: 'Onboarding', paytronix: 'Dedikált csapat (hetek)', spinix: 'Önkiszolgáló (10 perc)', winner: 'spinix' },
+      ],
+    },
+    sizing: {
+      title: 'Paytronix vs SpiniX: méretezd jól a loyalty platformod',
+      subtitle: 'A legdrágább loyalty hiba nem a rossz funkciók választása. Hanem a rossz skála választása.',
+      tiers: [
+        {
+          title: '1-5 lokáció',
+          description: 'Egyetlen étterem, kis csoport, vagy kávézó lánc',
+          recommendation: 'SpiniX',
+          reason: 'Enterprise platformok skálára vannak tervezve amit nem érsz el. POS integrációért fizetsz amit nem használsz, AI-ért ami nem lesz elég adatod, account managementért ami nem szükséges. SpiniX €29/hó-ért ad loyaltyt, gamifikációt, review-kat és email automatizációt.',
+          annual: '€348-708/év',
+        },
+        {
+          title: '5-20 lokáció',
+          description: 'Regionális lánc vagy étterem csoport',
+          recommendation: 'SpiniX vagy mid-market',
+          reason: 'A középmezőben vagy. Paytronix valószínűleg még túlzás ($6,000-24,000/év). SpiniX lokációnkénti árazása (€29-99/hó) ~20 lokációig működik. Felette értékelj mid-market opciókat.',
+          annual: '€2,000-12,000/év SpiniX-szel',
+        },
+        {
+          title: '20-50 lokáció',
+          description: 'Növekvő lánc egységes rendszerigénnyel',
+          recommendation: 'Mid-market vagy enterprise értékelés',
+          reason: 'Átmeneti zóna. Multi-lokáció kezelés, POS integráció és összevont analitika kell. Értékeld a Paytronix-ot a Punchh, Toast Loyalty és SpiniX Pro mellett.',
+          annual: 'Nagyon változó',
+        },
+        {
+          title: '50+ lokáció',
+          description: 'Nemzeti lánc, franchise, vagy QSR brand',
+          recommendation: 'Paytronix',
+          reason: 'Ez Paytronix piaca. Mély POS integráció, prediktív AI ami elég adaton tanul, online rendelés, catering, enterprise analitika. A $500-2,000/hó ezen a skálán indokolt mert a lokációnkénti költség apró.',
+          annual: '$6,000-24,000+/év',
+        },
+      ],
+    },
+    details: {
+      title: 'Paytronix vs SpiniX: hol nyer melyik',
+      sections: [
+        {
+          title: 'Paytronix nyer: enterprise-grade minden',
+          icon: 'building',
+          content: 'Paytronix 100+ POS rendszerrel integrálódik, online rendeléshez és cateringhez csatlakozik, prediktív AI-t kínál ami millió tranzakciót elemez, data warehouse-ba exportál és dedikált account managementet ad. 200 lokációs QSR láncnál $50M+ éves bevétellel ezek mérhető operatív hatékonyságot hoznak.',
+        },
+        {
+          title: 'Paytronix nyer: skála és egységes adat',
+          icon: 'chart',
+          content: 'Paytronix egyetlen platformon kezeli a loyaltyt lokációk százain egységes vendégadatokkal. Vendég A lokációban gyűjt pontot, B-ben váltja be. Kampányok koordináltak. SpiniX lokációnként működik. 50+ lokációnál az egységes megközelítés jelentős management overheadet spórol.',
+        },
+        {
+          title: 'SpiniX nyer: jól méretezett SMB-nek',
+          icon: 'store',
+          content: 'Egyetlen étteremnél SpiniX mindent ad amire szükséged van: loyalty, gamifikáció, review-k, email automatizáció, Wallet passok. Nincs POS integráció szükség (a legtöbb független étteremnek amúgy sincs kompatibilis POS-a). Nincs hetekig tartó onboarding. Nincs éves szerződés. Nincs $6,000/év minimum.',
+        },
+        {
+          title: 'SpiniX nyer: azonnali setup és nulla overhead',
+          icon: 'clock',
+          content: 'Paytronix projekt menedzsert, POS integrációs teszteket, staff tréninget és heteket igényel. SpiniX: fiók, prizek, QR, asztalra ragasztás. A loyalty programod 10 perc alatt él. Egy független étterem tulajdonosnak aki már heti 60+ órát dolgozik, ez nem luxus - szükséglet.',
+        },
+        {
+          title: 'SpiniX nyer: review generálás',
+          icon: 'star',
+          content: 'Paytronix loyalty mechanikákra, rendelésre és marketingre fókuszál. Google review generálás nem alap funkció. SpiniX beépíti a flowba: vendég pörget, nyer, review kérés jön. 33% hagy egyet. Független éttermeknek ahol a Google értékelés közvetlenül befolyásolja a felfedezhetőséget, ez a funkció önmagában indokolja az előfizetést.',
+        },
+        {
+          title: 'SpiniX nyer: gamifikáció minden telefonon',
+          icon: 'zap',
+          content: 'Paytronix "kihívásokat" kínál - cél alapú gamifikációt ahol vendégek feladatokat teljesítenek. SpiniX spin wheelt rak minden vendég telefonjára minden látogatásnál. Paytronix kihívásai lojális, már elköteleződött vendégeknél működnek legjobban. SpiniX spin wheelje első alkalommal érkező vendégeket fog meg.',
+        },
+      ],
+    },
+    cost: {
+      title: 'Paytronix vs SpiniX költség egyetlen étteremre',
+      subtitle: 'Így néz ki az enterprise árazás egy lokációval.',
+      rows: [
+        { item: 'Havi előfizetés', paytronix: '$500-2,000+', spinix: '€29' },
+        { item: 'Setup/onboarding', paytronix: '$1,000-5,000+ (becsült)', spinix: '€0' },
+        { item: 'Éves szerződés', paytronix: 'Szükséges (általában)', spinix: 'Havi' },
+        { item: 'Első éves összköltség', paytronix: '$7,000-29,000+', spinix: '€348' },
+        { item: 'POS integrációs költség', paytronix: 'Benne (de kompatibilis POS kell)', spinix: 'Nem szükséges' },
+        { item: 'Staff tréning', paytronix: 'Szükséges (biztosított)', spinix: '5 perc ("scanneld ezt a QR-t")' },
+        { item: 'Indulásig', paytronix: '2-8 hét', spinix: '10 perc' },
+      ],
+      note: 'Egyetlen étteremnél Paytronix 20-83x drágább mint SpiniX. A kérdés nem az hogy Paytronix jobb-e - az, enterprise skálán. A kérdés az hogy szükséged van-e enterprise skálára.',
+    },
+    scenarios: {
+      title: 'SpiniX vagy Paytronix: melyiket válaszd?',
+      items: [
+        { situation: 'Egyetlen független étterem', recommendation: 'SpiniX', reason: 'Paytronix 50+ lokációra van tervezve. Infrastruktúráért fizetnél amit sosem használsz.' },
+        { situation: '3-5 lokációs étterem csoport', recommendation: 'SpiniX', reason: 'Még túl kicsi enterprise árazáshoz. SpiniX lokációnként kezelhető költséget ad.' },
+        { situation: '50+ lokációs lánc POS ökoszisztémával', recommendation: 'Paytronix', reason: 'Pont erre van tervezve a Paytronix. Egységes adat, AI, POS integráció skálán.' },
+        { situation: 'Először teszteled a loyaltyt', recommendation: 'SpiniX', reason: 'Havi szerződés, €29/hó, 10 perc setup. Tesztelj mielőtt enterprise-ra kötelezed el magad.' },
+        { situation: 'Online rendelés + loyalty együtt kell', recommendation: 'Paytronix', reason: 'SpiniX nem csinál rendelést. Paytronix mindkettőt kombinálja.' },
+        { situation: 'Google review-k a prioritás', recommendation: 'SpiniX', reason: 'Paytronix nem fókuszál review generálásra. SpiniX automatikussá teszi.' },
+        { situation: 'Franchise brand nemzeti terjeszkedéssel', recommendation: 'Paytronix', reason: 'Multi-brand, multi-lokáció, egységes analitika. Enterprise infrastruktúra itt számít.' },
+        { situation: 'Budget $100/hó alatt', recommendation: 'SpiniX', reason: 'Paytronix nem működik ebben az ártartományban. SpiniX €29-tól indul.' },
+      ],
+    },
+    pricing: {
+      title: 'Paytronix árazás részletesen (2026)',
+      subtitle: 'Paytronix nem publikál árat a weboldalán. Amit nyilvános forrásokból, G2 értékelésekből és étterem tulajdonosi beszámolókból tudunk.',
+      tiers: [
+        { name: 'Kis lánc (10-49 lokáció)', range: '$500-1,000/hó', note: 'Egyedi árajánlat szükséges. Éves szerződés jellemző. Setup díj $1,000-5,000.' },
+        { name: 'Közepes lánc (50-200 lokáció)', range: '$1,000-2,000/hó', note: 'Dedikált account manager, POS integráció és prediktív AI. Többéves kedvezmény elérhető.' },
+        { name: 'Enterprise (200+ lokáció)', range: '$2,000+/hó', note: 'Teljesen egyedi árazás. Minden modul: loyalty, rendelés, catering, CRM, data warehouse.' },
+      ],
+      hidden: [
+        'Setup és onboarding díjak ($1,000-5,000+ a POS összetettségétől függően)',
+        'Éves szerződés kötelezettség (12-24 hónap jellemző)',
+        'POS integrációs költség nem standard rendszereknél külön lehet',
+        'Prémium modulok feláras lehetnek (online rendelés, catering, haladó AI)',
+      ],
+      disclaimer: 'Ezek becsült árak nyilvánosan elérhető információk és felhasználói beszámolók alapján, 2026 eleje. Paytronix árazás lokáció szám, modulok, szerződés hossz és POS ökoszisztéma szerint változik. Pontos árajánlatért keresd közvetlenül a Paytronix-ot.',
+    },
+    faq: {
+      title: 'Paytronix vs SpiniX: GYIK',
+      items: [
+        {
+          q: 'Mennyibe kerül a Paytronix havonta?',
+          a: 'Paytronix nem publikál árat. Felhasználói beszámolók és G2 értékelések alapján $500-2,000+/hó a lokáció számtól és moduloktól függően. Éves szerződés standard. Setup díj $1,000-5,000. Egyetlen étterem esetén az első éves költség jellemzően $7,000-29,000+. SpiniX €29/hó-tól indul, setup díj és éves szerződés nélkül.',
+        },
+        {
+          q: 'Van Paytronix ingyenes próba?',
+          a: 'Nincs. Paytronix értékesítési konzultációt, egyedi árajánlatot és dedikált onboardingot igényel. Nincs önkiszolgáló trial vagy freemium. Az onboarding 2-8 hetet vesz igénybe. SpiniX azonnali hozzáférést ad 90% kedvezménnyel az első hónapban.',
+        },
+        {
+          q: 'Megkaphatom a Paytronix-ot egyetlen étteremre?',
+          a: 'Technikailag kérhetsz árajánlatot. De Paytronix multi-unit működésre van optimalizálva. Onboarding, árazás és funkciók tucatnyi vagy száznyi lokációt feltételez. Egyetlen étterem enterprise árat fizetne SMB igényekre.',
+        },
+        {
+          q: 'Mi a különbség Paytronix és Punchh között?',
+          a: 'PAR Technology felvásárolta a Punchh-ot és PAR Engagement-be olvasztja Paytronix mellett. Egy platformmá válnak. Punchh hagyományosan loyalty-ra és CRM-re fókuszált, Paytronix szélesebb volt. Az egyesített platform ugyanazt az enterprise piacot célozza.',
+        },
+        {
+          q: 'SpiniX skálázódik 50+ lokációra?',
+          a: 'SpiniX lokációnként működik, technikailag igen. De 50+ lokációnál egységes vendégadat, lokációk közötti pont beváltás és központosított analitika kell - funkciókat amiket SpiniX ezen a skálán nem kínál. Gyakorlati plafon ~15-20 lokáció.',
+        },
+        {
+          q: 'Mi van ha SpiniX-szel kezdek és kinövöm?',
+          a: 'Az jó probléma. SpiniX-nek nincs éves szerződése, bármikor válthatsz. Vendég email adatbázisod exportálható. 20+ lokációnál és egységes POS integráció szükségletnél értékeld a Paytronix-ot, Toast Loyalty-t vagy Kangaroo Rewards-ot.',
+        },
+        {
+          q: 'Van Paytronix-nak önkiszolgáló opciója?',
+          a: 'Paytronix dolgozik könnyebb onboardingon kisebb étterem csoportoknak (1-9 egység). De árazásuk és funkcióik továbbra is multi-unit működést céloznak. 10 lokáció alatt önkiszolgáló loyaltyhoz SpiniX vagy hasonló SMB platformok ma jobb választás.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Enterprise funkciók SMB áron',
+      subtitle: 'Loyalty, gamifikáció, review-k és email automatizáció. 10 perc setup. €29/hó. Nincs éves szerződés.',
+      button: 'Próbáld Ki — 90% Az Első Hónapra',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó összehasonlítások',
+      posts: [
+        { title: 'SpiniX vs Toast Loyalty', slug: '/vs/toast-loyalty' },
+        { title: 'SpiniX vs Square Loyalty', slug: '/vs/square-loyalty' },
+        { title: 'Loyalty Független Éttermeknek', slug: '/blog/loyalty-program-independent-restaurant' },
+        { title: '5 Loyalty Program Hiba', slug: '/blog/restaurant-loyalty-program-mistakes' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="paytronix" lang={lang} />

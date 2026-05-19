@@ -1,0 +1,412 @@
+---
+import ComparisonLayout from '../../layouts/ComparisonLayout.astro';
+
+const lang = Astro.url.searchParams.get('lang') || 'en';
+
+const translations = {
+  en: {
+    meta: {
+      title: 'TurboPush Alternative: Gamified Loyalty vs Digital Stamp Cards (2026)',
+      description: 'TurboPush offers digital stamp cards from $5.99/mo. SpiniX adds spin wheel gamification, Google review automation, and Apple Wallet passes at €29/mo. Full feature and pricing comparison.',
+    },
+    hero: {
+      badge: 'Comparison',
+      title: 'SpiniX vs TurboPush',
+      subtitle: 'TurboPush is the budget option: AI-designed digital stamp cards in Apple and Google Wallet from $5.99/month. SpiniX is the engagement option: gamified spin wheel with review generation and email automation from €29/month. Different price points, different capabilities.',
+    },
+    tldr: {
+      title: 'SpiniX vs TurboPush: the short version',
+      turbopush: 'TurboPush is a Wallet-focused digital stamp card platform. AI generates card designs in 30 seconds. Push notifications to Wallet passes. $5.99-58.99/month. Best for small businesses that want the cheapest possible digital loyalty card with Wallet integration.',
+      spinix: 'SpiniX replaces the stamp card with a spin wheel game, adds automated review generation (33% conversion), a 6-email sequence, WhatsApp integration, and a guest database. €29/month. Best for hospitality businesses that want loyalty to actively drive reviews and return visits.',
+      verdict: 'If your budget is under $15/month and you just need a digital stamp card in Wallet, TurboPush does the job. If you want loyalty that generates Google reviews, automates follow-up, and uses gamification to drive engagement, SpiniX delivers more value despite costing more.',
+    },
+    honesty: {
+      title: 'The price gap is real',
+      content: 'SpiniX costs roughly 5x what TurboPush\'s Basic plan costs. That\'s significant. This comparison doesn\'t pretend otherwise. The question is whether SpiniX\'s additional features (gamification, review generation, email automation) generate enough extra revenue to justify 5x the price. For most restaurants doing 50+ covers per day, one extra Google review per week pays for the difference.',
+    },
+    comparison: {
+      title: 'SpiniX vs TurboPush: feature comparison',
+      headers: ['', 'TurboPush', 'SpiniX'],
+      rows: [
+        { feature: 'Starting price', turbopush: '$5.99/mo', spinix: '€29/mo', winner: 'turbopush' },
+        { feature: 'Mid-tier price', turbopush: '$14.99/mo', spinix: '€59/mo', winner: 'turbopush' },
+        { feature: 'Top-tier price', turbopush: '$58.99/mo', spinix: '€99/mo', winner: 'turbopush' },
+        { feature: 'Apple/Google Wallet', turbopush: 'Yes (core feature)', spinix: 'Yes', winner: 'tie' },
+        { feature: 'POS required', turbopush: 'No', spinix: 'No', winner: 'tie' },
+        { feature: 'Core loyalty mechanic', turbopush: 'Digital stamp/punch card', spinix: 'Spin wheel (variable rewards)', winner: 'spinix' },
+        { feature: 'AI card design', turbopush: 'Yes (30-second generation)', spinix: 'No (manual setup)', winner: 'turbopush' },
+        { feature: 'AI message generation', turbopush: 'Yes', spinix: 'No', winner: 'turbopush' },
+        { feature: 'Push notifications', turbopush: '500-10,000/mo (plan limited)', spinix: 'Unlimited (Wallet push)', winner: 'spinix' },
+        { feature: 'Google review generation', turbopush: 'No', spinix: 'Automatic flow (33% conversion)', winner: 'spinix' },
+        { feature: 'Email marketing', turbopush: 'No', spinix: 'Automated 6-email sequence', winner: 'spinix' },
+        { feature: 'WhatsApp integration', turbopush: 'No', spinix: 'Yes (SEA/UK markets)', winner: 'spinix' },
+        { feature: 'Gamification', turbopush: 'No', spinix: 'Core mechanic on every scan', winner: 'spinix' },
+        { feature: 'Guest database', turbopush: 'Card holders only', spinix: 'Email, phone, visit history', winner: 'spinix' },
+        { feature: 'Card designs per plan', turbopush: '2 (Basic) to unlimited (Premium)', spinix: 'Customizable wheel (all plans)', winner: 'tie' },
+        { feature: 'Analytics', turbopush: 'Basic', spinix: 'Dashboard + Telegram alerts', winner: 'spinix' },
+        { feature: 'Setup speed', turbopush: '30 seconds (AI-generated)', spinix: '10 minutes (manual config)', winner: 'turbopush' },
+        { feature: 'Multi-location', turbopush: 'Multiple card designs', spinix: 'Per-location wheels', winner: 'tie' },
+        { feature: 'Free trial', turbopush: '7 days', spinix: '14 days', winner: 'spinix' },
+      ],
+    },
+    missing: {
+      title: 'What TurboPush doesn\'t have',
+      subtitle: 'These aren\'t criticisms. TurboPush is designed to be simple and cheap. But understanding what\'s missing helps you decide if simple is enough.',
+      items: [
+        {
+          feature: 'No review generation',
+          impact: 'Google reviews drive 5-9% revenue increase per star gained. Without automated review collection, you need a separate tool ($50-200/month) or rely on guests reviewing spontaneously (which fewer than 5% do).',
+        },
+        {
+          feature: 'No email marketing',
+          impact: 'Email marketing has a $42 ROI per dollar spent in hospitality. TurboPush captures Wallet pass holders but can\'t email them. No welcome sequence, no expiry reminders, no win-back campaigns. This limits post-visit engagement to push notifications only.',
+        },
+        {
+          feature: 'No gamification',
+          impact: 'TurboPush uses the same stamp card mechanic as paper punch cards, just digital. No variable rewards, no surprise element. Research shows 73% of stamp-based loyalty members go inactive before earning their first reward.',
+        },
+        {
+          feature: 'No guest database beyond cards',
+          impact: 'TurboPush tracks card holders but doesn\'t build a guest database with emails, phone numbers, and visit history. You can\'t export this data for other marketing channels.',
+        },
+        {
+          feature: 'Push notification limits',
+          impact: 'Basic plan: 500 pushes/month. With 200 card holders, that\'s 2.5 messages per person per month. Standard: 2,000/month. Only Premium ($58.99) gets 10,000. SpiniX Wallet pushes are unlimited on all plans.',
+        },
+      ],
+    },
+    pricing: {
+      title: 'SpiniX vs TurboPush: real cost comparison',
+      turbopush: {
+        name: 'TurboPush',
+        plans: [
+          { name: 'Basic', price: '$5.99/mo', features: ['Unlimited cards', '500 push/mo', '2 card designs', '7-day trial'] },
+          { name: 'Standard', price: '$14.99/mo', features: ['Unlimited cards', '2,000 push/mo', '5 card designs'] },
+          { name: 'Premium', price: '$58.99/mo', features: ['Unlimited cards', '10,000 push/mo', 'Unlimited designs'] },
+        ],
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/mo', features: ['Spin wheel', 'QR + Wallet', 'Unlimited push', 'Email automation', 'Review generation'] },
+          { name: 'Growth', price: '€59/mo', features: ['3 wheels', 'Priority support', 'Advanced analytics'] },
+          { name: 'Pro', price: '€99/mo', features: ['Unlimited wheels', 'Multi-location', 'WhatsApp'] },
+        ],
+      },
+      analysis: {
+        title: 'Annual cost: loyalty only vs loyalty + reviews + email',
+        rows: [
+          { scenario: 'Loyalty only (cheapest)', turbopush: '$72/yr ($5.99 × 12)', spinix: '€348/yr (€29 × 12)', note: 'TurboPush is 4.8x cheaper' },
+          { scenario: 'Loyalty + review tool', turbopush: '$72 + ~$1,200 (review tool) = $1,272/yr', spinix: '€348/yr (reviews included)', note: 'SpiniX saves ~$924/yr' },
+          { scenario: 'Loyalty + review + email tool', turbopush: '$72 + ~$1,200 + ~$300 (Mailchimp) = $1,572/yr', spinix: '€348/yr (all included)', note: 'SpiniX saves ~$1,224/yr' },
+          { scenario: 'Enough push notifications (500+ guests)', turbopush: '$708/yr ($58.99 Premium × 12)', spinix: '€348/yr (unlimited push)', note: 'SpiniX is cheaper at scale' },
+        ],
+        bottomLine: 'TurboPush is the cheapest loyalty-only tool. But most restaurants also need reviews and email. When you add those, SpiniX becomes the cheaper all-in-one option.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs TurboPush: where each platform wins',
+      sections: [
+        {
+          title: 'TurboPush wins: lowest possible price',
+          icon: 'dollar',
+          content: '$5.99/month is hard to argue with. If you\'re a small cafe doing 20-30 covers per day and you just want a digital stamp card that lives in Apple Wallet, TurboPush delivers that for less than the cost of a coffee per week. No other platform in this category matches that price point.',
+        },
+        {
+          title: 'TurboPush wins: AI-powered setup speed',
+          icon: 'cpu',
+          content: 'TurboPush\'s AI generates a branded loyalty card design in 30 seconds. No design skills needed. AI also writes push notification messages for you. SpiniX requires manual wheel configuration (takes about 10 minutes). If zero-effort setup matters, TurboPush is faster.',
+        },
+        {
+          title: 'SpiniX wins: gamification drives higher engagement',
+          icon: 'zap',
+          content: 'TurboPush digitizes the stamp card. SpiniX replaces it with a spin wheel. The psychology difference is significant: stamp cards have 20-30% completion rates with 73% member inactivity. Variable rewards (the spin) produce 3x more dopamine and maintain engagement because every visit feels rewarding, not just the 10th one.',
+        },
+        {
+          title: 'SpiniX wins: review generation pays for itself',
+          icon: 'star',
+          content: 'This is the biggest differentiator. SpiniX generates Google reviews automatically (33% conversion rate). TurboPush doesn\'t touch reviews at all. A single 5-star Google review influences 8-12 potential customers. At 50 covers/day with 46% scan rate and 33% review rate, that\'s roughly 7-8 reviews per day. The revenue impact of those reviews easily covers the €29/month subscription.',
+        },
+        {
+          title: 'SpiniX wins: email automation that drives returns',
+          icon: 'email',
+          content: 'TurboPush has no email capability. SpiniX runs a 6-email automated sequence: welcome, expiry reminder, review request, return nudge, birthday, and win-back. Email marketing delivers $42 ROI per dollar in hospitality. Without email, TurboPush relies entirely on push notifications to bring guests back, and the Basic plan limits those to 500/month.',
+        },
+        {
+          title: 'SpiniX wins: complete guest database',
+          icon: 'users',
+          content: 'SpiniX captures email, phone (optional), visit history, spin history, and review status for every guest. This data is exportable and usable across marketing channels. TurboPush tracks card holders but doesn\'t build a structured guest database you can leverage beyond their platform.',
+        },
+      ],
+    },
+    roiCalc: {
+      title: 'ROI reality check',
+      subtitle: 'Does SpiniX\'s extra cost generate enough extra revenue?',
+      monthlyExtra: '€29 - $5.99 ≈ €23/month extra cost for SpiniX over TurboPush Basic',
+      rows: [
+        { source: 'Google reviews (33% of scans)', value: '~7-8 new reviews/day at 50 covers', revenue: 'Each review influences 8-12 potential customers' },
+        { source: '1-star rating increase', value: 'Achievable in 2-3 months with consistent reviews', revenue: '5-9% revenue increase (industry research)' },
+        { source: 'Email automation', value: '6-email sequence runs automatically', revenue: '$42 ROI per $1 spent (hospitality average)' },
+        { source: 'Higher return rate', value: '21% return within 14 days (gamification)', revenue: 'vs 12-18% for stamp card programs' },
+      ],
+      conclusion: 'For a restaurant doing 50+ covers per day, SpiniX\'s review generation alone produces enough revenue impact to cover the €23/month price difference many times over. For a very small cafe doing 10-15 covers, TurboPush\'s lower price may make more sense.',
+    },
+    scenarios: {
+      title: 'SpiniX or TurboPush: which should you choose?',
+      items: [
+        { situation: 'Budget under $10/month', recommendation: 'TurboPush', reason: '$5.99 Basic plan. No other loyalty tool comes close on price.' },
+        { situation: 'Small cafe, 10-20 covers/day', recommendation: 'TurboPush', reason: 'Low volume means fewer reviews to generate. Keep costs minimal.' },
+        { situation: 'Restaurant, 50+ covers/day', recommendation: 'SpiniX', reason: 'Review generation at this volume pays for itself within the first week.' },
+        { situation: 'Need Google reviews', recommendation: 'SpiniX', reason: 'TurboPush has zero review features. SpiniX generates them automatically.' },
+        { situation: 'Want email follow-up', recommendation: 'SpiniX', reason: 'TurboPush has no email. SpiniX has 6-email automated sequence.' },
+        { situation: 'Just want a Wallet card, nothing else', recommendation: 'TurboPush', reason: 'That\'s exactly what TurboPush does. Simple and cheap.' },
+        { situation: 'Hotel or spa (one-time guests)', recommendation: 'SpiniX', reason: 'Stamp cards need repeat visits to work. Spin wheel rewards on first visit.' },
+        { situation: 'Want zero-effort setup', recommendation: 'TurboPush', reason: 'AI generates everything in 30 seconds. SpiniX takes 10 minutes.' },
+      ],
+    },
+    faq: {
+      title: 'SpiniX vs TurboPush: FAQ',
+      items: [
+        {
+          q: 'Is TurboPush really $5.99/month?',
+          a: 'Yes. The Basic plan is $5.99/month with unlimited digital cards, 500 push notifications per month, and 2 card designs. It\'s a legitimate product at that price. The limitation is what\'s not included: no email, no reviews, no gamification, no guest database export.',
+        },
+        {
+          q: 'Can TurboPush generate Google reviews?',
+          a: 'No. TurboPush focuses exclusively on digital loyalty cards and push notifications. There\'s no review generation feature. To collect reviews, you\'d need a separate tool (typically $50-200/month), which often costs more than the TurboPush subscription itself.',
+        },
+        {
+          q: 'Is 500 push notifications per month enough?',
+          a: 'Depends on your database size. With 100 Wallet card holders, that\'s 5 messages per person per month, enough for weekly updates. With 500+ card holders, you\'d hit the limit sending just one message. Most growing businesses outgrow the Basic plan within 3-6 months.',
+        },
+        {
+          q: 'Can I switch from TurboPush to SpiniX later?',
+          a: 'Yes, but you can\'t migrate Wallet passes between platforms. Your guests would need to scan a new SpiniX QR code to join. The transition works well if you place new QR codes alongside old ones. Within 2-3 weeks, most active guests will have both.',
+        },
+        {
+          q: 'Which is better for a cafe?',
+          a: 'Small cafe (under 30 covers/day): TurboPush. The "buy 9, get 10th free" stamp card works well for daily coffee habits, and $5.99/month keeps costs minimal. Busy cafe (50+ covers/day): SpiniX. At that volume, the gamification and review generation provide significantly more value than the cost difference.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Ready for loyalty that does more than stamp cards?',
+      subtitle: 'Try SpiniX free for 14 days. Gamification, reviews, and email automation included. See the difference in engagement within the first week.',
+      button: 'Try It — 90% Off First Month',
+      secondary: 'See Pricing',
+    },
+    related: {
+      title: 'Related reading',
+      posts: [
+        { title: 'Digital Punch Card vs QR Loyalty Game', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: 'Apple Wallet Loyalty Card for Restaurants', slug: '/blog/apple-wallet-loyalty-card-restaurant' },
+        { title: 'How Google Reviews Impact Revenue', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+        { title: 'Restaurant Loyalty Without an App', slug: '/blog/restaurant-loyalty-program-without-app' },
+      ],
+    },
+  },
+  hu: {
+    meta: {
+      title: 'TurboPush Alternatíva: Gamifikált Loyalty vs Digitális Pecsétgyűjtő (2026)',
+      description: 'TurboPush digitális pecsétgyűjtő $5.99/hó-tól. SpiniX szerencsekerék gamifikáció, Google review automatizálás és Apple Wallet kártyák €29/hó-tól. Teljes funkció és árazás összehasonlítás.',
+    },
+    hero: {
+      badge: 'Összehasonlítás',
+      title: 'SpiniX vs TurboPush',
+      subtitle: 'TurboPush a budget opció: AI tervezésű digitális pecsétgyűjtő Apple és Google Walletben $5.99/hó-tól. SpiniX az elköteleződés opció: gamifikált spin wheel review generálással és email automatizációval €29/hó-tól. Különböző árkategóriák, különböző képességek.',
+    },
+    tldr: {
+      title: 'SpiniX vs TurboPush: röviden',
+      turbopush: 'TurboPush Wallet-fókuszú digitális pecsétgyűjtő. AI 30 mp alatt generál kártya designt. Push értesítések Wallet passokra. $5.99-58.99/hó. Legjobb: kis üzleteknek akik a legolcsóbb digitális loyalty kártyát akarják Wallet integrációval.',
+      spinix: 'SpiniX a pecsétgyűjtőt spin wheel játékra cseréli, hozzáadja az automatikus review generálást (33% konverzió), 6-email szekvenciát, WhatsApp integrációt és vendég adatbázist. €29/hó. Legjobb: hospitality üzleteknek akik aktívan akarnak review-kat és visszatéréseket generálni.',
+      verdict: 'Ha a budget $15/hó alatt van és csak digitális pecsétgyűjtő kell Walletben, TurboPush megteszi. Ha a loyalty-tól Google review-kat, automatikus followupot és gamifikált elköteleződést vársz, SpiniX több értéket szállít a magasabb ár ellenére.',
+    },
+    honesty: {
+      title: 'Az árkülönbség valós',
+      content: 'SpiniX nagyjából 5x annyiba kerül mint TurboPush Basic planja. Ez jelentős. Ez az összehasonlítás nem áltatja magát. A kérdés: SpiniX plusz funkciói (gamifikáció, review generálás, email automatizáció) generálnak-e elég plusz bevételt az 5x ár igazolására. A legtöbb étteremnél 50+ terítékkel napi egy extra Google review fizeti a különbséget.',
+    },
+    comparison: {
+      title: 'SpiniX vs TurboPush: funkció összehasonlítás',
+      headers: ['', 'TurboPush', 'SpiniX'],
+      rows: [
+        { feature: 'Kezdő ár', turbopush: '$5.99/hó', spinix: '€29/hó', winner: 'turbopush' },
+        { feature: 'Közép szintű ár', turbopush: '$14.99/hó', spinix: '€59/hó', winner: 'turbopush' },
+        { feature: 'Felső szintű ár', turbopush: '$58.99/hó', spinix: '€99/hó', winner: 'turbopush' },
+        { feature: 'Apple/Google Wallet', turbopush: 'Igen (alap funkció)', spinix: 'Igen', winner: 'tie' },
+        { feature: 'POS szükséges', turbopush: 'Nem', spinix: 'Nem', winner: 'tie' },
+        { feature: 'Alap loyalty mechanika', turbopush: 'Digitális pecsétgyűjtő', spinix: 'Spin wheel (változó jutalmak)', winner: 'spinix' },
+        { feature: 'AI kártya design', turbopush: 'Igen (30mp generálás)', spinix: 'Nem (manuális setup)', winner: 'turbopush' },
+        { feature: 'AI üzenet generálás', turbopush: 'Igen', spinix: 'Nem', winner: 'turbopush' },
+        { feature: 'Push értesítések', turbopush: '500-10,000/hó (plan korlát)', spinix: 'Korlátlan (Wallet push)', winner: 'spinix' },
+        { feature: 'Google review generálás', turbopush: 'Nem', spinix: 'Automatikus (33% konverzió)', winner: 'spinix' },
+        { feature: 'Email marketing', turbopush: 'Nem', spinix: 'Automatikus 6-email szekvencia', winner: 'spinix' },
+        { feature: 'WhatsApp integráció', turbopush: 'Nem', spinix: 'Igen (SEA/UK)', winner: 'spinix' },
+        { feature: 'Gamifikáció', turbopush: 'Nem', spinix: 'Alap mechanika minden scannél', winner: 'spinix' },
+        { feature: 'Vendég adatbázis', turbopush: 'Kártya tulajdonosok', spinix: 'Email, telefon, visit history', winner: 'spinix' },
+        { feature: 'Kártya designok plananként', turbopush: '2 (Basic) - korlátlan (Premium)', spinix: 'Testreszabható wheel (minden plan)', winner: 'tie' },
+        { feature: 'Analitika', turbopush: 'Alap', spinix: 'Dashboard + Telegram alertek', winner: 'spinix' },
+        { feature: 'Setup sebesség', turbopush: '30 mp (AI generált)', spinix: '10 perc (manuális config)', winner: 'turbopush' },
+        { feature: 'Több helyszín', turbopush: 'Több kártya design', spinix: 'Helyszínenkénti wheelek', winner: 'tie' },
+        { feature: 'Ingyenes próba', turbopush: '7 nap', spinix: '14 nap', winner: 'spinix' },
+      ],
+    },
+    missing: {
+      title: 'Ami hiányzik a TurboPush-ból',
+      subtitle: 'Ez nem kritika. TurboPush egyszerűnek és olcsónak van tervezve. De az segít dönteni ha tudod mit nem kapsz.',
+      items: [
+        {
+          feature: 'Nincs review generálás',
+          impact: 'Google review-k 5-9% bevételnövekedést hoznak csillagonként. Automatikus review gyűjtés nélkül külön eszköz kell ($50-200/hó) vagy a vendégek spontán review-jára számítasz (5% alatt).',
+        },
+        {
+          feature: 'Nincs email marketing',
+          impact: 'Email marketing $42 ROI/dollár a hospitality-ban. TurboPush Wallet pass tulajdonosokat gyűjt de nem tud emailt küldeni. Nincs üdvözlő szekvencia, lejárat emlékeztető, visszacsábítás.',
+        },
+        {
+          feature: 'Nincs gamifikáció',
+          impact: 'TurboPush ugyanazt a pecsétgyűjtő mechanikát használja mint a papír kártyák, csak digitálisan. Nincs változó jutalom, nincs meglepetés elem. A pecsét alapú loyalty tagok 73%-a inaktívvá válik.',
+        },
+        {
+          feature: 'Nincs vendég adatbázis a kártyákon túl',
+          impact: 'TurboPush kártya tulajdonosokat követ de nem épít strukturált vendég adatbázist emailekkel, telefonszámokkal és látogatási előzményekkel.',
+        },
+        {
+          feature: 'Push értesítés korlátok',
+          impact: 'Basic: 500 push/hó. 200 kártya tulajdonossal az 2.5 üzenet/fő/hó. 500+ kártya tulajdonossal egy üzenetnél kifutsz. Csak a Premium ($58.99) ad 10,000-et.',
+        },
+      ],
+    },
+    pricing: {
+      title: 'A valós költség összehasonlítás',
+      turbopush: {
+        name: 'TurboPush',
+        plans: [
+          { name: 'Basic', price: '$5.99/hó', features: ['Korlátlan kártya', '500 push/hó', '2 design', '7 nap trial'] },
+          { name: 'Standard', price: '$14.99/hó', features: ['Korlátlan kártya', '2,000 push/hó', '5 design'] },
+          { name: 'Premium', price: '$58.99/hó', features: ['Korlátlan kártya', '10,000 push/hó', 'Korlátlan design'] },
+        ],
+      },
+      spinix: {
+        name: 'SpiniX',
+        plans: [
+          { name: 'Starter', price: '€29/hó', features: ['Spin wheel', 'QR + Wallet', 'Korlátlan push', 'Email automatizáció', 'Review generálás'] },
+          { name: 'Growth', price: '€59/hó', features: ['3 wheel', 'Prioritásos support', 'Haladó analitika'] },
+          { name: 'Pro', price: '€99/hó', features: ['Korlátlan wheel', 'Több helyszín', 'WhatsApp'] },
+        ],
+      },
+      analysis: {
+        title: 'Éves költség: csak loyalty vs loyalty + review + email',
+        rows: [
+          { scenario: 'Csak loyalty (legolcsóbb)', turbopush: '$72/év ($5.99 × 12)', spinix: '€348/év (€29 × 12)', note: 'TurboPush 4.8x olcsóbb' },
+          { scenario: 'Loyalty + review eszköz', turbopush: '$72 + ~$1,200 = $1,272/év', spinix: '€348/év (review benne)', note: 'SpiniX ~$924/évet spórol' },
+          { scenario: 'Loyalty + review + email eszköz', turbopush: '$72 + ~$1,200 + ~$300 = $1,572/év', spinix: '€348/év (minden benne)', note: 'SpiniX ~$1,224/évet spórol' },
+          { scenario: 'Elég push (500+ vendég)', turbopush: '$708/év ($58.99 × 12)', spinix: '€348/év (korlátlan push)', note: 'SpiniX olcsóbb skálán' },
+        ],
+        bottomLine: 'TurboPush a legolcsóbb loyalty-only eszköz. De a legtöbb étteremnek review-k és email is kell. Ha ezeket hozzáadod, SpiniX lesz az olcsóbb all-in-one opció.',
+      },
+    },
+    details: {
+      title: 'SpiniX vs TurboPush: ahol melyik platform nyer',
+      sections: [
+        {
+          title: 'TurboPush nyer: a lehető legalacsonyabb ár',
+          icon: 'dollar',
+          content: '$5.99/hó-val nehéz vitatkozni. Ha kis kávézót működtetsz 20-30 terítékkel naponta és csak digitális pecsétgyűjtő kell Apple Walletbe, TurboPush azt szállítja egy kávé hetenkénti áránál olcsóbban.',
+        },
+        {
+          title: 'TurboPush nyer: AI alapú setup sebesség',
+          icon: 'cpu',
+          content: 'TurboPush AI-ja 30 mp alatt generál brandelt loyalty kártya designt. Nincs design tudás szükség. AI push üzeneteket is ír. SpiniX manuális wheel konfigurációt igényel (~10 perc).',
+        },
+        {
+          title: 'SpiniX nyer: gamifikáció magasabb elköteleződést hoz',
+          icon: 'zap',
+          content: 'TurboPush digitalizálja a pecsétgyűjtőt. SpiniX spin wheelre cseréli. Pecsétgyűjtőknél 20-30% kitöltési arány, 73% inaktivitás. A változó jutalmak (spin) 3x több dopamint termelnek és fenntartják az elköteleződést mert minden látogatás jutalmazó.',
+        },
+        {
+          title: 'SpiniX nyer: review generálás ami fizeti magát',
+          icon: 'star',
+          content: 'A legnagyobb különbség. SpiniX automatikusan generál Google review-kat (33% konverzió). TurboPush egyáltalán nem foglalkozik review-kkal. 50 teríték/nap, 46% scan arány, 33% review arány = kb. 7-8 review naponta. Ennek bevételi hatása bőven fedezi a €29/hó előfizetést.',
+        },
+        {
+          title: 'SpiniX nyer: email automatizáció ami visszahoz',
+          icon: 'email',
+          content: 'TurboPush-nak nincs email funkciója. SpiniX 6-email automatikus szekvenciát futtat: üdvözlés, lejárat emlékeztető, review kérés, visszatérés ösztönző, születésnap, visszacsábítás. Email marketing $42 ROI/dollár a hospitality-ban.',
+        },
+        {
+          title: 'SpiniX nyer: teljes vendég adatbázis',
+          icon: 'users',
+          content: 'SpiniX emailt, telefont, látogatási és spin előzményeket, review státuszt rögzít minden vendégről. Exportálható és használható más marketing csatornákon. TurboPush kártya tulajdonosokat követ de nem épít strukturált adatbázist.',
+        },
+      ],
+    },
+    roiCalc: {
+      title: 'ROI valóság-ellenőrzés',
+      subtitle: 'SpiniX plusz költsége generál-e elég plusz bevételt?',
+      monthlyExtra: '€29 - $5.99 ≈ €23/hó plusz költség SpiniX-re TurboPush Basic-hez képest',
+      rows: [
+        { source: 'Google review-k (scanek 33%-a)', value: '~7-8 új review/nap 50 teríték mellett', revenue: 'Minden review 8-12 potenciális vendéget befolyásol' },
+        { source: '1 csillag emelkedés', value: '2-3 hónap alatt elérhető rendszeres review-kkal', revenue: '5-9% bevételnövekedés (iparági kutatás)' },
+        { source: 'Email automatizáció', value: '6-email szekvencia automatikusan fut', revenue: '$42 ROI dolláronként (hospitality átlag)' },
+        { source: 'Magasabb visszatérési arány', value: '21% visszatérés 14 napon belül (gamifikáció)', revenue: 'vs 12-18% pecsétgyűjtő programoknál' },
+      ],
+      conclusion: 'Egy 50+ terítékes étteremnél SpiniX review generálása önmagában többszörösen fedezi a €23/hó árkülönbséget. Nagyon kis kávézónál (10-15 teríték) TurboPush alacsonyabb ára lehet észszerűbb.',
+    },
+    scenarios: {
+      title: 'Melyiket válaszd?',
+      items: [
+        { situation: 'Budget $10/hó alatt', recommendation: 'TurboPush', reason: '$5.99 Basic plan. Semmilyen más loyalty eszköz nem közelíti meg áron.' },
+        { situation: 'Kis kávézó, 10-20 teríték/nap', recommendation: 'TurboPush', reason: 'Alacsony forgalomnál kevesebb review generálható. Tartsd minimálisan a költségeket.' },
+        { situation: 'Étterem, 50+ teríték/nap', recommendation: 'SpiniX', reason: 'Review generálás ennyi forgalomnál az első héten fizeti magát.' },
+        { situation: 'Google review-k kellenek', recommendation: 'SpiniX', reason: 'TurboPush-nak nulla review funkciója van. SpiniX automatikusan generálja.' },
+        { situation: 'Email followup kell', recommendation: 'SpiniX', reason: 'TurboPush-nak nincs emailje. SpiniX 6-email automatikus szekvenciát futtat.' },
+        { situation: 'Csak Wallet kártya kell, semmi más', recommendation: 'TurboPush', reason: 'Pont ez a TurboPush lényege. Egyszerű és olcsó.' },
+        { situation: 'Szálloda vagy spa (egyszeri vendégek)', recommendation: 'SpiniX', reason: 'Pecsétgyűjtőhöz visszatérő látogatás kell. Spin wheel az elsőn is jutalmaz.' },
+        { situation: 'Nulla-erőfeszítés setup kell', recommendation: 'TurboPush', reason: 'AI 30 mp alatt generál mindent. SpiniX 10 percet vesz igénybe.' },
+      ],
+    },
+    faq: {
+      title: 'Gyakran ismételt kérdések',
+      items: [
+        {
+          q: 'Tényleg $5.99/hó a TurboPush?',
+          a: 'Igen. A Basic plan $5.99/hó korlátlan digitális kártyákkal, 500 push értesítéssel havonta és 2 kártya designnal. Ami nincs benne: email, review-k, gamifikáció, vendég adatbázis export.',
+        },
+        {
+          q: 'Tud a TurboPush Google review-kat generálni?',
+          a: 'Nem. TurboPush kizárólag digitális loyalty kártyákra és push értesítésekre fókuszál. Review gyűjtéshez külön eszköz kell (tipikusan $50-200/hó), ami gyakran többe kerül mint maga a TurboPush előfizetés.',
+        },
+        {
+          q: 'Elég 500 push értesítés havonta?',
+          a: 'Attól függ. 100 kártya tulajdonossal az 5 üzenet/fő/hó, elég heti frissítésekhez. 500+ kártya tulajdonossal egy üzenetnél kifutsz. A legtöbb növekvő vállalkozás 3-6 hónapon belül kinövi a Basic plant.',
+        },
+        {
+          q: 'Átválthatok TurboPush-ról SpiniX-re később?',
+          a: 'Igen, de Wallet passokat nem lehet platformok között migrálni. A vendégeknek új SpiniX QR kódot kell scannelniük. 2-3 héten belül a legtöbb aktív vendég átáll.',
+        },
+        {
+          q: 'Melyik jobb kávézónak?',
+          a: 'Kis kávézó (30 teríték/nap alatt): TurboPush. "Vegyél 9-et, a 10. ingyen" jól működik napi kávé szokásoknál, és $5.99/hó minimalizálja a költségeket. Forgalmas kávézó (50+ teríték): SpiniX. Ennyi forgalomnál a gamifikáció és review generálás lényegesen több értéket ad mint az árkülönbség.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Készen állsz a loyaltyra ami többet csinál mint pecsétgyűjtő?',
+      subtitle: 'Próbáld ki a SpiniX-et 14 napig ingyen. Gamifikáció, review-k és email automatizáció mind benne. Lásd a különbséget az elköteleződésben az első héten.',
+      button: 'Ingyenes Próba',
+      secondary: 'Árazás',
+    },
+    related: {
+      title: 'Kapcsolódó olvasmányok',
+      posts: [
+        { title: 'Digitális Pecsétgyűjtő vs QR Loyalty Játék', slug: '/blog/digital-punch-card-vs-qr-loyalty-game' },
+        { title: 'Apple Wallet Loyalty Kártya Éttermeknek', slug: '/blog/apple-wallet-loyalty-card-restaurant' },
+        { title: 'Google Review-k Bevételi Hatása', slug: '/blog/google-reviews-restaurant-revenue-impact' },
+        { title: 'Éttermi Loyalty App Nélkül', slug: '/blog/restaurant-loyalty-program-without-app' },
+      ],
+    },
+  },
+};
+---
+
+<ComparisonLayout translations={translations} slug="turbopush" lang={lang} />
